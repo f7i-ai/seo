@@ -404,31 +404,39 @@ class SEOContentGenerator:
     def generate_image_with_openai(self, image_prompt: str) -> Optional[str]:
         """Generate hero image using OpenAI DALL-E"""
         try:
-            # Sanitize the prompt to avoid policy violations
-            sanitized_prompt = re.sub(r'[^\w\s.,()-]', '', image_prompt)
-            sanitized_prompt = sanitized_prompt[:900]  # Keep under 1000 chars
+            print(f"    🎨 Original image prompt from Claude: {image_prompt}")
 
-            enhanced_prompt = f"""
-            Professional corporate illustration: {sanitized_prompt}
-            Style: Clean modern business graphics, technology focused
-            Colors: Professional blue and gray tones
-            Format: Wide horizontal layout for blog header
-            High quality digital art, no text or branding
-            """
+            # Heavily sanitize and simplify the prompt
+            sanitized_prompt = re.sub(r'[^\w\s.,()-]', '', image_prompt)
+            sanitized_prompt = sanitized_prompt[:200]  # Much shorter limit
+
+            # Very simple, safe prompt
+            simple_prompt = f"Professional business illustration of {sanitized_prompt}, clean modern style"
+
+            # Further simplify if still too complex
+            if len(simple_prompt) > 100:
+                simple_prompt = "Realistic factory environment with machinery and workers"
+
+            print(f"    📝 Final OpenAI prompt: '{simple_prompt}'")
+            print(f"    📏 Prompt length: {len(simple_prompt)} characters")
 
             response = self.openai_client.images.generate(
                 model="dall-e-3",
-                prompt=enhanced_prompt,
+                prompt=simple_prompt,
                 size="1792x1024",
                 quality="standard",
                 n=1,
             )
 
+            print(f"    ✅ Image generated successfully!")
             return response.data[0].url
 
         except Exception as e:
-            print(f"Error generating image: {e}")
-            print(f"Prompt was: {enhanced_prompt[:200]}...")
+            print(f"    ❌ Error generating image: {e}")
+            print(
+                f"    🔍 Failed prompt was: '{simple_prompt if 'simple_prompt' in locals() else 'undefined'}'")
+            print(
+                f"    📏 Prompt length was: {len(simple_prompt) if 'simple_prompt' in locals() else 'undefined'}")
             # Return a fallback or skip image generation
             return None
 
@@ -501,6 +509,32 @@ class SEOContentGenerator:
         }
 
         return prismic_data
+
+    def check_existing_content(self, keyword: str, output_dir: str = "generated_content") -> bool:
+        """Check if content already exists for this keyword"""
+        # Create safe filename (same logic as save_output)
+        safe_keyword = re.sub(r'[^\w\s-]', '', keyword).strip()
+        safe_keyword = re.sub(r'[-\s]+', '-', safe_keyword)
+
+        json_filename = f"{safe_keyword[:50]}.json"
+        md_filename = f"{safe_keyword[:50]}.md"
+
+        json_filepath = os.path.join(output_dir, json_filename)
+        md_filepath = os.path.join(output_dir, md_filename)
+
+        # Check if both files exist
+        json_exists = os.path.exists(json_filepath)
+        md_exists = os.path.exists(md_filepath)
+
+        if json_exists and md_exists:
+            return True
+        elif json_exists or md_exists:
+            # If only one file exists, log it and consider as incomplete
+            print(
+                f"    ⚠️  Incomplete content found for '{keyword}' (JSON: {json_exists}, MD: {md_exists})")
+            return False
+        else:
+            return False
 
     def save_output(self, prismic_data: Dict, keyword: str, body_markdown: str, output_dir: str = "generated_content"):
         """Save generated content to JSON file and separate markdown file"""
@@ -577,14 +611,32 @@ def main():
     print("\n🔍 Checking existing content on f7i.ai...")
     existing_content = generator.scrape_existing_content()
 
-    # Filter out keywords that overlap with existing content
+    # Filter out keywords that overlap with existing content OR already have generated content
     filtered_keywords = []
-    for keyword in keyword_data.keys():
-        if not generator.check_keyword_overlap(keyword, existing_content):
-            filtered_keywords.append(keyword)
-        else:
-            print(f"⚠️  Skipping '{keyword}' - overlaps with existing content")
+    skipped_overlap = 0
+    skipped_existing = 0
 
+    for keyword in keyword_data.keys():
+        # Check if content already exists
+        if generator.check_existing_content(keyword):
+            print(f"✅ Skipping '{keyword}' - content already generated")
+            skipped_existing += 1
+            continue
+
+        # Check for content overlap with existing blog
+        if generator.check_keyword_overlap(keyword, existing_content):
+            print(
+                f"⚠️  Skipping '{keyword}' - overlaps with existing blog content")
+            skipped_overlap += 1
+            continue
+
+        filtered_keywords.append(keyword)
+
+    print(f"\n📊 Content Generation Summary:")
+    print(f"   • Total keywords in CSV: {len(keyword_data)}")
+    print(f"   • Already generated: {skipped_existing}")
+    print(f"   • Overlaps with existing blog: {skipped_overlap}")
+    print(f"   • Ready for generation: {len(filtered_keywords)}")
     print(f"\n✅ {len(filtered_keywords)} keywords ready for content generation")
 
     # Process each keyword

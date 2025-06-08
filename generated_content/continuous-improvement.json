@@ -1,0 +1,55 @@
+{
+  "meta_title": "Continuous Improvement Guide for Maintenance Teams 2024",
+  "meta_description": "Master continuous improvement in maintenance operations. Get proven frameworks, ROI measurement tools, and CMMS integration strategies to reduce costs by 30%.",
+  "title": "The Complete Guide to Continuous Improvement in Maintenance Management",
+  "keyword": "continuous improvement",
+  "hero_image": {
+    "url": "",
+    "alt": "Hero image for The Complete Guide to Continuous Improvement in Maintenance Management"
+  },
+  "body": "[See separate markdown file]",
+  "internal_references": [
+    {
+      "anchor_text": "maintenance management system",
+      "suggested_url": "/features/cmms-software",
+      "context": "In the 'What is Continuous Improvement in Maintenance?' section when discussing data-driven decision making"
+    },
+    {
+      "anchor_text": "preventive maintenance schedules",
+      "suggested_url": "/blog/preventive-maintenance-scheduling",
+      "context": "In the 'Kaizen in Maintenance Operations' section when listing kaizen event focus areas"
+    },
+    {
+      "anchor_text": "maintenance KPIs and performance metrics",
+      "suggested_url": "/blog/maintenance-kpis-metrics",
+      "context": "In the 'Phase 1: Assessment and Planning' section during current state analysis"
+    },
+    {
+      "anchor_text": "work order processes",
+      "suggested_url": "/features/work-order-management",
+      "context": "In the 'Lean Maintenance Principles' section when discussing waste elimination"
+    },
+    {
+      "anchor_text": "mobile maintenance applications",
+      "suggested_url": "/features/mobile-maintenance-app",
+      "context": "In the 'Phase 3: Full-Scale Implementation' section under technology integration"
+    }
+  ],
+  "external_references": [
+    {
+      "anchor_text": "PDCA (Plan-Do-Check-Act) cycles",
+      "url": "https://asq.org/quality-resources/pdca-cycle",
+      "context": "In the 'Core Principles of Maintenance Continuous Improvement' section when discussing systematic approaches"
+    },
+    {
+      "anchor_text": "DMAIC (Define-Measure-Analyze-Improve-Control) framework",
+      "url": "https://www.isixsigma.com/dictionary/dmaic/",
+      "context": "In the 'Six Sigma for Maintenance Quality' section when explaining the methodology"
+    },
+    {
+      "anchor_text": "Overall Equipment Effectiveness (OEE)",
+      "url": "https://www.oee.com/",
+      "context": "In the 'Performance Monitoring' section when listing key performance indicators"
+    }
+  ]
+}
