@@ -56,9 +56,9 @@ class SEOContentGenerator:
             'upkeep.com'
         ]
 
-    def load_keywords_from_csv(self, csv_file_path: str) -> List[str]:
-        """Load keywords from Ahrefs CSV export"""
-        keywords = []
+    def load_keywords_from_csv(self, csv_file_path: str) -> Dict[str, List[Dict]]:
+        """Load keywords from Ahrefs CSV export with SERP data"""
+        keyword_data = {}
 
         # Try different encodings commonly used by Ahrefs
         encodings = ['utf-8', 'utf-16', 'iso-8859-1', 'cp1252']
@@ -86,15 +86,31 @@ class SEOContentGenerator:
                                         break
 
                                 if keyword:
-                                    keywords.append(keyword)
+                                    # Initialize keyword data if not exists
+                                    if keyword not in keyword_data:
+                                        keyword_data[keyword] = []
 
-                            if keywords:  # If we found keywords, break
+                                    # Collect SERP data for this keyword
+                                    serp_entry = {
+                                        'title': row.get('Title', ''),
+                                        'url': row.get('URL', ''),
+                                        'position': row.get('Position', ''),
+                                        'traffic': row.get('Traffic', ''),
+                                        'difficulty': row.get('Difficulty', ''),
+                                        'volume': row.get('Volume', ''),
+                                        'cpc': row.get('CPC', ''),
+                                        'type': row.get('Type', ''),
+                                        'intents': row.get('Intents', '')
+                                    }
+                                    keyword_data[keyword].append(serp_entry)
+
+                            if keyword_data:  # If we found keywords, break
                                 break
 
-                if keywords:
+                if keyword_data:
                     print(
-                        f"Successfully loaded {len(keywords)} keywords using {encoding} encoding")
-                    return keywords
+                        f"Successfully loaded {len(keyword_data)} unique keywords with SERP data using {encoding} encoding")
+                    return keyword_data
 
             except (UnicodeDecodeError, UnicodeError):
                 continue
@@ -103,7 +119,7 @@ class SEOContentGenerator:
                 continue
 
         print("Failed to load CSV with any supported encoding")
-        return []
+        return {}
 
     def scrape_existing_content(self, base_url: str = "https://f7i.ai/blog") -> List[str]:
         """Scrape existing blog content to avoid duplicates"""
@@ -148,27 +164,98 @@ class SEOContentGenerator:
                 return True
         return False
 
-    def research_keyword_with_claude(self, keyword: str) -> Dict:
+    def research_keyword_with_claude(self, keyword: str, serp_data: List[Dict] = None) -> Dict:
         """Use Claude Deep Research to analyze keyword and competition"""
+
+        print(f"    🔍 Starting deep research for keyword: '{keyword}'")
+        start_time = time.time()
+
+        # Build SERP analysis section
+        serp_analysis = ""
+        if serp_data:
+            print(f"    📊 Analyzing {len(serp_data)} SERP results...")
+            serp_analysis = f"""
+            
+        SERP Analysis Data:
+        The top 10 search results for "{keyword}" are:
+        """
+            for i, result in enumerate(serp_data[:10], 1):
+                serp_analysis += f"""
+        {i}. Title: {result.get('title', 'N/A')}
+           URL: {result.get('url', 'N/A')}
+           Position: {result.get('position', 'N/A')}
+           Traffic: {result.get('traffic', 'N/A')}
+           Type: {result.get('type', 'N/A')}
+           Intents: {result.get('intents', 'N/A')}
+        """
+        else:
+            print(f"    ⚠️  No SERP data available for '{keyword}'")
+
         research_prompt = f"""
-        Conduct deep research on the keyword: "{keyword}"
+        You are a senior SEO content strategist specializing in B2B industrial and maintenance management topics. 
         
-        Please provide:
-        1. Search intent analysis
-        2. Content gaps in current top-ranking pages
-        3. User pain points and questions
-        4. Semantic keywords and related terms
-        5. Content angle recommendations
-        6. Competitive landscape analysis (avoid getmaintainx.com, limblecmms.com, upkeep.com)
-        7. Recommended content structure
+        Conduct COMPREHENSIVE deep research on the keyword: "{keyword}"
+        {serp_analysis}
         
-        Focus on maintenance management, industrial operations, and related B2B software topics.
-        Output in JSON format.
+        Use web search tools to gather current information about:
+        - Latest industry trends related to this keyword
+        - Recent developments in maintenance management and CMMS
+        - Current best practices and emerging technologies
+        - Authoritative sources and industry reports
+        
+        Then perform detailed analysis in these areas:
+        
+        1. SEARCH INTENT ANALYSIS:
+           - What are users really looking for when they search this keyword?
+           - What stage of the buyer's journey are they in?
+           - What problems are they trying to solve?
+           
+        2. CONTENT GAP ANALYSIS:
+           - What topics are missing from current top-ranking pages?
+           - What questions aren't being answered?
+           - What depth of information is lacking?
+           
+        3. USER PAIN POINTS & QUESTIONS:
+           - What specific challenges do maintenance managers face with this topic?
+           - What are the most common questions and concerns?
+           - What misconceptions exist in the market?
+           
+        4. SEMANTIC KEYWORDS & RELATED TERMS:
+           - Provide 20+ related keywords and LSI terms
+           - Include technical terminology and industry jargon
+           - Add question-based long-tail keywords
+           
+        5. CONTENT ANGLE RECOMMENDATIONS:
+           - Unique angles that would outrank current results
+           - Content formats that would perform better
+           - Specific hooks and value propositions
+           
+        6. COMPETITIVE LANDSCAPE:
+           - Analyze competitor content strengths and weaknesses
+           - Identify differentiation opportunities
+           - Note: Avoid similarities to getmaintainx.com, limblecmms.com, upkeep.com
+           
+        7. RECOMMENDED CONTENT STRUCTURE:
+           - Detailed outline with H2 and H3 headings
+           - Key points to cover in each section
+           - Optimal content length and format suggestions
+           
+        Focus specifically on maintenance management, industrial operations, CMMS, and related B2B software topics.
+        
+        Provide comprehensive, actionable insights that will inform the creation of superior content.
+        
+        Output your analysis in valid JSON format with clear sections for each analysis area.
         """
 
+        print(
+            f"    📝 Sending research prompt to Claude (length: {len(research_prompt)} chars)")
+
         try:
+            print(f"    🤖 Calling Claude API...")
+            api_start = time.time()
+
             message = self.anthropic_client.messages.create(
-                model="claude-3-5-sonnet-20241022",
+                model="claude-sonnet-4-20250514",
                 max_tokens=4000,
                 temperature=0.3,
                 messages=[{
@@ -177,29 +264,63 @@ class SEOContentGenerator:
                 }]
             )
 
+            api_time = time.time() - api_start
+            print(f"    ⏱️  Claude API call took {api_time:.2f} seconds")
+
             # Get the text content safely
             response_text = message.content[0].text
+            response_length = len(response_text)
+            print(f"    📄 Received response ({response_length} characters)")
+
+            # Show first 200 chars of response for debugging
+            preview = response_text[:200].replace('\n', ' ')
+            print(f"    👀 Response preview: {preview}...")
 
             # Clean the response to handle control characters
             cleaned_text = re.sub(r'[\x00-\x1f\x7f-\x9f]', '', response_text)
 
             # Try to extract JSON from the response
+            print(f"    🔧 Parsing JSON response...")
             try:
                 research_data = json.loads(cleaned_text)
-            except json.JSONDecodeError:
+                print(
+                    f"    ✅ Successfully parsed JSON with {len(research_data)} top-level keys")
+
+                # Log the keys we got back
+                if research_data:
+                    print(
+                        f"    🔑 Research data keys: {list(research_data.keys())}")
+
+            except json.JSONDecodeError as json_err:
+                print(f"    ❌ JSON parsing failed: {json_err}")
+                print(f"    🔍 Attempting to extract JSON block from response...")
+
                 # If direct parsing fails, try to find JSON block
                 json_match = re.search(r'\{.*\}', cleaned_text, re.DOTALL)
                 if json_match:
-                    research_data = json.loads(json_match.group())
+                    try:
+                        research_data = json.loads(json_match.group())
+                        print(f"    ✅ Successfully extracted and parsed JSON block")
+                    except json.JSONDecodeError:
+                        print(f"    ❌ Could not parse extracted JSON block")
+                        research_data = {
+                            "error": "Failed to parse research data", "raw_response": cleaned_text[:500]}
                 else:
-                    print(f"Could not parse JSON from research response")
-                    research_data = {"error": "Failed to parse research data"}
+                    print(f"    ❌ No JSON block found in response")
+                    research_data = {
+                        "error": "No JSON found in response", "raw_response": cleaned_text[:500]}
+
+            total_time = time.time() - start_time
+            print(
+                f"    🏁 Research completed in {total_time:.2f} seconds total")
 
             return research_data
 
         except Exception as e:
-            print(f"Error in keyword research: {e}")
-            return {}
+            error_time = time.time() - start_time
+            print(
+                f"    ❌ Error in keyword research after {error_time:.2f} seconds: {e}")
+            return {"error": str(e)}
 
     def generate_content_with_claude(self, keyword: str, research_data: Dict) -> BlogPost:
         """Generate high-quality blog content using Claude"""
@@ -212,13 +333,23 @@ class SEOContentGenerator:
         - Meta title: Less than 60 characters, compelling and SEO-optimized
         - Meta description: 150-160 characters, includes keyword and call-to-action
         - Main title: Engaging H1 that includes the target keyword
-        - Body content: 2500-4000 words, comprehensive and authoritative
-        - Include 5 internal link opportunities (use placeholder [INTERNAL-LINK-1] through [INTERNAL-LINK-5])
-        - Include 3 external reference opportunities (use placeholder [EXTERNAL-LINK-1] through [EXTERNAL-LINK-3])
-        - Structure with proper H2 and H3 headings
+        - Body content: 2500-4000 words, comprehensive and authoritative, formatted in clean Markdown
+        - Include 5 internal link opportunities in the body text with actual anchor text
+        - Include 3 external reference opportunities in the body text with actual anchor text
+        - Structure with proper H2 and H3 headings using Markdown syntax
         - Include actionable insights and practical advice
         - Write for maintenance managers, facility operators, and industrial decision-makers
         - Avoid content similar to competitors: getmaintainx.com, limblecmms.com, upkeep.com
+        
+        For internal_links array, provide 5 objects with:
+        - "anchor_text": the text to be linked
+        - "suggested_url": suggested internal page URL (e.g., "/blog/related-topic" or "/features/maintenance-tracking")
+        - "context": where this link should appear in the content
+        
+        For external_links array, provide 3 objects with:
+        - "anchor_text": the text to be linked  
+        - "url": actual external URL to authoritative sources
+        - "context": where this link should appear in the content
         
         Also provide:
         - Image generation prompt for a relevant hero image
@@ -228,7 +359,7 @@ class SEOContentGenerator:
 
         try:
             message = self.anthropic_client.messages.create(
-                model="claude-3-5-sonnet-20241022",
+                model="claude-sonnet-4-20250514",
                 max_tokens=8000,
                 temperature=0.4,
                 messages=[{
@@ -273,12 +404,16 @@ class SEOContentGenerator:
     def generate_image_with_openai(self, image_prompt: str) -> Optional[str]:
         """Generate hero image using OpenAI DALL-E"""
         try:
+            # Sanitize the prompt to avoid policy violations
+            sanitized_prompt = re.sub(r'[^\w\s.,()-]', '', image_prompt)
+            sanitized_prompt = sanitized_prompt[:900]  # Keep under 1000 chars
+
             enhanced_prompt = f"""
-            Professional, modern illustration for a B2B blog post: {image_prompt}
-            Style: Clean, corporate, technology-focused
-            Format: Wide landscape format suitable for blog hero image
-            Colors: Professional blues, grays, and whites
-            No text overlay, high quality, 1792x1024 resolution
+            Professional corporate illustration: {sanitized_prompt}
+            Style: Clean modern business graphics, technology focused
+            Colors: Professional blue and gray tones
+            Format: Wide horizontal layout for blog header
+            High quality digital art, no text or branding
             """
 
             response = self.openai_client.images.generate(
@@ -293,6 +428,8 @@ class SEOContentGenerator:
 
         except Exception as e:
             print(f"Error generating image: {e}")
+            print(f"Prompt was: {enhanced_prompt[:200]}...")
+            # Return a fallback or skip image generation
             return None
 
     def format_for_prismic(self, blog_post: BlogPost) -> Dict:
@@ -365,22 +502,57 @@ class SEOContentGenerator:
 
         return prismic_data
 
-    def save_output(self, prismic_data: Dict, keyword: str, output_dir: str = "generated_content"):
-        """Save generated content to JSON file"""
+    def save_output(self, prismic_data: Dict, keyword: str, body_markdown: str, output_dir: str = "generated_content"):
+        """Save generated content to JSON file and separate markdown file"""
         os.makedirs(output_dir, exist_ok=True)
 
         # Create safe filename
         safe_keyword = re.sub(r'[^\w\s-]', '', keyword).strip()
         safe_keyword = re.sub(r'[-\s]+', '-', safe_keyword)
-        filename = f"{safe_keyword[:50]}.json"
 
-        filepath = os.path.join(output_dir, filename)
+        # Save JSON (without body for cleaner format)
+        json_data = prismic_data.copy()
+        json_data['body'] = "[See separate markdown file]"
 
-        with open(filepath, 'w', encoding='utf-8') as f:
-            json.dump(prismic_data, f, indent=2, ensure_ascii=False)
+        json_filename = f"{safe_keyword[:50]}.json"
+        json_filepath = os.path.join(output_dir, json_filename)
 
-        print(f"Content saved to: {filepath}")
-        return filepath
+        with open(json_filepath, 'w', encoding='utf-8') as f:
+            json.dump(json_data, f, indent=2, ensure_ascii=False)
+
+        # Save Markdown body separately
+        md_filename = f"{safe_keyword[:50]}.md"
+        md_filepath = os.path.join(output_dir, md_filename)
+
+        with open(md_filepath, 'w', encoding='utf-8') as f:
+            f.write(f"# {prismic_data.get('title', keyword)}\n\n")
+            f.write(f"**Keyword:** {keyword}\n\n")
+            f.write(
+                f"**Meta Title:** {prismic_data.get('meta_title', '')}\n\n")
+            f.write(
+                f"**Meta Description:** {prismic_data.get('meta_description', '')}\n\n")
+            f.write("---\n\n")
+            f.write(body_markdown)
+
+            # Add reference sections
+            if prismic_data.get('internal_links'):
+                f.write("\n\n## Internal Link Suggestions\n\n")
+                for i, link in enumerate(prismic_data['internal_links'], 1):
+                    f.write(
+                        f"{i}. **{link.get('anchor_text', 'N/A')}** → `{link.get('suggested_url', 'N/A')}`\n")
+                    f.write(f"   Context: {link.get('context', 'N/A')}\n\n")
+
+            if prismic_data.get('external_links'):
+                f.write("\n## External Reference Links\n\n")
+                for i, link in enumerate(prismic_data['external_links'], 1):
+                    f.write(
+                        f"{i}. **{link.get('anchor_text', 'N/A')}** → [{link.get('url', 'N/A')}]({link.get('url', 'N/A')})\n")
+                    f.write(f"   Context: {link.get('context', 'N/A')}\n\n")
+
+        print(f"Content saved to:")
+        print(f"  📄 JSON: {json_filepath}")
+        print(f"  📝 Markdown: {md_filepath}")
+        return json_filepath, md_filepath
 
 
 def main():
@@ -395,9 +567,9 @@ def main():
         print("❌ CSV file not found!")
         return
 
-    # Load keywords
-    keywords = generator.load_keywords_from_csv(csv_path)
-    if not keywords:
+    # Load keywords with SERP data
+    keyword_data = generator.load_keywords_from_csv(csv_path)
+    if not keyword_data:
         print("❌ No keywords found in CSV!")
         return
 
@@ -407,7 +579,7 @@ def main():
 
     # Filter out keywords that overlap with existing content
     filtered_keywords = []
-    for keyword in keywords:
+    for keyword in keyword_data.keys():
         if not generator.check_keyword_overlap(keyword, existing_content):
             filtered_keywords.append(keyword)
         else:
@@ -421,9 +593,11 @@ def main():
             f"\n📝 Processing keyword {i}/{len(filtered_keywords)}: {keyword}")
 
         try:
-            # Research keyword
-            print("  🔬 Researching keyword...")
-            research_data = generator.research_keyword_with_claude(keyword)
+            # Research keyword with SERP data
+            print("  🔬 Researching keyword with SERP analysis...")
+            serp_data = keyword_data.get(keyword, [])
+            research_data = generator.research_keyword_with_claude(
+                keyword, serp_data)
 
             # Generate content
             print("  ✍️  Generating content...")
@@ -444,7 +618,9 @@ def main():
             prismic_data = generator.format_for_prismic(blog_post)
 
             # Save output
-            filepath = generator.save_output(prismic_data, keyword)
+            body_markdown = blog_post.body  # Get the original markdown body
+            filepaths = generator.save_output(
+                prismic_data, keyword, body_markdown)
             print(f"  ✅ Content generated successfully!")
 
             # Rate limiting
