@@ -1,0 +1,55 @@
+{
+  "meta_title": "FMEA Guide: Failure Mode Analysis for Maintenance Teams",
+  "meta_description": "Master FMEA implementation with our comprehensive guide. Learn step-by-step processes, digital tools, and ROI strategies for maintenance professionals.",
+  "title": "FMEA (Failure Mode and Effects Analysis): Complete Implementation Guide for Maintenance Professionals",
+  "keyword": "fmea",
+  "hero_image": {
+    "url": "",
+    "alt": "Hero image for FMEA (Failure Mode and Effects Analysis): Complete Implementation Guide for Maintenance Professionals"
+  },
+  "body": "[See separate markdown file]",
+  "internal_references": [
+    {
+      "anchor_text": "preventive maintenance strategies",
+      "suggested_url": "/blog/preventive-maintenance-guide",
+      "context": "This link should appear in the section discussing FMEA integration with maintenance programs, specifically when mentioning how FMEA supports preventive maintenance planning."
+    },
+    {
+      "anchor_text": "CMMS platforms",
+      "suggested_url": "/features/cmms-software-comparison",
+      "context": "This link should be placed in the 'Integrating FMEA with CMMS Platforms' section when discussing modern computerized maintenance management systems."
+    },
+    {
+      "anchor_text": "predictive maintenance programs",
+      "suggested_url": "/blog/predictive-maintenance-implementation",
+      "context": "This link should appear in the section about FMEA for predictive maintenance, when explaining how FMEA serves as a foundation for predictive strategies."
+    },
+    {
+      "anchor_text": "maintenance planning",
+      "suggested_url": "/features/maintenance-planning-tools",
+      "context": "This link should be included when discussing how FMEA-identified preventive maintenance tasks can be integrated into overall maintenance planning workflows."
+    },
+    {
+      "anchor_text": "equipment reliability metrics",
+      "suggested_url": "/blog/maintenance-kpis-metrics-guide",
+      "context": "This link should appear in the 'Measuring FMEA Success and ROI' section when discussing lagging indicators and improvement in equipment reliability metrics."
+    }
+  ],
+  "external_references": [
+    {
+      "anchor_text": "American Society for Quality (ASQ)",
+      "url": "https://asq.org/quality-resources/fmea",
+      "context": "This link should appear in the training and certification section when discussing professional certifications and authoritative FMEA resources."
+    },
+    {
+      "anchor_text": "IEC 60812 international standard",
+      "url": "https://www.iso.org/standard/56312.html",
+      "context": "This link should be placed in the 'Industry Standards and Guidelines' section when referencing the international standard for failure mode and effects analysis methodology."
+    },
+    {
+      "anchor_text": "AIAG-VDA FMEA Handbook",
+      "url": "https://www.aiag.org/quality/automotive-core-tools/fmea",
+      "context": "This link should appear in the industry standards section when discussing the automotive industry standard for FMEA methodology and best practices."
+    }
+  ]
+}

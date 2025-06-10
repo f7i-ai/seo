@@ -1,0 +1,55 @@
+{
+  "meta_title": "CMMS Meaning: Complete Guide to Maintenance Management Systems",
+  "meta_description": "Discover what CMMS means, how computerized maintenance management systems work, and why they're essential for modern operations. Complete guide with examples.",
+  "title": "CMMS Meaning: The Complete Guide to Computerized Maintenance Management Systems in 2024",
+  "keyword": "cmms meaning",
+  "hero_image": {
+    "url": "",
+    "alt": "Hero image for CMMS Meaning: The Complete Guide to Computerized Maintenance Management Systems in 2024"
+  },
+  "body": "[See separate markdown file]",
+  "internal_references": [
+    {
+      "anchor_text": "preventive maintenance scheduling",
+      "suggested_url": "/features/preventive-maintenance-software",
+      "context": "This link should appear in the 'Essential CMMS Components and Features' section when discussing preventive maintenance capabilities"
+    },
+    {
+      "anchor_text": "work order management system",
+      "suggested_url": "/features/work-order-management",
+      "context": "This link should appear in the 'CMMS Workflow: From Request to Completion' section when explaining work order processes"
+    },
+    {
+      "anchor_text": "asset management software",
+      "suggested_url": "/solutions/asset-management",
+      "context": "This link should appear in the 'Asset Management' subsection when discussing equipment tracking and performance monitoring"
+    },
+    {
+      "anchor_text": "mobile maintenance applications",
+      "suggested_url": "/features/mobile-cmms",
+      "context": "This link should appear in the 'Mobile CMMS and Field Technician Tools' section when discussing mobile capabilities"
+    },
+    {
+      "anchor_text": "CMMS implementation best practices",
+      "suggested_url": "/resources/cmms-implementation-guide",
+      "context": "This link should appear in the 'Change Management and User Adoption' section when discussing success factors"
+    }
+  ],
+  "external_references": [
+    {
+      "anchor_text": "Aberdeen Group study on CMMS ROI",
+      "url": "https://www.aberdeen.com/research/5471/5471-RR-maintenance-management.aspx",
+      "context": "This link should appear in the 'Quantified Benefits and ROI Metrics' section when citing the 545% ROI statistic"
+    },
+    {
+      "anchor_text": "overall equipment effectiveness (OEE)",
+      "url": "https://www.oee.com/",
+      "context": "This link should appear in the 'Asset Performance Improvements' section when mentioning OEE improvements"
+    },
+    {
+      "anchor_text": "Joint Commission compliance reporting",
+      "url": "https://www.jointcommission.org/standards/",
+      "context": "This link should appear in the 'Healthcare and Specialized Industries' section when discussing regulatory compliance requirements"
+    }
+  ]
+}

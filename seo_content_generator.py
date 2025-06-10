@@ -121,34 +121,37 @@ class SEOContentGenerator:
         print("Failed to load CSV with any supported encoding")
         return {}
 
-    def scrape_existing_content(self, base_url: str = "https://f7i.ai/blog") -> List[str]:
-        """Scrape existing blog content to avoid duplicates"""
-        existing_topics = []
+    def load_existing_content_from_sitemap(self, sitemap_url: str) -> List[str]:
+        """Load existing blog slugs from the sitemap to avoid duplicates"""
+        existing_slugs = []
         try:
-            response = requests.get(base_url, timeout=10)
+            print(f"🕸️  Fetching sitemap from {sitemap_url}")
+            response = requests.get(sitemap_url, timeout=15)
             response.raise_for_status()
 
-            soup = BeautifulSoup(response.content, 'html.parser')
+            # Parse XML sitemap
+            soup = BeautifulSoup(response.content, 'xml')
+            urls = soup.find_all('loc')
 
-            # Extract blog titles and topics (adjust selectors based on actual site structure)
-            blog_links = soup.find_all('a', href=re.compile(r'/blog'))
-            for link in blog_links:
-                title = link.get_text().strip().lower()
-                if title:
-                    existing_topics.append(title)
+            for url in urls:
+                if url.text and '/blog/' in url.text:
+                    # Extract the blog slug from URL
+                    parsed_url = urlparse(url.text)
+                    path = parsed_url.path
+                    if path.startswith('/blog/'):
+                        # Remove /blog/ prefix and trailing slashes
+                        slug = path.replace('/blog/', '', 1).strip('/')
+                        if slug:
+                            # Convert slug to words for better matching
+                            slug_words = slug.replace('-', ' ')
+                            existing_slugs.append(slug_words)
 
-            # Also extract from meta descriptions and content
-            meta_descriptions = soup.find_all(
-                'meta', attrs={'name': 'description'})
-            for meta in meta_descriptions:
-                content = meta.get('content', '').lower()
-                existing_topics.append(content)
-
-            print(f"Found {len(existing_topics)} existing content pieces")
-            return existing_topics
+            print(
+                f"✅ Found {len(existing_slugs)} existing blog posts from sitemap")
+            return existing_slugs
 
         except Exception as e:
-            print(f"Error scraping existing content: {e}")
+            print(f"❌ Error loading sitemap: {e}")
             return []
 
     def check_keyword_overlap(self, keyword: str, existing_content: List[str]) -> bool:
@@ -410,12 +413,18 @@ class SEOContentGenerator:
             sanitized_prompt = re.sub(r'[^\w\s.,()-]', '', image_prompt)
             sanitized_prompt = sanitized_prompt[:200]  # Much shorter limit
 
-            # Very simple, safe prompt
-            simple_prompt = f"Professional business illustration of {sanitized_prompt}, clean modern style"
+            # Industrial-themed but safe prompts - avoid "workers", "realistic", etc.
+            industrial_safe_prompts = [
+                "Modern industrial facility with clean equipment",
+                "Professional manufacturing plant interior",
+                "Clean industrial facility with modern technology",
+                "Professional industrial setting with machinery",
+                "Modern factory floor with advanced equipment",
+                "Industrial facility with professional lighting"
+            ]
 
-            # Further simplify if still too complex
-            if len(simple_prompt) > 100:
-                simple_prompt = "Realistic factory environment with machinery and workers"
+            # Try industrial theme first, with fallback to ultra-safe
+            simple_prompt = industrial_safe_prompts[0]
 
             print(f"    📝 Final OpenAI prompt: '{simple_prompt}'")
             print(f"    📏 Prompt length: {len(simple_prompt)} characters")
@@ -424,7 +433,7 @@ class SEOContentGenerator:
                 model="dall-e-3",
                 prompt=simple_prompt,
                 size="1792x1024",
-                quality="standard",
+                quality="hd",
                 n=1,
             )
 
@@ -435,9 +444,29 @@ class SEOContentGenerator:
             print(f"    ❌ Error generating image: {e}")
             print(
                 f"    🔍 Failed prompt was: '{simple_prompt if 'simple_prompt' in locals() else 'undefined'}'")
-            print(
-                f"    📏 Prompt length was: {len(simple_prompt) if 'simple_prompt' in locals() else 'undefined'}")
-            # Return a fallback or skip image generation
+
+            # Try ultra-safe fallback if industrial prompt failed
+            if 'industrial' in simple_prompt.lower() or 'factory' in simple_prompt.lower() or 'manufacturing' in simple_prompt.lower():
+                print(f"    🔄 Trying ultra-safe fallback prompt...")
+                try:
+                    fallback_prompt = "Professional business illustration, clean modern style"
+                    print(f"    📝 Fallback prompt: '{fallback_prompt}'")
+
+                    response = self.openai_client.images.generate(
+                        model="dall-e-3",
+                        prompt=fallback_prompt,
+                        size="1792x1024",
+                        quality="standard",
+                        n=1,
+                    )
+
+                    print(f"    ✅ Fallback image generated successfully!")
+                    return response.data[0].url
+
+                except Exception as fallback_e:
+                    print(f"    ❌ Even fallback failed: {fallback_e}")
+
+            # Return None if all attempts failed
             return None
 
     def format_for_prismic(self, blog_post: BlogPost) -> Dict:
@@ -601,15 +630,22 @@ def main():
         print("❌ CSV file not found!")
         return
 
+    # Get sitemap URL
+    sitemap_url = input(
+        "Enter sitemap URL (default: https://f7i.ai/sitemap.xml): ").strip()
+    if not sitemap_url:
+        sitemap_url = "https://f7i.ai/sitemap.xml"
+
     # Load keywords with SERP data
     keyword_data = generator.load_keywords_from_csv(csv_path)
     if not keyword_data:
         print("❌ No keywords found in CSV!")
         return
 
-    # Scrape existing content
-    print("\n🔍 Checking existing content on f7i.ai...")
-    existing_content = generator.scrape_existing_content()
+    # Load existing content from sitemap
+    print(f"\n🔍 Loading existing content from sitemap: {sitemap_url}")
+    existing_content = generator.load_existing_content_from_sitemap(
+        sitemap_url)
 
     # Filter out keywords that overlap with existing content OR already have generated content
     filtered_keywords = []

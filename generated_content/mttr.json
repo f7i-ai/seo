@@ -1,0 +1,55 @@
+{
+  "meta_title": "MTTR Guide: Calculate & Improve Mean Time to Repair",
+  "meta_description": "Master MTTR calculation, benchmarks, and improvement strategies. Reduce downtime by 30% with proven maintenance optimization techniques. Get started today.",
+  "title": "MTTR (Mean Time to Repair): The Complete Guide for Maintenance Excellence",
+  "keyword": "mttr",
+  "hero_image": {
+    "url": "",
+    "alt": "Hero image for MTTR (Mean Time to Repair): The Complete Guide for Maintenance Excellence"
+  },
+  "body": "[See separate markdown file]",
+  "internal_references": [
+    {
+      "anchor_text": "preventive maintenance programs",
+      "suggested_url": "/blog/preventive-maintenance-strategy-guide",
+      "context": "This link should appear in the section discussing how preventive maintenance impacts MTTR, specifically when mentioning mature preventive maintenance programs."
+    },
+    {
+      "anchor_text": "Computerized Maintenance Management Systems (CMMS)",
+      "suggested_url": "/features/cmms-software-comparison",
+      "context": "This link should appear in the section about MTTR integration with modern systems, when first introducing CMMS capabilities."
+    },
+    {
+      "anchor_text": "condition monitoring systems",
+      "suggested_url": "/blog/condition-monitoring-implementation-guide",
+      "context": "This link should appear in the technology solutions section when discussing condition monitoring as a tool for MTTR improvement."
+    },
+    {
+      "anchor_text": "maintenance KPIs",
+      "suggested_url": "/blog/essential-maintenance-kpis-metrics",
+      "context": "This link should appear in the section about key metrics to monitor alongside MTTR, when introducing complementary maintenance metrics."
+    },
+    {
+      "anchor_text": "Overall Equipment Effectiveness (OEE)",
+      "suggested_url": "/blog/oee-calculation-improvement-guide",
+      "context": "This link should appear when OEE is first mentioned as a complementary metric to MTTR in the tracking and reporting section."
+    }
+  ],
+  "external_references": [
+    {
+      "anchor_text": "studies show that facilities with mature preventive maintenance programs",
+      "url": "https://www.plant-maintenance.com/articles/MaintenanceMetrics.shtml",
+      "context": "This link should appear in the preventive maintenance impact section when citing research about MTTR improvements from preventive maintenance."
+    },
+    {
+      "anchor_text": "International Organization for Standardization (ISO) maintenance standards",
+      "url": "https://www.iso.org/standard/63296.html",
+      "context": "This link should appear when discussing industry benchmarks and standards for MTTR measurement and reporting."
+    },
+    {
+      "anchor_text": "Society for Maintenance & Reliability Professionals (SMRP)",
+      "url": "https://smrp.org/",
+      "context": "This link should appear in the benchmarking section when discussing industry standards and best practices for maintenance metrics."
+    }
+  ]
+}
