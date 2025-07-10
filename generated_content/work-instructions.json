@@ -1,0 +1,55 @@
+{
+  "meta_title": "Work Instructions Guide: Create Effective Maintenance Procedures",
+  "meta_description": "Learn to create maintenance work instructions that reduce errors by 40% and boost productivity. Complete guide with templates, examples, and proven strategies.",
+  "title": "# The Complete Guide to Maintenance Work Instructions: Transform Your Industrial Operations",
+  "keyword": "work instructions",
+  "hero_image": {
+    "url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-hbP9KjsTGhFWAO5PhHkO92RS/user-1kCGHBeOlewrtsbLxwNuX8RF/img-msszuKBGm9MtKrO36ojXPN7U.png?st=2025-07-10T01%3A21%3A07Z&se=2025-07-10T03%3A21%3A07Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=475fd488-6c59-44a5-9aa9-31c4db451bea&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-09T16%3A09%3A26Z&ske=2025-07-10T16%3A09%3A26Z&sks=b&skv=2024-08-04&sig=qBztQ/7C7RfOI224MG%2BmsVx8dKakSnGvS53IKC/0H8c%3D",
+    "alt": "Hero image for # The Complete Guide to Maintenance Work Instructions: Transform Your Industrial Operations"
+  },
+  "body": "[See separate markdown file]",
+  "internal_references": [
+    {
+      "anchor_text": "computerized maintenance management systems",
+      "suggested_url": "/features/cmms-software-comparison",
+      "context": "When discussing CMMS integration strategies in the Digital Work Instructions section"
+    },
+    {
+      "anchor_text": "preventive maintenance programs",
+      "suggested_url": "/blog/preventive-maintenance-best-practices",
+      "context": "When explaining the relationship between SOPs and work instructions in the definition section"
+    },
+    {
+      "anchor_text": "maintenance planning and scheduling",
+      "suggested_url": "/features/maintenance-scheduling",
+      "context": "When discussing indirect benefits of work instructions in the business case section"
+    },
+    {
+      "anchor_text": "equipment reliability and lifespan",
+      "suggested_url": "/blog/equipment-reliability-metrics",
+      "context": "When covering ROI and cost savings analysis in the business case section"
+    },
+    {
+      "anchor_text": "maintenance management systems",
+      "suggested_url": "/solutions/maintenance-management-software",
+      "context": "When discussing integration with existing procedures in the content development phase"
+    }
+  ],
+  "external_references": [
+    {
+      "anchor_text": "OSHA lockout/tagout standards",
+      "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+      "context": "When discussing safety requirements and lockout/tagout procedures in the core components section"
+    },
+    {
+      "anchor_text": "ISO 55000 asset management standards",
+      "url": "https://www.iso.org/iso-55001-asset-management.html",
+      "context": "When covering regulatory compliance and industry standards in the industry-specific considerations section"
+    },
+    {
+      "anchor_text": "NIST cybersecurity framework",
+      "url": "https://www.nist.gov/cyberframework",
+      "context": "When discussing critical infrastructure protection in the utilities and power generation section"
+    }
+  ]
+}
