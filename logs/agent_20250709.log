@@ -1,0 +1,6 @@
+2025-07-09 22:47:17,093 - seo_agent - INFO - Background Agent initialized
+2025-07-09 22:47:17,093 - seo_agent - INFO - Starting processing cycle
+2025-07-09 22:47:17,093 - seo_agent - INFO - Loading keywords from kw.csv
+2025-07-09 22:47:19,561 - seo_agent - INFO - Added 3 keywords to processing queue
+2025-07-09 22:47:19,562 - seo_agent - INFO - Processing keyword: air compressor repair
+2025-07-10 09:02:14,199 - seo_agent - INFO - Next run scheduled for: 2025-07-11 02:00:00

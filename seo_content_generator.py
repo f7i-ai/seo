@@ -3,12 +3,13 @@ import json
 import requests
 import time
 import re
-from typing import List, Dict, Optional
+import base64
+from typing import List, Dict, Optional, Any
 from dataclasses import dataclass
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urlparse
 import os
 from dotenv import load_dotenv
-import anthropic
+import google.generativeai as genai  # type: ignore
 import openai
 from bs4 import BeautifulSoup
 
@@ -36,15 +37,18 @@ class BlogPost:
     body: str
     image_prompt: str
     image_url: Optional[str] = None
-    internal_links: List[str] = None
-    external_links: List[str] = None
+    local_image_path: Optional[str] = None
+    internal_links: Optional[List[str]] = None
+    external_links: Optional[List[str]] = None
 
 
 class SEOContentGenerator:
     def __init__(self):
-        self.anthropic_client = anthropic.Anthropic(
-            api_key=os.getenv('ANTHROPIC_API_KEY')
-        )
+        # Configure Gemini 2.5 Pro
+        genai.configure(api_key=os.getenv('GEMINI_API_KEY'))  # type: ignore
+        self.gemini_model = genai.GenerativeModel(  # type: ignore
+            'gemini-2.5-pro-preview-03-25')
+
         self.openai_client = openai.OpenAI(
             api_key=os.getenv('OPENAI_API_KEY')
         )
@@ -56,9 +60,9 @@ class SEOContentGenerator:
             'upkeep.com'
         ]
 
-    def load_keywords_from_csv(self, csv_file_path: str) -> Dict[str, List[Dict]]:
+    def load_keywords_from_csv(self, csv_file_path: str) -> Dict[str, List[Dict[str, Any]]]:
         """Load keywords from Ahrefs CSV export with SERP data"""
-        keyword_data = {}
+        keyword_data: Dict[str, List[Dict[str, Any]]] = {}
 
         # Try different encodings commonly used by Ahrefs
         encodings = ['utf-8', 'utf-16', 'iso-8859-1', 'cp1252']
@@ -167,8 +171,8 @@ class SEOContentGenerator:
                 return True
         return False
 
-    def research_keyword_with_claude(self, keyword: str, serp_data: List[Dict] = None) -> Dict:
-        """Use Claude Deep Research to analyze keyword and competition"""
+    def research_keyword_with_gemini(self, keyword: str, serp_data: Optional[List[Dict[str, Any]]] = None) -> Dict[str, Any]:
+        """Use Gemini to analyze keyword and competition"""
 
         print(f"    🔍 Starting deep research for keyword: '{keyword}'")
         start_time = time.time()
@@ -200,78 +204,86 @@ class SEOContentGenerator:
         Conduct COMPREHENSIVE deep research on the keyword: "{keyword}"
         {serp_analysis}
         
-        Use web search tools to gather current information about:
+        Use web search to gather current information about:
         - Latest industry trends related to this keyword
         - Recent developments in maintenance management and CMMS
         - Current best practices and emerging technologies
         - Authoritative sources and industry reports
         
-        Then perform detailed analysis in these areas:
-        
-        1. SEARCH INTENT ANALYSIS:
-           - What are users really looking for when they search this keyword?
-           - What stage of the buyer's journey are they in?
-           - What problems are they trying to solve?
-           
-        2. CONTENT GAP ANALYSIS:
-           - What topics are missing from current top-ranking pages?
-           - What questions aren't being answered?
-           - What depth of information is lacking?
-           
-        3. USER PAIN POINTS & QUESTIONS:
-           - What specific challenges do maintenance managers face with this topic?
-           - What are the most common questions and concerns?
-           - What misconceptions exist in the market?
-           
-        4. SEMANTIC KEYWORDS & RELATED TERMS:
-           - Provide 20+ related keywords and LSI terms
-           - Include technical terminology and industry jargon
-           - Add question-based long-tail keywords
-           
-        5. CONTENT ANGLE RECOMMENDATIONS:
-           - Unique angles that would outrank current results
-           - Content formats that would perform better
-           - Specific hooks and value propositions
-           
-        6. COMPETITIVE LANDSCAPE:
-           - Analyze competitor content strengths and weaknesses
-           - Identify differentiation opportunities
-           - Note: Avoid similarities to getmaintainx.com, limblecmms.com, upkeep.com
-           
-        7. RECOMMENDED CONTENT STRUCTURE:
-           - Detailed outline with H2 and H3 headings
-           - Key points to cover in each section
-           - Optimal content length and format suggestions
-           
-        Focus specifically on maintenance management, industrial operations, CMMS, and related B2B software topics.
-        
-        Provide comprehensive, actionable insights that will inform the creation of superior content.
-        
-        Output your analysis in valid JSON format with clear sections for each analysis area.
+        Then perform detailed analysis and output in this EXACT structured markdown format:
+
+        # Research Analysis: {keyword}
+
+        ## Search Intent Analysis
+        [What are users really looking for? What stage of buyer's journey? What problems are they solving?]
+
+        ## Content Gap Analysis  
+        [What topics are missing from current top-ranking pages? What questions aren't answered? What depth is lacking?]
+
+        ## User Pain Points & Questions
+        [What specific challenges do maintenance managers face? Most common questions? Market misconceptions?]
+
+        ## Semantic Keywords & Related Terms
+        [Provide 20+ related keywords, LSI terms, technical terminology, question-based long-tail keywords - one per line with bullets]
+
+        ## Content Angle Recommendations
+        [Unique angles to outrank current results, better content formats, specific hooks and value propositions]
+
+        ## Competitive Landscape
+        [Competitor content strengths/weaknesses, differentiation opportunities. Avoid similarities to getmaintainx.com, limblecmms.com, upkeep.com]
+
+        ## Recommended Content Structure
+        [Detailed outline with H2/H3 headings, key points for each section, optimal content length]
+
+        ## Industry Trends & Developments
+        [Latest trends in maintenance management, CMMS developments, emerging technologies]
+
+        ## Authoritative Sources
+        [Industry reports, research studies, expert sources to reference]
+
+        Use this EXACT format with these EXACT headings. Focus on maintenance management, industrial operations, CMMS, and B2B software topics.
         """
 
         print(
-            f"    📝 Sending research prompt to Claude (length: {len(research_prompt)} chars)")
+            f"    📝 Sending research prompt to Gemini (length: {len(research_prompt)} chars)")
 
         try:
-            print(f"    🤖 Calling Claude API...")
+            print(f"    🤖 Calling Gemini API...")
             api_start = time.time()
 
-            message = self.anthropic_client.messages.create(
-                model="claude-sonnet-4-20250514",
-                max_tokens=4000,
-                temperature=0.3,
-                messages=[{
-                    "role": "user",
-                    "content": research_prompt
-                }]
-            )
+            # Add retry logic for rate limiting
+            max_retries = 3
+            response = None
+            for attempt in range(max_retries):
+                try:
+                    response = self.gemini_model.generate_content(  # type: ignore
+                        research_prompt,
+                        generation_config=genai.types.GenerationConfig(  # type: ignore
+                            temperature=0.3,
+                            max_output_tokens=4000,  # Reduced for free tier
+                        )
+                    )
+                    break  # Success, exit retry loop
+
+                except Exception as e:
+                    if "429" in str(e) or "quota" in str(e).lower():
+                        wait_time = min(60 * (attempt + 1),
+                                        300)  # Max 5 minutes
+                        print(
+                            f"    ⏳ Rate limit hit, waiting {wait_time}s (attempt {attempt + 1}/{max_retries})")
+                        if attempt < max_retries - 1:  # Don't wait on last attempt
+                            time.sleep(wait_time)
+                            continue
+                    raise e  # Re-raise if not rate limit or last attempt
+
+            if response is None:
+                raise Exception("Failed to get response from Gemini API")
 
             api_time = time.time() - api_start
-            print(f"    ⏱️  Claude API call took {api_time:.2f} seconds")
+            print(f"    ⏱️  Gemini API call took {api_time:.2f} seconds")
 
-            # Get the text content safely
-            response_text = message.content[0].text
+            # Get the text content
+            response_text = response.text
             response_length = len(response_text)
             print(f"    📄 Received response ({response_length} characters)")
 
@@ -279,39 +291,22 @@ class SEOContentGenerator:
             preview = response_text[:200].replace('\n', ' ')
             print(f"    👀 Response preview: {preview}...")
 
-            # Clean the response to handle control characters
-            cleaned_text = re.sub(r'[\x00-\x1f\x7f-\x9f]', '', response_text)
+            # Parse markdown response into structured data
+            print(f"    🔧 Parsing markdown response...")
+            research_data = self._parse_research_markdown(
+                response_text, keyword)
 
-            # Try to extract JSON from the response
-            print(f"    🔧 Parsing JSON response...")
-            try:
-                research_data = json.loads(cleaned_text)
+            if research_data:
                 print(
-                    f"    ✅ Successfully parsed JSON with {len(research_data)} top-level keys")
-
-                # Log the keys we got back
-                if research_data:
-                    print(
-                        f"    🔑 Research data keys: {list(research_data.keys())}")
-
-            except json.JSONDecodeError as json_err:
-                print(f"    ❌ JSON parsing failed: {json_err}")
-                print(f"    🔍 Attempting to extract JSON block from response...")
-
-                # If direct parsing fails, try to find JSON block
-                json_match = re.search(r'\{.*\}', cleaned_text, re.DOTALL)
-                if json_match:
-                    try:
-                        research_data = json.loads(json_match.group())
-                        print(f"    ✅ Successfully extracted and parsed JSON block")
-                    except json.JSONDecodeError:
-                        print(f"    ❌ Could not parse extracted JSON block")
-                        research_data = {
-                            "error": "Failed to parse research data", "raw_response": cleaned_text[:500]}
-                else:
-                    print(f"    ❌ No JSON block found in response")
-                    research_data = {
-                        "error": "No JSON found in response", "raw_response": cleaned_text[:500]}
+                    f"    ✅ Successfully parsed markdown with {len(research_data)} sections")
+                print(
+                    f"    🔑 Research data keys: {list(research_data.keys())}")
+            else:
+                print(f"    ❌ Failed to parse markdown response")
+                research_data = {
+                    "error": "Failed to parse research data",
+                    "raw_response": response_text[:500]
+                }
 
             total_time = time.time() - start_time
             print(
@@ -325,69 +320,235 @@ class SEOContentGenerator:
                 f"    ❌ Error in keyword research after {error_time:.2f} seconds: {e}")
             return {"error": str(e)}
 
-    def generate_content_with_claude(self, keyword: str, research_data: Dict) -> BlogPost:
-        """Generate high-quality blog content using Claude"""
+    def _parse_research_markdown(self, markdown_text: str, keyword: str) -> Dict[str, Any]:
+        """Parse structured markdown research into dictionary"""
+        try:
+            # Clean the text
+            text = markdown_text.strip()
+
+            # Extract sections using regex
+            sections: Dict[str, Any] = {}
+            sections['keyword'] = keyword
+
+            # Define section patterns
+            patterns = {
+                'search_intent': r'## Search Intent Analysis\s*\n(.*?)(?=##|$)',
+                'content_gaps': r'## Content Gap Analysis\s*\n(.*?)(?=##|$)',
+                'pain_points': r'## User Pain Points & Questions\s*\n(.*?)(?=##|$)',
+                'semantic_keywords': r'## Semantic Keywords & Related Terms\s*\n(.*?)(?=##|$)',
+                'content_angles': r'## Content Angle Recommendations\s*\n(.*?)(?=##|$)',
+                'competitive_landscape': r'## Competitive Landscape\s*\n(.*?)(?=##|$)',
+                'content_structure': r'## Recommended Content Structure\s*\n(.*?)(?=##|$)',
+                'industry_trends': r'## Industry Trends & Developments\s*\n(.*?)(?=##|$)',
+                'authoritative_sources': r'## Authoritative Sources\s*\n(.*?)(?=##|$)'
+            }
+
+            # Extract each section
+            for key, pattern in patterns.items():
+                match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
+                if match:
+                    sections[key] = match.group(1).strip()
+                else:
+                    sections[key] = ""
+
+            # Parse semantic keywords into list
+            if sections.get('semantic_keywords'):
+                keywords_text = sections['semantic_keywords']
+                # Extract bullet points or lines
+                keywords: List[str] = []
+                for line in keywords_text.split('\n'):
+                    line = line.strip()
+                    if line and (line.startswith('-') or line.startswith('•') or line.startswith('*')):
+                        keyword = line.lstrip('-•* ').strip()
+                        if keyword:
+                            keywords.append(keyword)
+                sections['semantic_keywords_list'] = keywords
+
+            return sections
+
+        except Exception as e:
+            print(f"    ❌ Error parsing markdown: {e}")
+            return {"error": f"Markdown parsing failed: {e}", "raw_response": markdown_text[:500]}
+
+    def _parse_content_markdown(self, markdown_text: str) -> Optional[Dict[str, Any]]:
+        """Parse structured markdown content into dictionary"""
+        try:
+            text = markdown_text.strip()
+            content = {}
+
+            # Extract sections using regex - handle H2 sections within BODY_CONTENT
+            patterns = {
+                'meta_title': r'## META_TITLE\s*\n(.*?)(?=##\s+(?:META_DESCRIPTION|MAIN_TITLE|BODY_CONTENT|IMAGE_PROMPT|INTERNAL_LINKS|EXTERNAL_LINKS)|$)',
+                'meta_description': r'## META_DESCRIPTION\s*\n(.*?)(?=##\s+(?:META_TITLE|MAIN_TITLE|BODY_CONTENT|IMAGE_PROMPT|INTERNAL_LINKS|EXTERNAL_LINKS)|$)',
+                'title': r'## MAIN_TITLE\s*\n(.*?)(?=##\s+(?:META_TITLE|META_DESCRIPTION|BODY_CONTENT|IMAGE_PROMPT|INTERNAL_LINKS|EXTERNAL_LINKS)|$)',
+                'body': r'## BODY_CONTENT\s*\n(.*?)(?=##\s+(?:IMAGE_PROMPT|INTERNAL_LINKS|EXTERNAL_LINKS)|$)',
+                'image_prompt': r'## IMAGE_PROMPT\s*\n(.*?)(?=##\s+(?:META_TITLE|META_DESCRIPTION|MAIN_TITLE|BODY_CONTENT|INTERNAL_LINKS|EXTERNAL_LINKS)|$)',
+                'internal_links_raw': r'## INTERNAL_LINKS\s*\n(.*?)(?=##\s+(?:META_TITLE|META_DESCRIPTION|MAIN_TITLE|BODY_CONTENT|IMAGE_PROMPT|EXTERNAL_LINKS)|$)',
+                'external_links_raw': r'## EXTERNAL_LINKS\s*\n(.*?)(?=##\s+(?:META_TITLE|META_DESCRIPTION|MAIN_TITLE|BODY_CONTENT|IMAGE_PROMPT|INTERNAL_LINKS)|$)'
+            }
+
+            # Extract each section
+            for key, pattern in patterns.items():
+                match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
+                if match:
+                    content[key] = match.group(1).strip()
+                else:
+                    content[key] = ""
+
+            # Parse internal links
+            internal_links = []
+            if content.get('internal_links_raw'):
+                for line in content['internal_links_raw'].split('\n'):
+                    line = line.strip()
+                    if line.startswith('-'):
+                        # Parse format: - [Anchor text] -> /url/path (Context: description)
+                        link_match = re.search(
+                            r'-\s*\[(.*?)\]\s*->\s*(\S+)\s*\(Context:\s*(.*?)\)', line)
+                        if link_match:
+                            internal_links.append({
+                                'anchor_text': str(link_match.group(1).strip()),
+                                'suggested_url': str(link_match.group(2).strip()),
+                                'context': str(link_match.group(3).strip())
+                            })
+            content['internal_links'] = internal_links
+
+            # Parse external links
+            external_links = []
+            if content.get('external_links_raw'):
+                for line in content['external_links_raw'].split('\n'):
+                    line = line.strip()
+                    if line.startswith('-'):
+                        # Parse format: - [Anchor text] -> https://url.com (Context: description)
+                        link_match = re.search(
+                            r'-\s*\[(.*?)\]\s*->\s*(\S+)\s*\(Context:\s*(.*?)\)', line)
+                        if link_match:
+                            external_links.append({
+                                'anchor_text': str(link_match.group(1).strip()),
+                                'url': str(link_match.group(2).strip()),
+                                'context': str(link_match.group(3).strip())
+                            })
+            content['external_links'] = external_links
+
+            # Clean up bracket placeholders in text fields
+            for key in ['meta_title', 'meta_description', 'title', 'body', 'image_prompt']:
+                if content.get(key):
+                    # Remove markdown bracket placeholders like [Less than 60 characters...]
+                    content[key] = re.sub(r'^\[.*?\]\s*', '', content[key])
+
+            return content
+
+        except Exception as e:
+            print(f"    ❌ Error parsing content markdown: {e}")
+            return None
+
+    def generate_content_with_gemini(self, keyword: str, research_data: Dict[str, Any]) -> Optional[BlogPost]:
+        """Generate high-quality blog content using Gemini"""
+
+        # Create simplified research summary for the prompt
+        research_summary = ""
+        if 'search_intent' in research_data:
+            research_summary += f"Search Intent: {research_data['search_intent'][:200]}...\n"
+        if 'semantic_keywords_list' in research_data:
+            # First 10 keywords
+            keywords = research_data['semantic_keywords_list'][:10]
+            research_summary += f"Related Keywords: {', '.join(keywords)}\n"
+        if 'content_angles' in research_data:
+            research_summary += f"Content Angles: {research_data['content_angles'][:200]}...\n"
+
         content_prompt = f"""
-        Write a comprehensive blog post for the keyword: "{keyword}"
+        Write a comprehensive, in-depth blog post for the keyword: "{keyword}"
         
-        Research insights: {json.dumps(research_data, indent=2)}
+        Research insights:
+        {research_summary}
         
-        Requirements:
-        - Meta title: Less than 60 characters, compelling and SEO-optimized
-        - Meta description: 150-160 characters, includes keyword and call-to-action
-        - Main title: Engaging H1 that includes the target keyword
-        - Body content: 2500-4000 words, comprehensive and authoritative, formatted in clean Markdown
-        - Include 5 internal link opportunities in the body text with actual anchor text
-        - Include 3 external reference opportunities in the body text with actual anchor text
-        - Structure with proper H2 and H3 headings using Markdown syntax
-        - Include actionable insights and practical advice
+        CRITICAL REQUIREMENTS:
+        - MINIMUM 2500 words in the BODY_CONTENT section - this is NON-NEGOTIABLE
+        - Target 3000-4000 words for maximum SEO impact
         - Write for maintenance managers, facility operators, and industrial decision-makers
+        - Include actionable insights, practical advice, real-world examples, and step-by-step guidance
         - Avoid content similar to competitors: getmaintainx.com, limblecmms.com, upkeep.com
+        - Cover the topic comprehensively with multiple angles and detailed explanations
         
-        For internal_links array, provide 5 objects with:
-        - "anchor_text": the text to be linked
-        - "suggested_url": suggested internal page URL (e.g., "/blog/related-topic" or "/features/maintenance-tracking")
-        - "context": where this link should appear in the content
+        CONTENT STRUCTURE REQUIREMENTS:
+        - Use multiple H2 sections (## headings) to organize content
+        - Include H3 subsections (### headings) for detailed coverage
+        - Provide concrete examples, case studies, and actionable tips
+        - Include troubleshooting guides, best practices, and implementation steps
+        - Add technical details, calculations, and industry standards where relevant
         
-        For external_links array, provide 3 objects with:
-        - "anchor_text": the text to be linked  
-        - "url": actual external URL to authoritative sources
-        - "context": where this link should appear in the content
-        
-        Also provide:
-        - Image generation prompt for a relevant hero image
-        
-        Output in JSON format with keys: meta_title, meta_description, title, body, image_prompt, internal_links, external_links
+        Output in this EXACT structured markdown format:
+
+        # Blog Post: {keyword}
+
+        ## META_TITLE
+        [Less than 60 characters, compelling and SEO-optimized]
+
+        ## META_DESCRIPTION  
+        [150-160 characters, includes keyword and call-to-action]
+
+        ## MAIN_TITLE
+        [Engaging H1 that includes the target keyword]
+
+        ## BODY_CONTENT
+        [MINIMUM 2500 words in clean Markdown format with proper H2 and H3 headings. This should be a comprehensive, detailed article covering all aspects of the topic. Include introduction, multiple main sections, practical guidance, examples, best practices, and conclusion.]
+
+        ## IMAGE_PROMPT
+        [Detailed prompt for generating a relevant hero image related to the keyword]
+
+        ## INTERNAL_LINKS
+        - [Anchor text for link 1] -> /suggested/url/path1 (Context: where this appears in the content)
+        - [Anchor text for link 2] -> /suggested/url/path2 (Context: where this appears in the content)
+        - [Anchor text for link 3] -> /suggested/url/path3 (Context: where this appears in the content)
+        - [Anchor text for link 4] -> /suggested/url/path4 (Context: where this appears in the content)
+        - [Anchor text for link 5] -> /suggested/url/path5 (Context: where this appears in the content)
+
+        ## EXTERNAL_LINKS
+        - [Anchor text for external link 1] -> https://authoritative-source1.com (Context: where this appears in the content)
+        - [Anchor text for external link 2] -> https://authoritative-source2.com (Context: where this appears in the content)
+        - [Anchor text for external link 3] -> https://authoritative-source3.com (Context: where this appears in the content)
+
+        REMEMBER: The BODY_CONTENT section must be at least 2500 words. Write a thorough, comprehensive article that covers the topic in depth.
         """
 
         try:
-            message = self.anthropic_client.messages.create(
-                model="claude-sonnet-4-20250514",
-                max_tokens=8000,
-                temperature=0.4,
-                messages=[{
-                    "role": "user",
-                    "content": content_prompt
-                }]
-            )
+            # Add retry logic for rate limiting
+            max_retries = 3
+            response = None
+            for attempt in range(max_retries):
+                try:
+                    response = self.gemini_model.generate_content(  # type: ignore
+                        content_prompt,
+                        generation_config=genai.types.GenerationConfig(  # type: ignore
+                            temperature=0.4,
+                            max_output_tokens=12000,  # Increased for full 4000-word content
+                        )
+                    )
+                    break  # Success, exit retry loop
 
-            # Get the text content safely
-            response_text = message.content[0].text
+                except Exception as e:
+                    if "429" in str(e) or "quota" in str(e).lower():
+                        wait_time = min(60 * (attempt + 1),
+                                        300)  # Max 5 minutes
+                        print(
+                            f"    ⏳ Rate limit hit, waiting {wait_time}s (attempt {attempt + 1}/{max_retries})")
+                        if attempt < max_retries - 1:  # Don't wait on last attempt
+                            time.sleep(wait_time)
+                            continue
+                    raise e  # Re-raise if not rate limit or last attempt
 
-            # Clean the response to handle control characters
-            cleaned_text = re.sub(r'[\x00-\x1f\x7f-\x9f]', '', response_text)
+            if response is None:
+                raise Exception("Failed to get response from Gemini API")
 
-            # Try to extract JSON from the response
-            try:
-                content_data = json.loads(cleaned_text)
-            except json.JSONDecodeError:
-                # If direct parsing fails, try to find JSON block
-                json_match = re.search(r'\{.*\}', cleaned_text, re.DOTALL)
-                if json_match:
-                    content_data = json.loads(json_match.group())
-                else:
-                    print(f"Could not parse JSON from content response")
-                    return None
+            # Get the text content
+            response_text = response.text
+
+            # Parse markdown response into structured data
+            print(f"    🔧 Parsing markdown content response...")
+            content_data = self._parse_content_markdown(response_text)
+
+            if not content_data:
+                print(f"Could not parse markdown from content response")
+                return None
 
             return BlogPost(
                 keyword=keyword,
@@ -404,77 +565,142 @@ class SEOContentGenerator:
             print(f"Error generating content: {e}")
             return None
 
-    def generate_image_with_openai(self, image_prompt: str) -> Optional[str]:
-        """Generate hero image using OpenAI DALL-E"""
+    def download_image_from_url(self, image_url: str, keyword: str, output_dir: str = "generated_content") -> Optional[str]:
+        """Download image from URL and save locally"""
         try:
-            print(f"    🎨 Original image prompt from Claude: {image_prompt}")
+            print(f"    📥 Downloading image from URL...")
 
-            # Heavily sanitize and simplify the prompt
-            sanitized_prompt = re.sub(r'[^\w\s.,()-]', '', image_prompt)
-            sanitized_prompt = sanitized_prompt[:200]  # Much shorter limit
+            # Create safe filename based on keyword
+            safe_keyword = re.sub(r'[^\w\s-]', '', keyword).strip()
+            safe_keyword = re.sub(r'[-\s]+', '-', safe_keyword)
 
-            # Industrial-themed but safe prompts - avoid "workers", "realistic", etc.
-            industrial_safe_prompts = [
-                "Modern industrial facility with clean equipment",
-                "Professional manufacturing plant interior",
-                "Clean industrial facility with modern technology",
-                "Professional industrial setting with machinery",
-                "Modern factory floor with advanced equipment",
-                "Industrial facility with professional lighting"
-            ]
+            # Create output directory if it doesn't exist
+            os.makedirs(output_dir, exist_ok=True)
 
-            # Try industrial theme first, with fallback to ultra-safe
-            simple_prompt = industrial_safe_prompts[0]
+            # Download the image
+            response = requests.get(image_url, stream=True, timeout=30)
+            response.raise_for_status()
 
-            print(f"    📝 Final OpenAI prompt: '{simple_prompt}'")
-            print(f"    📏 Prompt length: {len(simple_prompt)} characters")
+            # Determine file extension from content type or URL
+            content_type = response.headers.get('content-type', '')
+            if 'png' in content_type.lower():
+                extension = '.png'
+            elif 'jpeg' in content_type.lower() or 'jpg' in content_type.lower():
+                extension = '.jpg'
+            elif 'webp' in content_type.lower():
+                extension = '.webp'
+            else:
+                # Default to .png for unknown types
+                extension = '.png'
 
+            # Create local filename
+            local_filename = f"{safe_keyword[:50]}{extension}"
+            local_filepath = os.path.join(output_dir, local_filename)
+
+            # Save the image
+            with open(local_filepath, 'wb') as f:
+                for chunk in response.iter_content(chunk_size=8192):
+                    f.write(chunk)
+
+            print(f"    ✅ Image saved to: {local_filepath}")
+            return local_filepath
+
+        except Exception as e:
+            print(f"    ❌ Error downloading image: {e}")
+            return None
+
+    def save_base64_image(self, b64_data: str, keyword: str, output_dir: str = "generated_content") -> Optional[str]:
+        """Save base64 image data to local file"""
+        try:
+            print(f"    💾 Saving base64 image data locally...")
+
+            # Create safe filename based on keyword
+            safe_keyword = re.sub(r'[^\w\s-]', '', keyword).strip()
+            safe_keyword = re.sub(r'[-\s]+', '-', safe_keyword)
+
+            # Create output directory if it doesn't exist
+            os.makedirs(output_dir, exist_ok=True)
+
+            # Decode base64 data
+            image_data = base64.b64decode(b64_data)
+
+            # Create local filename (GPT-4 Image typically returns PNG)
+            local_filename = f"{safe_keyword[:50]}.png"
+            local_filepath = os.path.join(output_dir, local_filename)
+
+            # Save the image
+            with open(local_filepath, 'wb') as f:
+                f.write(image_data)
+
+            print(f"    ✅ Base64 image saved to: {local_filepath}")
+            return local_filepath
+
+        except Exception as e:
+            print(f"    ❌ Error saving base64 image: {e}")
+            return None
+
+    def generate_image_with_openai(self, image_prompt: str, keyword: str = "", output_dir: str = "generated_content") -> tuple[Optional[str], Optional[str]]:
+        """Generate hero image using OpenAI GPT-4 Image Generation and save it locally"""
+        try:
+            print(f"    🎨 Generating image with prompt: {image_prompt}")
+            print(f"    📏 Prompt length: {len(image_prompt)} characters")
+
+            # Use the actual image prompt from Gemini
+            print(f"    🤖 Calling OpenAI GPT-4 Image Generation API...")
             response = self.openai_client.images.generate(
-                model="dall-e-3",
-                prompt=simple_prompt,
-                size="1792x1024",
-                quality="hd",
+                model="gpt-image-1",
+                prompt=image_prompt,
+                size="1024x1024",
+                quality="medium",
                 n=1,
             )
 
             print(f"    ✅ Image generated successfully!")
-            return response.data[0].url
+            if response.data and len(response.data) > 0:
+                first_image = response.data[0]
+
+                # GPT-4 Image returns base64 data, not URLs
+                if hasattr(first_image, 'b64_json') and first_image.b64_json:
+                    print(f"    📊 Received base64 image data")
+
+                    if keyword:
+                        local_path = self.save_base64_image(
+                            first_image.b64_json, keyword, output_dir)
+                        # For base64 images, we don't have a remote URL
+                        return None, local_path
+                    else:
+                        return None, None
+
+                # Fallback: check for URL (for compatibility with other models)
+                elif hasattr(first_image, 'url') and first_image.url:
+                    image_url = first_image.url
+                    print(f"    🔗 Image URL: {image_url[:50]}...")
+
+                    if keyword:
+                        local_path = self.download_image_from_url(
+                            image_url, keyword, output_dir)
+                        return image_url, local_path
+                    else:
+                        return image_url, None
+                else:
+                    print(f"    ❌ No usable image data in response")
+                    return None, None
+            else:
+                print(f"    ❌ No image data received from OpenAI")
+                return None, None
 
         except Exception as e:
-            print(f"    ❌ Error generating image: {e}")
             print(
-                f"    🔍 Failed prompt was: '{simple_prompt if 'simple_prompt' in locals() else 'undefined'}'")
+                f"    ❌ Error generating image with GPT-4 Image Generation: {e}")
+            print(f"    ⚠️  No fallback model - returning None")
+            return None, None
 
-            # Try ultra-safe fallback if industrial prompt failed
-            if 'industrial' in simple_prompt.lower() or 'factory' in simple_prompt.lower() or 'manufacturing' in simple_prompt.lower():
-                print(f"    🔄 Trying ultra-safe fallback prompt...")
-                try:
-                    fallback_prompt = "Professional business illustration, clean modern style"
-                    print(f"    📝 Fallback prompt: '{fallback_prompt}'")
-
-                    response = self.openai_client.images.generate(
-                        model="dall-e-3",
-                        prompt=fallback_prompt,
-                        size="1792x1024",
-                        quality="standard",
-                        n=1,
-                    )
-
-                    print(f"    ✅ Fallback image generated successfully!")
-                    return response.data[0].url
-
-                except Exception as fallback_e:
-                    print(f"    ❌ Even fallback failed: {fallback_e}")
-
-            # Return None if all attempts failed
-            return None
-
-    def format_for_prismic(self, blog_post: BlogPost) -> Dict:
+    def format_for_prismic(self, blog_post: BlogPost) -> Dict[str, Any]:
         """Format content for Prismic CMS with proper rich text structure"""
 
         # Convert markdown-style content to Prismic rich text format
-        def convert_to_prismic_richtext(content: str) -> List[Dict]:
-            paragraphs = []
+        def convert_to_prismic_richtext(content: str) -> List[Dict[str, Any]]:
+            paragraphs: List[Dict[str, Any]] = []
             lines = content.split('\n')
 
             for line in lines:
@@ -502,7 +728,7 @@ class SEOContentGenerator:
                     })
                 else:
                     # Handle links in paragraphs
-                    spans = []
+                    spans: List[Dict[str, Any]] = []
                     text = line
 
                     # Find and process internal links
@@ -530,7 +756,9 @@ class SEOContentGenerator:
             "keyword": blog_post.keyword,
             "hero_image": {
                 "url": blog_post.image_url or "",
-                "alt": f"Hero image for {blog_post.title}"
+                "local_path": blog_post.local_image_path or "",
+                "alt": f"Hero image for {blog_post.title}",
+                "source": "gpt-image-1" if blog_post.local_image_path and not blog_post.image_url else "url"
             },
             "body": convert_to_prismic_richtext(blog_post.body),
             "internal_references": blog_post.internal_links or [],
@@ -565,7 +793,7 @@ class SEOContentGenerator:
         else:
             return False
 
-    def save_output(self, prismic_data: Dict, keyword: str, body_markdown: str, output_dir: str = "generated_content"):
+    def save_output(self, prismic_data: Dict[str, Any], keyword: str, body_markdown: str, output_dir: str = "generated_content") -> tuple[str, str]:
         """Save generated content to JSON file and separate markdown file"""
         os.makedirs(output_dir, exist_ok=True)
 
@@ -615,6 +843,15 @@ class SEOContentGenerator:
         print(f"Content saved to:")
         print(f"  📄 JSON: {json_filepath}")
         print(f"  📝 Markdown: {md_filepath}")
+
+        # Check if there's a local image file
+        image_extensions = ['.png', '.jpg', '.jpeg', '.webp']
+        for ext in image_extensions:
+            image_file = os.path.join(output_dir, f"{safe_keyword[:50]}{ext}")
+            if os.path.exists(image_file):
+                print(f"  🖼️  Image: {image_file}")
+                break
+
         return json_filepath, md_filepath
 
 
@@ -648,7 +885,7 @@ def main():
         sitemap_url)
 
     # Filter out keywords that overlap with existing content OR already have generated content
-    filtered_keywords = []
+    filtered_keywords: List[str] = []
     skipped_overlap = 0
     skipped_existing = 0
 
@@ -684,12 +921,12 @@ def main():
             # Research keyword with SERP data
             print("  🔬 Researching keyword with SERP analysis...")
             serp_data = keyword_data.get(keyword, [])
-            research_data = generator.research_keyword_with_claude(
+            research_data = generator.research_keyword_with_gemini(
                 keyword, serp_data)
 
             # Generate content
             print("  ✍️  Generating content...")
-            blog_post = generator.generate_content_with_claude(
+            blog_post = generator.generate_content_with_gemini(
                 keyword, research_data)
 
             if not blog_post:
@@ -698,8 +935,10 @@ def main():
 
             # Generate image
             print("  🎨 Generating hero image...")
-            blog_post.image_url = generator.generate_image_with_openai(
-                blog_post.image_prompt)
+            image_url, local_image_path = generator.generate_image_with_openai(
+                blog_post.image_prompt, keyword)
+            blog_post.image_url = image_url
+            blog_post.local_image_path = local_image_path
 
             # Format for Prismic
             print("  📋 Formatting for Prismic...")
@@ -707,7 +946,7 @@ def main():
 
             # Save output
             body_markdown = blog_post.body  # Get the original markdown body
-            filepaths = generator.save_output(
+            generator.save_output(
                 prismic_data, keyword, body_markdown)
             print(f"  ✅ Content generated successfully!")
 

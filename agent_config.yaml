@@ -1,0 +1,39 @@
+# SEO Content Generator Background Agent Configuration
+
+# File paths
+csv_file_path: "kw.csv"
+output_dir: "generated_content"
+log_dir: "logs"
+config_file: "agent_config.yaml"
+
+# Sitemap URL for existing content checking
+sitemap_url: "https://f7i.ai/sitemap.xml"
+
+# Processing settings (optimized for Gemini 2.5 Pro)
+max_keywords_per_run: 3          # Gemini 2.5 Pro has better limits
+concurrent_workers: 1            # Single thread for stability
+retry_attempts: 3                # Number of retry attempts for failed keywords
+retry_delay: 60                  # Delay between retries (seconds)
+
+# Scheduling
+run_interval_hours: 1           # How often to run (hours)
+run_at_hour: 10                   # What hour to run at (24-hour format, 2 = 2 AM)
+
+# Rate limiting (optimized for Gemini 2.5 Pro)
+rate_limit_delay: 15             # Moderate delay between API calls (seconds)
+
+# Email notifications (optional)
+email_notifications: false       # Set to true to enable email notifications
+smtp_server: "smtp.gmail.com"    # SMTP server for sending emails
+smtp_port: 587                   # SMTP port
+email_user: ""                   # Email username (set this if using notifications)
+email_password: ""               # Email password or app password
+notification_recipients:         # List of email addresses to notify
+  - "admin@yourdomain.com"
+
+# API Keys (these will be loaded from environment variables)
+# Set these in your .env file:
+# GEMINI_API_KEY=your_key_here
+# OPENAI_API_KEY=your_key_here
+gemini_api_key: ""
+openai_api_key: "" 

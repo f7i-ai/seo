@@ -1,0 +1,113 @@
+2025-07-10 09:03:16,326 - seo_agent - INFO - Background Agent initialized
+2025-07-10 09:03:16,326 - seo_agent - INFO - Starting SEO Content Generator Background Agent
+2025-07-10 09:03:16,326 - seo_agent - INFO - 
+        SEO Content Generator Agent Started
+        ==================================
+        Configuration:
+        - Output Directory: generated_content
+        - CSV File: kw.csv
+        - Max Keywords per Run: 3
+        - Run Interval: 24 hours
+        - Next Run: 2025-07-11 02:00:00
+        
+2025-07-10 09:03:27,552 - seo_agent - INFO - Received signal 2, shutting down...
+2025-07-10 09:04:16,333 - seo_agent - INFO - Shutting down background agent...
+2025-07-10 09:04:16,335 - seo_agent - INFO - 
+        SEO Content Generator Agent Shutdown
+        ===================================
+        Uptime: 0:01:00.039186
+        Total Keywords Processed: 0
+        Successful Generations: 0
+        Failed Generations: 0
+        
+2025-07-10 09:04:41,755 - seo_agent - INFO - Background Agent initialized
+2025-07-10 09:04:41,755 - seo_agent - INFO - Starting SEO Content Generator Background Agent
+2025-07-10 09:04:41,755 - seo_agent - INFO - 
+        SEO Content Generator Agent Started
+        ==================================
+        Configuration:
+        - Output Directory: generated_content
+        - CSV File: kw.csv
+        - Max Keywords per Run: 3
+        - Run Interval: 2 hours
+        - Next Run: 2025-07-11 09:00:00
+        
+2025-07-10 09:04:52,728 - seo_agent - INFO - Received signal 2, shutting down...
+2025-07-10 09:05:03,997 - seo_agent - INFO - Received signal 2, shutting down...
+2025-07-10 09:05:07,968 - seo_agent - INFO - Received signal 2, shutting down...
+2025-07-10 09:05:09,782 - seo_agent - INFO - Received signal 2, shutting down...
+2025-07-10 09:05:09,976 - seo_agent - INFO - Received signal 2, shutting down...
+2025-07-10 09:05:10,126 - seo_agent - INFO - Received signal 2, shutting down...
+2025-07-10 09:05:37,937 - seo_agent - INFO - Received signal 2, shutting down...
+2025-07-10 09:05:41,757 - seo_agent - INFO - Shutting down background agent...
+2025-07-10 09:05:41,758 - seo_agent - INFO - 
+        SEO Content Generator Agent Shutdown
+        ===================================
+        Uptime: 0:01:00.031704
+        Total Keywords Processed: 0
+        Successful Generations: 0
+        Failed Generations: 0
+        
+2025-07-10 09:06:48,995 - seo_agent - INFO - Background Agent initialized
+2025-07-10 09:06:48,995 - seo_agent - INFO - Starting processing cycle
+2025-07-10 09:06:48,995 - seo_agent - INFO - Loading keywords from kw.csv
+2025-07-10 09:06:50,481 - seo_agent - INFO - Added 3 keywords to processing queue
+2025-07-10 09:06:50,482 - seo_agent - INFO - Processing keyword: mttr
+2025-07-10 09:09:41,686 - seo_agent - ERROR - Failed to process 'mttr': name 'json' is not defined
+2025-07-10 09:09:41,687 - seo_agent - INFO - Retrying mttr (attempt 2)
+2025-07-10 09:10:41,690 - seo_agent - INFO - Processing keyword: pressure sensor
+2025-07-10 09:10:45,699 - seo_agent - INFO - Next run scheduled for: 2025-07-10 10:00:00
+2025-07-10 09:16:09,658 - seo_agent - INFO - Background Agent initialized
+2025-07-10 09:16:09,658 - seo_agent - INFO - Starting processing cycle
+2025-07-10 09:16:09,658 - seo_agent - INFO - Loading keywords from kw.csv
+2025-07-10 09:16:11,722 - seo_agent - INFO - Added 3 keywords to processing queue
+2025-07-10 09:16:11,723 - seo_agent - INFO - Processing keyword: mttr
+2025-07-10 09:19:04,627 - seo_agent - INFO - Successfully processed 'mttr' in 172.90s
+2025-07-10 09:19:04,628 - seo_agent - INFO - Processing keyword: pressure sensor
+2025-07-10 09:21:55,431 - seo_agent - INFO - Successfully processed 'pressure sensor' in 170.80s
+2025-07-10 09:21:55,432 - seo_agent - INFO - Processing keyword: cmms meaning
+2025-07-10 09:24:41,382 - seo_agent - INFO - Successfully processed 'cmms meaning' in 165.95s
+2025-07-10 09:24:41,383 - seo_agent - INFO - 
+            Processing Cycle Complete
+            ========================
+            Total Keywords: 3
+            Successful: 3
+            Failed: 0
+            Success Rate: 100.0% if results else 0%
+            
+            Successful Keywords:
+              - mttr
+  - pressure sensor
+  - cmms meaning
+            
+            Failed Keywords:
+            
+            
+2025-07-10 09:24:41,384 - seo_agent - INFO - Next run scheduled for: 2025-07-10 10:00:00
+2025-07-10 10:35:39,885 - seo_agent - INFO - Background Agent initialized
+2025-07-10 10:35:39,885 - seo_agent - INFO - Starting processing cycle
+2025-07-10 10:35:39,885 - seo_agent - INFO - Loading keywords from kw.csv
+2025-07-10 10:35:44,686 - seo_agent - INFO - Added 3 keywords to processing queue
+2025-07-10 10:35:44,687 - seo_agent - INFO - Processing keyword: mttr
+2025-07-10 10:39:05,237 - seo_agent - INFO - Successfully processed 'mttr' in 200.55s
+2025-07-10 10:39:05,238 - seo_agent - INFO - Processing keyword: pressure sensor
+2025-07-10 10:42:46,093 - seo_agent - INFO - Successfully processed 'pressure sensor' in 220.86s
+2025-07-10 10:42:46,098 - seo_agent - INFO - Processing keyword: cmms meaning
+2025-07-10 10:46:03,582 - seo_agent - INFO - Successfully processed 'cmms meaning' in 197.48s
+2025-07-10 10:46:03,583 - seo_agent - INFO - 
+            Processing Cycle Complete
+            ========================
+            Total Keywords: 3
+            Successful: 3
+            Failed: 0
+            Success Rate: 100.0% if results else 0.0%
+            
+            Successful Keywords:
+              - mttr
+  - pressure sensor
+  - cmms meaning
+            
+            Failed Keywords:
+            
+            
+2025-07-10 10:46:03,584 - seo_agent - INFO - Next run scheduled for: 2025-07-11 10:00:00
