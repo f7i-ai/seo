@@ -1,0 +1,55 @@
+{
+  "meta_title": "Breakdown Maintenance Guide: Strategy & ROI Analysis 2024",
+  "meta_description": "Master breakdown maintenance strategy with our comprehensive guide. Industry benchmarks, cost analysis, implementation frameworks, and ROI calculators for maintenance managers.",
+  "title": "# The Complete Guide to Breakdown Maintenance: When Reactive Strategy Drives Results",
+  "keyword": "breakdown maintenance",
+  "hero_image": {
+    "url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-hbP9KjsTGhFWAO5PhHkO92RS/user-1kCGHBeOlewrtsbLxwNuX8RF/img-Efjq23fY0PrFRFn3RXwIU9LM.png?st=2025-07-10T01%3A49%3A33Z&se=2025-07-10T03%3A49%3A33Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=475fd488-6c59-44a5-9aa9-31c4db451bea&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-09T16%3A49%3A57Z&ske=2025-07-10T16%3A49%3A57Z&sks=b&skv=2024-08-04&sig=FaauNXxzrFqWR71VT/Tn/fp5mYbdgMjSSrkCWHHPEvY%3D",
+    "alt": "Hero image for # The Complete Guide to Breakdown Maintenance: When Reactive Strategy Drives Results"
+  },
+  "body": "[See separate markdown file]",
+  "internal_references": [
+    {
+      "anchor_text": "preventive maintenance strategies",
+      "suggested_url": "/blog/preventive-maintenance-guide",
+      "context": "This link should appear in the section discussing the comparison between breakdown and preventive maintenance approaches."
+    },
+    {
+      "anchor_text": "CMMS software selection",
+      "suggested_url": "/features/cmms-software-comparison",
+      "context": "This link should appear in the technology integration section when discussing CMMS features and capabilities."
+    },
+    {
+      "anchor_text": "maintenance KPIs and metrics",
+      "suggested_url": "/blog/maintenance-kpis-metrics-guide",
+      "context": "This link should appear in the performance measurement section when discussing key performance indicators."
+    },
+    {
+      "anchor_text": "equipment criticality assessment",
+      "suggested_url": "/tools/equipment-criticality-calculator",
+      "context": "This link should appear in the strategic decision-making section when introducing the criticality assessment framework."
+    },
+    {
+      "anchor_text": "maintenance cost analysis",
+      "suggested_url": "/blog/maintenance-cost-analysis-guide",
+      "context": "This link should appear in the cost-benefit analysis section when discussing ROI calculation methodologies."
+    }
+  ],
+  "external_references": [
+    {
+      "anchor_text": "comprehensive study by the National Institute of Standards and Technology",
+      "url": "https://www.nist.gov/manufacturing/manufacturing-systems-integration-division",
+      "context": "This link should appear in the hidden costs section when discussing cascade failure risks and their impact on maintenance strategies."
+    },
+    {
+      "anchor_text": "Society for Maintenance and Reliability Professionals",
+      "url": "https://smrp.org/",
+      "context": "This link should appear in the industry benchmarking section when referencing professional standards and best practices."
+    },
+    {
+      "anchor_text": "International Organization for Standardization maintenance standards",
+      "url": "https://www.iso.org/committee/50404.html",
+      "context": "This link should appear in the regulatory compliance section when discussing international maintenance standards and requirements."
+    }
+  ]
+}

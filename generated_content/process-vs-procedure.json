@@ -1,0 +1,55 @@
+{
+  "meta_title": "Process vs Procedure: Complete Guide for Industrial Teams",
+  "meta_description": "Master the critical difference between process vs procedure in maintenance operations. Get implementation strategies, CMMS setup tips, and compliance guidance.",
+  "title": "Process vs Procedure in Maintenance Management: The Complete Industrial Guide",
+  "keyword": "process vs procedure",
+  "hero_image": {
+    "url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-hbP9KjsTGhFWAO5PhHkO92RS/user-1kCGHBeOlewrtsbLxwNuX8RF/img-UpVUJ5cIIHoCbUKyEyQvYrMG.png?st=2025-07-10T00%3A59%3A56Z&se=2025-07-10T02%3A59%3A56Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=475fd488-6c59-44a5-9aa9-31c4db451bea&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-10T01%3A57%3A06Z&ske=2025-07-11T01%3A57%3A06Z&sks=b&skv=2024-08-04&sig=2vpb%2B0uoZSeOYNXPlWivxvvdCQABi4jZ4ATDbzOXVfY%3D",
+    "alt": "Hero image for Process vs Procedure in Maintenance Management: The Complete Industrial Guide"
+  },
+  "body": "[See separate markdown file]",
+  "internal_references": [
+    {
+      "anchor_text": "preventive maintenance scheduling",
+      "suggested_url": "/blog/preventive-maintenance-scheduling-best-practices",
+      "context": "This link should appear in the section about CMMS implementation when discussing automated triggers and workflow configuration."
+    },
+    {
+      "anchor_text": "maintenance KPIs and metrics",
+      "suggested_url": "/blog/essential-maintenance-kpis-metrics",
+      "context": "This link should appear in the measuring success section when discussing process-level and procedure-level KPIs."
+    },
+    {
+      "anchor_text": "CMMS implementation guide",
+      "suggested_url": "/features/cmms-implementation-services",
+      "context": "This link should appear in the CMMS configuration section when discussing system setup best practices."
+    },
+    {
+      "anchor_text": "maintenance training programs",
+      "suggested_url": "/blog/maintenance-training-program-development",
+      "context": "This link should appear in the implementation strategy section when discussing training and change management."
+    },
+    {
+      "anchor_text": "digital work instructions",
+      "suggested_url": "/features/mobile-work-orders",
+      "context": "This link should appear in the digital transformation section when discussing mobile-first procedure execution."
+    }
+  ],
+  "external_references": [
+    {
+      "anchor_text": "OSHA's Process Safety Management standards",
+      "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.119",
+      "context": "This link should appear in the compliance section when discussing OSHA requirements and documentation."
+    },
+    {
+      "anchor_text": "ISO 55000 asset management standards",
+      "url": "https://www.iso.org/iso-55001-asset-management.html",
+      "context": "This link should appear in the compliance section when discussing ISO standards implementation."
+    },
+    {
+      "anchor_text": "Overall Equipment Effectiveness (OEE) calculation methods",
+      "url": "https://www.oee.com/calculating-oee.html",
+      "context": "This link should appear in the measuring success section when discussing process-level KPIs and OEE metrics."
+    }
+  ]
+}

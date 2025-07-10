@@ -1,0 +1,55 @@
+{
+  "meta_title": "Forklift Maintenance Guide: Best Practices & OSHA Compliance",
+  "meta_description": "Complete forklift maintenance guide covering OSHA requirements, preventive schedules, cost optimization, and safety protocols. Reduce downtime by 40% today.",
+  "title": "The Complete Forklift Maintenance Guide: Maximize Safety, Compliance, and ROI",
+  "keyword": "forklift maintenance",
+  "hero_image": {
+    "url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-hbP9KjsTGhFWAO5PhHkO92RS/user-1kCGHBeOlewrtsbLxwNuX8RF/img-BHiOwTgXsswYJaABimOJGeLv.png?st=2025-07-10T00%3A44%3A42Z&se=2025-07-10T02%3A44%3A42Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=475fd488-6c59-44a5-9aa9-31c4db451bea&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-09T07%3A31%3A14Z&ske=2025-07-10T07%3A31%3A14Z&sks=b&skv=2024-08-04&sig=eAbg3V1t1GeVYUUG/ak4bPTLCMA2IdeWpJcvtKUFwzA%3D",
+    "alt": "Hero image for The Complete Forklift Maintenance Guide: Maximize Safety, Compliance, and ROI"
+  },
+  "body": "[See separate markdown file]",
+  "internal_references": [
+    {
+      "anchor_text": "warehouse management systems integration",
+      "suggested_url": "/features/warehouse-management-integration",
+      "context": "When discussing WMS integration in the smart warehouse systems section"
+    },
+    {
+      "anchor_text": "fleet management optimization",
+      "suggested_url": "/solutions/fleet-management",
+      "context": "When explaining fleet rotation and capacity management strategies"
+    },
+    {
+      "anchor_text": "predictive maintenance technologies",
+      "suggested_url": "/blog/predictive-maintenance-iot-sensors",
+      "context": "When introducing IoT sensors and predictive analytics capabilities"
+    },
+    {
+      "anchor_text": "maintenance cost calculator",
+      "suggested_url": "/tools/maintenance-cost-calculator",
+      "context": "When discussing ROI analysis and cost comparison methodologies"
+    },
+    {
+      "anchor_text": "OSHA compliance checklist",
+      "suggested_url": "/resources/osha-compliance-checklist",
+      "context": "When detailing OSHA requirements and compliance standards"
+    }
+  ],
+  "external_references": [
+    {
+      "anchor_text": "OSHA's powered industrial truck standards",
+      "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.178",
+      "context": "When referencing specific OSHA requirements and compliance standards"
+    },
+    {
+      "anchor_text": "Industrial Truck Association safety guidelines",
+      "url": "https://www.indtrk.org/safety",
+      "context": "When discussing industry safety standards and best practices"
+    },
+    {
+      "anchor_text": "National Institute for Occupational Safety and Health (NIOSH) criteria",
+      "url": "https://www.cdc.gov/niosh/docs/99-144/",
+      "context": "When referencing workplace safety research and recommendations"
+    }
+  ]
+}
