@@ -1,0 +1,55 @@
+{
+  "meta_title": "Air Compressor Repair Guide: Expert Solutions & Cost Analysis",
+  "meta_description": "Complete air compressor repair guide for industrial teams. Learn diagnosis, repair vs replace decisions, cost analysis, and CMMS integration. Download free tools.",
+  "title": "Complete Air Compressor Repair Guide for Industrial Maintenance Teams",
+  "keyword": "air compressor repair",
+  "hero_image": {
+    "url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-hbP9KjsTGhFWAO5PhHkO92RS/user-1kCGHBeOlewrtsbLxwNuX8RF/img-IAPUi8b4La1vCJjdRAfDm26u.png?st=2025-07-10T00%3A41%3A45Z&se=2025-07-10T02%3A41%3A45Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=475fd488-6c59-44a5-9aa9-31c4db451bea&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-10T00%3A32%3A05Z&ske=2025-07-11T00%3A32%3A05Z&sks=b&skv=2024-08-04&sig=3zGshT5BBpkguj%2BhDHGlATtGogUDB2x0hA5/VRzCQDE%3D",
+    "alt": "Hero image for Complete Air Compressor Repair Guide for Industrial Maintenance Teams"
+  },
+  "body": "[See separate markdown file]",
+  "internal_references": [
+    {
+      "anchor_text": "computerized maintenance management systems",
+      "suggested_url": "/features/cmms-integration",
+      "context": "This link should appear in the section about CMMS integration where we discuss how repair management integrates with maintenance management systems."
+    },
+    {
+      "anchor_text": "condition monitoring protocols",
+      "suggested_url": "/blog/predictive-maintenance-strategies",
+      "context": "This link should appear in the diagnostic procedures section when discussing systematic testing and monitoring procedures."
+    },
+    {
+      "anchor_text": "maintenance management systems",
+      "suggested_url": "/features/maintenance-tracking",
+      "context": "This link should appear in the work order management section when discussing CMMS capabilities for repair scheduling."
+    },
+    {
+      "anchor_text": "preventive maintenance schedules",
+      "suggested_url": "/blog/preventive-maintenance-planning",
+      "context": "This link should appear in the preventive maintenance section when discussing comprehensive maintenance scheduling."
+    },
+    {
+      "anchor_text": "equipment history and performance tracking",
+      "suggested_url": "/features/asset-management",
+      "context": "This link should appear in the performance monitoring section when discussing historical data analysis and trend identification."
+    }
+  ],
+  "external_references": [
+    {
+      "anchor_text": "OSHA regulations",
+      "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+      "context": "This link should appear in the compliance section when discussing lockout/tagout procedures and safety requirements."
+    },
+    {
+      "anchor_text": "EPA Section 608 certification",
+      "url": "https://www.epa.gov/section608",
+      "context": "This link should appear in the environmental compliance section when discussing refrigerant handling requirements."
+    },
+    {
+      "anchor_text": "manufacturer torque specifications",
+      "url": "https://www.boltscience.com/pages/torque.htm",
+      "context": "This link should appear in the component-specific repair procedures section when discussing proper torque sequences and specifications."
+    }
+  ]
+}

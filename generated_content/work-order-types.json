@@ -1,0 +1,55 @@
+{
+  "meta_title": "Work Order Types Guide: 6 Essential Categories for Success",
+  "meta_description": "Master work order types with our comprehensive guide. Learn the 6 essential categories, implementation strategies, and best practices to optimize maintenance operations.",
+  "title": "Complete Guide to Work Order Types: Classification, Implementation, and Best Practices",
+  "keyword": "work order types",
+  "hero_image": {
+    "url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-hbP9KjsTGhFWAO5PhHkO92RS/user-1kCGHBeOlewrtsbLxwNuX8RF/img-Znt1SLcGauLyZsEbC1ysNcoq.png?st=2025-07-10T01%3A46%3A05Z&se=2025-07-10T03%3A46%3A05Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=475fd488-6c59-44a5-9aa9-31c4db451bea&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-09T10%3A56%3A07Z&ske=2025-07-10T10%3A56%3A07Z&sks=b&skv=2024-08-04&sig=Gb20drZnAANRqGSLiA6Frgz/%2BVtr8smV3hNktJ5BLyQ%3D",
+    "alt": "Hero image for Complete Guide to Work Order Types: Classification, Implementation, and Best Practices"
+  },
+  "body": "[See separate markdown file]",
+  "internal_references": [
+    {
+      "anchor_text": "CMMS software comparison",
+      "suggested_url": "/blog/cmms-software-comparison-guide",
+      "context": "This link should appear in the 'Work Order Type Configuration in CMMS Systems' section when discussing system capabilities and selection."
+    },
+    {
+      "anchor_text": "maintenance KPIs and metrics",
+      "suggested_url": "/blog/maintenance-kpis-metrics-guide",
+      "context": "This link should appear in the 'Measuring Success: KPIs and Analytics for Work Order Types' section when discussing performance tracking."
+    },
+    {
+      "anchor_text": "preventive maintenance scheduling",
+      "suggested_url": "/features/preventive-maintenance-scheduling",
+      "context": "This link should appear in the 'Preventive Maintenance Work Orders' subsection when discussing scheduling and planning."
+    },
+    {
+      "anchor_text": "asset management integration",
+      "suggested_url": "/blog/asset-management-integration-guide",
+      "context": "This link should appear in the 'Integration with Asset Management' subsection when discussing system integration."
+    },
+    {
+      "anchor_text": "maintenance cost control strategies",
+      "suggested_url": "/blog/maintenance-cost-control-strategies",
+      "context": "This link should appear in the 'ROI Calculation and Business Case Development' section when discussing cost savings and financial benefits."
+    }
+  ],
+  "external_references": [
+    {
+      "anchor_text": "OSHA maintenance safety standards",
+      "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+      "context": "This link should appear in the 'Compliance and Safety Work Orders' subsection when discussing regulatory requirements."
+    },
+    {
+      "anchor_text": "International Facility Management Association (IFMA) benchmarking data",
+      "url": "https://www.ifma.org/publications/research-reports/",
+      "context": "This link should appear in the 'Benchmarking and Industry Standards' subsection when discussing industry performance metrics."
+    },
+    {
+      "anchor_text": "National Institute of Standards and Technology (NIST) maintenance guidelines",
+      "url": "https://www.nist.gov/manufacturing-extension-partnership/manufacturing-infographics/maintenance-strategy-manufacturing",
+      "context": "This link should appear in the 'Manufacturing and Industrial Facilities' subsection when discussing industry-specific standards."
+    }
+  ]
+}
