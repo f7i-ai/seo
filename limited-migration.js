@@ -9,10 +9,6 @@ config();
 const PRISMIC_API_KEY = process.env.PRISMIC_API_KEY;
 const REPOSITORY_NAME = 'factory-ai';
 
-if (!PRISMIC_API_KEY) {
-  throw new Error('PRISMIC_API_KEY environment variable is required');
-}
-
 // Create Prismic write client
 const writeClient = prismic.createWriteClient(REPOSITORY_NAME, {
   writeToken: PRISMIC_API_KEY,
@@ -98,26 +94,13 @@ function createSlug(title) {
     .trim('-');
 }
 
-// Function to create asset in migration (skip for now due to expired URLs)
-function createImageAsset(migration, imageUrl, alt, filename) {
-  try {
-    console.log(`Skipping expired image asset: ${filename}`);
-    // Skip image assets for now since OpenAI DALL-E URLs are expired
-    // Images can be added manually in Prismic later or regenerated
-    return null;
-  } catch (error) {
-    console.error(`Error creating asset: ${error.message}`);
-    return null;
-  }
-}
-
-// Function to read and process all content files
-async function processContentFiles(migration) {
+// Function to read and process limited content files
+async function processLimitedContentFiles(migration, limit = 3) {
   const contentDir = './generated_content';
   const files = await readdir(contentDir);
   
-  // Filter for JSON files
-  const jsonFiles = files.filter(file => file.endsWith('.json'));
+  // Filter for JSON files and limit the number
+  const jsonFiles = files.filter(file => file.endsWith('.json')).slice(0, limit);
   
   const documents = [];
   
@@ -137,17 +120,10 @@ async function processContentFiles(migration) {
       // Convert markdown to rich text
       const richText = markdownToRichText(mdContent);
       
-      // Create featured image asset
-      let featuredImage = null;
-      if (metadata.hero_image && metadata.hero_image.url) {
-        const filename = `${baseName}-hero.png`;
-        featuredImage = createImageAsset(migration, metadata.hero_image.url, metadata.hero_image.alt, filename);
-      }
-      
       // Create document slug
-      const slug = createSlug(metadata.title);
+      const slug = `limited-${createSlug(metadata.title)}`;
       
-      // Create document data
+      // Create document data with working slice structure
       const document = {
         type: 'blog',
         uid: slug,
@@ -155,7 +131,6 @@ async function processContentFiles(migration) {
         data: {
           meta_title: metadata.meta_title,
           meta_description: metadata.meta_description,
-          meta_image: featuredImage,
           slices: [
             {
               slice_type: 'title_and_body',
@@ -163,7 +138,6 @@ async function processContentFiles(migration) {
               primary: {
                 title: [{ type: 'heading1', text: metadata.title, spans: [] }],
                 category: metadata.keyword,
-                featuredimage: featuredImage,
                 main_body: richText
               }
             },
@@ -179,61 +153,65 @@ async function processContentFiles(migration) {
       };
       
       documents.push(document);
-      console.log(`Processed: ${metadata.title}`);
+      console.log(`✅ Processed: ${metadata.title}`);
+      console.log(`   Rich text blocks: ${richText.length}`);
+      console.log(`   Slug: ${slug}`);
       
     } catch (error) {
-      console.error(`Error processing ${jsonFile}: ${error.message}`);
+      console.error(`❌ Error processing ${jsonFile}: ${error.message}`);
     }
   }
   
   return documents;
 }
 
-// Main migration function
-async function runMigration() {
+// Main limited migration function
+async function runLimitedMigration() {
   try {
-    console.log('Starting migration process...');
-    console.log(`Repository: ${REPOSITORY_NAME}`);
-    console.log(`API Key configured: ${PRISMIC_API_KEY ? 'Yes' : 'No'}`);
+    console.log('🚀 Starting LIMITED migration process...');
+    console.log(`📊 Repository: ${REPOSITORY_NAME}`);
+    console.log(`🔑 API Key configured: ${PRISMIC_API_KEY ? 'Yes' : 'No'}`);
     
     // Create migration first
     const migration = prismic.createMigration();
     
-    // Process all content files with migration instance
-    const documents = await processContentFiles(migration);
+    // Process limited content files with migration instance
+    const documents = await processLimitedContentFiles(migration, 3);
     
-    console.log(`Successfully processed ${documents.length} documents`);
+    console.log(`\n📝 Successfully processed ${documents.length} documents`);
     
     if (documents.length === 0) {
-      console.log('No documents to migrate. Exiting...');
+      console.log('⚠️  No documents to migrate. Exiting...');
       return;
     }
     
     // Add documents to migration
-    console.log('Adding documents to migration...');
+    console.log('\n📤 Adding documents to migration...');
     for (const doc of documents) {
       migration.createDocument(doc, doc.data.meta_title || 'Untitled Document');
-      console.log(`Added document: ${doc.uid}`);
+      console.log(`   ➕ Added document: ${doc.uid}`);
     }
     
     // Run migration
-    console.log('Running migration to Prismic...');
+    console.log('\n🔄 Running limited migration to Prismic...');
     const migrationResult = await writeClient.migrate(migration, {
-      reporter: (event) => console.log(`Migration event: ${event.type}`),
+      reporter: (event) => console.log(`   🔄 Migration event: ${event.type}`),
     });
     
-    console.log('Migration completed successfully!');
-    console.log(`Migration result:`, migrationResult);
+    console.log('\n🎉 Limited migration completed successfully!');
+    console.log(`📊 Migration result:`, migrationResult);
+    
+    console.log('\n✅ Check your Prismic repository for the new documents with slices and content!');
     
   } catch (error) {
-    console.error('Migration failed:', error);
+    console.error('❌ Limited migration failed:', error);
     if (error.response) {
-      console.error('Response status:', error.response.status);
-      console.error('Response data:', error.response.data);
+      console.error('📄 Response status:', error.response.status);
+      console.error('📄 Response data:', error.response.data);
     }
     process.exit(1);
   }
 }
 
-// Run the migration
-runMigration();
+// Run the limited migration
+runLimitedMigration();
