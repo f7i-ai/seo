@@ -3,14 +3,16 @@ import json
 import requests
 import time
 import re
-from typing import List, Dict, Optional
+import base64
+from typing import List, Dict, Optional, Any
 from dataclasses import dataclass
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urlparse
 import os
 from dotenv import load_dotenv
-import anthropic
+import google.generativeai as genai
 import openai
 from bs4 import BeautifulSoup
+from pydantic import BaseModel, Field
 
 # Load environment variables
 load_dotenv()
@@ -27,38 +29,76 @@ class ContentRequirements:
     external_references: int = 3
 
 
-@dataclass
-class BlogPost:
-    keyword: str
-    meta_title: str
-    meta_description: str
-    title: str
-    body: str
-    image_prompt: str
-    image_url: Optional[str] = None
-    internal_links: List[str] = None
-    external_links: List[str] = None
+class InternalLink(BaseModel):
+    anchor_text: str = Field(description="The text to be linked")
+    suggested_url: str = Field(description="Suggested internal page URL")
+    context: str = Field(
+        description="Where this link should appear in the content")
+
+
+class ExternalLink(BaseModel):
+    anchor_text: str = Field(description="The text to be linked")
+    url: str = Field(description="External URL to authoritative source")
+    context: str = Field(
+        description="Where this link should appear in the content")
+
+
+class BlogPost(BaseModel):
+    keyword: str = Field(description="The target keyword for SEO")
+    meta_title: str = Field(
+        description="SEO meta title (less than 60 characters)")
+    meta_description: str = Field(
+        description="SEO meta description (150-160 characters)")
+    title: str = Field(description="Main article title (H1)")
+    body: str = Field(description="Full article content in Markdown format")
+    image_prompt: str = Field(description="Prompt for generating hero image")
+    image_url: Optional[str] = Field(
+        default=None, description="URL or path to generated image")
+    internal_links: List[InternalLink] = Field(
+        default_factory=list, description="Internal link opportunities")
+    external_links: List[ExternalLink] = Field(
+        default_factory=list, description="External reference links")
+
+
+class ResearchData(BaseModel):
+    search_intent: str = Field(description="User search intent analysis")
+    content_gaps: List[str] = Field(description="Content gaps identified")
+    user_pain_points: List[str] = Field(
+        description="User pain points and questions")
+    semantic_keywords: List[str] = Field(
+        description="Related keywords and LSI terms")
+    content_angles: List[str] = Field(
+        description="Unique content angle recommendations")
+    competitive_analysis: str = Field(
+        description="Competitive landscape analysis")
+    content_structure: List[str] = Field(
+        description="Recommended content structure")
+    raw_response: Optional[str] = Field(
+        default=None, description="Raw response for debugging")
 
 
 class SEOContentGenerator:
     def __init__(self):
-        self.anthropic_client = anthropic.Anthropic(
-            api_key=os.getenv('ANTHROPIC_API_KEY')
-        )
+        # Initialize Gemini client
+        genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
+        self.gemini_model = genai.GenerativeModel('gemini-2.5-pro')
+
+        # Initialize OpenAI client
         self.openai_client = openai.OpenAI(
             api_key=os.getenv('OPENAI_API_KEY')
         )
+
         self.requirements = ContentRequirements()
-        self.existing_content = []
+        self.existing_content: List[str] = []
         self.competitor_domains = [
             'getmaintainx.com',
             'limblecmms.com',
             'upkeep.com'
         ]
 
-    def load_keywords_from_csv(self, csv_file_path: str) -> Dict[str, List[Dict]]:
+    def load_keywords_from_csv(self, csv_file_path: str) -> Dict[str, List[Dict[str, Any]]]:
         """Load keywords from Ahrefs CSV export with SERP data"""
-        keyword_data = {}
+        keyword_data: Dict[str, List[Dict[str, Any]]] = {}
 
         # Try different encodings commonly used by Ahrefs
         encodings = ['utf-8', 'utf-16', 'iso-8859-1', 'cp1252']
@@ -167,8 +207,8 @@ class SEOContentGenerator:
                 return True
         return False
 
-    def research_keyword_with_claude(self, keyword: str, serp_data: List[Dict] = None) -> Dict:
-        """Use Claude Deep Research to analyze keyword and competition"""
+    def research_keyword_with_gemini(self, keyword: str, serp_data: List[Dict[str, Any]] = None) -> ResearchData:
+        """Use Gemini to analyze keyword and competition with structured output"""
 
         print(f"    🔍 Starting deep research for keyword: '{keyword}'")
         start_time = time.time()
@@ -200,13 +240,7 @@ class SEOContentGenerator:
         Conduct COMPREHENSIVE deep research on the keyword: "{keyword}"
         {serp_analysis}
         
-        Use web search tools to gather current information about:
-        - Latest industry trends related to this keyword
-        - Recent developments in maintenance management and CMMS
-        - Current best practices and emerging technologies
-        - Authoritative sources and industry reports
-        
-        Then perform detailed analysis in these areas:
+        Analyze the keyword and provide detailed insights in these areas:
         
         1. SEARCH INTENT ANALYSIS:
            - What are users really looking for when they search this keyword?
@@ -245,73 +279,33 @@ class SEOContentGenerator:
            
         Focus specifically on maintenance management, industrial operations, CMMS, and related B2B software topics.
         
-        Provide comprehensive, actionable insights that will inform the creation of superior content.
-        
-        Output your analysis in valid JSON format with clear sections for each analysis area.
+        Respond with structured JSON output matching the ResearchData schema.
         """
 
         print(
-            f"    📝 Sending research prompt to Claude (length: {len(research_prompt)} chars)")
+            f"    📝 Sending research prompt to Gemini (length: {len(research_prompt)} chars)")
 
         try:
-            print(f"    🤖 Calling Claude API...")
+            print(f"    🤖 Calling Gemini API...")
             api_start = time.time()
 
-            message = self.anthropic_client.messages.create(
-                model="claude-sonnet-4-20250514",
-                max_tokens=4000,
-                temperature=0.3,
-                messages=[{
-                    "role": "user",
-                    "content": research_prompt
-                }]
+            # Generate content with structured output
+            response = self.gemini_model.generate_content(
+                research_prompt,
+                generation_config=genai.GenerationConfig(
+                    temperature=0.3,
+                    max_output_tokens=4000,
+                    response_mime_type="application/json",
+                    response_schema=ResearchData
+                )
             )
 
             api_time = time.time() - api_start
-            print(f"    ⏱️  Claude API call took {api_time:.2f} seconds")
+            print(f"    ⏱️  Gemini API call took {api_time:.2f} seconds")
 
-            # Get the text content safely
-            response_text = message.content[0].text
-            response_length = len(response_text)
-            print(f"    📄 Received response ({response_length} characters)")
-
-            # Show first 200 chars of response for debugging
-            preview = response_text[:200].replace('\n', ' ')
-            print(f"    👀 Response preview: {preview}...")
-
-            # Clean the response to handle control characters
-            cleaned_text = re.sub(r'[\x00-\x1f\x7f-\x9f]', '', response_text)
-
-            # Try to extract JSON from the response
-            print(f"    🔧 Parsing JSON response...")
-            try:
-                research_data = json.loads(cleaned_text)
-                print(
-                    f"    ✅ Successfully parsed JSON with {len(research_data)} top-level keys")
-
-                # Log the keys we got back
-                if research_data:
-                    print(
-                        f"    🔑 Research data keys: {list(research_data.keys())}")
-
-            except json.JSONDecodeError as json_err:
-                print(f"    ❌ JSON parsing failed: {json_err}")
-                print(f"    🔍 Attempting to extract JSON block from response...")
-
-                # If direct parsing fails, try to find JSON block
-                json_match = re.search(r'\{.*\}', cleaned_text, re.DOTALL)
-                if json_match:
-                    try:
-                        research_data = json.loads(json_match.group())
-                        print(f"    ✅ Successfully extracted and parsed JSON block")
-                    except json.JSONDecodeError:
-                        print(f"    ❌ Could not parse extracted JSON block")
-                        research_data = {
-                            "error": "Failed to parse research data", "raw_response": cleaned_text[:500]}
-                else:
-                    print(f"    ❌ No JSON block found in response")
-                    research_data = {
-                        "error": "No JSON found in response", "raw_response": cleaned_text[:500]}
+            # Parse the structured response
+            research_data = ResearchData.model_validate_json(response.text)
+            print(f"    ✅ Successfully parsed structured response")
 
             total_time = time.time() - start_time
             print(
@@ -323,14 +317,23 @@ class SEOContentGenerator:
             error_time = time.time() - start_time
             print(
                 f"    ❌ Error in keyword research after {error_time:.2f} seconds: {e}")
-            return {"error": str(e)}
+            return ResearchData(
+                search_intent="Error in research analysis",
+                content_gaps=["Analysis failed"],
+                user_pain_points=["Research error"],
+                semantic_keywords=["keyword research failed"],
+                content_angles=["Unable to analyze"],
+                competitive_analysis="Research failed due to error",
+                content_structure=["Error in analysis"],
+                raw_response=str(e)
+            )
 
-    def generate_content_with_claude(self, keyword: str, research_data: Dict) -> BlogPost:
-        """Generate high-quality blog content using Claude"""
+    def generate_content_with_gemini(self, keyword: str, research_data: ResearchData) -> BlogPost:
+        """Generate high-quality blog content using Gemini with structured output"""
         content_prompt = f"""
         Write a comprehensive blog post for the keyword: "{keyword}"
         
-        Research insights: {json.dumps(research_data, indent=2)}
+        Research insights: {research_data.model_dump_json(indent=2)}
         
         Requirements:
         - Meta title: Less than 60 characters, compelling and SEO-optimized
@@ -357,114 +360,144 @@ class SEOContentGenerator:
         Also provide:
         - Image generation prompt for a relevant hero image
         
-        Output in JSON format with keys: meta_title, meta_description, title, body, image_prompt, internal_links, external_links
+        Respond with structured JSON output matching the BlogPost schema.
         """
 
         try:
-            message = self.anthropic_client.messages.create(
-                model="claude-sonnet-4-20250514",
-                max_tokens=8000,
-                temperature=0.4,
-                messages=[{
-                    "role": "user",
-                    "content": content_prompt
-                }]
+            response = self.gemini_model.generate_content(
+                content_prompt,
+                generation_config=genai.GenerationConfig(
+                    temperature=0.4,
+                    max_output_tokens=8000,
+                    response_mime_type="application/json",
+                    response_schema=BlogPost
+                )
             )
 
-            # Get the text content safely
-            response_text = message.content[0].text
+            # Parse the structured response
+            blog_post = BlogPost.model_validate_json(response.text)
+            print(f"✅ Successfully generated structured blog post")
 
-            # Clean the response to handle control characters
-            cleaned_text = re.sub(r'[\x00-\x1f\x7f-\x9f]', '', response_text)
-
-            # Try to extract JSON from the response
-            try:
-                content_data = json.loads(cleaned_text)
-            except json.JSONDecodeError:
-                # If direct parsing fails, try to find JSON block
-                json_match = re.search(r'\{.*\}', cleaned_text, re.DOTALL)
-                if json_match:
-                    content_data = json.loads(json_match.group())
-                else:
-                    print(f"Could not parse JSON from content response")
-                    return None
-
-            return BlogPost(
-                keyword=keyword,
-                meta_title=content_data.get('meta_title', ''),
-                meta_description=content_data.get('meta_description', ''),
-                title=content_data.get('title', ''),
-                body=content_data.get('body', ''),
-                image_prompt=content_data.get('image_prompt', ''),
-                internal_links=content_data.get('internal_links', []),
-                external_links=content_data.get('external_links', [])
-            )
+            return blog_post
 
         except Exception as e:
             print(f"Error generating content: {e}")
-            return None
-
-    def generate_image_with_openai(self, image_prompt: str) -> Optional[str]:
-        """Generate hero image using OpenAI DALL-E"""
-        try:
-            print(f"    🎨 Original image prompt from Claude: {image_prompt}")
-
-            # Heavily sanitize and simplify the prompt
-            sanitized_prompt = re.sub(r'[^\w\s.,()-]', '', image_prompt)
-            sanitized_prompt = sanitized_prompt[:200]  # Much shorter limit
-
-            # Industrial-themed but safe prompts - avoid "workers", "realistic", etc.
-            industrial_safe_prompts = [
-                "Modern industrial facility with clean equipment",
-                "Professional manufacturing plant interior",
-                "Clean industrial facility with modern technology",
-                "Professional industrial setting with machinery",
-                "Modern factory floor with advanced equipment",
-                "Industrial facility with professional lighting"
-            ]
-
-            # Try industrial theme first, with fallback to ultra-safe
-            simple_prompt = industrial_safe_prompts[0]
-
-            print(f"    📝 Final OpenAI prompt: '{simple_prompt}'")
-            print(f"    📏 Prompt length: {len(simple_prompt)} characters")
-
-            response = self.openai_client.images.generate(
-                model="dall-e-3",
-                prompt=simple_prompt,
-                size="1792x1024",
-                quality="hd",
-                n=1,
+            # Return a minimal BlogPost with error info
+            return BlogPost(
+                keyword=keyword,
+                meta_title=f"Error generating content for {keyword}",
+                meta_description=f"Content generation failed for {keyword}",
+                title=f"Error: {keyword}",
+                body="Content generation failed due to an error.",
+                image_prompt="Error in content generation",
+                internal_links=[],
+                external_links=[]
             )
 
-            print(f"    ✅ Image generated successfully!")
-            return response.data[0].url
+    def generate_image_with_openai(self, image_prompt: str) -> Optional[str]:
+        """Generate hero image using OpenAI GPT-Image-1 with industrial scenes"""
+        try:
+            print(f"    🎨 Original image prompt from Gemini: {image_prompt}")
+
+            # Enhance the original prompt to include industrial scene with person
+            def enhance_with_industrial_scene(original_prompt: str) -> str:
+                """Enhance the original prompt to include industrial scene and person"""
+
+                # Standard industrial scene elements to add
+                industrial_elements = [
+                    "Professional maintenance professional in a modern manufacturing facility",
+                    "Clean, well-lit industrial environment",
+                    "Industrial machinery and equipment in the background",
+                    "Safety equipment and protocols visible",
+                    "Blue and orange accent colors to convey technology and reliability",
+                    "Modern industrial design elements"
+                ]
+
+                # Clean and prepare the original prompt
+                clean_prompt = original_prompt.strip()
+
+                # If the prompt already mentions industrial/factory/manufacturing, enhance it
+                if any(word in clean_prompt.lower() for word in ['industrial', 'factory', 'manufacturing', 'facility', 'plant']):
+                    enhanced_prompt = f"{clean_prompt}, featuring a professional maintenance worker in the scene. {' '.join(industrial_elements)}. Style should be professional and well-lit."
+
+                # If it mentions specific equipment or concepts, add person working with that equipment
+                elif any(word in clean_prompt.lower() for word in ['equipment', 'machine', 'system', 'tool', 'device', 'technology']):
+                    enhanced_prompt = f"Professional maintenance technician working with {clean_prompt.lower()} in a modern manufacturing facility. {' '.join(industrial_elements)}. Style should be professional and well-lit."
+
+                # For general/abstract prompts, create a full industrial scene
+                else:
+                    enhanced_prompt = f"Professional maintenance professional in a modern manufacturing facility working on {clean_prompt.lower()}. {' '.join(industrial_elements)}. Style should be professional and well-lit."
+
+                return enhanced_prompt
+
+            # Enhance the original prompt with industrial scene
+            industrial_prompt = enhance_with_industrial_scene(image_prompt)
+
+            print(f"    📝 Industrial scene prompt: '{industrial_prompt}'")
+            print(f"    📏 Prompt length: {len(industrial_prompt)} characters")
+
+            # Generate image using OpenAI's latest image generation model
+            response = self.openai_client.images.generate(
+                model="gpt-image-1",
+                prompt=industrial_prompt,
+                size="1536x1024",  # Landscape format for hero images
+                quality="high",
+            )
+
+            if not response.data or not response.data[0].b64_json:
+                raise Exception("No image data returned from OpenAI")
+
+            # Get base64 image data
+            image_base64 = response.data[0].b64_json
+            image_bytes = base64.b64decode(image_base64)
+
+            # Create safe filename from keyword
+            safe_filename = re.sub(r'[^\w\s-]', '', image_prompt[:50]).strip()
+            safe_filename = re.sub(r'[-\s]+', '-', safe_filename)
+            image_filename = f"{safe_filename}-hero.png"
+            image_path = os.path.join("generated_content", image_filename)
+
+            # Save image locally
+            with open(image_path, 'wb') as f:
+                f.write(image_bytes)
+
+            print(f"    ✅ Image generated and saved: {image_path}")
+            return image_path
 
         except Exception as e:
             print(f"    ❌ Error generating image: {e}")
             print(
-                f"    🔍 Failed prompt was: '{simple_prompt if 'simple_prompt' in locals() else 'undefined'}'")
+                f"    🔍 Failed prompt was: '{industrial_prompt if 'industrial_prompt' in locals() else 'undefined'}'")
 
-            # Try ultra-safe fallback if industrial prompt failed
-            if 'industrial' in simple_prompt.lower() or 'factory' in simple_prompt.lower() or 'manufacturing' in simple_prompt.lower():
-                print(f"    🔄 Trying ultra-safe fallback prompt...")
-                try:
-                    fallback_prompt = "Professional business illustration, clean modern style"
-                    print(f"    📝 Fallback prompt: '{fallback_prompt}'")
+            # Try simpler fallback prompt
+            try:
+                print(f"    🔄 Trying fallback industrial prompt...")
+                fallback_prompt = "Professional maintenance technician with safety equipment in a modern manufacturing facility with industrial machinery in the background"
 
-                    response = self.openai_client.images.generate(
-                        model="dall-e-3",
-                        prompt=fallback_prompt,
-                        size="1792x1024",
-                        quality="standard",
-                        n=1,
-                    )
+                response = self.openai_client.images.generate(
+                    model="gpt-image-1",
+                    prompt=fallback_prompt,
+                    size="1536x1024",
+                    quality="standard",
+                )
 
-                    print(f"    ✅ Fallback image generated successfully!")
-                    return response.data[0].url
+                if response.data and response.data[0].b64_json:
+                    image_base64 = response.data[0].b64_json
+                    image_bytes = base64.b64decode(image_base64)
 
-                except Exception as fallback_e:
-                    print(f"    ❌ Even fallback failed: {fallback_e}")
+                    # Save fallback image
+                    fallback_filename = "fallback-industrial-hero.png"
+                    fallback_path = os.path.join(
+                        "generated_content", fallback_filename)
+
+                    with open(fallback_path, 'wb') as f:
+                        f.write(image_bytes)
+
+                    print(f"    ✅ Fallback image generated: {fallback_path}")
+                    return fallback_path
+
+            except Exception as fallback_e:
+                print(f"    ❌ Fallback also failed: {fallback_e}")
 
             # Return None if all attempts failed
             return None
@@ -684,12 +717,12 @@ def main():
             # Research keyword with SERP data
             print("  🔬 Researching keyword with SERP analysis...")
             serp_data = keyword_data.get(keyword, [])
-            research_data = generator.research_keyword_with_claude(
+            research_data = generator.research_keyword_with_gemini(
                 keyword, serp_data)
 
             # Generate content
             print("  ✍️  Generating content...")
-            blog_post = generator.generate_content_with_claude(
+            blog_post = generator.generate_content_with_gemini(
                 keyword, research_data)
 
             if not blog_post:
