@@ -1,0 +1,19 @@
+{
+  "name": "prismic-migration",
+  "version": "1.0.0",
+  "description": "Migration script to move generated content to Prismic",
+  "main": "migrate.js",
+  "scripts": {
+    "migrate": "node migrate.js",
+    "test-migrate": "node test-migration.js",
+    "migrate-all": "node migrate.js"
+  },
+  "dependencies": {
+    "@prismicio/client": "latest",
+    "@prismicio/migrate": "latest",
+    "dotenv": "^16.0.0",
+    "marked": "^4.0.0",
+    "turndown": "^7.0.0"
+  },
+  "type": "module"
+}
