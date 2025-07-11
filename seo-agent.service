@@ -1,0 +1,32 @@
+[Unit]
+Description=SEO Content Generator Background Agent
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/path/to/your/seo/project
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=PYTHONPATH=/path/to/your/seo/project
+EnvironmentFile=-/path/to/your/seo/project/.env
+ExecStart=/usr/bin/python3 /path/to/your/seo/project/background_agent.py
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=mixed
+Restart=always
+RestartSec=10
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=seo-agent
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/path/to/your/seo/project/generated_content /path/to/your/seo/project/logs
+
+[Install]
+WantedBy=multi-user.target 

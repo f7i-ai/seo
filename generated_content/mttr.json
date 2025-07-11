@@ -1,55 +1,55 @@
 {
-  "meta_title": "MTTR Guide: Calculate & Improve Mean Time to Repair",
-  "meta_description": "Master MTTR calculation, benchmarks, and improvement strategies. Reduce downtime by 30% with proven maintenance optimization techniques. Get started today.",
-  "title": "MTTR (Mean Time to Repair): The Complete Guide for Maintenance Excellence",
+  "meta_title": "MTTR: The Definitive Guide for Industrial Maintenance Teams",
+  "meta_description": "Tired of downtime? Learn what MTTR (Mean Time to Repair) is, how to calculate it, and actionable strategies to improve this critical maintenance KPI.",
+  "title": "What is MTTR (Mean Time to Repair)? The Ultimate Guide for Industrial Maintenance",
   "keyword": "mttr",
   "hero_image": {
-    "url": "",
-    "alt": "Hero image for MTTR (Mean Time to Repair): The Complete Guide for Maintenance Excellence"
+    "url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-hbP9KjsTGhFWAO5PhHkO92RS/user-1kCGHBeOlewrtsbLxwNuX8RF/img-NAgwCTKGmAzKWa3nxqfOjJNR.png?st=2025-07-09T23%3A38%3A50Z&se=2025-07-10T01%3A38%3A50Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=475fd488-6c59-44a5-9aa9-31c4db451bea&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-09T05%3A08%3A21Z&ske=2025-07-10T05%3A08%3A21Z&sks=b&skv=2024-08-04&sig=fGopeV%2B1Pv2YRJqEGpWjwfOGumL/7KhZZqlLA7aAwWE%3D",
+    "alt": "Hero image for What is MTTR (Mean Time to Repair)? The Ultimate Guide for Industrial Maintenance"
   },
   "body": "[See separate markdown file]",
   "internal_references": [
     {
-      "anchor_text": "preventive maintenance programs",
-      "suggested_url": "/blog/preventive-maintenance-strategy-guide",
-      "context": "This link should appear in the section discussing how preventive maintenance impacts MTTR, specifically when mentioning mature preventive maintenance programs."
-    },
-    {
-      "anchor_text": "Computerized Maintenance Management Systems (CMMS)",
-      "suggested_url": "/features/cmms-software-comparison",
-      "context": "This link should appear in the section about MTTR integration with modern systems, when first introducing CMMS capabilities."
-    },
-    {
-      "anchor_text": "condition monitoring systems",
-      "suggested_url": "/blog/condition-monitoring-implementation-guide",
-      "context": "This link should appear in the technology solutions section when discussing condition monitoring as a tool for MTTR improvement."
-    },
-    {
-      "anchor_text": "maintenance KPIs",
-      "suggested_url": "/blog/essential-maintenance-kpis-metrics",
-      "context": "This link should appear in the section about key metrics to monitor alongside MTTR, when introducing complementary maintenance metrics."
-    },
-    {
       "anchor_text": "Overall Equipment Effectiveness (OEE)",
-      "suggested_url": "/blog/oee-calculation-improvement-guide",
-      "context": "This link should appear when OEE is first mentioned as a complementary metric to MTTR in the tracking and reporting section."
+      "suggested_url": "/blog/what-is-oee",
+      "context": "In the section \"Direct Link to Downtime and Overall Equipment Effectiveness (OEE"
+    },
+    {
+      "anchor_text": "Reliability Centered Maintenance (RCM)",
+      "suggested_url": "/blog/reliability-centered-maintenance-guide",
+      "context": "Mentioned in the content as a related higher-level strategy, could be its own section or a link out"
+    },
+    {
+      "anchor_text": "downtime tracking software",
+      "suggested_url": "/features/downtime-tracking",
+      "context": "In the section \"Leverage Technology: The CMMS and Beyond\", linking to a product feature page"
+    },
+    {
+      "anchor_text": "maintenance kpis",
+      "suggested_url": "/blog/top-maintenance-kpis",
+      "context": "In the section \"Why MTTR is One of the Most Important Industrial Maintenance KPIs\""
+    },
+    {
+      "anchor_text": "preventive maintenance",
+      "suggested_url": "/blog/preventive-maintenance-strategy",
+      "context": "In the section \"MTTR vs. MTBF\", explaining the difference between corrective and preventive work"
     }
   ],
   "external_references": [
     {
-      "anchor_text": "studies show that facilities with mature preventive maintenance programs",
-      "url": "https://www.plant-maintenance.com/articles/MaintenanceMetrics.shtml",
-      "context": "This link should appear in the preventive maintenance impact section when citing research about MTTR improvements from preventive maintenance."
-    },
-    {
-      "anchor_text": "International Organization for Standardization (ISO) maintenance standards",
-      "url": "https://www.iso.org/standard/63296.html",
-      "context": "This link should appear when discussing industry benchmarks and standards for MTTR measurement and reporting."
-    },
-    {
       "anchor_text": "Society for Maintenance & Reliability Professionals (SMRP)",
       "url": "https://smrp.org/",
-      "context": "This link should appear in the benchmarking section when discussing industry standards and best practices for maintenance metrics."
+      "context": "Can be cited as an authoritative body for maintenance best practices and KPIs like MTTR, perhaps in the benchmarking section."
+    },
+    {
+      "anchor_text": "Failure Mode and Effects Analysis (FMEA)",
+      "url": "https://asq.org/quality-resources/fmea",
+      "context": "In the section on optimizing the diagnostic process, linking to a detailed explanation of FMEA from a quality organization like ASQ."
+    },
+    {
+      "anchor_text": "OSHA Lockout/Tagout Standards",
+      "url": "https://www.osha.gov/control-hazardous-energy",
+      "context": "In the section on standardizing workflows, providing an authoritative source for LOTO procedures."
     }
   ]
 }

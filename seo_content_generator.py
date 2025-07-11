@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from urllib.parse import urlparse
 import os
 from dotenv import load_dotenv
-import google.generativeai as genai
+import google.generativeai as genai  # type: ignore
 import openai
 from bs4 import BeautifulSoup
 from pydantic import BaseModel, Field
@@ -54,6 +54,8 @@ class BlogPost(BaseModel):
     image_prompt: str = Field(description="Prompt for generating hero image")
     image_url: Optional[str] = Field(
         default=None, description="URL or path to generated image")
+    local_image_path: Optional[str] = Field(
+        default=None, description="Local path to generated image")
     internal_links: List[InternalLink] = Field(
         default_factory=list, description="Internal link opportunities")
     external_links: List[ExternalLink] = Field(
@@ -79,9 +81,10 @@ class ResearchData(BaseModel):
 
 class SEOContentGenerator:
     def __init__(self):
-        # Initialize Gemini client
-        genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
-        self.gemini_model = genai.GenerativeModel('gemini-2.5-pro')
+        # Configure Gemini 2.5 Pro
+        genai.configure(api_key=os.getenv('GEMINI_API_KEY'))  # type: ignore
+        self.gemini_model = genai.GenerativeModel(  # type: ignore
+            'gemini-2.5-pro')
 
         # Initialize OpenAI client
         self.openai_client = openai.OpenAI(
@@ -207,7 +210,7 @@ class SEOContentGenerator:
                 return True
         return False
 
-    def research_keyword_with_gemini(self, keyword: str, serp_data: List[Dict[str, Any]] = None) -> ResearchData:
+    def research_keyword_with_gemini(self, keyword: str, serp_data: Optional[List[Dict[str, Any]]] = None) -> ResearchData:
         """Use Gemini to analyze keyword and competition with structured output"""
 
         print(f"    🔍 Starting deep research for keyword: '{keyword}'")
@@ -289,21 +292,40 @@ class SEOContentGenerator:
             print(f"    🤖 Calling Gemini API...")
             api_start = time.time()
 
-            # Generate content with structured output
-            response = self.gemini_model.generate_content(
-                research_prompt,
-                generation_config=genai.GenerationConfig(
-                    temperature=0.3,
-                    max_output_tokens=4000,
-                    response_mime_type="application/json",
-                    response_schema=ResearchData
-                )
-            )
+            # Add retry logic for rate limiting with structured output
+            max_retries = 3
+            response = None
+            for attempt in range(max_retries):
+                try:
+                    response = self.gemini_model.generate_content(  # type: ignore
+                        research_prompt,
+                        generation_config=genai.types.GenerationConfig(  # type: ignore
+                            temperature=0.3,
+                            max_output_tokens=4000,
+                            response_mime_type="application/json",
+                            response_schema=ResearchData
+                        )
+                    )
+                    break  # Success, exit retry loop
+
+                except Exception as e:
+                    if "429" in str(e) or "quota" in str(e).lower():
+                        wait_time = min(60 * (attempt + 1),
+                                        300)  # Max 5 minutes
+                        print(
+                            f"    ⏳ Rate limit hit, waiting {wait_time}s (attempt {attempt + 1}/{max_retries})")
+                        if attempt < max_retries - 1:  # Don't wait on last attempt
+                            time.sleep(wait_time)
+                            continue
+                    raise e  # Re-raise if not rate limit or last attempt
+
+            if response is None:
+                raise Exception("Failed to get response from Gemini API")
 
             api_time = time.time() - api_start
             print(f"    ⏱️  Gemini API call took {api_time:.2f} seconds")
 
-            # Parse the structured response
+            # Parse the structured JSON response
             research_data = ResearchData.model_validate_json(response.text)
             print(f"    ✅ Successfully parsed structured response")
 
@@ -331,26 +353,24 @@ class SEOContentGenerator:
     def generate_content_with_gemini(self, keyword: str, research_data: ResearchData) -> BlogPost:
         """Generate high-quality blog content using Gemini with structured output"""
         content_prompt = f"""
-        Write a comprehensive blog post for the keyword: "{keyword}"
+        Write a comprehensive, in-depth blog post for the keyword: "{keyword}"
         
         Research insights: {research_data.model_dump_json(indent=2)}
         
-        Requirements:
-        - Meta title: Less than 60 characters, compelling and SEO-optimized
-        - Meta description: 150-160 characters, includes keyword and call-to-action
-        - Main title: Engaging H1 that includes the target keyword
-        - Body content: 2500-4000 words, comprehensive and authoritative, formatted in clean Markdown
-        - Include 5 internal link opportunities in the body text with actual anchor text
-        - Include 3 external reference opportunities in the body text with actual anchor text
-        - Structure with proper H2 and H3 headings using Markdown syntax
-        - Include actionable insights and practical advice
+        CRITICAL REQUIREMENTS:
+        - MINIMUM 2500 words in the BODY_CONTENT section - this is NON-NEGOTIABLE
+        - Target 3000-4000 words for maximum SEO impact
         - Write for maintenance managers, facility operators, and industrial decision-makers
+        - Include actionable insights, practical advice, real-world examples, and step-by-step guidance
         - Avoid content similar to competitors: getmaintainx.com, limblecmms.com, upkeep.com
+        - Cover the topic comprehensively with multiple angles and detailed explanations
         
-        For internal_links array, provide 5 objects with:
-        - "anchor_text": the text to be linked
-        - "suggested_url": suggested internal page URL (e.g., "/blog/related-topic" or "/features/maintenance-tracking")
-        - "context": where this link should appear in the content
+        CONTENT STRUCTURE REQUIREMENTS:
+        - Use multiple H2 sections (## headings) to organize content
+        - Include H3 subsections (### headings) for detailed coverage
+        - Provide concrete examples, case studies, and actionable tips
+        - Include troubleshooting guides, best practices, and implementation steps
+        - Add technical details, calculations, and industry standards where relevant
         
         For external_links array, provide 3 objects with:
         - "anchor_text": the text to be linked  
@@ -364,15 +384,33 @@ class SEOContentGenerator:
         """
 
         try:
-            response = self.gemini_model.generate_content(
-                content_prompt,
-                generation_config=genai.GenerationConfig(
-                    temperature=0.4,
-                    max_output_tokens=8000,
-                    response_mime_type="application/json",
-                    response_schema=BlogPost
-                )
-            )
+            # Add retry logic for rate limiting with structured output
+            max_retries = 3
+            response = None
+            for attempt in range(max_retries):
+                try:
+                    response = self.gemini_model.generate_content(  # type: ignore
+                        content_prompt,
+                        generation_config=genai.types.GenerationConfig(  # type: ignore
+                            temperature=0.4,
+                            max_output_tokens=8000,
+                            response_mime_type="application/json",
+                            response_schema=BlogPost
+                        )
+                    )
+                    break  # Success, exit retry loop
+
+                except Exception as e:
+                    if "429" in str(e) or "quota" in str(e).lower():
+                        wait_time = min(60 * (attempt + 1), 300)
+                        print(f"    ⏳ Rate limit hit, waiting {wait_time}s (attempt {attempt + 1}/{max_retries})")
+                        if attempt < max_retries - 1:
+                            time.sleep(wait_time)
+                            continue
+                    raise e
+
+            if response is None:
+                raise Exception("Failed to get response from Gemini API")
 
             # Parse the structured response
             blog_post = BlogPost.model_validate_json(response.text)
@@ -394,8 +432,8 @@ class SEOContentGenerator:
                 external_links=[]
             )
 
-    def generate_image_with_openai(self, image_prompt: str) -> Optional[str]:
-        """Generate hero image using OpenAI GPT-Image-1 with industrial scenes"""
+    def generate_image_with_openai(self, image_prompt: str, keyword: str = "", output_dir: str = "generated_content") -> tuple[Optional[str], Optional[str]]:
+        """Generate hero image using OpenAI GPT-Image-1 with enhanced industrial prompts and save it locally"""
         try:
             print(f"    🎨 Original image prompt from Gemini: {image_prompt}")
 
@@ -451,23 +489,26 @@ class SEOContentGenerator:
             image_base64 = response.data[0].b64_json
             image_bytes = base64.b64decode(image_base64)
 
-            # Create safe filename from keyword
-            safe_filename = re.sub(r'[^\w\s-]', '', image_prompt[:50]).strip()
+            # Create safe filename from keyword or image prompt
+            base_name = keyword if keyword else image_prompt
+            safe_filename = re.sub(r'[^\w\s-]', '', base_name[:50]).strip()
             safe_filename = re.sub(r'[-\s]+', '-', safe_filename)
             image_filename = f"{safe_filename}-hero.png"
-            image_path = os.path.join("generated_content", image_filename)
+            
+            # Ensure output directory exists
+            os.makedirs(output_dir, exist_ok=True)
+            image_path = os.path.join(output_dir, image_filename)
 
             # Save image locally
             with open(image_path, 'wb') as f:
                 f.write(image_bytes)
 
             print(f"    ✅ Image generated and saved: {image_path}")
-            return image_path
+            return None, image_path  # Return (image_url, local_path)
 
         except Exception as e:
             print(f"    ❌ Error generating image: {e}")
-            print(
-                f"    🔍 Failed prompt was: '{industrial_prompt if 'industrial_prompt' in locals() else 'undefined'}'")
+            print(f"    🔍 Failed prompt was: '{industrial_prompt if 'industrial_prompt' in locals() else 'undefined'}'")
 
             # Try simpler fallback prompt
             try:
@@ -486,28 +527,106 @@ class SEOContentGenerator:
                     image_bytes = base64.b64decode(image_base64)
 
                     # Save fallback image
-                    fallback_filename = "fallback-industrial-hero.png"
-                    fallback_path = os.path.join(
-                        "generated_content", fallback_filename)
+                    base_name = keyword if keyword else "fallback"
+                    safe_filename = re.sub(r'[^\w\s-]', '', base_name[:30]).strip()
+                    safe_filename = re.sub(r'[-\s]+', '-', safe_filename)
+                    fallback_filename = f"{safe_filename}-fallback-hero.png"
+                    
+                    os.makedirs(output_dir, exist_ok=True)
+                    fallback_path = os.path.join(output_dir, fallback_filename)
 
                     with open(fallback_path, 'wb') as f:
                         f.write(image_bytes)
 
                     print(f"    ✅ Fallback image generated: {fallback_path}")
-                    return fallback_path
+                    return None, fallback_path
 
             except Exception as fallback_e:
                 print(f"    ❌ Fallback also failed: {fallback_e}")
 
             # Return None if all attempts failed
+            return None, None
+
+    def download_image_from_url(self, image_url: str, keyword: str, output_dir: str = "generated_content") -> Optional[str]:
+        """Download image from URL and save locally"""
+        try:
+            print(f"    📥 Downloading image from URL...")
+
+            # Create safe filename based on keyword
+            safe_keyword = re.sub(r'[^\w\s-]', '', keyword).strip()
+            safe_keyword = re.sub(r'[-\s]+', '-', safe_keyword)
+
+            # Create output directory if it doesn't exist
+            os.makedirs(output_dir, exist_ok=True)
+
+            # Download the image
+            response = requests.get(image_url, stream=True, timeout=30)
+            response.raise_for_status()
+
+            # Determine file extension from content type or URL
+            content_type = response.headers.get('content-type', '')
+            if 'png' in content_type.lower():
+                extension = '.png'
+            elif 'jpeg' in content_type.lower() or 'jpg' in content_type.lower():
+                extension = '.jpg'
+            elif 'webp' in content_type.lower():
+                extension = '.webp'
+            else:
+                # Default to .png for unknown types
+                extension = '.png'
+
+            # Create local filename
+            local_filename = f"{safe_keyword[:50]}{extension}"
+            local_filepath = os.path.join(output_dir, local_filename)
+
+            # Save the image
+            with open(local_filepath, 'wb') as f:
+                for chunk in response.iter_content(chunk_size=8192):
+                    f.write(chunk)
+
+            print(f"    ✅ Image saved to: {local_filepath}")
+            return local_filepath
+
+        except Exception as e:
+            print(f"    ❌ Error downloading image: {e}")
             return None
 
-    def format_for_prismic(self, blog_post: BlogPost) -> Dict:
+    def save_base64_image(self, b64_data: str, keyword: str, output_dir: str = "generated_content") -> Optional[str]:
+        """Save base64 image data to local file"""
+        try:
+            print(f"    💾 Saving base64 image data locally...")
+
+            # Create safe filename based on keyword
+            safe_keyword = re.sub(r'[^\w\s-]', '', keyword).strip()
+            safe_keyword = re.sub(r'[-\s]+', '-', safe_keyword)
+
+            # Create output directory if it doesn't exist
+            os.makedirs(output_dir, exist_ok=True)
+
+            # Decode base64 data
+            image_data = base64.b64decode(b64_data)
+
+            # Create local filename (GPT-4 Image typically returns PNG)
+            local_filename = f"{safe_keyword[:50]}.png"
+            local_filepath = os.path.join(output_dir, local_filename)
+
+            # Save the image
+            with open(local_filepath, 'wb') as f:
+                f.write(image_data)
+
+            print(f"    ✅ Base64 image saved to: {local_filepath}")
+            return local_filepath
+
+        except Exception as e:
+            print(f"    ❌ Error saving base64 image: {e}")
+            return None
+
+    def format_for_prismic(self, blog_post: BlogPost) -> Dict[str, Any]:
         """Format content for Prismic CMS with proper rich text structure"""
 
         # Convert markdown-style content to Prismic rich text format
-        def convert_to_prismic_richtext(content: str) -> List[Dict]:
-            paragraphs = []
+        def convert_to_prismic_richtext(content: str) -> List[Dict[str, Any]]:
+            paragraphs: List[Dict[str, Any]] = []
             lines = content.split('\n')
 
             for line in lines:
@@ -535,7 +654,7 @@ class SEOContentGenerator:
                     })
                 else:
                     # Handle links in paragraphs
-                    spans = []
+                    spans: List[Dict[str, Any]] = []
                     text = line
 
                     # Find and process internal links
@@ -563,7 +682,9 @@ class SEOContentGenerator:
             "keyword": blog_post.keyword,
             "hero_image": {
                 "url": blog_post.image_url or "",
-                "alt": f"Hero image for {blog_post.title}"
+                "local_path": blog_post.local_image_path or "",
+                "alt": f"Hero image for {blog_post.title}",
+                "source": "gpt-image-1" if blog_post.local_image_path and not blog_post.image_url else "url"
             },
             "body": convert_to_prismic_richtext(blog_post.body),
             "internal_references": blog_post.internal_links or [],
@@ -598,7 +719,7 @@ class SEOContentGenerator:
         else:
             return False
 
-    def save_output(self, prismic_data: Dict, keyword: str, body_markdown: str, output_dir: str = "generated_content"):
+    def save_output(self, prismic_data: Dict[str, Any], keyword: str, body_markdown: str, output_dir: str = "generated_content") -> tuple[str, str]:
         """Save generated content to JSON file and separate markdown file"""
         os.makedirs(output_dir, exist_ok=True)
 
@@ -648,6 +769,15 @@ class SEOContentGenerator:
         print(f"Content saved to:")
         print(f"  📄 JSON: {json_filepath}")
         print(f"  📝 Markdown: {md_filepath}")
+
+        # Check if there's a local image file
+        image_extensions = ['.png', '.jpg', '.jpeg', '.webp']
+        for ext in image_extensions:
+            image_file = os.path.join(output_dir, f"{safe_keyword[:50]}{ext}")
+            if os.path.exists(image_file):
+                print(f"  🖼️  Image: {image_file}")
+                break
+
         return json_filepath, md_filepath
 
 
@@ -681,7 +811,7 @@ def main():
         sitemap_url)
 
     # Filter out keywords that overlap with existing content OR already have generated content
-    filtered_keywords = []
+    filtered_keywords: List[str] = []
     skipped_overlap = 0
     skipped_existing = 0
 
@@ -731,8 +861,10 @@ def main():
 
             # Generate image
             print("  🎨 Generating hero image...")
-            blog_post.image_url = generator.generate_image_with_openai(
-                blog_post.image_prompt)
+            image_url, local_image_path = generator.generate_image_with_openai(
+                blog_post.image_prompt, keyword)
+            blog_post.image_url = image_url
+            blog_post.local_image_path = local_image_path
 
             # Format for Prismic
             print("  📋 Formatting for Prismic...")
@@ -740,7 +872,7 @@ def main():
 
             # Save output
             body_markdown = blog_post.body  # Get the original markdown body
-            filepaths = generator.save_output(
+            generator.save_output(
                 prismic_data, keyword, body_markdown)
             print(f"  ✅ Content generated successfully!")
 

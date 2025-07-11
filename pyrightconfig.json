@@ -1,0 +1,40 @@
+{
+  "include": [
+    "seo_content_generator.py",
+    "background_agent.py"
+  ],
+  "exclude": [
+    "**/__pycache__"
+  ],
+  "defineConstant": {
+    "DEBUG": true
+  },
+  "stubPath": "./typings",
+  "venvPath": "./venv",
+  "venv": "venv",
+  "typeCheckingMode": "basic",
+  "useLibraryCodeForTypes": true,
+  "reportMissingImports": false,
+  "reportMissingTypeStubs": false,
+  "reportUnknownParameterType": false,
+  "reportUnknownArgumentType": false,
+  "reportUnknownMemberType": false,
+  "reportUnknownVariableType": false,
+  "reportUnknownLambdaType": false,
+  "reportMissingParameterType": false,
+  "reportMissingTypeArgument": false,
+  "reportCallInDefaultInitializer": false,
+  "reportUnnecessaryIsInstance": false,
+  "reportUnnecessaryComparison": false,
+  "reportUnnecessaryContains": false,
+  "reportUnusedImport": "error",
+  "reportUnusedVariable": "error",
+  "reportDuplicateImport": "error",
+  "reportOptionalOperand": "error",
+  "reportOptionalMemberAccess": "error",
+  "reportOptionalCall": "error",
+  "reportOptionalIterable": "error",
+  "reportOptionalContextManager": "error",
+  "reportOptionalSubscript": "error",
+  "reportPrivateImportUsage": "error"
+}
