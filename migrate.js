@@ -141,60 +141,21 @@ function createSlug(title) {
     .trim('-');
 }
 
-// Function to upload image to Prismic
-async function uploadImage(imageUrl, alt) {
+// Function to create asset in migration (skip for now due to expired URLs)
+function createImageAsset(migration, imageUrl, alt, filename) {
   try {
-    console.log(`Uploading image: ${imageUrl}`);
-    
-    const response = await fetch(imageUrl);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch image: ${response.statusText}`);
-    }
-    
-    const buffer = await response.arrayBuffer();
-    const contentType = response.headers.get('content-type') || 'image/png';
-    
-    // Upload to Prismic Asset API using the correct endpoint
-    const uploadResponse = await fetch(`https://${REPOSITORY_NAME}.prismic.io/api/v2/assets`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${PRISMIC_API_KEY}`,
-        'Content-Type': contentType,
-      },
-      body: buffer,
-    });
-    
-    if (!uploadResponse.ok) {
-      const errorText = await uploadResponse.text();
-      throw new Error(`Failed to upload image: ${uploadResponse.statusText} - ${errorText}`);
-    }
-    
-    const uploadResult = await uploadResponse.json();
-    
-    return {
-      url: uploadResult.url,
-      alt: alt,
-      dimensions: {
-        width: uploadResult.width || 1200,
-        height: uploadResult.height || 800
-      }
-    };
+    console.log(`Skipping expired image asset: ${filename}`);
+    // Skip image assets for now since OpenAI DALL-E URLs are expired
+    // Images can be added manually in Prismic later or regenerated
+    return null;
   } catch (error) {
-    console.error(`Error uploading image: ${error.message}`);
-    // Return a fallback structure for failed uploads
-    return {
-      url: imageUrl,
-      alt: alt,
-      dimensions: {
-        width: 1200,
-        height: 800
-      }
-    };
+    console.error(`Error creating asset: ${error.message}`);
+    return null;
   }
 }
 
 // Function to read and process all content files
-async function processContentFiles() {
+async function processContentFiles(migration) {
   const contentDir = './generated_content';
   const files = await readdir(contentDir);
   
@@ -219,10 +180,11 @@ async function processContentFiles() {
       // Convert markdown to rich text
       const richText = markdownToRichText(mdContent);
       
-      // Upload featured image
+      // Create featured image asset
       let featuredImage = null;
       if (metadata.hero_image && metadata.hero_image.url) {
-        featuredImage = await uploadImage(metadata.hero_image.url, metadata.hero_image.alt);
+        const filename = `${baseName}-hero.png`;
+        featuredImage = createImageAsset(migration, metadata.hero_image.url, metadata.hero_image.alt, filename);
       }
       
       // Create document slug
@@ -277,8 +239,11 @@ async function runMigration() {
     console.log(`Repository: ${REPOSITORY_NAME}`);
     console.log(`API Key configured: ${PRISMIC_API_KEY ? 'Yes' : 'No'}`);
     
-    // Process all content files
-    const documents = await processContentFiles();
+    // Create migration first
+    const migration = prismic.createMigration();
+    
+    // Process all content files with migration instance
+    const documents = await processContentFiles(migration);
     
     console.log(`Successfully processed ${documents.length} documents`);
     
@@ -286,9 +251,6 @@ async function runMigration() {
       console.log('No documents to migrate. Exiting...');
       return;
     }
-    
-    // Create migration
-    const migration = prismic.createMigration();
     
     // Add documents to migration
     console.log('Adding documents to migration...');

@@ -111,15 +111,20 @@ async function testMigration() {
     const slug = createSlug(metadata.title);
     console.log(`Slug: ${slug}`);
     
-    // For testing, let's skip image upload and use a placeholder
-    const featuredImage = metadata.hero_image ? {
-      url: metadata.hero_image.url,
-      alt: metadata.hero_image.alt,
-      dimensions: {
-        width: 1200,
-        height: 800
-      }
-    } : null;
+    // Create migration first
+    const migration = prismic.createMigration();
+    
+    // Create write client
+    const writeClient = prismic.createWriteClient(REPOSITORY_NAME, {
+      writeToken: PRISMIC_API_KEY,
+    });
+    
+    // Skip featured image asset for now (OpenAI URLs are expired)
+    let featuredImage = null;
+    if (metadata.hero_image && metadata.hero_image.url) {
+      console.log('Skipping expired image asset for test');
+      // Images can be added manually in Prismic later or regenerated
+    }
     
     // Create document data
     const document = {
@@ -155,14 +160,6 @@ async function testMigration() {
     console.log('Document structure created successfully');
     console.log('Document UID:', document.uid);
     console.log('Slices:', document.data.slices.length);
-    
-    // Create migration
-    const migration = prismic.createMigration();
-    
-    // Create write client
-    const writeClient = prismic.createWriteClient(REPOSITORY_NAME, {
-      writeToken: PRISMIC_API_KEY,
-    });
     
     // Add document to migration
     migration.createDocument(document, metadata.title);
