@@ -124,32 +124,34 @@ async function processContentForUpdates() {
       // Create document slug (matching original migration)
       const slug = createSlug(metadata.title);
       
-      // Create update data with working slice structure
-      const updateData = {
-        uid: slug,
-        data: {
-          meta_title: metadata.meta_title,
-          meta_description: metadata.meta_description,
-          slices: [
-            {
-              slice_type: 'title_and_body',
-              variation: 'default',
-              primary: {
-                title: [{ type: 'heading1', text: metadata.title, spans: [] }],
-                category: metadata.keyword,
-                main_body: richText
-              }
-            },
-            {
-              slice_type: 'profile_tim',
-              variation: 'default',
-              primary: {
-                tim1: 'Tim Cheung, CTO and Co-Founder of Factory AI'
-              }
-            }
-          ]
-        }
-      };
+             // Create update data with complete document structure for updateDocument
+       const updateData = {
+         type: 'blog',
+         uid: slug,
+         lang: 'en-us',
+         data: {
+           meta_title: metadata.meta_title,
+           meta_description: metadata.meta_description,
+           slices: [
+             {
+               slice_type: 'title_and_body',
+               variation: 'default',
+               primary: {
+                 title: [{ type: 'heading1', text: metadata.title, spans: [] }],
+                 category: metadata.keyword,
+                 main_body: richText
+               }
+             },
+             {
+               slice_type: 'profile_tim',
+               variation: 'default',
+               primary: {
+                 tim1: 'Tim Cheung, CTO and Co-Founder of Factory AI'
+               }
+             }
+           ]
+         }
+       };
       
       updates.push(updateData);
       processed++;
@@ -190,13 +192,13 @@ async function runUpdateMigration() {
     // Create migration for updates
     const migration = prismic.createMigration();
     
-    // Add update operations to migration
-    console.log('\n📤 Adding update operations to migration...');
-    for (const updateData of updates) {
-      // Use updateDocument to update existing documents
-      migration.updateDocument(updateData.uid, updateData.data);
-      console.log(`   🔄 Queued update for: ${updateData.uid}`);
-    }
+         // Add update operations to migration
+     console.log('\n📤 Adding update operations to migration...');
+     for (const updateData of updates) {
+       // Use updateDocument to update existing documents with complete structure
+       migration.updateDocument(updateData.uid, updateData);
+       console.log(`   🔄 Queued update for: ${updateData.uid}`);
+     }
     
     // Run migration
     console.log('\n🚀 Running update migration to Prismic...');
