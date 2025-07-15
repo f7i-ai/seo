@@ -59,6 +59,7 @@ class SEOContentGenerator:
             'limblecmms.com',
             'upkeep.com'
         ]
+        self.available_internal_urls = []  # Cache for sitemap URLs
 
     def load_keywords_from_csv(self, csv_file_path: str) -> Dict[str, List[Dict[str, Any]]]:
         """Load keywords from Ahrefs CSV export with SERP data"""
@@ -137,21 +138,31 @@ class SEOContentGenerator:
             soup = BeautifulSoup(response.content, 'xml')
             urls = soup.find_all('loc')
 
+            # Cache all available URLs for internal link verification
+            self.available_internal_urls = []
+
             for url in urls:
-                if url.text and '/blog/' in url.text:
-                    # Extract the blog slug from URL
+                if url.text:
+                    # Store full URL path for internal link verification
                     parsed_url = urlparse(url.text)
                     path = parsed_url.path
-                    if path.startswith('/blog/'):
-                        # Remove /blog/ prefix and trailing slashes
-                        slug = path.replace('/blog/', '', 1).strip('/')
-                        if slug:
-                            # Convert slug to words for better matching
-                            slug_words = slug.replace('-', ' ')
-                            existing_slugs.append(slug_words)
+                    if path and path != '/':
+                        self.available_internal_urls.append(path)
+
+                    # Extract blog slugs for content overlap checking
+                    if '/blog/' in url.text:
+                        if path.startswith('/blog/'):
+                            # Remove /blog/ prefix and trailing slashes
+                            slug = path.replace('/blog/', '', 1).strip('/')
+                            if slug:
+                                # Convert slug to words for better matching
+                                slug_words = slug.replace('-', ' ')
+                                existing_slugs.append(slug_words)
 
             print(
                 f"✅ Found {len(existing_slugs)} existing blog posts from sitemap")
+            print(
+                f"✅ Cached {len(self.available_internal_urls)} internal URLs for verification")
             return existing_slugs
 
         except Exception as e:
@@ -170,6 +181,82 @@ class SEOContentGenerator:
             if overlap >= len(keyword_words) * 0.7:  # 70% overlap threshold
                 return True
         return False
+
+    def verify_internal_url(self, url_path: str) -> bool:
+        """Verify if an internal URL path exists in the sitemap"""
+        if not url_path.startswith('/'):
+            url_path = '/' + url_path
+
+        # Check exact match
+        if url_path in self.available_internal_urls:
+            return True
+
+        # Check with trailing slash
+        if url_path.rstrip('/') + '/' in self.available_internal_urls:
+            return True
+
+        # Check without trailing slash
+        if url_path.rstrip('/') in self.available_internal_urls:
+            return True
+
+        return False
+
+    def verify_external_url(self, url: str) -> bool:
+        """Verify if an external URL is accessible"""
+        try:
+            # Use HEAD request to check if URL exists without downloading content
+            response = requests.head(url, timeout=10, allow_redirects=True)
+            return response.status_code < 400
+        except Exception:
+            try:
+                # Fallback to GET request if HEAD doesn't work
+                response = requests.get(url, timeout=10, allow_redirects=True)
+                return response.status_code < 400
+            except Exception:
+                return False
+
+    def validate_and_clean_markdown_links(self, markdown_content: str) -> str:
+        """Validate and clean links in markdown content"""
+        print("    🔗 Validating and cleaning markdown links...")
+
+        # Find all markdown links [text](url)
+        link_pattern = r'\[([^\]]+)\]\(([^\)]+)\)'
+        links = re.findall(link_pattern, markdown_content)
+
+        cleaned_content = markdown_content
+        validated_count = 0
+        removed_count = 0
+
+        for link_text, link_url in links:
+            original_link = f'[{link_text}]({link_url})'
+
+            # Check if it's an internal or external link
+            if link_url.startswith('/') or not link_url.startswith('http'):
+                # Internal link
+                if self.verify_internal_url(link_url):
+                    print(f"    ✅ Internal link verified: {link_url}")
+                    validated_count += 1
+                else:
+                    print(f"    ❌ Invalid internal link removed: {link_url}")
+                    # Remove the link but keep the text
+                    cleaned_content = cleaned_content.replace(
+                        original_link, link_text)
+                    removed_count += 1
+            else:
+                # External link
+                if self.verify_external_url(link_url):
+                    print(f"    ✅ External link verified: {link_url}")
+                    validated_count += 1
+                else:
+                    print(f"    ❌ Invalid external link removed: {link_url}")
+                    # Remove the link but keep the text
+                    cleaned_content = cleaned_content.replace(
+                        original_link, link_text)
+                    removed_count += 1
+
+        print(
+            f"    📊 Link validation: {validated_count} verified, {removed_count} removed")
+        return cleaned_content
 
     def research_keyword_with_gemini(self, keyword: str, serp_data: Optional[List[Dict[str, Any]]] = None) -> Dict[str, Any]:
         """Use Gemini to analyze keyword and competition"""
@@ -376,15 +463,13 @@ class SEOContentGenerator:
             text = markdown_text.strip()
             content = {}
 
-            # Extract sections using regex - handle H2 sections within BODY_CONTENT
+            # Extract sections using regex - simplified format without separate link sections
             patterns = {
-                'meta_title': r'## META_TITLE\s*\n(.*?)(?=##\s+(?:META_DESCRIPTION|MAIN_TITLE|BODY_CONTENT|IMAGE_PROMPT|INTERNAL_LINKS|EXTERNAL_LINKS)|$)',
-                'meta_description': r'## META_DESCRIPTION\s*\n(.*?)(?=##\s+(?:META_TITLE|MAIN_TITLE|BODY_CONTENT|IMAGE_PROMPT|INTERNAL_LINKS|EXTERNAL_LINKS)|$)',
-                'title': r'## MAIN_TITLE\s*\n(.*?)(?=##\s+(?:META_TITLE|META_DESCRIPTION|BODY_CONTENT|IMAGE_PROMPT|INTERNAL_LINKS|EXTERNAL_LINKS)|$)',
-                'body': r'## BODY_CONTENT\s*\n(.*?)(?=##\s+(?:IMAGE_PROMPT|INTERNAL_LINKS|EXTERNAL_LINKS)|$)',
-                'image_prompt': r'## IMAGE_PROMPT\s*\n(.*?)(?=##\s+(?:META_TITLE|META_DESCRIPTION|MAIN_TITLE|BODY_CONTENT|INTERNAL_LINKS|EXTERNAL_LINKS)|$)',
-                'internal_links_raw': r'## INTERNAL_LINKS\s*\n(.*?)(?=##\s+(?:META_TITLE|META_DESCRIPTION|MAIN_TITLE|BODY_CONTENT|IMAGE_PROMPT|EXTERNAL_LINKS)|$)',
-                'external_links_raw': r'## EXTERNAL_LINKS\s*\n(.*?)(?=##\s+(?:META_TITLE|META_DESCRIPTION|MAIN_TITLE|BODY_CONTENT|IMAGE_PROMPT|INTERNAL_LINKS)|$)'
+                'meta_title': r'## META_TITLE\s*\n(.*?)(?=##\s+(?:META_DESCRIPTION|MAIN_TITLE|BODY_CONTENT|IMAGE_PROMPT)|$)',
+                'meta_description': r'## META_DESCRIPTION\s*\n(.*?)(?=##\s+(?:META_TITLE|MAIN_TITLE|BODY_CONTENT|IMAGE_PROMPT)|$)',
+                'title': r'## MAIN_TITLE\s*\n(.*?)(?=##\s+(?:META_TITLE|META_DESCRIPTION|BODY_CONTENT|IMAGE_PROMPT)|$)',
+                'body': r'## BODY_CONTENT\s*\n(.*?)(?=##\s+(?:IMAGE_PROMPT)|$)',
+                'image_prompt': r'## IMAGE_PROMPT\s*\n(.*?)(?=##\s+(?:META_TITLE|META_DESCRIPTION|MAIN_TITLE|BODY_CONTENT)|$)',
             }
 
             # Extract each section
@@ -394,40 +479,6 @@ class SEOContentGenerator:
                     content[key] = match.group(1).strip()
                 else:
                     content[key] = ""
-
-            # Parse internal links
-            internal_links = []
-            if content.get('internal_links_raw'):
-                for line in content['internal_links_raw'].split('\n'):
-                    line = line.strip()
-                    if line.startswith('-'):
-                        # Parse format: - [Anchor text] -> /url/path (Context: description)
-                        link_match = re.search(
-                            r'-\s*\[(.*?)\]\s*->\s*(\S+)\s*\(Context:\s*(.*?)\)', line)
-                        if link_match:
-                            internal_links.append({
-                                'anchor_text': str(link_match.group(1).strip()),
-                                'suggested_url': str(link_match.group(2).strip()),
-                                'context': str(link_match.group(3).strip())
-                            })
-            content['internal_links'] = internal_links
-
-            # Parse external links
-            external_links = []
-            if content.get('external_links_raw'):
-                for line in content['external_links_raw'].split('\n'):
-                    line = line.strip()
-                    if line.startswith('-'):
-                        # Parse format: - [Anchor text] -> https://url.com (Context: description)
-                        link_match = re.search(
-                            r'-\s*\[(.*?)\]\s*->\s*(\S+)\s*\(Context:\s*(.*?)\)', line)
-                        if link_match:
-                            external_links.append({
-                                'anchor_text': str(link_match.group(1).strip()),
-                                'url': str(link_match.group(2).strip()),
-                                'context': str(link_match.group(3).strip())
-                            })
-            content['external_links'] = external_links
 
             # Clean up bracket placeholders in text fields
             for key in ['meta_title', 'meta_description', 'title', 'body', 'image_prompt']:
@@ -455,11 +506,25 @@ class SEOContentGenerator:
         if 'content_angles' in research_data:
             research_summary += f"Content Angles: {research_data['content_angles'][:200]}...\n"
 
+        # Build available internal URLs context
+        internal_urls_context = ""
+        if self.available_internal_urls:
+            # Show a sample of available URLs for reference
+            # First 20 URLs as examples
+            sample_urls = self.available_internal_urls[:20]
+            internal_urls_context = f"""
+        
+        AVAILABLE INTERNAL URLS (for reference when adding internal links):
+        {chr(10).join(sample_urls)}
+        (And {len(self.available_internal_urls)} total available internal URLs)
+        """
+
         content_prompt = f"""
         Write a comprehensive, in-depth blog post for the keyword: "{keyword}"
         
         Research insights:
         {research_summary}
+        {internal_urls_context}
         
         CRITICAL REQUIREMENTS:
         - MINIMUM 2500 words in the BODY_CONTENT section - this is NON-NEGOTIABLE
@@ -476,6 +541,13 @@ class SEOContentGenerator:
         - Include troubleshooting guides, best practices, and implementation steps
         - Add technical details, calculations, and industry standards where relevant
         
+        MARKDOWN LINK REQUIREMENTS:
+        - EMBED 3-5 internal links directly in the BODY_CONTENT using markdown format: [anchor text](/url/path)
+        - Use ONLY URLs from the available internal URLs list provided above
+        - EMBED 2-3 external links to authoritative sources using markdown format: [anchor text](https://example.com)
+        - Use reputable domains like: isixsigma.com, nist.gov, ieee.org, asme.org, reliabilityweb.com, maintenanceworld.com
+        - Place links naturally in context where they add value
+        
         Output in this EXACT structured markdown format:
 
         # Blog Post: {keyword}
@@ -490,24 +562,16 @@ class SEOContentGenerator:
         [Engaging H1 that includes the target keyword]
 
         ## BODY_CONTENT
-        [MINIMUM 2500 words in clean Markdown format with proper H2 and H3 headings. This should be a comprehensive, detailed article covering all aspects of the topic. Include introduction, multiple main sections, practical guidance, examples, best practices, and conclusion.]
+        [MINIMUM 2500 words in clean Markdown format with proper H2 and H3 headings. Include 3-5 internal links and 2-3 external links embedded naturally in the content using markdown link syntax [text](url). This should be a comprehensive, detailed article covering all aspects of the topic.]
 
         ## IMAGE_PROMPT
         [Detailed prompt for generating a relevant hero image related to the keyword]
 
-        ## INTERNAL_LINKS
-        - [Anchor text for link 1] -> /suggested/url/path1 (Context: where this appears in the content)
-        - [Anchor text for link 2] -> /suggested/url/path2 (Context: where this appears in the content)
-        - [Anchor text for link 3] -> /suggested/url/path3 (Context: where this appears in the content)
-        - [Anchor text for link 4] -> /suggested/url/path4 (Context: where this appears in the content)
-        - [Anchor text for link 5] -> /suggested/url/path5 (Context: where this appears in the content)
-
-        ## EXTERNAL_LINKS
-        - [Anchor text for external link 1] -> https://authoritative-source1.com (Context: where this appears in the content)
-        - [Anchor text for external link 2] -> https://authoritative-source2.com (Context: where this appears in the content)
-        - [Anchor text for external link 3] -> https://authoritative-source3.com (Context: where this appears in the content)
-
-        REMEMBER: The BODY_CONTENT section must be at least 2500 words. Write a thorough, comprehensive article that covers the topic in depth.
+        REMEMBER: 
+        - The BODY_CONTENT section must be at least 2500 words
+        - Include links directly in the markdown content, not as separate sections
+        - Only use internal URLs from the provided list
+        - Test external links to ensure they work
         """
 
         try:
@@ -550,15 +614,19 @@ class SEOContentGenerator:
                 print(f"Could not parse markdown from content response")
                 return None
 
+            # Validate and clean links in the markdown body
+            cleaned_body = self.validate_and_clean_markdown_links(
+                content_data.get('body', ''))
+
             return BlogPost(
                 keyword=keyword,
                 meta_title=content_data.get('meta_title', ''),
                 meta_description=content_data.get('meta_description', ''),
                 title=content_data.get('title', ''),
-                body=content_data.get('body', ''),
+                body=cleaned_body,
                 image_prompt=content_data.get('image_prompt', ''),
-                internal_links=content_data.get('internal_links', []),
-                external_links=content_data.get('external_links', [])
+                internal_links=[],  # No longer using separate link sections
+                external_links=[]   # Links are now embedded in the markdown
             )
 
         except Exception as e:
@@ -696,58 +764,7 @@ class SEOContentGenerator:
             return None, None
 
     def format_for_prismic(self, blog_post: BlogPost) -> Dict[str, Any]:
-        """Format content for Prismic CMS with proper rich text structure"""
-
-        # Convert markdown-style content to Prismic rich text format
-        def convert_to_prismic_richtext(content: str) -> List[Dict[str, Any]]:
-            paragraphs: List[Dict[str, Any]] = []
-            lines = content.split('\n')
-
-            for line in lines:
-                line = line.strip()
-                if not line:
-                    continue
-
-                if line.startswith('# '):
-                    paragraphs.append({
-                        "type": "heading1",
-                        "text": line[2:],
-                        "spans": []
-                    })
-                elif line.startswith('## '):
-                    paragraphs.append({
-                        "type": "heading2",
-                        "text": line[3:],
-                        "spans": []
-                    })
-                elif line.startswith('### '):
-                    paragraphs.append({
-                        "type": "heading3",
-                        "text": line[4:],
-                        "spans": []
-                    })
-                else:
-                    # Handle links in paragraphs
-                    spans: List[Dict[str, Any]] = []
-                    text = line
-
-                    # Find and process internal links
-                    internal_pattern = r'\[INTERNAL-LINK-(\d+)\]'
-                    text = re.sub(internal_pattern,
-                                  r'internal reference \1', text)
-
-                    # Find and process external links
-                    external_pattern = r'\[EXTERNAL-LINK-(\d+)\]'
-                    text = re.sub(external_pattern,
-                                  r'external reference \1', text)
-
-                    paragraphs.append({
-                        "type": "paragraph",
-                        "text": text,
-                        "spans": spans
-                    })
-
-            return paragraphs
+        """Format content for Prismic CMS with the markdown body for the new slice"""
 
         prismic_data = {
             "meta_title": blog_post.meta_title,
@@ -760,9 +777,9 @@ class SEOContentGenerator:
                 "alt": f"Hero image for {blog_post.title}",
                 "source": "gpt-image-1" if blog_post.local_image_path and not blog_post.image_url else "url"
             },
-            "body": convert_to_prismic_richtext(blog_post.body),
-            "internal_references": blog_post.internal_links or [],
-            "external_references": blog_post.external_links or []
+            "markdown_body": blog_post.body,  # Raw markdown for the new slice
+            "word_count": len(blog_post.body.split()),
+            "link_count": len(re.findall(r'\[([^\]]+)\]\(([^\)]+)\)', blog_post.body))
         }
 
         return prismic_data
@@ -801,9 +818,9 @@ class SEOContentGenerator:
         safe_keyword = re.sub(r'[^\w\s-]', '', keyword).strip()
         safe_keyword = re.sub(r'[-\s]+', '-', safe_keyword)
 
-        # Save JSON (without body for cleaner format)
+        # Save JSON with markdown body reference
         json_data = prismic_data.copy()
-        json_data['body'] = "[See separate markdown file]"
+        json_data['markdown_body'] = "[See separate markdown file]"
 
         json_filename = f"{safe_keyword[:50]}.json"
         json_filepath = os.path.join(output_dir, json_filename)
@@ -811,7 +828,7 @@ class SEOContentGenerator:
         with open(json_filepath, 'w', encoding='utf-8') as f:
             json.dump(json_data, f, indent=2, ensure_ascii=False)
 
-        # Save Markdown body separately
+        # Save Markdown body separately (this is the content for Prismic)
         md_filename = f"{safe_keyword[:50]}.md"
         md_filepath = os.path.join(output_dir, md_filename)
 
@@ -822,27 +839,16 @@ class SEOContentGenerator:
                 f"**Meta Title:** {prismic_data.get('meta_title', '')}\n\n")
             f.write(
                 f"**Meta Description:** {prismic_data.get('meta_description', '')}\n\n")
+            f.write(f"**Word Count:** {prismic_data.get('word_count', 0)}\n\n")
+            f.write(f"**Link Count:** {prismic_data.get('link_count', 0)}\n\n")
             f.write("---\n\n")
             f.write(body_markdown)
-
-            # Add reference sections
-            if prismic_data.get('internal_links'):
-                f.write("\n\n## Internal Link Suggestions\n\n")
-                for i, link in enumerate(prismic_data['internal_links'], 1):
-                    f.write(
-                        f"{i}. **{link.get('anchor_text', 'N/A')}** → `{link.get('suggested_url', 'N/A')}`\n")
-                    f.write(f"   Context: {link.get('context', 'N/A')}\n\n")
-
-            if prismic_data.get('external_links'):
-                f.write("\n## External Reference Links\n\n")
-                for i, link in enumerate(prismic_data['external_links'], 1):
-                    f.write(
-                        f"{i}. **{link.get('anchor_text', 'N/A')}** → [{link.get('url', 'N/A')}]({link.get('url', 'N/A')})\n")
-                    f.write(f"   Context: {link.get('context', 'N/A')}\n\n")
 
         print(f"Content saved to:")
         print(f"  📄 JSON: {json_filepath}")
         print(f"  📝 Markdown: {md_filepath}")
+        print(
+            f"  📊 Stats: {prismic_data.get('word_count', 0)} words, {prismic_data.get('link_count', 0)} links")
 
         # Check if there's a local image file
         image_extensions = ['.png', '.jpg', '.jpeg', '.webp']
