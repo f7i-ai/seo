@@ -1,268 +1,329 @@
-# SEO Content Generator Background Agent
+# SEO Content Generator & Prismic Uploader
 
-A robust background service for automatically generating SEO-optimized content using AI. This system processes keywords from Ahrefs CSV exports, researches them using Google Gemini 2.5 Pro, generates high-quality content, and saves it in multiple formats.
+A comprehensive system for automated SEO content generation and publishing to Prismic CMS. This system generates high-quality, SEO-optimized blog posts using AI and automatically publishes them to your Prismic repository.
 
 ## 🚀 Features
 
-- **Automated Processing**: Runs on schedule (default: daily at 2 AM)
-- **Intelligent Filtering**: Avoids duplicates and content overlap
-- **Comprehensive Research**: Uses Google Gemini 2.5 Pro for deep keyword research with SERP analysis
-- **Multi-format Output**: Saves content as JSON (for Prismic CMS) and Markdown
-- **Image Generation**: Creates hero images using OpenAI DALL-E
-- **Robust Error Handling**: Retry logic and comprehensive logging
-- **Monitoring Dashboard**: Real-time status monitoring
-- **Email Notifications**: Optional email alerts for success/failure
-- **Rate Limiting**: Respects API limits with configurable delays
-- **Queue Management**: Processes multiple keywords concurrently
+### Content Generation
+- **AI-Powered Research**: Uses Google Gemini 2.5 Pro for deep keyword research and competitive analysis
+- **High-Quality Content**: Generates 2500-4000 word blog posts with proper structure and SEO optimization
+- **Image Generation**: Creates hero images using OpenAI's GPT-4 Image Generation
+- **Link Validation**: Automatically validates internal and external links
+- **SERP Analysis**: Analyzes search engine results to identify content gaps and opportunities
+
+### Prismic Integration
+- **Automated Upload**: Seamlessly uploads content to Prismic CMS with proper formatting
+- **Asset Management**: Handles image uploads to Prismic Asset API
+- **Structured Content**: Creates properly formatted slices and rich text content
+- **Duplicate Prevention**: Checks for existing content to avoid duplicates
+
+### Background Processing
+- **Scheduled Execution**: Automated background agent for continuous content generation
+- **Queue Management**: Processes multiple keywords with configurable concurrency
+- **Monitoring & Logging**: Comprehensive logging and status monitoring
+- **Email Notifications**: Optional email alerts for processing status
 
 ## 📋 Prerequisites
 
-- Python 3.8+
-- Google Gemini 2.5 Pro API key (for content generation and research)
-- OpenAI API key (for DALL-E image generation)
-- Ahrefs CSV export with keyword data
+### Required API Keys
+- **Google Gemini API Key**: For content generation and research
+- **OpenAI API Key**: For image generation
+- **Prismic Write Token**: For uploading content to Prismic CMS
+
+### System Requirements
+- **Python 3.8+**: For content generation
+- **Node.js 16+**: For Prismic upload functionality
+- **npm**: For Node.js dependencies
 
 ## 🛠️ Installation
 
-1. **Clone or download the project files**
+### 1. Clone and Setup Python Environment
 
-2. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+cd seo/
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
 
-3. **Set up environment variables**:
-   Create a `.env` file in the project root:
-   ```env
-   GEMINI_API_KEY=your_gemini_api_key_here
-   OPENAI_API_KEY=your_openai_api_key_here
-   ```
+### 2. Install Node.js Dependencies
 
-4. **Configure the agent**:
-   Edit `agent_config.yaml` to customize settings (see Configuration section)
+```bash
+npm install
+```
+
+### 3. Environment Configuration
+
+Create a `.env` file in the `seo/` directory:
+
+```bash
+# Required API Keys
+GEMINI_API_KEY=your_gemini_api_key_here
+OPENAI_API_KEY=your_openai_api_key_here
+PRISMIC_API_KEY=your_prismic_write_token_here
+
+# Optional: Enable debug mode
+DEBUG=true
+```
+
+### 4. Prepare Keyword Data
+
+Create a CSV file named `kw.csv` with your keywords. The system supports various CSV formats from SEO tools like Ahrefs. Required columns:
+- `Keyword` (or similar): The target keyword
+- Optional SERP data columns: `Title`, `URL`, `Position`, `Traffic`, etc.
+
+Example CSV structure:
+```csv
+Keyword,Position,Traffic,Difficulty,Volume
+maintenance management software,5,120,45,1200
+predictive maintenance,3,80,55,2100
+cmms software,8,200,65,3500
+```
+
+## 🎯 Usage
+
+### Interactive Mode (Recommended for First Time)
+
+```bash
+python seo_content_generator.py
+```
+
+This will prompt you for:
+- CSV file path
+- Sitemap URL (default: https://f7i.ai/sitemap.xml)
+- Prismic upload preference (y/n/test)
+
+### Non-Interactive Mode
+
+```bash
+python run_seo_bot.py
+```
+
+Automatically processes keywords from `kw.csv` with default settings.
+
+### Background Agent Mode
+
+For continuous automated processing:
+
+```bash
+# Run once
+python background_agent.py --run-once
+
+# Start background service
+python background_agent.py
+
+# Check status
+python background_agent.py --status
+```
+
+### Manual Prismic Upload
+
+Upload individual files to Prismic:
+
+```bash
+# Test mode (validates without uploading)
+node prismic_uploader.js generated_content/my-keyword.json --skip-upload
+
+# Actual upload
+node prismic_uploader.js generated_content/my-keyword.json
+
+# Batch upload all files
+node prismic_uploader.js --batch
+
+# Debug mode
+node prismic_uploader.js generated_content/my-keyword.json --debug
+```
 
 ## ⚙️ Configuration
 
-The agent is configured via `agent_config.yaml`. Key settings include:
+### Background Agent Configuration
 
-### Processing Settings
-```yaml
-max_keywords_per_run: 5          # Keywords to process per cycle
-concurrent_workers: 2            # Parallel processing threads
-retry_attempts: 3                # Retries for failed keywords
-rate_limit_delay: 5              # Seconds between API calls
-```
+Edit `agent_config.yaml` to customize the background agent:
 
-### Scheduling
 ```yaml
-run_interval_hours: 24           # How often to run (hours)
-run_at_hour: 2                   # What hour to run (24h format)
-```
+# Processing settings
+max_keywords_per_run: 3
+concurrent_workers: 1
+retry_attempts: 3
+retry_delay: 60
 
-### Email Notifications (Optional)
-```yaml
-email_notifications: true
+# Scheduling
+run_interval_hours: 24
+run_at_hour: 2
+
+# Rate limiting
+rate_limit_delay: 15
+
+# Email notifications
+email_notifications: false
 smtp_server: "smtp.gmail.com"
 smtp_port: 587
-email_user: "your-email@gmail.com"
-email_password: "your-app-password"
 notification_recipients:
   - "admin@yourdomain.com"
 ```
 
-## 🏃‍♂️ Usage
+### Content Requirements
 
-### Running the Background Agent
+The system is configured to generate content that meets these SEO standards:
+- **Word Count**: 2500-4000 words minimum
+- **Meta Title**: Under 60 characters
+- **Meta Description**: 150-160 characters
+- **Internal Links**: 3-5 per article
+- **External Links**: 2-3 to authoritative sources
 
-1. **Start the agent**:
-   ```bash
-   python3 background_agent.py
-   ```
+## 📊 Generated Content Structure
 
-2. **Run once for testing**:
-   ```bash
-   python3 background_agent.py --run-once
-   ```
+### Files Created
+For each keyword, the system creates:
+- `{keyword}.json`: Metadata and Prismic-formatted content
+- `{keyword}.md`: Human-readable markdown content
+- `{keyword}.png`: Generated hero image
 
-3. **Check status**:
-   ```bash
-   python3 background_agent.py --status
-   ```
+### Content Format
+Generated blog posts include:
+- SEO-optimized meta title and description
+- Comprehensive article body with proper H2/H3 structure
+- Naturally embedded internal and external links
+- Industry-relevant hero image
+- Keyword-focused content optimized for search intent
 
-### Using the Monitor Dashboard
+## 🔧 Prismic Setup
 
-The monitoring dashboard provides real-time insights:
+### Required Prismic Configuration
 
-1. **View current status**:
-   ```bash
-   python3 monitor_dashboard.py
-   ```
+Your Prismic repository needs these slices:
+- **TitleAndBody**: Main content slice with title, category, featured image, and markdown body
+- **ProfileTim**: Author profile slice
 
-2. **Live monitoring (updates every 30 seconds)**:
-   ```bash
-   python3 monitor_dashboard.py --watch
-   ```
-
-3. **Control the agent**:
-   ```bash
-   # Start agent
-   python3 monitor_dashboard.py --start
-   
-   # Stop agent
-   python3 monitor_dashboard.py --stop
-   
-   # Run once
-   python3 monitor_dashboard.py --run-once
-   ```
-
-### Running as a System Service (Linux)
-
-1. **Edit the service file**:
-   Update paths in `seo-agent.service`:
-   ```bash
-   sudo nano seo-agent.service
-   ```
-
-2. **Install the service**:
-   ```bash
-   sudo cp seo-agent.service /etc/systemd/system/
-   sudo systemctl daemon-reload
-   sudo systemctl enable seo-agent
-   ```
-
-3. **Start the service**:
-   ```bash
-   sudo systemctl start seo-agent
-   ```
-
-4. **Check service status**:
-   ```bash
-   sudo systemctl status seo-agent
-   sudo journalctl -u seo-agent -f
-   ```
-
-## 📁 File Structure
-
-```
-seo/
-├── background_agent.py          # Main background agent
-├── monitor_dashboard.py         # Monitoring dashboard
-├── seo_content_generator.py     # Core content generation logic
-├── agent_config.yaml           # Configuration file
-├── seo-agent.service           # Systemd service file
-├── kw.csv                      # Keywords CSV (Ahrefs export)
-├── requirements.txt            # Python dependencies
-├── .env                        # Environment variables
-├── generated_content/          # Output directory
-│   ├── *.json                 # Prismic-formatted content
-│   └── *.md                   # Markdown content
-└── logs/                       # Log files
-    └── agent_YYYYMMDD.log     # Daily log files
-```
-
-## 📊 Output Formats
-
-### JSON Output (Prismic CMS)
-```json
-{
-  "meta_title": "Understanding CMMS: Complete Guide...",
-  "meta_description": "Learn everything about...",
-  "title": "What is CMMS? Complete Guide to...",
-  "keyword": "cmms meaning",
-  "hero_image": {
-    "url": "https://...",
-    "alt": "Hero image for..."
-  },
-  "body": [...],
-  "internal_references": [...],
-  "external_references": [...]
-}
-```
-
-### Markdown Output
-```markdown
-# What is CMMS? Complete Guide to Computerized Maintenance Management Systems
-
-**Keyword:** cmms meaning
-**Meta Title:** Understanding CMMS: Complete Guide...
-**Meta Description:** Learn everything about...
-
----
-
-[Article content in markdown format]
-
-## Internal Link Suggestions
-1. **Preventive Maintenance** → `/blog/preventive-maintenance-guide`
-
-## External Reference Links
-1. **ISO 55000 Standard** → [https://www.iso.org/iso-55001-asset-management.html](...)
-```
+### Slice Structure
+The `TitleAndBody` slice should have these fields:
+- `title`: Rich Text (H1)
+- `category`: Text (for keyword)
+- `featuredimage`: Image
+- `markdownmainbody`: Rich Text (StructuredText with preformatted support)
 
 ## 📈 Monitoring & Logging
 
-### Dashboard Features
-- **Agent Status**: Running state, next scheduled run, processing statistics
-- **System Info**: Disk usage, process status
-- **Content Stats**: Total files generated, recent activity
-- **Recent Logs**: Last 10 log entries
-
 ### Log Files
-- Located in `logs/` directory
-- Daily rotation: `agent_YYYYMMDD.log`
-- Comprehensive logging of all operations
-- Error tracking and performance metrics
+- `logs/agent_YYYYMMDD.log`: Daily log files with detailed processing information
+- Console output: Real-time processing status
 
-## 🔧 Troubleshooting
+### Status Monitoring
+```bash
+# Check background agent status
+python background_agent.py --status
+
+# View recent logs
+tail -f logs/agent_$(date +%Y%m%d).log
+```
+
+## 🚨 Troubleshooting
 
 ### Common Issues
 
-1. **"No keywords found in CSV"**
-   - Check CSV format and encoding
-   - Ensure CSV has proper column headers
-   - Try different delimiters (comma vs tab)
+#### "Rich text field must be an array" Error
+**Solution**: This error has been fixed in the latest version. The system now properly formats markdown content as StructuredText arrays.
 
-2. **API rate limits**
-   - Increase `rate_limit_delay` in config
-   - Reduce `concurrent_workers`
+#### Rate Limiting Issues
+**Solution**: Increase `rate_limit_delay` in `agent_config.yaml` or reduce `concurrent_workers`.
 
-3. **Memory issues**
-   - Reduce `max_keywords_per_run`
-   - Lower `concurrent_workers`
+#### Missing Dependencies
+```bash
+# Python dependencies
+pip install -r requirements.txt
 
-4. **Permission errors**
-   - Check file permissions on output directories
-   - Ensure proper user permissions for systemd service
-
-### Debug Mode
-Enable debug logging by modifying the logging level in `background_agent.py`:
-```python
-self.logger.setLevel(logging.DEBUG)
+# Node.js dependencies
+npm install
 ```
 
-## 🔐 Security Considerations
+#### API Key Issues
+Verify your API keys in the `.env` file:
+```bash
+# Test Gemini API
+python -c "import google.generativeai as genai; import os; genai.configure(api_key=os.getenv('GEMINI_API_KEY')); print('Gemini API: OK')"
 
-- Store API keys in environment variables, not in code
-- Use app passwords for email notifications
-- Set appropriate file permissions (600) for `.env`
-- Run service with minimal required privileges
-- Regularly rotate API keys
+# Test OpenAI API
+python -c "import openai; import os; client = openai.OpenAI(api_key=os.getenv('OPENAI_API_KEY')); print('OpenAI API: OK')"
+```
 
-## 📞 Support
+#### Prismic Upload Failures
+1. Verify `PRISMIC_API_KEY` is a write token (not read-only)
+2. Check repository name in `prismic_uploader.js`
+3. Ensure required slices exist in your Prismic repository
+4. Use `--debug` flag for detailed error information
+
+### Debug Mode
+Enable detailed logging:
+```bash
+# Environment variable
+export DEBUG=true
+
+# Or add to .env file
+echo "DEBUG=true" >> .env
+
+# Run with debug output
+node prismic_uploader.js generated_content/test.json --debug
+```
+
+## 📚 Architecture Overview
+
+### System Components
+1. **SEOContentGenerator**: Main Python class handling research and content generation
+2. **PrismicUploader**: Node.js script for CMS integration
+3. **BackgroundAgent**: Automated processing service
+4. **Content Models**: Pydantic models for type safety and validation
+
+### Processing Flow
+1. Load keywords from CSV file
+2. Check for existing content (avoid duplicates)
+3. Research keyword using Gemini 2.5 Pro with SERP analysis
+4. Generate comprehensive blog post content
+5. Create hero image using OpenAI
+6. Validate and clean all links
+7. Format content for Prismic CMS
+8. Upload to Prismic with proper slice structure
+
+### Data Models
+The system uses strict Pydantic models for:
+- Content requirements and validation
+- Blog post structure
+- Research data
+- Prismic formatting
+- Processing results
+
+## 🤝 Contributing
+
+### Development Setup
+```bash
+# Install with development dependencies
+pip install -r requirements.txt
+mypy --install-types
+
+# Run type checking
+mypy seo_content_generator.py
+
+# Test single keyword
+python seo_content_generator.py
+```
+
+### Code Quality
+- **Type Hints**: All functions use proper type annotations
+- **Error Handling**: Comprehensive exception handling with retries
+- **Logging**: Detailed logging for debugging and monitoring
+- **Validation**: Pydantic models ensure data integrity
+
+## 📄 License
+
+This project is part of the f7i.ai marketing system and is proprietary to Factory AI.
+
+## 🆘 Support
 
 For issues or questions:
-1. Check the logs in `logs/` directory
-2. Use the monitor dashboard for real-time status
-3. Review configuration settings
-4. Check API key validity and quotas
+1. Check the troubleshooting section above
+2. Review log files for detailed error information
+3. Use debug mode for additional diagnostic information
+4. Contact the development team with specific error messages and log excerpts
 
-## 🔄 Updates
+---
 
-To update the system:
-1. Stop the agent: `sudo systemctl stop seo-agent`
-2. Update code files
-3. Install new dependencies: `pip install -r requirements.txt`
-4. Start the agent: `sudo systemctl start seo-agent`
-
-## 📝 License
-
-This project is proprietary software for f7i.ai content generation. 
+**Note**: This system is optimized for industrial maintenance and CMMS-related content generation. The AI models are specifically prompted for B2B industrial audiences and technical content. 

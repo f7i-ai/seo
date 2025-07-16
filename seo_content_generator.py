@@ -4,62 +4,143 @@ import requests
 import time
 import re
 import base64
-from typing import List, Dict, Optional, Any
-from dataclasses import dataclass
+import subprocess
+from typing import List, Dict, Optional, Any, Tuple
 from urllib.parse import urlparse
 import os
 from dotenv import load_dotenv
 import google.generativeai as genai  # type: ignore
 import openai
 from bs4 import BeautifulSoup
+from pydantic import BaseModel, Field, validator
 
 # Load environment variables
 load_dotenv()
 
 
-@dataclass
-class ContentRequirements:
-    meta_title_max: int = 60
-    meta_description_min: int = 150
-    meta_description_max: int = 160
-    word_count_min: int = 2500
-    word_count_max: int = 4000
-    internal_references: int = 5
-    external_references: int = 3
+class ContentRequirements(BaseModel):
+    """Configuration for content generation requirements"""
+    meta_title_max: int = Field(default=60, ge=1, le=100)
+    meta_description_min: int = Field(default=150, ge=100, le=200)
+    meta_description_max: int = Field(default=160, ge=150, le=200)
+    word_count_min: int = Field(default=2500, ge=1000, le=5000)
+    word_count_max: int = Field(default=4000, ge=2500, le=10000)
+    internal_references: int = Field(default=5, ge=1, le=10)
+    external_references: int = Field(default=3, ge=1, le=10)
+
+    @validator('meta_description_max')
+    def validate_meta_description_range(cls, v, values):
+        if 'meta_description_min' in values and v < values['meta_description_min']:
+            raise ValueError(
+                'meta_description_max must be >= meta_description_min')
+        return v
+
+    @validator('word_count_max')
+    def validate_word_count_range(cls, v, values):
+        if 'word_count_min' in values and v < values['word_count_min']:
+            raise ValueError('word_count_max must be >= word_count_min')
+        return v
 
 
-@dataclass
-class BlogPost:
+class BlogPost(BaseModel):
+    """Model for a generated blog post"""
+    keyword: str = Field(..., min_length=1, max_length=200)
+    meta_title: str = Field(..., min_length=1, max_length=100)
+    meta_description: str = Field(..., min_length=100, max_length=200)
+    title: str = Field(..., min_length=1, max_length=200)
+    body: str = Field(..., min_length=500)
+    image_prompt: str = Field(..., min_length=10, max_length=1000)
+    image_url: Optional[str] = Field(default=None)
+    local_image_path: Optional[str] = Field(default=None)
+    internal_links: Optional[List[str]] = Field(default_factory=list)
+    external_links: Optional[List[str]] = Field(default_factory=list)
+
+    @validator('body')
+    def validate_word_count(cls, v):
+        word_count = len(v.split())
+        if word_count < 2000:
+            raise ValueError(
+                f'Body must have at least 2000 words, got {word_count}')
+        return v
+
+    @validator('meta_description')
+    def validate_meta_description_length(cls, v):
+        if len(v) < 150 or len(v) > 160:
+            raise ValueError(
+                'Meta description must be between 150-160 characters')
+        return v
+
+
+class SERPEntry(BaseModel):
+    """Model for SERP (Search Engine Results Page) data entry"""
+    title: str = Field(default="")
+    url: str = Field(default="")
+    position: str = Field(default="")
+    traffic: str = Field(default="")
+    difficulty: str = Field(default="")
+    volume: str = Field(default="")
+    cpc: str = Field(default="")
+    type: str = Field(default="")
+    intents: str = Field(default="")
+
+
+class ResearchData(BaseModel):
+    """Model for keyword research data"""
     keyword: str
+    search_intent: str = Field(default="")
+    content_gaps: str = Field(default="")
+    pain_points: str = Field(default="")
+    semantic_keywords: str = Field(default="")
+    content_angles: str = Field(default="")
+    competitive_landscape: str = Field(default="")
+    content_structure: str = Field(default="")
+    industry_trends: str = Field(default="")
+    authoritative_sources: str = Field(default="")
+    semantic_keywords_list: List[str] = Field(default_factory=list)
+    error: Optional[str] = Field(default=None)
+
+
+class ContentData(BaseModel):
+    """Model for parsed content data"""
+    meta_title: str = Field(default="")
+    meta_description: str = Field(default="")
+    title: str = Field(default="")
+    body: str = Field(default="")
+    image_prompt: str = Field(default="")
+
+
+class PrismicData(BaseModel):
+    """Model for Prismic CMS formatted data"""
     meta_title: str
     meta_description: str
     title: str
-    body: str
-    image_prompt: str
-    image_url: Optional[str] = None
-    local_image_path: Optional[str] = None
-    internal_links: Optional[List[str]] = None
-    external_links: Optional[List[str]] = None
+    keyword: str
+    hero_image: Dict[str, Any]
+    markdown_body: str
+    word_count: int = Field(ge=0)
+    link_count: int = Field(ge=0)
 
 
 class SEOContentGenerator:
-    def __init__(self):
+    """Main class for generating SEO-optimized content with proper typing"""
+
+    def __init__(self) -> None:
         # Configure Gemini 2.5 Pro
         genai.configure(api_key=os.getenv('GEMINI_API_KEY'))  # type: ignore
         self.gemini_model = genai.GenerativeModel(  # type: ignore
             'gemini-2.5-pro-preview-03-25')
 
-        self.openai_client = openai.OpenAI(
+        self.openai_client: openai.OpenAI = openai.OpenAI(
             api_key=os.getenv('OPENAI_API_KEY')
         )
-        self.requirements = ContentRequirements()
-        self.existing_content = []
-        self.competitor_domains = [
+        self.requirements: ContentRequirements = ContentRequirements()
+        self.existing_content: List[str] = []
+        self.competitor_domains: List[str] = [
             'getmaintainx.com',
             'limblecmms.com',
             'upkeep.com'
         ]
-        self.available_internal_urls = []  # Cache for sitemap URLs
+        self.available_internal_urls: List[str] = []  # Cache for sitemap URLs
 
     def load_keywords_from_csv(self, csv_file_path: str) -> Dict[str, List[Dict[str, Any]]]:
         """Load keywords from Ahrefs CSV export with SERP data"""
@@ -128,7 +209,7 @@ class SEOContentGenerator:
 
     def load_existing_content_from_sitemap(self, sitemap_url: str) -> List[str]:
         """Load existing blog slugs from the sitemap to avoid duplicates"""
-        existing_slugs = []
+        existing_slugs: List[str] = []
         try:
             print(f"🕸️  Fetching sitemap from {sitemap_url}")
             response = requests.get(sitemap_url, timeout=15)
@@ -258,14 +339,14 @@ class SEOContentGenerator:
             f"    📊 Link validation: {validated_count} verified, {removed_count} removed")
         return cleaned_content
 
-    def research_keyword_with_gemini(self, keyword: str, serp_data: Optional[List[Dict[str, Any]]] = None) -> Dict[str, Any]:
+    def research_keyword_with_gemini(self, keyword: str, serp_data: Optional[List[Dict[str, Any]]] = None) -> ResearchData:
         """Use Gemini to analyze keyword and competition"""
 
         print(f"    🔍 Starting deep research for keyword: '{keyword}'")
-        start_time = time.time()
+        start_time: float = time.time()
 
         # Build SERP analysis section
-        serp_analysis = ""
+        serp_analysis: str = ""
         if serp_data:
             print(f"    📊 Analyzing {len(serp_data)} SERP results...")
             serp_analysis = f"""
@@ -380,32 +461,33 @@ class SEOContentGenerator:
 
             # Parse markdown response into structured data
             print(f"    🔧 Parsing markdown response...")
-            research_data = self._parse_research_markdown(
+            research_dict = self._parse_research_markdown(
                 response_text, keyword)
 
-            if research_data:
+            if research_dict and not research_dict.get("error"):
                 print(
-                    f"    ✅ Successfully parsed markdown with {len(research_data)} sections")
+                    f"    ✅ Successfully parsed markdown with {len(research_dict)} sections")
                 print(
-                    f"    🔑 Research data keys: {list(research_data.keys())}")
+                    f"    🔑 Research data keys: {list(research_dict.keys())}")
+                research_data = ResearchData(**research_dict)
             else:
                 print(f"    ❌ Failed to parse markdown response")
-                research_data = {
-                    "error": "Failed to parse research data",
-                    "raw_response": response_text[:500]
-                }
+                research_data = ResearchData(
+                    keyword=keyword,
+                    error="Failed to parse research data"
+                )
 
-            total_time = time.time() - start_time
+            total_time: float = time.time() - start_time
             print(
                 f"    🏁 Research completed in {total_time:.2f} seconds total")
 
             return research_data
 
         except Exception as e:
-            error_time = time.time() - start_time
+            error_time: float = time.time() - start_time
             print(
                 f"    ❌ Error in keyword research after {error_time:.2f} seconds: {e}")
-            return {"error": str(e)}
+            return ResearchData(keyword=keyword, error=str(e))
 
     def _parse_research_markdown(self, markdown_text: str, keyword: str) -> Dict[str, Any]:
         """Parse structured markdown research into dictionary"""
@@ -457,11 +539,11 @@ class SEOContentGenerator:
             print(f"    ❌ Error parsing markdown: {e}")
             return {"error": f"Markdown parsing failed: {e}", "raw_response": markdown_text[:500]}
 
-    def _parse_content_markdown(self, markdown_text: str) -> Optional[Dict[str, Any]]:
-        """Parse structured markdown content into dictionary"""
+    def _parse_content_markdown(self, markdown_text: str) -> Optional[ContentData]:
+        """Parse structured markdown content into ContentData model"""
         try:
-            text = markdown_text.strip()
-            content = {}
+            text: str = markdown_text.strip()
+            content: Dict[str, str] = {}
 
             # Extract sections using regex - simplified format without separate link sections
             patterns = {
@@ -486,25 +568,25 @@ class SEOContentGenerator:
                     # Remove markdown bracket placeholders like [Less than 60 characters...]
                     content[key] = re.sub(r'^\[.*?\]\s*', '', content[key])
 
-            return content
+            return ContentData(**content)
 
         except Exception as e:
             print(f"    ❌ Error parsing content markdown: {e}")
             return None
 
-    def generate_content_with_gemini(self, keyword: str, research_data: Dict[str, Any]) -> Optional[BlogPost]:
+    def generate_content_with_gemini(self, keyword: str, research_data: ResearchData) -> Optional[BlogPost]:
         """Generate high-quality blog content using Gemini"""
 
         # Create simplified research summary for the prompt
-        research_summary = ""
-        if 'search_intent' in research_data:
-            research_summary += f"Search Intent: {research_data['search_intent'][:200]}...\n"
-        if 'semantic_keywords_list' in research_data:
+        research_summary: str = ""
+        if research_data.search_intent:
+            research_summary += f"Search Intent: {research_data.search_intent[:200]}...\n"
+        if research_data.semantic_keywords_list:
             # First 10 keywords
-            keywords = research_data['semantic_keywords_list'][:10]
+            keywords = research_data.semantic_keywords_list[:10]
             research_summary += f"Related Keywords: {', '.join(keywords)}\n"
-        if 'content_angles' in research_data:
-            research_summary += f"Content Angles: {research_data['content_angles'][:200]}...\n"
+        if research_data.content_angles:
+            research_summary += f"Content Angles: {research_data.content_angles[:200]}...\n"
 
         # Build available internal URLs context
         internal_urls_context = ""
@@ -533,6 +615,7 @@ class SEOContentGenerator:
         - Include actionable insights, practical advice, real-world examples, and step-by-step guidance
         - Avoid content similar to competitors: getmaintainx.com, limblecmms.com, upkeep.com
         - Cover the topic comprehensively with multiple angles and detailed explanations
+        - The year is 2025.
         
         CONTENT STRUCTURE REQUIREMENTS:
         - Use multiple H2 sections (## headings) to organize content
@@ -615,16 +698,16 @@ class SEOContentGenerator:
                 return None
 
             # Validate and clean links in the markdown body
-            cleaned_body = self.validate_and_clean_markdown_links(
-                content_data.get('body', ''))
+            cleaned_body: str = self.validate_and_clean_markdown_links(
+                content_data.body)
 
             return BlogPost(
                 keyword=keyword,
-                meta_title=content_data.get('meta_title', ''),
-                meta_description=content_data.get('meta_description', ''),
-                title=content_data.get('title', ''),
+                meta_title=content_data.meta_title,
+                meta_description=content_data.meta_description,
+                title=content_data.title,
                 body=cleaned_body,
-                image_prompt=content_data.get('image_prompt', ''),
+                image_prompt=content_data.image_prompt,
                 internal_links=[],  # No longer using separate link sections
                 external_links=[]   # Links are now embedded in the markdown
             )
@@ -707,7 +790,7 @@ class SEOContentGenerator:
             print(f"    ❌ Error saving base64 image: {e}")
             return None
 
-    def generate_image_with_openai(self, image_prompt: str, keyword: str = "", output_dir: str = "generated_content") -> tuple[Optional[str], Optional[str]]:
+    def generate_image_with_openai(self, image_prompt: str, keyword: str = "", output_dir: str = "generated_content") -> Tuple[Optional[str], Optional[str]]:
         """Generate hero image using OpenAI GPT-4 Image Generation and save it locally"""
         try:
             print(f"    🎨 Generating image with prompt: {image_prompt}")
@@ -718,7 +801,7 @@ class SEOContentGenerator:
             response = self.openai_client.images.generate(
                 model="gpt-image-1",
                 prompt=image_prompt,
-                size="1024x1024",
+                size="1536x1024",
                 quality="medium",
                 n=1,
             )
@@ -763,26 +846,27 @@ class SEOContentGenerator:
             print(f"    ⚠️  No fallback model - returning None")
             return None, None
 
-    def format_for_prismic(self, blog_post: BlogPost) -> Dict[str, Any]:
+    def format_for_prismic(self, blog_post: BlogPost) -> PrismicData:
         """Format content for Prismic CMS with the markdown body for the new slice"""
 
-        prismic_data = {
-            "meta_title": blog_post.meta_title,
-            "meta_description": blog_post.meta_description,
-            "title": blog_post.title,
-            "keyword": blog_post.keyword,
-            "hero_image": {
-                "url": blog_post.image_url or "",
-                "local_path": blog_post.local_image_path or "",
-                "alt": f"Hero image for {blog_post.title}",
-                "source": "gpt-image-1" if blog_post.local_image_path and not blog_post.image_url else "url"
-            },
-            "markdown_body": blog_post.body,  # Raw markdown for the new slice
-            "word_count": len(blog_post.body.split()),
-            "link_count": len(re.findall(r'\[([^\]]+)\]\(([^\)]+)\)', blog_post.body))
+        hero_image: Dict[str, Any] = {
+            "url": blog_post.image_url or "",
+            "local_path": blog_post.local_image_path or "",
+            "alt": f"Hero image for {blog_post.title}",
+            "source": "gpt-image-1" if blog_post.local_image_path and not blog_post.image_url else "url"
         }
 
-        return prismic_data
+        return PrismicData(
+            meta_title=blog_post.meta_title,
+            meta_description=blog_post.meta_description,
+            title=blog_post.title,
+            keyword=blog_post.keyword,
+            hero_image=hero_image,
+            markdown_body=blog_post.body,  # Raw markdown for the new slice
+            word_count=len(blog_post.body.split()),
+            link_count=len(re.findall(
+                r'\[([^\]]+)\]\(([^\)]+)\)', blog_post.body))
+        )
 
     def check_existing_content(self, keyword: str, output_dir: str = "generated_content") -> bool:
         """Check if content already exists for this keyword"""
@@ -810,16 +894,16 @@ class SEOContentGenerator:
         else:
             return False
 
-    def save_output(self, prismic_data: Dict[str, Any], keyword: str, body_markdown: str, output_dir: str = "generated_content") -> tuple[str, str]:
+    def save_output(self, prismic_data: PrismicData, keyword: str, body_markdown: str, output_dir: str = "generated_content") -> Tuple[str, str]:
         """Save generated content to JSON file and separate markdown file"""
         os.makedirs(output_dir, exist_ok=True)
 
         # Create safe filename
-        safe_keyword = re.sub(r'[^\w\s-]', '', keyword).strip()
+        safe_keyword: str = re.sub(r'[^\w\s-]', '', keyword).strip()
         safe_keyword = re.sub(r'[-\s]+', '-', safe_keyword)
 
         # Save JSON with markdown body reference
-        json_data = prismic_data.copy()
+        json_data = prismic_data.dict()
         json_data['markdown_body'] = "[See separate markdown file]"
 
         json_filename = f"{safe_keyword[:50]}.json"
@@ -833,14 +917,13 @@ class SEOContentGenerator:
         md_filepath = os.path.join(output_dir, md_filename)
 
         with open(md_filepath, 'w', encoding='utf-8') as f:
-            f.write(f"# {prismic_data.get('title', keyword)}\n\n")
+            f.write(f"# {prismic_data.title}\n\n")
             f.write(f"**Keyword:** {keyword}\n\n")
+            f.write(f"**Meta Title:** {prismic_data.meta_title}\n\n")
             f.write(
-                f"**Meta Title:** {prismic_data.get('meta_title', '')}\n\n")
-            f.write(
-                f"**Meta Description:** {prismic_data.get('meta_description', '')}\n\n")
-            f.write(f"**Word Count:** {prismic_data.get('word_count', 0)}\n\n")
-            f.write(f"**Link Count:** {prismic_data.get('link_count', 0)}\n\n")
+                f"**Meta Description:** {prismic_data.meta_description}\n\n")
+            f.write(f"**Word Count:** {prismic_data.word_count}\n\n")
+            f.write(f"**Link Count:** {prismic_data.link_count}\n\n")
             f.write("---\n\n")
             f.write(body_markdown)
 
@@ -848,7 +931,7 @@ class SEOContentGenerator:
         print(f"  📄 JSON: {json_filepath}")
         print(f"  📝 Markdown: {md_filepath}")
         print(
-            f"  📊 Stats: {prismic_data.get('word_count', 0)} words, {prismic_data.get('link_count', 0)} links")
+            f"  📊 Stats: {prismic_data.word_count} words, {prismic_data.link_count} links")
 
         # Check if there's a local image file
         image_extensions = ['.png', '.jpg', '.jpeg', '.webp']
@@ -860,40 +943,105 @@ class SEOContentGenerator:
 
         return json_filepath, md_filepath
 
+    def upload_to_prismic(self, json_filepath: str, skip_upload: bool = False) -> Dict[str, Any]:
+        """Upload generated content to Prismic CMS using Node.js script"""
+        try:
+            print(f"  📤 Uploading to Prismic...")
 
-def main():
-    generator = SEOContentGenerator()
+            # Prepare command
+            cmd = ["node", "prismic_uploader.js", json_filepath]
+            if skip_upload:
+                cmd.append("--skip-upload")
+
+            # Run the Node.js uploader
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                cwd=os.path.dirname(os.path.abspath(__file__))
+            )
+
+            if result.returncode == 0:
+                if skip_upload:
+                    print(f"  ✅ Prismic upload test completed successfully")
+                else:
+                    print(f"  ✅ Successfully uploaded to Prismic")
+                return {
+                    "success": True,
+                    "output": result.stdout,
+                    "skipped": skip_upload
+                }
+            else:
+                print(f"  ❌ Prismic upload failed:")
+                print(f"     Error: {result.stderr}")
+                return {
+                    "success": False,
+                    "error": result.stderr,
+                    "output": result.stdout
+                }
+
+        except Exception as e:
+            print(f"  ❌ Error calling Prismic uploader: {e}")
+            return {
+                "success": False,
+                "error": str(e)
+            }
+
+
+def main() -> None:
+    """Main function to run the SEO content generator"""
+    generator: SEOContentGenerator = SEOContentGenerator()
 
     print("🚀 SEO Content Generator for f7i.ai")
     print("=" * 50)
 
     # Get CSV file path
-    csv_path = input("Enter path to your Ahrefs keyword CSV file: ").strip()
+    csv_path: str = input(
+        "Enter path to your Ahrefs keyword CSV file: ").strip()
     if not os.path.exists(csv_path):
         print("❌ CSV file not found!")
         return
 
     # Get sitemap URL
-    sitemap_url = input(
+    sitemap_url: str = input(
         "Enter sitemap URL (default: https://f7i.ai/sitemap.xml): ").strip()
     if not sitemap_url:
         sitemap_url = "https://f7i.ai/sitemap.xml"
 
+    # Get Prismic upload preference
+    prismic_choice: str = input(
+        "Upload to Prismic after generation? (y/n/test) [test]: ").strip().lower()
+    if not prismic_choice:
+        prismic_choice = "test"
+
+    upload_to_prismic: bool = prismic_choice in ['y', 'yes', 'test']
+    skip_prismic_upload: bool = prismic_choice == "test"
+
+    if upload_to_prismic:
+        if skip_prismic_upload:
+            print(
+                "🧪 Prismic test mode: Will validate uploads without actually creating documents")
+        else:
+            print("📤 Prismic upload enabled: Will create documents in Prismic CMS")
+    else:
+        print("⏭️  Prismic upload disabled: Only local files will be created")
+
     # Load keywords with SERP data
-    keyword_data = generator.load_keywords_from_csv(csv_path)
+    keyword_data: Dict[str, List[Dict[str, Any]]
+                       ] = generator.load_keywords_from_csv(csv_path)
     if not keyword_data:
         print("❌ No keywords found in CSV!")
         return
 
     # Load existing content from sitemap
     print(f"\n🔍 Loading existing content from sitemap: {sitemap_url}")
-    existing_content = generator.load_existing_content_from_sitemap(
+    existing_content: List[str] = generator.load_existing_content_from_sitemap(
         sitemap_url)
 
     # Filter out keywords that overlap with existing content OR already have generated content
     filtered_keywords: List[str] = []
-    skipped_overlap = 0
-    skipped_existing = 0
+    skipped_overlap: int = 0
+    skipped_existing: int = 0
 
     for keyword in keyword_data.keys():
         # Check if content already exists
@@ -919,6 +1067,15 @@ def main():
     print(f"\n✅ {len(filtered_keywords)} keywords ready for content generation")
 
     # Process each keyword
+    generation_stats = {
+        "total": len(filtered_keywords),
+        "successful": 0,
+        "failed": 0,
+        "prismic_uploaded": 0,
+        "prismic_failed": 0,
+        "prismic_tested": 0
+    }
+
     for i, keyword in enumerate(filtered_keywords, 1):
         print(
             f"\n📝 Processing keyword {i}/{len(filtered_keywords)}: {keyword}")
@@ -937,6 +1094,7 @@ def main():
 
             if not blog_post:
                 print(f"  ❌ Failed to generate content for: {keyword}")
+                generation_stats["failed"] += 1
                 continue
 
             # Generate image
@@ -952,18 +1110,55 @@ def main():
 
             # Save output
             body_markdown = blog_post.body  # Get the original markdown body
-            generator.save_output(
+            json_path, md_path = generator.save_output(
                 prismic_data, keyword, body_markdown)
             print(f"  ✅ Content generated successfully!")
+            generation_stats["successful"] += 1
+
+            # Upload to Prismic if enabled
+            if upload_to_prismic:
+                prismic_result = generator.upload_to_prismic(
+                    json_path, skip_prismic_upload)
+
+                if prismic_result["success"]:
+                    if prismic_result.get("skipped"):
+                        generation_stats["prismic_tested"] += 1
+                    else:
+                        print(f"  🚀 Content published to Prismic CMS!")
+                        generation_stats["prismic_uploaded"] += 1
+                else:
+                    print(f"  ⚠️  Prismic upload failed, but content saved locally")
+                    print(
+                        f"     You can retry later with: node prismic_uploader.js {json_path}")
+                    generation_stats["prismic_failed"] += 1
 
             # Rate limiting
             time.sleep(2)
 
         except Exception as e:
             print(f"  ❌ Error processing '{keyword}': {e}")
+            generation_stats["failed"] += 1
             continue
 
-    print(f"\n🎉 Content generation complete! Check the 'generated_content' folder for your files.")
+    # Final summary
+    print(f"\n🎉 Content generation complete!")
+    print(f"📊 Final Statistics:")
+    print(f"   • Total keywords processed: {generation_stats['total']}")
+    print(f"   • Successfully generated: {generation_stats['successful']}")
+    print(f"   • Failed: {generation_stats['failed']}")
+
+    if upload_to_prismic:
+        if skip_prismic_upload:
+            print(
+                f"   • Prismic tests passed: {generation_stats['prismic_tested']}")
+        else:
+            print(
+                f"   • Uploaded to Prismic: {generation_stats['prismic_uploaded']}")
+            if generation_stats['prismic_failed'] > 0:
+                print(
+                    f"   • Prismic upload failed: {generation_stats['prismic_failed']}")
+
+    print(f"\n📁 Check the 'generated_content' folder for your files.")
 
 
 if __name__ == "__main__":
