@@ -21,8 +21,8 @@ load_dotenv()
 class ContentRequirements(BaseModel):
     """Configuration for content generation requirements"""
     meta_title_max: int = Field(default=60, ge=1, le=100)
-    meta_description_min: int = Field(default=150, ge=100, le=200)
-    meta_description_max: int = Field(default=160, ge=150, le=200)
+    meta_description_min: int = Field(default=50, ge=50, le=160)
+    meta_description_max: int = Field(default=160, ge=50, le=160)
     word_count_min: int = Field(default=2500, ge=1000, le=5000)
     word_count_max: int = Field(default=4000, ge=2500, le=10000)
     internal_references: int = Field(default=5, ge=1, le=10)
@@ -42,7 +42,7 @@ class BlogPost(BaseModel):
     """Model for a generated blog post"""
     keyword: str = Field(..., min_length=1, max_length=200)
     meta_title: str = Field(..., min_length=1, max_length=100)
-    meta_description: str = Field(..., min_length=100, max_length=200)
+    meta_description: str = Field(..., min_length=50, max_length=160)
     title: str = Field(..., min_length=1, max_length=200)
     body: str = Field(..., min_length=500)
     image_prompt: str = Field(..., min_length=10, max_length=1000)
@@ -63,9 +63,18 @@ class BlogPost(BaseModel):
     @field_validator('meta_description')
     @classmethod
     def validate_meta_description_length(cls, v: str) -> str:
-        if len(v) < 150 or len(v) > 160:
-            raise ValueError(
-                'Meta description must be between 150-160 characters')
+        if len(v) > 160:
+            # Truncate to 160 chars, preferably at word boundary
+            truncated = v[:160]
+            last_space = truncated.rfind(' ')
+            if last_space > 140:  # Only use word boundary if it's reasonably close to 160
+                truncated = truncated[:last_space]
+            print(
+                f"    ✂️  Meta description truncated from {len(v)} to {len(truncated)} characters")
+            return truncated
+        elif len(v) < 50:
+            print(
+                f"    ⚠️  Meta description is short ({len(v)} chars) but keeping as-is")
         return v
 
 
@@ -637,6 +646,9 @@ class SEOContentGenerator:
         - Generate a hero image for the blog post using the IMAGE_PROMPT section
         - The image should be relevant manufacturing, maintenance, and operations and the keyword and the content of the blog post
         - The image should be a high-quality, photo realistic, professional image
+        - Please specify the words that should be shown in the image based on the content.
+        - When showing multiple people, use different genders and ethnicities.
+        - People should be from diverse backgrounds.
         
         Output in this EXACT structured markdown format:
 
