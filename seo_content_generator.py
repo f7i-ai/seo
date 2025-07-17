@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 import google.generativeai as genai  # type: ignore
 import openai
 from bs4 import BeautifulSoup
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 
 # Load environment variables
 load_dotenv()
@@ -28,18 +28,14 @@ class ContentRequirements(BaseModel):
     internal_references: int = Field(default=5, ge=1, le=10)
     external_references: int = Field(default=3, ge=1, le=10)
 
-    @validator('meta_description_max')
-    def validate_meta_description_range(cls, v, values):
-        if 'meta_description_min' in values and v < values['meta_description_min']:
+    @model_validator(mode='after')
+    def validate_ranges(self):
+        if self.meta_description_max < self.meta_description_min:
             raise ValueError(
                 'meta_description_max must be >= meta_description_min')
-        return v
-
-    @validator('word_count_max')
-    def validate_word_count_range(cls, v, values):
-        if 'word_count_min' in values and v < values['word_count_min']:
+        if self.word_count_max < self.word_count_min:
             raise ValueError('word_count_max must be >= word_count_min')
-        return v
+        return self
 
 
 class BlogPost(BaseModel):
@@ -55,16 +51,18 @@ class BlogPost(BaseModel):
     internal_links: Optional[List[str]] = Field(default_factory=list)
     external_links: Optional[List[str]] = Field(default_factory=list)
 
-    @validator('body')
-    def validate_word_count(cls, v):
+    @field_validator('body')
+    @classmethod
+    def validate_word_count(cls, v: str) -> str:
         word_count = len(v.split())
         if word_count < 2000:
             raise ValueError(
                 f'Body must have at least 2000 words, got {word_count}')
         return v
 
-    @validator('meta_description')
-    def validate_meta_description_length(cls, v):
+    @field_validator('meta_description')
+    @classmethod
+    def validate_meta_description_length(cls, v: str) -> str:
         if len(v) < 150 or len(v) > 160:
             raise ValueError(
                 'Meta description must be between 150-160 characters')
@@ -225,20 +223,24 @@ class SEOContentGenerator:
             for url in urls:
                 if url.text:
                     # Store full URL path for internal link verification
-                    parsed_url = urlparse(url.text)
-                    path = parsed_url.path
+                    parsed_url = urlparse(url.text)  # type: ignore
+                    path = parsed_url.path  # type: ignore
                     if path and path != '/':
-                        self.available_internal_urls.append(path)
+                        self.available_internal_urls.append(
+                            path)  # type: ignore
 
                     # Extract blog slugs for content overlap checking
-                    if '/blog/' in url.text:
-                        if path.startswith('/blog/'):
+                    if '/blog/' in url.text:  # type: ignore
+                        if path.startswith('/blog/'):  # type: ignore
                             # Remove /blog/ prefix and trailing slashes
-                            slug = path.replace('/blog/', '', 1).strip('/')
+                            slug = path.replace(  # type: ignore
+                                '/blog/', '', 1).strip('/')  # type: ignore
                             if slug:
                                 # Convert slug to words for better matching
-                                slug_words = slug.replace('-', ' ')
-                                existing_slugs.append(slug_words)
+                                slug_words = slug.replace(  # type: ignore
+                                    '-', ' ')  # type: ignore
+                                existing_slugs.append(
+                                    slug_words)  # type: ignore
 
             print(
                 f"✅ Found {len(existing_slugs)} existing blog posts from sitemap")
@@ -630,6 +632,11 @@ class SEOContentGenerator:
         - EMBED 2-3 external links to authoritative sources using markdown format: [anchor text](https://example.com)
         - Use reputable domains like: isixsigma.com, nist.gov, ieee.org, asme.org, reliabilityweb.com, maintenanceworld.com
         - Place links naturally in context where they add value
+
+        IMAGE PROMPT REQUIREMENTS:
+        - Generate a hero image for the blog post using the IMAGE_PROMPT section
+        - The image should be relevant manufacturing, maintenance, and operations and the keyword and the content of the blog post
+        - The image should be a high-quality, photo realistic, professional image
         
         Output in this EXACT structured markdown format:
 
@@ -903,7 +910,7 @@ class SEOContentGenerator:
         safe_keyword = re.sub(r'[-\s]+', '-', safe_keyword)
 
         # Save JSON with markdown body reference
-        json_data = prismic_data.dict()
+        json_data = prismic_data.model_dump()
         json_data['markdown_body'] = "[See separate markdown file]"
 
         json_filename = f"{safe_keyword[:50]}.json"
@@ -1110,7 +1117,7 @@ def main() -> None:
 
             # Save output
             body_markdown = blog_post.body  # Get the original markdown body
-            json_path, md_path = generator.save_output(
+            json_path, _ = generator.save_output(
                 prismic_data, keyword, body_markdown)
             print(f"  ✅ Content generated successfully!")
             generation_stats["successful"] += 1
