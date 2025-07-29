@@ -1,0 +1,16 @@
+{
+  "meta_title": "Root Cause Analysis: A 2025 Guide for Maintenance Teams",
+  "meta_description": "Stop firefighting failures. Learn how to conduct a true root cause analysis (RCA) using your CMMS data to eliminate problems for good.",
+  "title": "Stop Guessing: The Definitive Guide to Root Cause Analysis in Maintenance",
+  "keyword": "root cause analysis",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/root-cause-analysis.png",
+    "alt": "Hero image for Stop Guessing: The Definitive Guide to Root Cause Analysis in Maintenance",
+    "source": "gpt-image-1"
+  },
+  "image_prompt": "A photorealistic, high-quality image of a diverse team of three maintenance professionals in a clean, modern manufacturing facility. A woman with dark hair in a ponytail, a man of East Asian descent, and a Black man are gathered around a large industrial pump. The woman is holding a ruggedized tablet displaying colorful graphs and data (from a CMMS). She is pointing at the screen while the two men look on, engaged in a collaborative discussion, occasionally gesturing towards the pump. All are wearing appropriate PPE: blue hard hats, safety glasses, and high-visibility vests over their work uniforms. The lighting is bright and professional, with a slightly blurred background of other industrial machinery. The image conveys a sense of teamwork, technology, and data-driven problem-solving. There is no text on the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 4015,
+  "link_count": 8
+}
