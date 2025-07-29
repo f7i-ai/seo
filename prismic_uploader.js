@@ -67,6 +67,56 @@ const writeClient = prismic.createWriteClient(REPOSITORY_NAME, {
 });
 infoLog('Prismic write client created successfully');
 
+// Function to remove metadata section from markdown content
+function removeMarkdownMetadata(markdown) {
+  debugLog('Removing metadata section from markdown content', { 
+    originalLength: markdown.length,
+    firstLine: markdown.split('\n')[0]
+  });
+  
+  const lines = markdown.split('\n');
+  let contentStartIndex = 0;
+  
+  // Skip the initial heading (starts with #)
+  if (lines[0] && lines[0].startsWith('#')) {
+    contentStartIndex = 1;
+  }
+  
+  // Skip empty lines after heading
+  while (contentStartIndex < lines.length && lines[contentStartIndex].trim() === '') {
+    contentStartIndex++;
+  }
+  
+  // Skip metadata lines (Keyword, Meta Title, Meta Description, Word Count, Link Count)
+  while (contentStartIndex < lines.length) {
+    const line = lines[contentStartIndex].trim();
+    
+    if (line.startsWith('**Keyword:**') ||
+        line.startsWith('**Meta Title:**') ||
+        line.startsWith('**Meta Description:**') ||
+        line.startsWith('**Word Count:**') ||
+        line.startsWith('**Link Count:**') ||
+        line === '---' ||
+        line === '') {
+      contentStartIndex++;
+    } else {
+      break;
+    }
+  }
+  
+  // Join the remaining content
+  const cleanedContent = lines.slice(contentStartIndex).join('\n').trim();
+  
+  debugLog('Metadata section removed', { 
+    originalLength: markdown.length,
+    cleanedLength: cleanedContent.length,
+    removedLines: contentStartIndex,
+    newFirstLine: cleanedContent.split('\n')[0]
+  });
+  
+  return cleanedContent;
+}
+
 // Function to convert markdown to rich text
 function markdownToRichText(markdown) {
   debugLog('Starting markdown to rich text conversion', { 
@@ -74,9 +124,9 @@ function markdownToRichText(markdown) {
     firstLine: markdown.split('\n')[0]
   });
   
-  // Remove the frontmatter from markdown
-  const content = markdown.replace(/^---[\s\S]*?---\n/, '');
-  debugLog('Frontmatter removed', { 
+  // Remove the metadata section from markdown
+  const content = removeMarkdownMetadata(markdown);
+  debugLog('Metadata section removed', { 
     originalLength: markdown.length,
     newLength: content.length 
   });
@@ -413,9 +463,9 @@ async function processSingleFile(jsonFilePath, skipUpload = false) {
       });
     }
     
-    // Prepare markdown content (remove frontmatter)
+    // Prepare markdown content (remove metadata section)
     debugLog('Preparing markdown content for direct insertion');
-    const cleanMarkdown = mdContent.replace(/^---[\s\S]*?---\n/, '');
+    const cleanMarkdown = removeMarkdownMetadata(mdContent);
     debugLog('Markdown cleaned', { 
       originalLength: mdContent.length,
       cleanedLength: cleanMarkdown.length 
@@ -697,8 +747,8 @@ async function processContentFiles(migration) {
         featuredImage = await createImageAsset(metadata.hero_image.local_path, metadata.hero_image.alt, filename);
       }
       
-      // Prepare markdown content (remove frontmatter)
-      const cleanMarkdown = mdContent.replace(/^---[\s\S]*?---\n/, '');
+      // Prepare markdown content (remove metadata section)
+      const cleanMarkdown = removeMarkdownMetadata(mdContent);
       
       // Create document data structure
       const documentData = {

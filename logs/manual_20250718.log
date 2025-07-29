@@ -1,0 +1,2398 @@
+python seo_content_generator.py                                                                                                                       1 ✘  f7i-marketing   base   09:51:25 
+🚀 SEO Content Generator for f7i.ai
+==================================================
+Enter path to your Ahrefs keyword CSV file: kw.csv
+Enter sitemap URL (default: https://f7i.ai/sitemap.xml):
+Upload to Prismic after generation? (y/n/test) [test]: y
+📤 Prismic upload enabled: Will create documents in Prismic CMS
+Available columns with 	 delimiter: ['Keyword', 'URL', 'Country', 'Difficulty', 'Volume', 'CPS', 'Parent Topic', 'Parent Topic Volume', 'Last Update', 'Referring Domains', 'Domain rating', 'Ahrefs Rank', 'Traffic', 'Keywords', 'CPC', 'Position', 'Type', 'Title', 'Global volume', 'Traffic potential', 'Global traffic potential', 'First seen', 'Intents']
+Successfully loaded 67 unique keywords with SERP data using utf-16 encoding
+
+🔍 Loading existing content from sitemap: https://f7i.ai/sitemap.xml
+🕸️  Fetching sitemap from https://f7i.ai/sitemap.xml
+✅ Found 78 existing blog posts from sitemap
+✅ Cached 115 internal URLs for verification
+⚠️  Skipping 'mttr' - overlaps with existing blog content
+✅ Skipping 'pressure sensor' - content already generated
+✅ Skipping 'mtbf' - content already generated
+✅ Skipping 'building maintenance' - content already generated
+✅ Skipping 'maintenance technician job description' - content already generated
+⚠️  Skipping 'maintenance plan' - overlaps with existing blog content
+✅ Skipping 'process vs procedure' - content already generated
+⚠️  Skipping 'continuous monitoring' - overlaps with existing blog content
+⚠️  Skipping 'reliability centered maintenance' - overlaps with existing blog content
+✅ Skipping 'air compressor maintenance' - content already generated
+✅ Skipping 'work instructions' - content already generated
+⚠️  Skipping 'what is industrial maintenance' - overlaps with existing blog content
+✅ Skipping 'maintenance team' - content already generated
+✅ Skipping 'oil and gas asset management' - content already generated
+✅ Skipping 'equipment calibration' - content already generated
+✅ Skipping 'cycle time calculator' - content already generated
+⚠️  Skipping 'plc scada' - overlaps with existing blog content
+⚠️  Skipping 'best work order software' - overlaps with existing blog content
+⚠️  Skipping 'ai manufacturing software' - overlaps with existing blog content
+
+📊 Content Generation Summary:
+   • Total keywords in CSV: 67
+   • Already generated: 11
+   • Overlaps with existing blog: 8
+   • Ready for generation: 48
+
+✅ 48 keywords ready for content generation
+
+📝 Processing keyword 1/48: cmms meaning
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'cmms meaning'
+    📊 Analyzing 18 SERP results...
+    📝 Sending research prompt to Gemini (length: 4618 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 47.60 seconds
+    📄 Received response (6124 characters)
+    👀 Response preview: Here is the comprehensive research and analysis for the keyword "cmms meaning".  # Research Analysis: cmms meaning  ## Search Intent Analysis The search intent for "cmms meaning" is purely **informati...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 47.60 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/asset-management
+    ✅ Internal link verified: /features/inventory-management
+    ❌ Invalid external link removed: https://maintenanceworld.com/asset-management/asset-management-kpis-and-metrics-to-track/
+    ✅ Internal link verified: /features/mobile-cmms
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/an_overview_of_reliability-centered_maintenance_rcm
+    ✅ Internal link verified: /products/cmms-software
+    📊 Link validation: 5 verified, 2 removed
+Error generating content: 1 validation error for BlogPost
+meta_description
+  Value error, Meta description must be between 150-160 characters [type=value_error, input_value='What does CMMS mean? Dis...features, and benefits.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/value_error
+  ❌ Failed to generate content for: cmms meaning
+
+📝 Processing keyword 2/48: air compressor repair
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'air compressor repair'
+    📊 Analyzing 18 SERP results...
+    📝 Sending research prompt to Gemini (length: 4723 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 47.61 seconds
+    📄 Received response (7062 characters)
+    👀 Response preview: # Research Analysis: air compressor repair  ## Search Intent Analysis The search intent for "air compressor repair" is multifaceted, indicating users at different stages of awareness and with varying ...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 47.61 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/asset-management
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/what-is-root-cause-analysis-rca
+    ✅ Internal link verified: /features/pm-procedures
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /features/mobile-cmms
+    ✅ Internal link verified: /solutions/predictive-maintenance-compressors
+    ❌ Invalid external link removed: https://www.nist.gov/programs-projects/nist-smart-manufacturing-program
+    ✅ External link verified: https://www.asme.org/
+    📊 Link validation: 6 verified, 2 removed
+Error generating content: 1 validation error for BlogPost
+meta_description
+  Value error, Meta description must be between 150-160 characters [type=value_error, input_value='Move beyond break-fix. O...shooting, and PdM tech.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/value_error
+  ❌ Failed to generate content for: air compressor repair
+
+📝 Processing keyword 3/48: forklift maintenance
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'forklift maintenance'
+    📊 Analyzing 19 SERP results...
+    📝 Sending research prompt to Gemini (length: 4608 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 48.31 seconds
+    📄 Received response (4461 characters)
+    👀 Response preview: # Research Analysis: forklift maintenance  ## Search Intent Analysis The search intent for "forklift maintenance" is predominantly **Informational** with a strong **Commercial (Local)** secondary inte...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 10 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources']
+    🏁 Research completed in 48.31 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ❌ Invalid external link removed: https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.178
+    ✅ Internal link verified: /features/pm-procedures
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ✅ Internal link verified: /features/asset-management
+    ✅ Internal link verified: /features/mobile-cmms
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/key_performance_indicators_for_maintenance_management
+    ❌ Invalid external link removed: https://www.osha.gov/powered-industrial-trucks/hazards
+    📊 Link validation: 5 verified, 3 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, professional image for a manufacturing blog post. A skilled maintenance technician in a clean, modern warehouse is using a ruggedized tablet to review a digital checklist for a state-of-the-art electric forklift. The background shows well-organized racking and a second forklift in operation, conveying a sense of efficiency and advanced technology. The lighting is bright and professional, highlighting the details of the forklift and the technician's focused expression. The overall mood is one of safety, precision, and modern industrial operations.
+    📏 Prompt length: 570 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/forklift-maintenance.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/forklift-maintenance.json
+  📝 Markdown: generated_content/forklift-maintenance.md
+  📊 Stats: 3474 words, 5 links
+  🖼️  Image: generated_content/forklift-maintenance.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 4/48: asset lifecycle management
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'asset lifecycle management'
+    📊 Analyzing 24 SERP results...
+    📝 Sending research prompt to Gemini (length: 4859 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 48.02 seconds
+    📄 Received response (6504 characters)
+    👀 Response preview: # Research Analysis: asset lifecycle management  ## Search Intent Analysis The search intent for "asset lifecycle management" is overwhelmingly **Informational (Top-of-Funnel)**. Users are in the awar...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 48.02 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ External link verified: https://www.iso.org/standard/55088.html
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/a-brief-introduction-to-reliability-centered-maintenance-rcm
+    ✅ Internal link verified: /products/predict
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ❌ Invalid external link removed: https://www.isixsigma.com/tools-templates/methodology/pdca-basics-quality-management-system/
+    ✅ Internal link verified: /features/asset-management
+    📊 Link validation: 7 verified, 2 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, professional hero image for a blog post on "asset lifecycle management" set in 2025. The image should depict a modern, clean manufacturing facility. In the foreground, a maintenance manager in a smart hard hat and a CFO in a business suit are looking together at a transparent, holographic tablet displaying a 3D model of a complex piece of machinery (like a robotic arm or a large pump). The hologram is overlaid with glowing data points, charts showing TCO (Total Cost of Ownership), and predictive failure curves. The background shows the actual physical machinery operating smoothly. The lighting is bright and slightly futuristic, emphasizing technology and collaboration. The overall mood is one of strategic partnership and data-driven decision-making.
+    📏 Prompt length: 777 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/asset-lifecycle-management.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/asset-lifecycle-management.json
+  📝 Markdown: generated_content/asset-lifecycle-management.md
+  📊 Stats: 3561 words, 7 links
+  🖼️  Image: generated_content/asset-lifecycle-management.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 5/48: maintenance management
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'maintenance management'
+    📊 Analyzing 23 SERP results...
+    📝 Sending research prompt to Gemini (length: 4755 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 47.62 seconds
+    📄 Received response (6384 characters)
+    👀 Response preview: # Research Analysis: maintenance management  ## Search Intent Analysis The primary search intent for "maintenance management" is overwhelmingly **informational**. Users are at the top of the funnel (T...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 47.62 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/pm-procedures
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/inventory-management
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/best_practices_in_mro_storerooms
+    ❌ Invalid external link removed: https://www.isixsigma.com/tools-templates/oee/making-sense-oee-overall-equipment-effectiveness/
+    ✅ Internal link verified: /products/cmms-software
+    ❌ Invalid external link removed: https://www.nist.gov/el/systems-integration-division-73400/smart-manufacturing-operations-planning-and-control-program
+    📊 Link validation: 5 verified, 3 removed
+Error generating content: 1 validation error for BlogPost
+meta_description
+  Value error, Meta description must be between 150-160 characters [type=value_error, input_value='Go beyond the basics. Ou...m into a profit center.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/value_error
+  ❌ Failed to generate content for: maintenance management
+
+📝 Processing keyword 6/48: emergency maintenance
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'emergency maintenance'
+    📊 Analyzing 19 SERP results...
+    📝 Sending research prompt to Gemini (length: 4934 chars)
+    🤖 Calling Gemini API...
+^CTraceback (most recent call last):
+  File "/Users/tim/code/f7i-marketing/seo/seo_content_generator.py", line 1172, in <module>
+    if __name__ == "__main__":
+        ^^^^^^
+  File "/Users/tim/code/f7i-marketing/seo/seo_content_generator.py", line 1094, in main
+    serp_data = keyword_data.get(keyword, [])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+    research_data = generator.research_keyword_with_gemini(
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tim/code/f7i-marketing/seo/seo_content_generator.py", line 429, in research_keyword_with_gemini
+    response = self.gemini_model.generate_content(  # type: ignore
+        research_prompt,
+    ...<3 lines>...
+        )
+    )
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/google/generativeai/generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/google/ai/generativelanguage_v1beta/services/generative_service/client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/google/api_core/gapic_v1/method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/google/api_core/retry/retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/google/api_core/retry/retry_unary.py", line 147, in retry_target
+    result = target()
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/google/api_core/timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/google/api_core/grpc_helpers.py", line 76, in error_remapped_callable
+    return callable_(*args, **kwargs)
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/grpc/_interceptor.py", line 277, in __call__
+    response, ignored_call = self._with_call(
+                             ~~~~~~~~~~~~~~~^
+        request,
+        ^^^^^^^^
+    ...<4 lines>...
+        compression=compression,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/grpc/_interceptor.py", line 329, in _with_call
+    call = self._interceptor.intercept_unary_unary(
+        continuation, client_call_details, request
+    )
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/google/ai/generativelanguage_v1beta/services/generative_service/transports/grpc.py", line 79, in intercept_unary_unary
+    response = continuation(client_call_details, request)
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/grpc/_interceptor.py", line 315, in continuation
+    response, call = self._thunk(new_method).with_call(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        request,
+        ^^^^^^^^
+    ...<4 lines>...
+        compression=new_compression,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/grpc/_channel.py", line 1195, in with_call
+    ) = self._blocking(
+        ~~~~~~~~~~~~~~^
+        request, timeout, metadata, credentials, wait_for_ready, compression
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/grpc/_channel.py", line 1162, in _blocking
+    event = call.next_event()
+  File "src/python/grpcio/grpc/_cython/_cygrpc/channel.pyx.pxi", line 388, in grpc._cython.cygrpc.SegregatedCall.next_event
+  File "src/python/grpcio/grpc/_cython/_cygrpc/channel.pyx.pxi", line 211, in grpc._cython.cygrpc._next_call_event
+  File "src/python/grpcio/grpc/_cython/_cygrpc/channel.pyx.pxi", line 205, in grpc._cython.cygrpc._next_call_event
+  File "src/python/grpcio/grpc/_cython/_cygrpc/completion_queue.pyx.pxi", line 97, in grpc._cython.cygrpc._latent_event
+  File "src/python/grpcio/grpc/_cython/_cygrpc/completion_queue.pyx.pxi", line 80, in grpc._cython.cygrpc._internal_latent_event
+  File "src/python/grpcio/grpc/_cython/_cygrpc/completion_queue.pyx.pxi", line 61, in grpc._cython.cygrpc._next
+KeyboardInterrupt
+
+    ~/code/f7i-marketing/seo    master !1 ?6  python seo_content_generator.py                                                                                              INT ✘  14m 47s   f7i-marketing   base   10:43:14 
+🚀 SEO Content Generator for f7i.ai
+==================================================
+Enter path to your Ahrefs keyword CSV file: kw.csv
+Enter sitemap URL (default: https://f7i.ai/sitemap.xml):
+Upload to Prismic after generation? (y/n/test) [test]: y
+📤 Prismic upload enabled: Will create documents in Prismic CMS
+Available columns with 	 delimiter: ['Keyword', 'URL', 'Country', 'Difficulty', 'Volume', 'CPS', 'Parent Topic', 'Parent Topic Volume', 'Last Update', 'Referring Domains', 'Domain rating', 'Ahrefs Rank', 'Traffic', 'Keywords', 'CPC', 'Position', 'Type', 'Title', 'Global volume', 'Traffic potential', 'Global traffic potential', 'First seen', 'Intents']
+Successfully loaded 67 unique keywords with SERP data using utf-16 encoding
+
+🔍 Loading existing content from sitemap: https://f7i.ai/sitemap.xml
+🕸️  Fetching sitemap from https://f7i.ai/sitemap.xml
+✅ Found 78 existing blog posts from sitemap
+✅ Cached 115 internal URLs for verification
+⚠️  Skipping 'mttr' - overlaps with existing blog content
+✅ Skipping 'pressure sensor' - content already generated
+✅ Skipping 'mtbf' - content already generated
+✅ Skipping 'building maintenance' - content already generated
+✅ Skipping 'forklift maintenance' - content already generated
+✅ Skipping 'maintenance technician job description' - content already generated
+⚠️  Skipping 'maintenance plan' - overlaps with existing blog content
+✅ Skipping 'asset lifecycle management' - content already generated
+✅ Skipping 'process vs procedure' - content already generated
+⚠️  Skipping 'continuous monitoring' - overlaps with existing blog content
+⚠️  Skipping 'reliability centered maintenance' - overlaps with existing blog content
+✅ Skipping 'air compressor maintenance' - content already generated
+✅ Skipping 'work instructions' - content already generated
+⚠️  Skipping 'what is industrial maintenance' - overlaps with existing blog content
+✅ Skipping 'maintenance team' - content already generated
+✅ Skipping 'oil and gas asset management' - content already generated
+✅ Skipping 'equipment calibration' - content already generated
+✅ Skipping 'cycle time calculator' - content already generated
+⚠️  Skipping 'plc scada' - overlaps with existing blog content
+⚠️  Skipping 'best work order software' - overlaps with existing blog content
+⚠️  Skipping 'ai manufacturing software' - overlaps with existing blog content
+
+📊 Content Generation Summary:
+   • Total keywords in CSV: 67
+   • Already generated: 13
+   • Overlaps with existing blog: 8
+   • Ready for generation: 46
+
+✅ 46 keywords ready for content generation
+
+📝 Processing keyword 1/46: cmms meaning
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'cmms meaning'
+    📊 Analyzing 18 SERP results...
+    📝 Sending research prompt to Gemini (length: 4618 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 48.70 seconds
+    📄 Received response (9657 characters)
+    👀 Response preview: # Research Analysis: cmms meaning  ## Search Intent Analysis The primary search intent for "cmms meaning" is **informational**. The user is at the very top of the funnel (TOFU), in the **Awareness** s...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 48.71 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /products/prevent
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/asset-management
+    ✅ Internal link verified: /features/inventory-management
+    ❌ Invalid external link removed: https://www.isixsigma.com/tools-templates/oee/a-primer-to-overall-equipment-effectiveness-oee/
+    ✅ Internal link verified: /features/mobile-cmms
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    ✅ Internal link verified: /products/predict
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ External link verified: https://www.nist.gov/cybersecurity
+    ✅ Internal link verified: /products/cmms-software
+    📊 Link validation: 9 verified, 2 removed
+Error generating content: 1 validation error for BlogPost
+meta_description
+  String should have at most 160 characters [type=string_too_long, input_value='Unlock the true CMMS mea...operational excellence.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_too_long
+  ❌ Failed to generate content for: cmms meaning
+
+📝 Processing keyword 2/46: air compressor repair
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'air compressor repair'
+    📊 Analyzing 18 SERP results...
+    📝 Sending research prompt to Gemini (length: 4723 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 51.26 seconds
+    📄 Received response (9046 characters)
+    👀 Response preview: # Research Analysis: air compressor repair  ## Search Intent Analysis The search intent for "air compressor repair" is multifaceted, exhibiting a clear split between immediate, high-urgency needs and ...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 51.27 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ❌ Invalid external link removed: https://www.asme.org/topics-resources/content/guide-to-pressure-vessel-codes-standards
+    ✅ Internal link verified: /products/cmms-software
+    ✅ External link verified: https://www.isixsigma.com/tools-templates/cause-effect-fishbone-diagram/determine-root-cause-5-whys/
+    ✅ Internal link verified: /solutions/predictive-maintenance-compressors
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    📊 Link validation: 6 verified, 1 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, professional hero image for a blog post about industrial air compressor repair. A female maintenance manager of color, in her 40s, and a younger male technician in his late 20s, are standing in a clean, well-lit, modern manufacturing facility. They are looking collaboratively at a ruggedized tablet held by the manager. In the background, a large, modern rotary screw air compressor is visible, clean and in excellent condition. The tablet screen is the focus, displaying a dashboard with graphs and data. The words "Vibration Anomaly Detected" are clearly visible in a red alert box on the screen, along with a line graph labeled "Airend Bearing #2" and a gauge showing "Pressure: 110 PSI". The image conveys a sense of high-tech, data-driven, and collaborative maintenance. The lighting is bright and professional, with a slight blue and grey color palette.
+    📏 Prompt length: 878 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/air-compressor-repair.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/air-compressor-repair.json
+  📝 Markdown: generated_content/air-compressor-repair.md
+  📊 Stats: 3310 words, 6 links
+  🖼️  Image: generated_content/air-compressor-repair.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 3/46: maintenance management
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'maintenance management'
+    📊 Analyzing 23 SERP results...
+    📝 Sending research prompt to Gemini (length: 4755 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 51.11 seconds
+    📄 Received response (6855 characters)
+    👀 Response preview: # Research Analysis: maintenance management  ## Search Intent Analysis The search intent for "maintenance management" is overwhelmingly **informational** and concentrated at the **top of the funnel (T...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 51.11 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/asset-management
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/inventory-management
+    ✅ Internal link verified: /products/prevent
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/the_p-f_curve
+    ✅ Internal link verified: /products/predict
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ❌ Invalid external link removed: https://www.isixsigma.com/tools-templates/oee/a-primer-on-oee-overall-equipment-effectiveness/
+    ✅ Internal link verified: /products/cmms-software
+    ✅ External link verified: https://www.nist.gov/el/systems-integration-division
+    📊 Link validation: 8 verified, 2 removed
+Error generating content: 1 validation error for BlogPost
+image_prompt
+  String should have at most 1000 characters [type=string_too_long, input_value='A photorealistic, high-q...le on the tablet\'s UI.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_too_long
+  ❌ Failed to generate content for: maintenance management
+
+📝 Processing keyword 4/46: emergency maintenance
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'emergency maintenance'
+    📊 Analyzing 19 SERP results...
+    📝 Sending research prompt to Gemini (length: 4934 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 49.79 seconds
+    📄 Received response (8284 characters)
+    👀 Response preview: # Research Analysis: emergency maintenance  ## Search Intent Analysis The primary search intent for "emergency maintenance" is **Informational**. Users are in the **Awareness** stage of the buyer's jo...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 49.79 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ❌ Invalid external link removed: https://www.osha.gov/control-hazardous-energy
+    ✅ Internal link verified: /products/cmms-software
+    ❌ Invalid external link removed: https://www.isixsigma.com/tools-templates/cause-effect-fishbone-diagram/
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/mobile-cmms
+    ✅ Internal link verified: /features/inventory-management
+    ✅ Internal link verified: /solutions/predictive-maintenance-motors
+    ✅ Internal link verified: /products/predict
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/what-is-mtbf-mttr-mttf-and-how-to-calculate-them
+    ✅ Internal link verified: /solutions/predictive-maintenance-conveyors
+    ✅ Internal link verified: /products/cmms-software
+    📊 Link validation: 9 verified, 3 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, high-quality hero image for a blog post about emergency maintenance. In a clean, well-lit, modern manufacturing facility, a diverse team of two maintenance technicians works on a complex piece of industrial machinery. A female technician with dark hair in a ponytail, wearing safety glasses and a blue jumpsuit, is holding a ruggedized tablet. The tablet screen is clearly visible and shows a user interface with the text "Emergency Work Order: CRITICAL - Conveyor C-101" and some diagnostic line graphs. Next to her, a male technician of a different ethnicity is carefully using a wrench on the machine. The mood is focused and professional, not chaotic. The background is slightly blurred but shows an organized and efficient factory environment.
+    📏 Prompt length: 766 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/emergency-maintenance.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/emergency-maintenance.json
+  📝 Markdown: generated_content/emergency-maintenance.md
+  📊 Stats: 3772 words, 9 links
+  🖼️  Image: generated_content/emergency-maintenance.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 5/46: reliability engineering
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'reliability engineering'
+    📊 Analyzing 31 SERP results...
+    📝 Sending research prompt to Gemini (length: 4751 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 49.18 seconds
+    📄 Received response (8497 characters)
+    👀 Response preview: # Research Analysis: reliability engineering  ## Search Intent Analysis The primary search intent for "reliability engineering" is **Informational**. Users are at the top of the funnel, seeking to und...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 49.19 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ External link verified: https://www.isixsigma.com/tools-templates/cause-effect/determine-root-cause-5-whys/
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/the_seven_questions_of_rcm
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /solutions/predictive-maintenance-motors
+    ❌ Invalid external link removed: https://www.nist.gov/el/systems-integration-division-73400/smart-manufacturing-operations-planning-and-control-program
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ✅ Internal link verified: /features/asset-management
+    📊 Link validation: 6 verified, 2 removed
+Error generating content: 1 validation error for BlogPost
+image_prompt
+  String should have at most 1000 characters [type=string_too_long, input_value='A photorealistic, profes...m-solving and teamwork.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_too_long
+  ❌ Failed to generate content for: reliability engineering
+
+📝 Processing keyword 6/46: how to find useful life of an asset
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'how to find useful life of an asset'
+    📊 Analyzing 25 SERP results...
+    📝 Sending research prompt to Gemini (length: 4943 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 50.03 seconds
+    📄 Received response (5410 characters)
+    👀 Response preview: # Research Analysis: how to find useful life of an asset  ## Search Intent Analysis The primary search intent for "how to find useful life of an asset" is **informational**. The user is not looking to...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 50.03 seconds total
+  ✍️  Generating content...
+^CTraceback (most recent call last):
+  File "/Users/tim/code/f7i-marketing/seo/seo_content_generator.py", line 1184, in <module>
+    main()
+    ~~~~^^
+  File "/Users/tim/code/f7i-marketing/seo/seo_content_generator.py", line 1111, in main
+    blog_post = generator.generate_content_with_gemini(
+        keyword, research_data)
+  File "/Users/tim/code/f7i-marketing/seo/seo_content_generator.py", line 685, in generate_content_with_gemini
+    response = self.gemini_model.generate_content(  # type: ignore
+        content_prompt,
+    ...<3 lines>...
+        )
+    )
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/google/generativeai/generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/google/ai/generativelanguage_v1beta/services/generative_service/client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/google/api_core/gapic_v1/method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/google/api_core/retry/retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/google/api_core/retry/retry_unary.py", line 147, in retry_target
+    result = target()
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/google/api_core/timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/google/api_core/grpc_helpers.py", line 76, in error_remapped_callable
+    return callable_(*args, **kwargs)
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/grpc/_interceptor.py", line 277, in __call__
+    response, ignored_call = self._with_call(
+                             ~~~~~~~~~~~~~~~^
+        request,
+        ^^^^^^^^
+    ...<4 lines>...
+        compression=compression,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/grpc/_interceptor.py", line 329, in _with_call
+    call = self._interceptor.intercept_unary_unary(
+        continuation, client_call_details, request
+    )
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/google/ai/generativelanguage_v1beta/services/generative_service/transports/grpc.py", line 79, in intercept_unary_unary
+    response = continuation(client_call_details, request)
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/grpc/_interceptor.py", line 315, in continuation
+    response, call = self._thunk(new_method).with_call(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        request,
+        ^^^^^^^^
+    ...<4 lines>...
+        compression=new_compression,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/grpc/_channel.py", line 1195, in with_call
+    ) = self._blocking(
+        ~~~~~~~~~~~~~~^
+        request, timeout, metadata, credentials, wait_for_ready, compression
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/tim/code/f7i-marketing/.venv/lib/python3.13/site-packages/grpc/_channel.py", line 1162, in _blocking
+    event = call.next_event()
+  File "src/python/grpcio/grpc/_cython/_cygrpc/channel.pyx.pxi", line 388, in grpc._cython.cygrpc.SegregatedCall.next_event
+  File "src/python/grpcio/grpc/_cython/_cygrpc/channel.pyx.pxi", line 211, in grpc._cython.cygrpc._next_call_event
+  File "src/python/grpcio/grpc/_cython/_cygrpc/channel.pyx.pxi", line 205, in grpc._cython.cygrpc._next_call_event
+  File "src/python/grpcio/grpc/_cython/_cygrpc/completion_queue.pyx.pxi", line 97, in grpc._cython.cygrpc._latent_event
+  File "src/python/grpcio/grpc/_cython/_cygrpc/completion_queue.pyx.pxi", line 80, in grpc._cython.cygrpc._internal_latent_event
+  File "src/python/grpcio/grpc/_cython/_cygrpc/completion_queue.pyx.pxi", line 61, in grpc._cython.cygrpc._next
+KeyboardInterrupt
+
+    ~/code/f7i-marketing/seo    master ⇡1 ?12  python seo_content_generator.py                                                                                             INT ✘  16m 11s   f7i-marketing   base   11:06:42 
+🚀 SEO Content Generator for f7i.ai
+==================================================
+Enter path to your Ahrefs keyword CSV file: kw.csv
+Enter sitemap URL (default: https://f7i.ai/sitemap.xml):
+Upload to Prismic after generation? (y/n/test) [test]: y
+📤 Prismic upload enabled: Will create documents in Prismic CMS
+Available columns with 	 delimiter: ['Keyword', 'URL', 'Country', 'Difficulty', 'Volume', 'CPS', 'Parent Topic', 'Parent Topic Volume', 'Last Update', 'Referring Domains', 'Domain rating', 'Ahrefs Rank', 'Traffic', 'Keywords', 'CPC', 'Position', 'Type', 'Title', 'Global volume', 'Traffic potential', 'Global traffic potential', 'First seen', 'Intents']
+Successfully loaded 67 unique keywords with SERP data using utf-16 encoding
+
+🔍 Loading existing content from sitemap: https://f7i.ai/sitemap.xml
+🕸️  Fetching sitemap from https://f7i.ai/sitemap.xml
+✅ Found 78 existing blog posts from sitemap
+✅ Cached 115 internal URLs for verification
+⚠️  Skipping 'mttr' - overlaps with existing blog content
+✅ Skipping 'pressure sensor' - content already generated
+✅ Skipping 'mtbf' - content already generated
+✅ Skipping 'building maintenance' - content already generated
+✅ Skipping 'air compressor repair' - content already generated
+✅ Skipping 'forklift maintenance' - content already generated
+✅ Skipping 'maintenance technician job description' - content already generated
+⚠️  Skipping 'maintenance plan' - overlaps with existing blog content
+✅ Skipping 'asset lifecycle management' - content already generated
+✅ Skipping 'process vs procedure' - content already generated
+✅ Skipping 'emergency maintenance' - content already generated
+⚠️  Skipping 'continuous monitoring' - overlaps with existing blog content
+⚠️  Skipping 'reliability centered maintenance' - overlaps with existing blog content
+✅ Skipping 'air compressor maintenance' - content already generated
+✅ Skipping 'work instructions' - content already generated
+⚠️  Skipping 'what is industrial maintenance' - overlaps with existing blog content
+✅ Skipping 'maintenance team' - content already generated
+✅ Skipping 'oil and gas asset management' - content already generated
+✅ Skipping 'equipment calibration' - content already generated
+✅ Skipping 'cycle time calculator' - content already generated
+⚠️  Skipping 'plc scada' - overlaps with existing blog content
+⚠️  Skipping 'best work order software' - overlaps with existing blog content
+⚠️  Skipping 'ai manufacturing software' - overlaps with existing blog content
+
+📊 Content Generation Summary:
+   • Total keywords in CSV: 67
+   • Already generated: 15
+   • Overlaps with existing blog: 8
+   • Ready for generation: 44
+
+✅ 44 keywords ready for content generation
+
+📝 Processing keyword 1/44: cmms meaning
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'cmms meaning'
+    📊 Analyzing 18 SERP results...
+    📝 Sending research prompt to Gemini (length: 4618 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 47.68 seconds
+    📄 Received response (6278 characters)
+    👀 Response preview: # Research Analysis: cmms meaning  ## Search Intent Analysis The search intent for "cmms meaning" is overwhelmingly **informational** and sits at the very **top of the funnel (TOFU)**. The user is in ...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 47.70 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/asset-management
+    ✅ Internal link verified: /products/prevent
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/key_performance_indicators_for_the_maintenance_management_pro
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ External link verified: https://www.nist.gov/programs-projects/smart-manufacturing-operations-planning-and-control-program
+    ❌ Invalid external link removed: https://www.osha.gov/control-hazardous-energy
+    ✅ Internal link verified: /products/cmms-software
+    📊 Link validation: 6 verified, 2 removed
+Error generating content: 1 validation error for BlogPost
+meta_description
+  String should have at most 160 characters [type=string_too_long, input_value='Uncover the true CMMS me...em for your operations.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_too_long
+  ❌ Failed to generate content for: cmms meaning
+
+📝 Processing keyword 2/44: maintenance management
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'maintenance management'
+    📊 Analyzing 23 SERP results...
+    📝 Sending research prompt to Gemini (length: 4755 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 48.58 seconds
+    📄 Received response (8882 characters)
+    👀 Response preview: # Research Analysis: maintenance management  ## Search Intent Analysis The primary search intent for "maintenance management" is overwhelmingly **Informational**. The SERP is dominated by "What is..."...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 48.59 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/asset-management
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/inventory-management
+    ✅ Internal link verified: /products/prevent
+    ✅ Internal link verified: /products/predict
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ External link verified: https://www.nist.gov/mep
+    ✅ External link verified: https://www.asme.org
+    ✅ Internal link verified: /products/cmms-software
+    📊 Link validation: 11 verified, 1 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, high-quality professional image for a blog post on "maintenance management". The scene is a clean, modern manufacturing facility. In the foreground, a diverse team of three maintenance professionals—a woman with dark hair in a ponytail, a man of South Asian descent, and an older Caucasian man with glasses—are gathered around a large industrial machine. The woman is holding a ruggedized tablet displaying graphs and data (no text visible). They are pointing at a part of the machine, engaged in a collaborative discussion. The lighting is bright and clean, emphasizing the modern, high-tech environment. The background is slightly blurred, showing other advanced manufacturing equipment. The overall tone is professional, strategic, and collaborative. No text or logos on the image.
+    📏 Prompt length: 802 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/maintenance-management.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/maintenance-management.json
+  📝 Markdown: generated_content/maintenance-management.md
+  📊 Stats: 3672 words, 11 links
+  🖼️  Image: generated_content/maintenance-management.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 3/44: reliability engineering
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'reliability engineering'
+    📊 Analyzing 31 SERP results...
+    📝 Sending research prompt to Gemini (length: 4751 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 47.13 seconds
+    📄 Received response (6019 characters)
+    👀 Response preview: # Research Analysis: reliability engineering  ## Search Intent Analysis The search intent for "reliability engineering" is overwhelmingly **informational**. Users are in the **Awareness** and early **...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 47.13 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /features/mobile-cmms
+    ✅ Internal link verified: /products/prevent
+    ❌ Invalid external link removed: https://asq.org/quality-resources/fmea
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/what_is_root_cause_analysis_rca
+    ✅ Internal link verified: /features/inventory-management
+    ✅ Internal link verified: /features/integrations
+    ✅ Internal link verified: /solutions/predictive-maintenance-pumps
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ❌ Invalid external link removed: https://www.isixsigma.com/methodology/kaizen-methodology/
+    📊 Link validation: 8 verified, 3 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, high-quality image set in a bright, clean, modern manufacturing facility. In the foreground, a diverse team of three people—a male maintenance manager of South Asian descent, a female reliability engineer of Caucasian descent, and a younger male technician of African American descent—are gathered around a ruggedized tablet. The tablet screen shows colorful graphs and asset data (no text). They are engaged in a collaborative discussion. In the background, impressive, modern automated machinery with some visible conveyor belts and robotic arms is visible but slightly out of focus. The lighting is bright and professional, conveying a sense of technological advancement and teamwork.
+    📏 Prompt length: 705 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/reliability-engineering.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/reliability-engineering.json
+  📝 Markdown: generated_content/reliability-engineering.md
+  📊 Stats: 3577 words, 8 links
+  🖼️  Image: generated_content/reliability-engineering.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 4/44: how to find useful life of an asset
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'how to find useful life of an asset'
+    📊 Analyzing 25 SERP results...
+    📝 Sending research prompt to Gemini (length: 4943 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 48.97 seconds
+    📄 Received response (10005 characters)
+    👀 Response preview: # Research Analysis: how to find useful life of an asset  ## Search Intent Analysis The primary search intent for "how to find useful life of an asset" is **informational**. However, the user profile ...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 48.98 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /products/cmms-software
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ✅ Internal link verified: /products/equipment-maintenance-software
+    ✅ Internal link verified: /features/asset-management
+    ✅ Internal link verified: /features/integrations
+    ✅ Internal link verified: /products/predict
+    ✅ External link verified: https://smrp.org/
+    📊 Link validation: 8 verified, 1 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, high-quality image set in a modern, clean manufacturing facility. In the foreground, a diverse team of three maintenance professionals—a middle-aged Caucasian man with a tablet, a young Hispanic woman pointing at a large industrial motor, and an older Black man looking thoughtfully at the equipment—are collaborating. The motor has a small, glowing sensor attached to it, indicating the use of modern CBM technology. The background is slightly blurred but shows a well-organized and brightly lit production line. The overall mood is professional, collaborative, and tech-forward. No text or logos on the image.
+    📏 Prompt length: 629 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/how-to-find-useful-life-of-an-asset.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/how-to-find-useful-life-of-an-asset.json
+  📝 Markdown: generated_content/how-to-find-useful-life-of-an-asset.md
+  📊 Stats: 3298 words, 8 links
+  🖼️  Image: generated_content/how-to-find-useful-life-of-an-asset.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 5/44: corrective maintenance
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'corrective maintenance'
+    📊 Analyzing 19 SERP results...
+    📝 Sending research prompt to Gemini (length: 4832 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 47.00 seconds
+    📄 Received response (6178 characters)
+    👀 Response preview: # Research Analysis: corrective maintenance  ## Search Intent Analysis The primary search intent for "corrective maintenance" is **Informational**. Users are in the awareness or early consideration st...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 47.00 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /products/predict
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/inventory-management
+    ✅ Internal link verified: /features/mobile-cmms
+    ❌ Invalid external link removed: https://www.isixsigma.com/tools-templates/cause-effect-fishbone-diagram/
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/the_p-f_curve
+    ✅ External link verified: https://www.asme.org/codes-standards
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    📊 Link validation: 7 verified, 2 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, high-resolution image set in a clean, modern manufacturing facility in 2025. A diverse team of three maintenance professionals, a woman with dark hair in a ponytail, a man of South Asian descent, and a younger Black man, are gathered around a piece of complex industrial machinery with a transparent housing. The woman is pointing to a specific component inside the machine while holding a tablet displaying diagnostic data with graphs and charts. The two men are looking intently at the component she's indicating. The lighting is bright and professional, highlighting the advanced technology and collaborative problem-solving. The focus is on the people and the technology, conveying expertise and strategic planning. No text or logos on the image.
+    📏 Prompt length: 768 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/corrective-maintenance.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/corrective-maintenance.json
+  📝 Markdown: generated_content/corrective-maintenance.md
+  📊 Stats: 3684 words, 7 links
+  🖼️  Image: generated_content/corrective-maintenance.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 6/44: maintenance strategies
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'maintenance strategies'
+    📊 Analyzing 21 SERP results...
+    📝 Sending research prompt to Gemini (length: 4993 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 46.47 seconds
+    📄 Received response (7558 characters)
+    👀 Response preview: # Research Analysis: maintenance strategies  ## Search Intent Analysis The primary search intent for "maintenance strategies" is **informational**. Users are in the awareness and consideration stages ...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 46.47 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/pm-procedures
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ✅ External link verified: https://www.sae.org/standards/content/ja1011_200908/
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    ✅ Internal link verified: /products/predict
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /features/mobile-cmms
+    ✅ Internal link verified: /features/asset-management
+    📊 Link validation: 8 verified, 1 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A high-quality, photorealistic professional image for a blog post on maintenance strategies. The scene is a clean, modern manufacturing facility. In the foreground, a diverse team of three maintenance professionals—a Hispanic woman with a tablet, a Black man in his 40s pointing at a large industrial motor, and a younger white male technician with a wrench—are collaboratively discussing the asset. The background shows a sophisticated production line with robotic arms, slightly out of focus to emphasize the team. The lighting is bright and professional, conveying a sense of technology, expertise, and teamwork. No text or logos on the image.
+    📏 Prompt length: 646 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/maintenance-strategies.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/maintenance-strategies.json
+  📝 Markdown: generated_content/maintenance-strategies.md
+  📊 Stats: 3333 words, 8 links
+  🖼️  Image: generated_content/maintenance-strategies.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 7/44: vibration sensors
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'vibration sensors'
+    📊 Analyzing 36 SERP results...
+    📝 Sending research prompt to Gemini (length: 4511 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 50.00 seconds
+    📄 Received response (6940 characters)
+    👀 Response preview: # Research Analysis: vibration sensors  ## Search Intent Analysis The current SERP for "vibration sensors" is overwhelmingly dominated by **transactional and commercial intent**. The results are almos...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 50.00 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /solutions/predictive-maintenance-bearings
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    ✅ External link verified: https://www.iso.org/standard/76043.html
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ✅ Internal link verified: /features/asset-management
+    ✅ Internal link verified: /products/predict
+    📊 Link validation: 7 verified, 1 removed
+Error generating content: 1 validation error for BlogPost
+meta_description
+  String should have at most 160 characters [type=string_too_long, input_value='A comprehensive guide to... a world-class program.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_too_long
+  ❌ Failed to generate content for: vibration sensors
+
+📝 Processing keyword 8/44: predictive maintenance tools
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'predictive maintenance tools'
+    📊 Analyzing 17 SERP results...
+    📝 Sending research prompt to Gemini (length: 4859 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 48.52 seconds
+    📄 Received response (6286 characters)
+    👀 Response preview: Here is the comprehensive research analysis for the keyword "predictive maintenance tools."  # Research Analysis: predictive maintenance tools  ## Search Intent Analysis The primary search intent for ...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 48.53 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /solutions/predictive-maintenance-motors
+    ✅ Internal link verified: /solutions/predictive-maintenance-compressors
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /products/cmms-software
+    ❌ Invalid external link removed: https://maintenanceworld.com/
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ✅ External link verified: https://www.nist.gov/cyberframework
+    📊 Link validation: 6 verified, 1 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, high-quality professional image for a blog post on predictive maintenance tools. The scene is a modern, clean manufacturing facility. In the foreground, a female maintenance manager of Hispanic descent and a male reliability engineer of Asian descent are looking at a tablet together. The tablet screen shows a dashboard with graphs and asset health indicators. In the background, slightly out of focus, is a large piece of industrial machinery (like a pump or motor) with a small, glowing blue IoT sensor attached to it. The lighting is bright and professional, conveying a sense of technology and efficiency. No text on the image.
+    📏 Prompt length: 650 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/predictive-maintenance-tools.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/predictive-maintenance-tools.json
+  📝 Markdown: generated_content/predictive-maintenance-tools.md
+  📊 Stats: 3896 words, 6 links
+  🖼️  Image: generated_content/predictive-maintenance-tools.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 9/44: mtbf formula
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'mtbf formula'
+    📊 Analyzing 15 SERP results...
+    📝 Sending research prompt to Gemini (length: 4674 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 48.07 seconds
+    📄 Received response (7965 characters)
+    👀 Response preview: # Research Analysis: mtbf formula  ## Search Intent Analysis The primary search intent for "mtbf formula" is **informational**. The user is not looking to buy a product but to acquire knowledge. The t...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 48.07 seconds total
+  ✍️  Generating content...
+Error generating content: 504 Deadline Exceeded
+  ❌ Failed to generate content for: mtbf formula
+
+📝 Processing keyword 10/44: work order types
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'work order types'
+    📊 Analyzing 22 SERP results...
+    📝 Sending research prompt to Gemini (length: 4779 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 49.65 seconds
+    📄 Received response (8775 characters)
+    👀 Response preview: Here is the comprehensive research analysis for the keyword "work order types".  ***  # Research Analysis: work order types  ## Search Intent Analysis The primary search intent for "work order types" ...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 49.66 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ❌ Invalid external link removed: https://smrp.org/About-SMRP/What-is-Maintenance-and-Reliability
+    ✅ Internal link verified: /features/pm-procedures
+    ✅ Internal link verified: /products/predict
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /features/mobile-cmms
+    📊 Link validation: 5 verified, 2 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, professional image for a manufacturing blog post. A diverse team of two maintenance professionals, a male manager of South Asian descent and a female technician of Caucasian descent, are collaborating in a clean, modern factory setting. They are looking at a tablet which the manager is holding. The tablet screen shows a clean user interface with graphs and data related to a work order, but no text is legible. In the background, a sophisticated robotic arm is visible but slightly out of focus. The lighting is bright and professional, with an industrial color palette of blues and greys, accented by a pop of safety yellow on the technician's vest. The overall mood is one of strategic collaboration and technological advancement in maintenance.
+    📏 Prompt length: 767 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/work-order-types.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/work-order-types.json
+  📝 Markdown: generated_content/work-order-types.md
+  📊 Stats: 3890 words, 5 links
+  🖼️  Image: generated_content/work-order-types.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 11/44: breakdown maintenance
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'breakdown maintenance'
+    📊 Analyzing 25 SERP results...
+    📝 Sending research prompt to Gemini (length: 4827 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 48.47 seconds
+    📄 Received response (6777 characters)
+    👀 Response preview: # Research Analysis: breakdown maintenance  ## Search Intent Analysis The primary search intent for "breakdown maintenance" is **informational**. Users are at the top of the funnel (TOFU), in the awar...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 48.47 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/the_link_between_safety_and_reliability
+    ✅ Internal link verified: /features/work-order-software
+    ✅ External link verified: https://www.isixsigma.com/tools-templates/cause-effect/determine-root-cause-5-whys/
+    ✅ Internal link verified: /features/inventory-management
+    ❌ Invalid external link removed: https://maintenanceworld.com/articles/mtbf-and-mttr-the-real-story/
+    ✅ Internal link verified: /products/predict
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    📊 Link validation: 6 verified, 2 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: Photorealistic, professional corporate photo of a diverse maintenance team in a clean, modern factory. A senior male maintenance manager of East Asian descent points at a tablet held by a younger female technician of Hispanic descent. A third male technician of South Asian descent is in the background examining a piece of industrial machinery. The focus is on the tablet, which displays a 3D diagnostic model of a machine part. The lighting is cinematic and slightly cool-toned, emphasizing technology. The mood is collaborative and focused on problem-solving, not panic. Shallow depth of field to draw focus to the team. No text on the image.
+    📏 Prompt length: 645 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/breakdown-maintenance.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/breakdown-maintenance.json
+  📝 Markdown: generated_content/breakdown-maintenance.md
+  📊 Stats: 4282 words, 6 links
+  🖼️  Image: generated_content/breakdown-maintenance.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 12/44: mttr formula
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'mttr formula'
+    📊 Analyzing 15 SERP results...
+    📝 Sending research prompt to Gemini (length: 4823 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 51.04 seconds
+    📄 Received response (5096 characters)
+    👀 Response preview: # Research Analysis: mttr formula  ## Search Intent Analysis The search intent for "mttr formula" is overwhelmingly **informational**. The user is in the problem/solution-aware stage of the buyer's jo...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 51.04 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /products/cmms-software
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    ✅ Internal link verified: /features/mobile-cmms
+    ✅ Internal link verified: /features/inventory-management
+    ✅ Internal link verified: /features/pm-procedures
+    ❌ Invalid external link removed: https://asq.org/quality-resources/root-cause-analysis
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /solutions/predictive-maintenance-motors
+    📊 Link validation: 6 verified, 2 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, high-quality image set in a clean, modern manufacturing facility in 2025. A female maintenance manager of Hispanic descent with safety glasses and a company polo shirt is standing in front of a complex robotic arm. She is holding a ruggedized tablet that displays a clean, colorful dashboard with graphs trending downwards, clearly showing an improvement in MTTR. In the background, a male technician of Asian descent is working on a control panel. The lighting is bright and professional, and the focus is on the manager and the data on her tablet, symbolizing data-driven maintenance. The image should be free of any text or logos.
+    📏 Prompt length: 651 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/mttr-formula.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/mttr-formula.json
+  📝 Markdown: generated_content/mttr-formula.md
+  📊 Stats: 3636 words, 6 links
+  🖼️  Image: generated_content/mttr-formula.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 13/44: equipment reliability
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'equipment reliability'
+    📊 Analyzing 23 SERP results...
+    📝 Sending research prompt to Gemini (length: 4787 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 49.21 seconds
+    📄 Received response (7455 characters)
+    👀 Response preview: # Research Analysis: equipment reliability  ## Search Intent Analysis The search intent for "equipment reliability" is overwhelmingly **informational**. Users are at the top of the funnel (TOFU), seek...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 49.21 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/inventory-management
+    ✅ External link verified: https://www.asme.org/
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /solutions/predictive-maintenance-pumps
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /features/mobile-cmms
+    ❌ Invalid external link removed: https://www.nist.gov/baldrige/glossary/o-p
+    📊 Link validation: 8 verified, 2 removed
+Error generating content: 1 validation error for BlogPost
+meta_description
+  String should have at most 160 characters [type=string_too_long, input_value='Move beyond basic defini...osts, and drive profit.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_too_long
+  ❌ Failed to generate content for: equipment reliability
+
+📝 Processing keyword 14/44: maintenance metrics
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'maintenance metrics'
+    📊 Analyzing 19 SERP results...
+    📝 Sending research prompt to Gemini (length: 4813 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 49.05 seconds
+    📄 Received response (6765 characters)
+    👀 Response preview: # Research Analysis: maintenance metrics  ## Search Intent Analysis The primary search intent for "maintenance metrics" is **informational**. The user is in the **awareness and consideration stage** o...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 49.05 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ✅ External link verified: https://www.isa.org/
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /products/cmms-software
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/maintenance_cost_rav_or_erv
+    ✅ Internal link verified: /products/equipment-maintenance-software
+    ✅ Internal link verified: /features/mobile-cmms
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    📊 Link validation: 7 verified, 1 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, high-quality professional image showing a modern, clean manufacturing facility. In the foreground, a female maintenance manager of Hispanic descent and a male operations manager of Black descent are standing side-by-side, collaboratively looking at a large, sleek tablet. The tablet screen displays colorful, easy-to-read graphs and charts showing positive trends for OEE, MTBF, and PM Compliance. The background is slightly blurred but shows advanced robotic arms and automated conveyor belts in operation. The lighting is bright and optimistic. There is no text on the image.
+    📏 Prompt length: 595 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/maintenance-metrics.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/maintenance-metrics.json
+  📝 Markdown: generated_content/maintenance-metrics.md
+  📊 Stats: 3755 words, 7 links
+  🖼️  Image: generated_content/maintenance-metrics.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 15/44: oee calculator
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'oee calculator'
+    📊 Analyzing 18 SERP results...
+    📝 Sending research prompt to Gemini (length: 4605 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 51.43 seconds
+    📄 Received response (5745 characters)
+    👀 Response preview: # Research Analysis: oee calculator  ## Search Intent Analysis The primary search intent for "oee calculator" is a hybrid of **Informational** and **Transactional (Tool-based)**. Users are at the top-...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 51.44 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ❌ Invalid external link removed: https://www.isixsigma.com/tools-templates/oee/oee-and-six-big-losses-perfect-combination/
+    ✅ Internal link verified: /products/equipment-maintenance-software
+    ❌ Invalid external link removed: https://www.nist.gov/el/systems-integration-division/enterprise-systems-group/metrics-and-tools-smart-manufacturing
+    ✅ Internal link verified: /features/integrations
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/what_is_a_good_oee_score_and_how_to_improve_it
+    📊 Link validation: 5 verified, 3 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, high-quality hero image for a blog post about OEE (Overall Equipment Effectiveness). The scene is a modern, clean factory floor. In the foreground, a diverse team of three people—a male maintenance manager of South Asian descent in his 40s, a female operations supervisor of Caucasian descent in her 30s, and a young male engineer of Black descent in his 20s—are gathered around a large, ruggedized tablet. The tablet screen is glowing but shows no specific UI or text. They are pointing at the screen and looking intently at a large, complex piece of industrial machinery behind them, engaged in a collaborative discussion. The machinery is sleek and modern, with some visible pipes and gauges. The lighting is bright and professional, with a slight depth of field blurring the background to keep the focus on the team and the tablet. The overall mood is one of collaboration, data-driven decision-making, and high-tech manufacturing. No text or logos are visible in the image.
+    📏 Prompt length: 996 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/oee-calculator.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/oee-calculator.json
+  📝 Markdown: generated_content/oee-calculator.md
+  📊 Stats: 3339 words, 5 links
+  🖼️  Image: generated_content/oee-calculator.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 16/44: mttr and mtbf
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'mttr and mtbf'
+    📊 Analyzing 21 SERP results...
+    📝 Sending research prompt to Gemini (length: 4743 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 50.84 seconds
+    📄 Received response (6964 characters)
+    👀 Response preview: # Research Analysis: mttr and mtbf  ## Search Intent Analysis The primary search intent for "mttr and mtbf" is **informational**. Users are at the top of the funnel, seeking to understand fundamental ...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 50.85 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/pm-procedures
+    ✅ Internal link verified: /solutions/predictive-maintenance-motors
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ External link verified: https://www.isixsigma.com/tools-templates/cause-effect-fishbone-diagram/determine-root-cause-5-whys/
+    ✅ Internal link verified: /features/mobile-cmms
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/inventory-management
+    ✅ Internal link verified: /features/asset-management
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    ✅ Internal link verified: /products/cmms-software
+    ✅ External link verified: https://www.asme.org
+    📊 Link validation: 10 verified, 1 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, high-quality image set in a modern, clean manufacturing facility in 2025. In the foreground, a diverse team of three maintenance professionals—a Hispanic woman with a tablet, a Black man in his 50s pointing at a large industrial motor, and a younger Asian man listening intently—are collaborating. The background shows a sophisticated, well-maintained production line with robotic arms, blurred slightly to keep focus on the people. The lighting is bright and professional, conveying a sense of technological advancement and operational excellence. There is no text on the image.
+    📏 Prompt length: 597 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/mttr-and-mtbf.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/mttr-and-mtbf.json
+  📝 Markdown: generated_content/mttr-and-mtbf.md
+  📊 Stats: 3121 words, 10 links
+  🖼️  Image: generated_content/mttr-and-mtbf.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 17/44: predictive maintenance examples
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'predictive maintenance examples'
+    📊 Analyzing 22 SERP results...
+    📝 Sending research prompt to Gemini (length: 4981 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 50.12 seconds
+    📄 Received response (8445 characters)
+    👀 Response preview: Here is the comprehensive research analysis for the keyword "predictive maintenance examples".  # Research Analysis: predictive maintenance examples  ## Search Intent Analysis The primary search inten...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 50.13 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /products/predict
+    ✅ Internal link verified: /solutions/predictive-maintenance-bearings
+    ✅ External link verified: https://www.nist.gov/el
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /solutions/predictive-maintenance-motors
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ✅ Internal link verified: /features/asset-management
+    ✅ Internal link verified: /features/work-order-software
+    ❌ Invalid external link removed: https://www.asme.org/topics-resources/content/implementing-a-predictive-maintenance-program
+    📊 Link validation: 9 verified, 2 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, high-quality professional image for a manufacturing setting. In the foreground, a female maintenance manager of South Asian descent and a male technician of Black descent are looking together at a ruggedized tablet. The tablet screen displays a complex vibration spectrum graph with a clear anomaly peak highlighted. In the background, slightly out of focus, is a large, clean industrial electric motor connected to a pump, representing the asset being monitored. The lighting is bright and clean, conveying a modern, high-tech industrial environment. There is no text on the image.
+    📏 Prompt length: 600 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/predictive-maintenance-examples.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/predictive-maintenance-examples.json
+  📝 Markdown: generated_content/predictive-maintenance-examples.md
+  📊 Stats: 3756 words, 9 links
+  🖼️  Image: generated_content/predictive-maintenance-examples.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 18/44: maintenance kpis
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'maintenance kpis'
+    📊 Analyzing 18 SERP results...
+    📝 Sending research prompt to Gemini (length: 4743 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 49.87 seconds
+    📄 Received response (8173 characters)
+    👀 Response preview: # Research Analysis: maintenance kpis  ## Search Intent Analysis The primary search intent for "maintenance kpis" is **informational**. Users are in the awareness and consideration stages of the buyer...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 49.87 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ❌ Invalid internal link removed: placeholder_for_pyramid_diagram.png
+    ✅ Internal link verified: /features/inventory-management
+    ❌ Invalid external link removed: https://www.isixsigma.com/tools-templates/oee/making-sense-oee/
+    ✅ Internal link verified: /features/mobile-cmms
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /products/predict
+    ✅ Internal link verified: /products/cmms-software
+    ❌ Invalid external link removed: https://asq.org/quality-resources/root-cause-analysis
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    📊 Link validation: 6 verified, 4 removed
+Error generating content: 1 validation error for BlogPost
+meta_description
+  String should have at most 160 characters [type=string_too_long, input_value='Stop tracking useless me...ve real business value.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_too_long
+  ❌ Failed to generate content for: maintenance kpis
+
+📝 Processing keyword 19/44: aws manufacturing
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'aws manufacturing'
+    📊 Analyzing 19 SERP results...
+    📝 Sending research prompt to Gemini (length: 4480 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 49.16 seconds
+    📄 Received response (7895 characters)
+    👀 Response preview: # Research Analysis: aws manufacturing  ## Search Intent Analysis The search intent for "aws manufacturing" is predominantly **Informational** and **Branded**. The user is at the top-to-middle of the ...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 49.16 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ❌ Invalid external link removed: https://opcfoundation.org/
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/an-overview-of-reliability-centered-maintenance-rcm
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/inventory-management
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/asset-management
+    ✅ Internal link verified: /products/cmms-software
+    ✅ External link verified: https://www.nist.gov/cyberframework
+    📊 Link validation: 7 verified, 2 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, professional hero image for a blog post about AWS in manufacturing. A diverse team of three people—a female maintenance manager of South Asian descent with a tablet, a male operations engineer of Caucasian descent pointing at a large screen, and a younger female data scientist of African descent at a keyboard—are collaborating in a modern, clean factory control room. The large screen displays a complex dashboard with industrial equipment schematics, real-time data graphs, and a 3D digital twin model of a robotic arm. The background shows clean, modern manufacturing equipment softly out of focus. The lighting is bright and optimistic, conveying a sense of innovation and control. No text on the screen or in the image.
+    📏 Prompt length: 743 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/aws-manufacturing.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/aws-manufacturing.json
+  📝 Markdown: generated_content/aws-manufacturing.md
+  📊 Stats: 4122 words, 7 links
+  🖼️  Image: generated_content/aws-manufacturing.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 20/44: mobile cmms software
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'mobile cmms software'
+    📊 Analyzing 14 SERP results...
+    📝 Sending research prompt to Gemini (length: 4838 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 50.30 seconds
+    📄 Received response (7156 characters)
+    👀 Response preview: # Research Analysis: mobile cmms software  ## Search Intent Analysis The primary search intent for "mobile cmms software" is a mix of **commercial investigation** and **informational**. The user is pa...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 50.31 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/asset-management
+    ✅ Internal link verified: /features/inventory-management
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/key_performance_indicators_for_maintenance_management
+    ❌ Invalid external link removed: https://ieeexplore.ieee.org/abstract/document/9303387
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ❌ Invalid external link removed: https://maintenanceworld.com/2023/04/24/lockout-tagout-best-practices-for-a-safer-workplace/
+    ✅ Internal link verified: /features/integrations
+    ✅ Internal link verified: /features/mobile-cmms
+    📊 Link validation: 6 verified, 3 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, professional image for a tech blog. A maintenance manager of Hispanic descent is standing in a clean, modern factory, holding a rugged tablet displaying a CMMS interface with charts and graphs. In the background, a female technician of Black descent is interacting with a large piece of industrial machinery, scanning a QR code with her smartphone. The lighting is bright and optimistic, conveying a sense of efficiency and control. No text on the image.
+    📏 Prompt length: 472 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/mobile-cmms-software.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/mobile-cmms-software.json
+  📝 Markdown: generated_content/mobile-cmms-software.md
+  📊 Stats: 3694 words, 6 links
+  🖼️  Image: generated_content/mobile-cmms-software.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 21/44: what was the advantage of assembly lines
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'what was the advantage of assembly lines'
+    📊 Analyzing 25 SERP results...
+    📝 Sending research prompt to Gemini (length: 4911 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 49.81 seconds
+    📄 Received response (8489 characters)
+    👀 Response preview: # Research Analysis: what was the advantage of assembly lines  ## Search Intent Analysis The primary search intent for "what was the advantage of assembly lines" is **Informational**. The use of the p...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 49.81 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/inventory-management
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/the_5_focusing_steps_of_the_theory_of_constraints
+    ❌ Invalid external link removed: https://www.isixsigma.com/new-to-six-sigma/lean-six-sigma/quick-introduction-lean-six-sigma/
+    ✅ Internal link verified: /products/cmms-software
+    ❌ Invalid external link removed: https://www.nist.gov/baldrige/baldrige-glossary/o/overall-equipment-effectiveness-oee
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /solutions/predictive-maintenance-conveyors
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/mobile-cmms
+    ✅ Internal link verified: /products/predict
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    📊 Link validation: 8 verified, 3 removed
+Error generating content: 1 validation error for BlogPost
+meta_description
+  String should have at most 160 characters [type=string_too_long, input_value="Discover the true advant...predictive maintenance.", input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_too_long
+  ❌ Failed to generate content for: what was the advantage of assembly lines
+
+📝 Processing keyword 22/44: pfmea full form
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'pfmea full form'
+    📊 Analyzing 20 SERP results...
+    📝 Sending research prompt to Gemini (length: 4681 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 48.16 seconds
+    📄 Received response (8868 characters)
+    👀 Response preview: # Research Analysis: pfmea full form  ## Search Intent Analysis The primary search intent for "pfmea full form" is **informational**. The user is at the very top of the funnel (Awareness stage) and wa...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 48.16 seconds total
+  ✍️  Generating content...
+Error generating content: 504 Deadline Exceeded
+  ❌ Failed to generate content for: pfmea full form
+
+📝 Processing keyword 23/44: mttr and mtbf formula
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'mttr and mtbf formula'
+    📊 Analyzing 17 SERP results...
+    📝 Sending research prompt to Gemini (length: 4795 chars)
+    🤖 Calling Gemini API...
+    ❌ Error in keyword research after 1038.92 seconds: 504 Deadline Exceeded
+  ✍️  Generating content...
+Error generating content: 504 Deadline Exceeded
+  ❌ Failed to generate content for: mttr and mtbf formula
+
+📝 Processing keyword 24/44: time based maintenance
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'time based maintenance'
+    📊 Analyzing 18 SERP results...
+    📝 Sending research prompt to Gemini (length: 4847 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 52.40 seconds
+    📄 Received response (6397 characters)
+    👀 Response preview: # Research Analysis: time based maintenance  ## Search Intent Analysis The search intent for "time based maintenance" is overwhelmingly **informational**. Users are in the **awareness and consideratio...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 52.46 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/asset-management
+    ❌ Invalid external link removed: https://www.asme.org/topics-resources/content/reliability-availability-maintainability-and-safety-rams
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /products/prevent
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/the_p-f_curve
+    ✅ Internal link verified: /products/predict
+    ❌ Invalid external link removed: https://www.nist.gov/el/intelligent-systems-division-73500/systems-integration-group/maintenance-data-and-standards
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    📊 Link validation: 6 verified, 3 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, high-resolution image set in a clean, modern manufacturing facility. A diverse team of three maintenance professionals—a Black woman acting as a manager holding a tablet, a Hispanic male technician pointing to a specific part on a large industrial motor, and an Asian male technician looking on—are collaboratively discussing a maintenance plan. The tablet screen is visible but the content is abstract, suggesting data or a schedule. The lighting is bright and professional. The background is slightly out of focus, showing other well-organized machinery. The overall mood is collaborative, high-tech, and professional. No text or logos on the image.
+    📏 Prompt length: 669 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/time-based-maintenance.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/time-based-maintenance.json
+  📝 Markdown: generated_content/time-based-maintenance.md
+  📊 Stats: 3795 words, 6 links
+  🖼️  Image: generated_content/time-based-maintenance.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 25/44: 5s tpm
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: '5s tpm'
+    📊 Analyzing 18 SERP results...
+    📝 Sending research prompt to Gemini (length: 4649 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 48.27 seconds
+    📄 Received response (7549 characters)
+    👀 Response preview: # Research Analysis: 5s tpm  ## Search Intent Analysis The primary search intent for "5s tpm" is **informational**. The user is in the awareness and consideration stage of the buyer's journey. They ar...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 48.27 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/the_proactive_maintenance_culture
+    ✅ Internal link verified: /products/cmms-software
+    ❌ Invalid external link removed: https://www.nist.gov/baldrige/lean-six-sigma
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/inventory-management
+    ❌ Invalid external link removed: https://www.isixsigma.com/methodology/5s/making-5s-stick-creating-culture-sustainment/
+    ✅ Internal link verified: /features/mobile-cmms
+    ✅ Internal link verified: /features/pm-procedures
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    📊 Link validation: 6 verified, 3 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, wide-angle shot of a modern, clean, and brightly lit manufacturing facility. In the foreground, a diverse team of three people—a male maintenance technician of East Asian descent, a female operator of African descent, and a male supervisor of Caucasian descent—are gathered around a piece of complex machinery. The operator is pointing to a specific part of the machine, explaining something to the technician, who is holding a tablet displaying a digital checklist. The area around them is impeccably organized with shadow boards for tools on the wall and clean, painted walkways on the floor. The image conveys collaboration, cleanliness (5S), and proactive maintenance (TPM) without any text or logos. The overall mood is positive, professional, and forward-thinking.
+    📏 Prompt length: 788 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/5s-tpm.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/5s-tpm.json
+  📝 Markdown: generated_content/5s-tpm.md
+  📊 Stats: 3844 words, 6 links
+  🖼️  Image: generated_content/5s-tpm.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 26/44: facility manager roles and responsibilities
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'facility manager roles and responsibilities'
+    📊 Analyzing 21 SERP results...
+    📝 Sending research prompt to Gemini (length: 5095 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 49.51 seconds
+    📄 Received response (7503 characters)
+    👀 Response preview: Here is the comprehensive research analysis for the keyword "facility manager roles and responsibilities," following your specified format and persona.  ***  # Research Analysis: facility manager role...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 49.51 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /products/predict
+    ✅ Internal link verified: /features/asset-management
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /features/mobile-cmms
+    ❌ Invalid external link removed: https://maintenanceworld.com/
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ✅ External link verified: https://www.nist.gov/cyberframework
+    📊 Link validation: 7 verified, 1 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, professional image for a corporate blog post. In a bright, modern, and clean industrial manufacturing facility, a diverse team of three professionals collaborates around a large, ruggedized tablet. A male facility manager of South Asian descent points to a 3D model of a complex motor on the screen, which has glowing data overlays. A female engineer of Caucasian descent with safety glasses on her head looks on intently, while a younger male technician of African descent holds the tablet. The background shows pristine, well-maintained production machinery with subtle blue glowing lights on integrated IoT sensors. The overall mood is one of high-tech collaboration, data-driven problem-solving, and operational excellence. No text on the image.
+    📏 Prompt length: 767 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/facility-manager-roles-and-responsibilities.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/facility-manager-roles-and-responsibilities.json
+  📝 Markdown: generated_content/facility-manager-roles-and-responsibilities.md
+  📊 Stats: 3098 words, 7 links
+  🖼️  Image: generated_content/facility-manager-roles-and-responsibilities.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 27/44: moc full form
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'moc full form'
+    📊 Analyzing 14 SERP results...
+    📝 Sending research prompt to Gemini (length: 4695 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 48.77 seconds
+    📄 Received response (8626 characters)
+    👀 Response preview: # Research Analysis: moc full form  ## Search Intent Analysis The primary search intent for "moc full form" is **informational**. The user is at the very top of the funnel (Awareness stage). The SERP ...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 48.77 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ❌ Invalid external link removed: https://www.csb.gov/bp-america-refinery-explosion-/
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /features/asset-management
+    ✅ External link verified: https://www.isixsigma.com/
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /products/prevent
+    📊 Link validation: 6 verified, 1 removed
+Error generating content: 1 validation error for BlogPost
+meta_description
+  String should have at most 160 characters [type=string_too_long, input_value='Discover the full form o... for industrial safety.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_too_long
+  ❌ Failed to generate content for: moc full form
+
+📝 Processing keyword 28/44: cmms integration
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'cmms integration'
+    📊 Analyzing 18 SERP results...
+    📝 Sending research prompt to Gemini (length: 4743 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 49.00 seconds
+    📄 Received response (7042 characters)
+    👀 Response preview: # Research Analysis: cmms integration  ## Search Intent Analysis The primary search intent for "cmms integration" is **informational**. Users are in the **awareness and consideration stages** of the b...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 49.00 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /features/inventory-management
+    ✅ Internal link verified: /features/asset-management
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    ✅ Internal link verified: /features/integrations
+    ✅ External link verified: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1500-1r2.pdf
+    ❌ Invalid external link removed: https://www.isixsigma.com/methodology/change-management-methodology/
+    📊 Link validation: 5 verified, 2 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, high-quality image set in a bright, modern manufacturing facility. In the foreground, a diverse team of three professionals—a female maintenance manager of East Asian descent, a male IT specialist of Black descent, and a female operations lead of Hispanic descent—are gathered around a large, futuristic transparent touchscreen. The screen displays a clear data visualization of interconnected nodes representing a CMMS, ERP, and SCADA system, with data flowing between them. The background shows clean, advanced automated machinery, slightly out of focus. The overall mood is collaborative, professional, and technologically advanced. There is no text on the image.
+    📏 Prompt length: 684 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/cmms-integration.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/cmms-integration.json
+  📝 Markdown: generated_content/cmms-integration.md
+  📊 Stats: 3757 words, 5 links
+  🖼️  Image: generated_content/cmms-integration.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 29/44: aws industrial data fabric
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'aws industrial data fabric'
+    📊 Analyzing 15 SERP results...
+    📝 Sending research prompt to Gemini (length: 5114 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 48.56 seconds
+    📄 Received response (8442 characters)
+    👀 Response preview: # Research Analysis: aws industrial data fabric  ## Search Intent Analysis The search intent for "aws industrial data fabric" is overwhelmingly **informational with a strong transactional/investigatio...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 48.57 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /products/cmms-software
+    ❌ Invalid external link removed: https://www.maintenanceworld.com/2020/03/16/oee-for-the-maintenance-manager/
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/inventory-management
+    ✅ Internal link verified: /features/integrations
+    ✅ Internal link verified: /solutions/predictive-maintenance-conveyors
+    ✅ External link verified: https://www.nist.gov/cyberframework
+    ❌ Invalid external link removed: https://www.reliabilityweb.com/articles/entry/a-holistic-approach-to-it-ot-convergence
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ✅ Internal link verified: /products/cmms-software
+    📊 Link validation: 9 verified, 2 removed
+Error generating content: 1 validation error for BlogPost
+meta_description
+  String should have at most 160 characters [type=string_too_long, input_value='Unlock predictive mainte...on, and best practices.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_too_long
+  ❌ Failed to generate content for: aws industrial data fabric
+
+📝 Processing keyword 30/44: industrial data fabric
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'industrial data fabric'
+    📊 Analyzing 17 SERP results...
+    📝 Sending research prompt to Gemini (length: 5036 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 51.32 seconds
+    📄 Received response (8833 characters)
+    👀 Response preview: # Research Analysis: industrial data fabric  ## Search Intent Analysis The primary search intent for "industrial data fabric" is **Informational**. The user is in the awareness and consideration stage...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 51.32 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /solutions/predictive-maintenance-motors
+    ✅ Internal link verified: /features/work-order-software
+    ❌ Invalid external link removed: https://opcfoundation.org/about/what-is-opc-ua/
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    ✅ Internal link verified: /features/mobile-cmms
+    ✅ External link verified: https://www.nist.gov/cyberframework
+    ✅ Internal link verified: /products/predict
+    📊 Link validation: 7 verified, 2 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, high-quality image for a blog post about industrial data fabric. The scene is inside a modern, clean factory. In the foreground, a diverse team of three engineers (one female of East Asian descent, one male of African descent, one male of Caucasian descent) are looking at a large, transparent holographic screen floating in the air. The screen displays interconnected nodes and data streams, representing a data fabric, overlaid on a 3D model of a complex piece of industrial machinery like a compressor or pump. The background is slightly blurred but shows the clean, well-lit factory floor. The lighting is bright and professional, with a slightly futuristic, high-tech feel. No text or words on the screen or anywhere in the image. The engineers look engaged and collaborative.
+    📏 Prompt length: 799 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/industrial-data-fabric.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/industrial-data-fabric.json
+  📝 Markdown: generated_content/industrial-data-fabric.md
+  📊 Stats: 4000 words, 7 links
+  🖼️  Image: generated_content/industrial-data-fabric.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 31/44: best temperature sensors
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'best temperature sensors'
+    📊 Analyzing 22 SERP results...
+    📝 Sending research prompt to Gemini (length: 5250 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 45.88 seconds
+    📄 Received response (10056 characters)
+    👀 Response preview: # Research Analysis: best temperature sensors  ## Search Intent Analysis The primary search intent for the keyword "best temperature sensors," based on the current SERP, is overwhelmingly **Informatio...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 45.88 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /products/cmms-software
+    ✅ External link verified: https://www.asme.org/codes-standards/find-codes-standards/ptc-19-3-tw-thermowells
+    ❌ Invalid external link removed: https://www.nist.gov/pml/sensor-science/calibrations
+    ✅ Internal link verified: /products/equipment-maintenance-software
+    ✅ Internal link verified: /solutions/predictive-maintenance-motors
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    📊 Link validation: 6 verified, 2 removed
+Error generating content: 1 validation error for BlogPost
+meta_description
+  String should have at most 160 characters [type=string_too_long, input_value='Stop guessing. Discover ...predictive maintenance.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_too_long
+  ❌ Failed to generate content for: best temperature sensors
+
+📝 Processing keyword 32/44: chatgpt manufacturing
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'chatgpt manufacturing'
+    📊 Analyzing 15 SERP results...
+    📝 Sending research prompt to Gemini (length: 4877 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 49.02 seconds
+    📄 Received response (7408 characters)
+    👀 Response preview: # Research Analysis: chatgpt manufacturing  ## Search Intent Analysis The primary search intent for "chatgpt manufacturing" is **Informational**. Users are in the awareness and consideration stages of...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 49.02 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/mobile-cmms
+    ✅ External link verified: https://www.isixsigma.com/tools-templates/cause-effect/determine-root-cause-5-whys/
+    ✅ Internal link verified: /products/equipment-maintenance-software
+    ✅ Internal link verified: /features/inventory-management
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ External link verified: https://www.nist.gov/itl/ai-risk-management-framework
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    ✅ Internal link verified: /solutions/manufacturing-ai-software
+    📊 Link validation: 8 verified, 1 removed
+Error generating content: 1 validation error for BlogPost
+meta_description
+  String should have at most 160 characters [type=string_too_long, input_value='Discover 7 actionable wa...g AI on the shop floor.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_too_long
+  ❌ Failed to generate content for: chatgpt manufacturing
+
+📝 Processing keyword 33/44: pms meaning maintenance
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'pms meaning maintenance'
+    📊 Analyzing 1 SERP results...
+    📝 Sending research prompt to Gemini (length: 2434 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 48.69 seconds
+    📄 Received response (6057 characters)
+    👀 Response preview: # Research Analysis: pms meaning maintenance  ## Search Intent Analysis The primary search intent for "pms meaning maintenance" is **informational**. The user is at the very top of the funnel (Awarene...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 48.69 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/asset-management
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/inventory-management
+    ✅ Internal link verified: /products/cmms-software
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/the_p-f_curve
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ❌ Invalid external link removed: https://www.nsc.org/
+    ❌ Invalid external link removed: https://www.nist.gov/el/systems-integration-division-73400/smart-manufacturing-operations-planning-and-control-program
+    ✅ Internal link verified: /products/cmms-software
+    📊 Link validation: 7 verified, 3 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, professional image set in a clean, modern manufacturing facility. A female maintenance manager of Hispanic descent and a male technician of African descent are standing in front of a complex piece of industrial machinery with clean, stainless steel surfaces. The manager is holding a ruggedized tablet, pointing to something on the screen, and discussing it with the technician, who is listening intently and holding a specialized tool. The lighting is bright and professional. The focus is on their collaboration and the technology. There is no text or branding on the screen or their clothes. The background is slightly blurred to emphasize the people and the machine.
+    📏 Prompt length: 688 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/pms-meaning-maintenance.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/pms-meaning-maintenance.json
+  📝 Markdown: generated_content/pms-meaning-maintenance.md
+  📊 Stats: 3873 words, 7 links
+  🖼️  Image: generated_content/pms-meaning-maintenance.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 34/44: anomaly detection manufacturing
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'anomaly detection manufacturing'
+    📊 Analyzing 1 SERP results...
+    📝 Sending research prompt to Gemini (length: 2458 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 47.98 seconds
+    📄 Received response (6033 characters)
+    👀 Response preview: Of course. As a senior SEO content strategist specializing in this domain, I will conduct the requested deep research and analysis.  Here is the comprehensive breakdown for the keyword "anomaly detect...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 47.98 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ✅ Internal link verified: /solutions/predictive-maintenance-motors
+    ❌ Invalid external link removed: https://www.ieee.org/
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /solutions/predictive-maintenance-compressors
+    ✅ Internal link verified: /features/asset-management
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    📊 Link validation: 7 verified, 2 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, professional image for a manufacturing blog post. In the foreground, a diverse female maintenance engineer of South Asian descent is intently studying a ruggedized tablet. The tablet screen shows a complex, colorful graph with a clear anomaly highlighted in red. In the background, slightly out of focus, is a clean, modern manufacturing environment with a large, complex piece of industrial machinery. A male colleague of a different ethnicity is visible in the background, inspecting a part of the machine. The lighting is bright and professional, conveying a sense of high-tech competence and collaboration. No text or logos on the image.
+    📏 Prompt length: 659 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/anomaly-detection-manufacturing.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/anomaly-detection-manufacturing.json
+  📝 Markdown: generated_content/anomaly-detection-manufacturing.md
+  📊 Stats: 4211 words, 7 links
+  🖼️  Image: generated_content/anomaly-detection-manufacturing.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 35/44: llm in manufacturing
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'llm in manufacturing'
+    📊 Analyzing 1 SERP results...
+    📝 Sending research prompt to Gemini (length: 2425 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 49.83 seconds
+    📄 Received response (6080 characters)
+    👀 Response preview: Here is the comprehensive research analysis for the keyword "llm in manufacturing."  # Research Analysis: llm in manufacturing  ## Search Intent Analysis The primary search intent for "llm in manufact...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 49.83 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /products/cmms-software
+    ✅ External link verified: https://www.isixsigma.com/tools-templates/cause-effect/determine-root-cause-5-whys/
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ External link verified: https://www.nist.gov/cybersecurity
+    ✅ Internal link verified: /features/integrations
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    ❌ Invalid external link removed: https://ieeexplore.ieee.org/document/7428122
+    ✅ Internal link verified: /solutions/manufacturing-ai-software
+    📊 Link validation: 7 verified, 2 removed
+Error generating content: 1 validation error for BlogPost
+meta_description
+  String should have at most 160 characters [type=string_too_long, input_value='Discover how LLMs are re...nd real-world examples.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_too_long
+  ❌ Failed to generate content for: llm in manufacturing
+
+📝 Processing keyword 36/44: best industrial sensors
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'best industrial sensors'
+    📊 Analyzing 1 SERP results...
+    📝 Sending research prompt to Gemini (length: 2434 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 49.39 seconds
+    📄 Received response (7184 characters)
+    👀 Response preview: # Research Analysis: best industrial sensors  ## Search Intent Analysis The primary search intent for "best industrial sensors" is a mix of **commercial investigation** and **informational**. The user...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 49.40 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /solutions/predictive-maintenance-motors
+    ✅ Internal link verified: /products/cmms-software
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/a_practical_look_at_vibration_analysis
+    ❌ Invalid external link removed: https://ieeexplore.ieee.org/Xplore/home.jsp
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /features/work-order-software
+    ❌ Invalid external link removed: https://maintenanceworld.com/
+    ✅ Internal link verified: /products/predict
+    📊 Link validation: 5 verified, 3 removed
+Error generating content: 1 validation error for BlogPost
+meta_description
+  String should have at most 160 characters [type=string_too_long, input_value='Stop searching for the "...d maintenance outcomes.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_too_long
+  ❌ Failed to generate content for: best industrial sensors
+
+📝 Processing keyword 37/44: best vibration and temperature sensors
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'best vibration and temperature sensors'
+    📊 Analyzing 1 SERP results...
+    📝 Sending research prompt to Gemini (length: 2479 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 48.19 seconds
+    📄 Received response (5650 characters)
+    👀 Response preview: # Research Analysis: best vibration and temperature sensors  ## Search Intent Analysis The primary search intent for "best vibration and temperature sensors" is **Commercial Investigation**. The user ...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 48.19 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /solutions/predictive-maintenance-conveyors
+    ❌ Invalid external link removed: https://www.iso.org/standard/59552.html
+    ✅ Internal link verified: /products/predict
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/asset-management
+    ✅ Internal link verified: /solutions/predictive-maintenance-pumps
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    📊 Link validation: 8 verified, 2 removed
+Error generating content: 1 validation error for BlogPost
+meta_description
+  String should have at most 160 characters [type=string_too_long, input_value='Stop searching for lists...Drive your PdM program.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_too_long
+  ❌ Failed to generate content for: best vibration and temperature sensors
+
+📝 Processing keyword 38/44: best vibration sensors
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'best vibration sensors'
+    📊 Analyzing 1 SERP results...
+    📝 Sending research prompt to Gemini (length: 2431 chars)
+    🤖 Calling Gemini API...
+    ❌ Error in keyword research after 1261.42 seconds: 504 Deadline Exceeded
+  ✍️  Generating content...
+Error generating content: 504 Deadline Exceeded
+  ❌ Failed to generate content for: best vibration sensors
+
+📝 Processing keyword 39/44: how to choose industrial sensors
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'how to choose industrial sensors'
+    📊 Analyzing 1 SERP results...
+    📝 Sending research prompt to Gemini (length: 2461 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 6353.48 seconds
+    📄 Received response (5671 characters)
+    👀 Response preview: # Research Analysis: how to choose industrial sensors  ## Search Intent Analysis The search intent for "how to choose industrial sensors" is primarily **informational with strong commercial investigat...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 6353.48 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/asset-management
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/a_practical_look_at_fmea_and_rcm
+    ✅ External link verified: https://www.vi-institute.org/
+    ✅ Internal link verified: /products/predict
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /solutions/predictive-maintenance-compressors
+    📊 Link validation: 5 verified, 1 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photo-realistic, high-quality image for a blog post about choosing industrial sensors. A diverse team of three maintenance professionals (one woman of East Asian descent, one man of African descent, and one older Caucasian man) are standing in a clean, modern factory setting. They are gathered around a large industrial electric motor and pump assembly. The woman is pointing to a specific point on the motor's bearing housing, while the man of African descent holds a tablet displaying a graph of vibration data. The older man, looking like an experienced manager, is observing and nodding in agreement. The background is slightly blurred but shows clean, well-maintained industrial piping and equipment. The lighting is bright and professional, highlighting the technology and the collaborative nature of the work. No text or logos are visible in the image.
+    📏 Prompt length: 862 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+
+
+
+
+
+
+
+
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/how-to-choose-industrial-sensors.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/how-to-choose-industrial-sensors.json
+  📝 Markdown: generated_content/how-to-choose-industrial-sensors.md
+  📊 Stats: 3083 words, 5 links
+  🖼️  Image: generated_content/how-to-choose-industrial-sensors.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 40/44: how to choose sensors
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'how to choose sensors'
+    📊 Analyzing 1 SERP results...
+    📝 Sending research prompt to Gemini (length: 2428 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 49.74 seconds
+    📄 Received response (6798 characters)
+    👀 Response preview: # Research Analysis: how to choose sensors  ## Search Intent Analysis The primary search intent for "how to choose sensors" is **Informational** with a strong secondary **Commercial Investigation** in...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 49.74 seconds total
+  ✍️  Generating content...
+ 	    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /solutions/predictive-maintenance-motors
+    ✅ Internal link verified: /features/inventory-management
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /features/integrations
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ External link verified: https://www.nist.gov/cybersecurity
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    📊 Link validation: 6 verified, 1 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A high-quality, photorealistic professional image for a blog post about choosing industrial sensors. A female maintenance manager of South Asian descent and a male engineer of Caucasian descent are standing in a bright, clean, modern manufacturing facility. They are looking at a tablet the manager is holding, which displays colorful graphs and sensor data. In the background, a large, complex piece of industrial machinery like a multi-stage pump or a robotic arm is visible but slightly out of focus. The focus is on the two people and the data on the tablet, conveying a sense of collaboration and data-driven decision-making. The lighting is bright and optimistic. There is no text or logos on the image.
+    📏 Prompt length: 709 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/how-to-choose-sensors.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/how-to-choose-sensors.json
+  📝 Markdown: generated_content/how-to-choose-sensors.md
+  📊 Stats: 3889 words, 6 links
+  🖼️  Image: generated_content/how-to-choose-sensors.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 41/44: how to choose vibration sensors
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'how to choose vibration sensors'
+    📊 Analyzing 1 SERP results...
+    📝 Sending research prompt to Gemini (length: 2458 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 50.56 seconds
+    📄 Received response (6977 characters)
+    👀 Response preview: # Research Analysis: how to choose vibration sensors  ## Search Intent Analysis The primary search intent for "how to choose vibration sensors" is **informational with a strong commercial investigatio...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 50.57 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/the_p-f_curve
+    ✅ Internal link verified: /products/predict
+    ✅ External link verified: https://www.api.org/
+    ✅ Internal link verified: /solutions/predictive-maintenance-conveyors
+    ✅ Internal link verified: /solutions/predictive-maintenance-motors
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /features/work-order-software
+    ✅ External link verified: https://www.asme.org
+    📊 Link validation: 8 verified, 1 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, professional image for a manufacturing blog post. A diverse maintenance team, including a woman with a tablet and a man of a different ethnicity pointing at a large industrial electric motor, are discussing a vibration sensor attached to it. The sensor has a subtle blue light indicating it's active. The background is a clean, modern factory floor with other machinery slightly out of focus. The lighting is bright and professional, highlighting the technology and the collaborative nature of modern maintenance. No text on the image.
+    📏 Prompt length: 553 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/how-to-choose-vibration-sensors.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/how-to-choose-vibration-sensors.json
+  📝 Markdown: generated_content/how-to-choose-vibration-sensors.md
+  📊 Stats: 3833 words, 8 links
+  🖼️  Image: generated_content/how-to-choose-vibration-sensors.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 42/44: how to monitor rotating equipment
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'how to monitor rotating equipment'
+    📊 Analyzing 1 SERP results...
+    📝 Sending research prompt to Gemini (length: 2464 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 50.29 seconds
+    📄 Received response (6058 characters)
+    👀 Response preview: # Research Analysis: how to monitor rotating equipment  ## Search Intent Analysis The user searching for "how to monitor rotating equipment" is typically a maintenance manager, reliability engineer, o...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 50.29 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ✅ Internal link verified: /solutions/predictive-maintenance-motors
+    ✅ External link verified: https://www.asme.org
+    ✅ External link verified: https://www.icmlonline.com/
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /features/work-order-software
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    ✅ Internal link verified: /products/equipment-maintenance-software
+    📊 Link validation: 8 verified, 1 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photorealistic, high-quality image set in a clean, modern manufacturing facility. A diverse team of three people—a female reliability engineer of East Asian descent holding a tablet, a male maintenance manager of African descent pointing at the screen, and a younger male technician of Hispanic descent looking on—are gathered around a large, blue industrial electric motor connected to a pump. The tablet screen is visible and shows a combination of a vibration FFT spectrum and a thermal image of the motor, indicating a data-driven discussion. The lighting is bright and professional. The background is slightly blurred to focus on the team and the equipment. No text or logos are visible in the image.
+    📏 Prompt length: 707 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/how-to-monitor-rotating-equipment.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/how-to-monitor-rotating-equipment.json
+  📝 Markdown: generated_content/how-to-monitor-rotating-equipment.md
+  📊 Stats: 3704 words, 8 links
+  🖼️  Image: generated_content/how-to-monitor-rotating-equipment.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 43/44: mean time between failure maintenance
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'mean time between failure maintenance'
+    📊 Analyzing 1 SERP results...
+    📝 Sending research prompt to Gemini (length: 2476 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 51.45 seconds
+    📄 Received response (6958 characters)
+    👀 Response preview: # Research Analysis: mean time between failure maintenance  ## Search Intent Analysis The primary search intent for "mean time between failure maintenance" is **Informational** with a strong secondary...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 51.45 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /products/cmms-software
+    ✅ Internal link verified: /features/work-order-software
+    ❌ Invalid external link removed: https://reliabilityweb.com/
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /features/prescriptive-maintenance
+    ✅ Internal link verified: /products/predict
+    ✅ Internal link verified: /features/asset-management
+    ❌ Invalid external link removed: https://asq.org/
+    ✅ Internal link verified: /products/predict
+    📊 Link validation: 7 verified, 2 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A photo-realistic, professional image for a blog post about advanced maintenance strategy. In a clean, modern factory setting, a diverse team of three maintenance professionals (a middle-aged Caucasian man, a young Black woman, and an older Asian man) are gathered around a large, futuristic transparent touchscreen displaying holographic charts and data related to equipment performance. One of them is pointing to a specific data point on the screen, which shows a graph trending upwards labeled "MTBF". The background shows well-maintained industrial machinery, subtly out of focus. The lighting is bright and clean, conveying a sense of technological advancement and operational excellence. No text on the image.
+    📏 Prompt length: 716 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/mean-time-between-failure-maintenance.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/mean-time-between-failure-maintenance.json
+  📝 Markdown: generated_content/mean-time-between-failure-maintenance.md
+  📊 Stats: 3532 words, 7 links
+  🖼️  Image: generated_content/mean-time-between-failure-maintenance.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+📝 Processing keyword 44/44: mean time to repair maintenance
+  🔬 Researching keyword with SERP analysis...
+    🔍 Starting deep research for keyword: 'mean time to repair maintenance'
+    📊 Analyzing 1 SERP results...
+    📝 Sending research prompt to Gemini (length: 2458 chars)
+    🤖 Calling Gemini API...
+    ⏱️  Gemini API call took 48.48 seconds
+    📄 Received response (6477 characters)
+    👀 Response preview: # Research Analysis: mean time to repair maintenance  ## Search Intent Analysis The primary search intent for "mean time to repair maintenance" is **informational**. The user is looking to understand ...
+    🔧 Parsing markdown response...
+    ✅ Successfully parsed markdown with 11 sections
+    🔑 Research data keys: ['keyword', 'search_intent', 'content_gaps', 'pain_points', 'semantic_keywords', 'content_angles', 'competitive_landscape', 'content_structure', 'industry_trends', 'authoritative_sources', 'semantic_keywords_list']
+    🏁 Research completed in 48.48 seconds total
+  ✍️  Generating content...
+    🔧 Parsing markdown content response...
+    🔗 Validating and cleaning markdown links...
+    ✅ Internal link verified: /products/cmms-software
+    ❌ Invalid external link removed: https://reliabilityweb.com/articles/entry/an_overview_of_reliability-centered_maintenance_rcm
+    ✅ Internal link verified: /features/ai-predictive-maintenance
+    ✅ Internal link verified: /features/work-order-software
+    ✅ Internal link verified: /features/inventory-management
+    ✅ Internal link verified: /features/mobile-cmms
+    ✅ External link verified: https://www.isixsigma.com/tools-templates/cause-effect/determine-root-cause-5-whys/
+    ✅ Internal link verified: /products/prevent
+    ✅ Internal link verified: /products/predict
+    ❌ Invalid external link removed: https://www.nist.gov/news-events/news/2021/08/augmented-reality-can-make-smart-manufacturing-smarter
+    📊 Link validation: 8 verified, 2 removed
+  🎨 Generating hero image...
+    🎨 Generating image with prompt: A high-quality, photorealistic image set in a clean, modern manufacturing facility. In the foreground, a diverse team of three people—a female manager of South Asian descent in a blazer, a male engineer of Caucasian descent in a polo shirt, and a female technician of Black descent in a clean work uniform—are gathered around a large, bright touchscreen monitor mounted on a wall. The monitor displays a sophisticated dashboard with graphs and KPIs, prominently featuring "MTTR," "OEE," and "Asset Availability." The team is engaged in a collaborative discussion, pointing at the data on the screen. The background is slightly blurred but shows advanced robotic arms and conveyor systems, conveying a sense of high-tech operations. The lighting is bright and professional. No text on the image itself.
+    📏 Prompt length: 801 characters
+    🤖 Calling OpenAI GPT-4 Image Generation API...
+    ✅ Image generated successfully!
+    📊 Received base64 image data
+    💾 Saving base64 image data locally...
+    ✅ Base64 image saved to: generated_content/mean-time-to-repair-maintenance.png
+  📋 Formatting for Prismic...
+Content saved to:
+  📄 JSON: generated_content/mean-time-to-repair-maintenance.json
+  📝 Markdown: generated_content/mean-time-to-repair-maintenance.md
+  📊 Stats: 3837 words, 8 links
+  🖼️  Image: generated_content/mean-time-to-repair-maintenance.png
+  ✅ Content generated successfully!
+  📤 Uploading to Prismic...
+  ✅ Successfully uploaded to Prismic
+  🚀 Content published to Prismic CMS!
+
+🎉 Content generation complete!
+📊 Final Statistics:
+   • Total keywords processed: 44
+   • Successfully generated: 28
+   • Failed: 16
+   • Uploaded to Prismic: 28
+
+📁 Check the 'generated_content' folder for your files.
