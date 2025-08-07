@@ -1,0 +1,16 @@
+{
+  "meta_title": "Gearbox Predictive Maintenance: The 2025 Ultimate Guide",
+  "meta_description": "Move beyond reactive repairs. Our in-depth guide to gearbox predictive maintenance covers AI, IIoT, vibration analysis, and a step-by-step implementation plan.",
+  "title": "The Ultimate Guide to Gearbox Predictive Maintenance: From Theory to ROI in 2025",
+  "keyword": "gearbox predictive maintenance",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/gearbox-predictive-maintenance.png",
+    "alt": "Hero image for The Ultimate Guide to Gearbox Predictive Maintenance: From Theory to ROI in 2025",
+    "source": "gpt-image-1"
+  },
+  "image_prompt": "A photorealistic, high-resolution hero image for a blog post on industrial maintenance. In a clean, brightly lit, modern factory, a diverse team of two maintenance professionals, a Hispanic male and a Black female, are collaborating. The male technician holds a ruggedized tablet displaying a complex vibration analysis graph (FFT spectrum) without any text. He is pointing at a specific peak on the screen, discussing it with the female engineer. The female engineer is looking intently at a large, clean industrial gearbox that is the focus of their attention. A small, wireless IIoT sensor is visibly mounted on the gearbox's bearing housing. Both are wearing professional work attire with high-visibility vests, safety glasses, and hard hats. The background is softly blurred, showing other advanced manufacturing equipment. The overall mood is professional, high-tech, and collaborative. Cinematic lighting with a slight blue and orange color grade.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 3613,
+  "link_count": 7
+}

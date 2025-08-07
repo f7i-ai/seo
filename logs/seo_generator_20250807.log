@@ -1,0 +1,51 @@
+2025-08-07 11:22:15,047 - INFO - ==================================================
+2025-08-07 11:22:15,047 - INFO - SEO Content Generator session started
+2025-08-07 11:22:15,047 - INFO - ==================================================
+2025-08-07 11:22:36,221 - INFO - ==================================================
+2025-08-07 11:22:36,222 - INFO - SEO Content Generator session started
+2025-08-07 11:22:36,222 - INFO - ==================================================
+2025-08-07 11:22:36,255 - INFO - Uploading to Prismic...
+2025-08-07 11:22:36,377 - ERROR - Prismic upload failed:
+2025-08-07 11:22:36,377 - ERROR - Error: [ERROR 2025-08-07T01:22:36.374Z] ❌ Error processing file: /var/folders/xd/nsv9jyns7sv48sx1w_x6gcgm0000gn/T/tmpgu0r1ajn.json
+  Error: Error: ENOENT: no such file or directory, open '/var/folders/xd/nsv9jyns7sv48sx1w_x6gcgm0000gn/T/tmpgu0r1ajn.md'
+    at async open (node:internal/fs/promises:639:25)
+    at async readFile (node:internal/fs/promises:1243:14)
+    at async processSingleFile (file:///Users/tim/code/f7i-marketing/seo/prismic_uploader.js:446:23)
+    at async main (file:///Users/tim/code/f7i-marketing/seo/prismic_uploader.js:1088:22) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/var/folders/xd/nsv9jyns7sv48sx1w_x6gcgm0000gn/T/tmpgu0r1ajn.md'
+}
+[ERROR 2025-08-07T01:22:36.375Z] ❌ Operation failed: ENOENT: no such file or directory, open '/var/folders/xd/nsv9jyns7sv48sx1w_x6gcgm0000gn/T/tmpgu0r1ajn.md'
+
+2025-08-07 11:22:36,377 - INFO - Uploading to Prismic...
+2025-08-07 11:22:36,478 - ERROR - Prismic upload failed:
+2025-08-07 11:22:36,478 - ERROR - Error: [ERROR 2025-08-07T01:22:36.475Z] ❌ Error processing file: /var/folders/xd/nsv9jyns7sv48sx1w_x6gcgm0000gn/T/tmpgu0r1ajn.json
+  Error: Error: ENOENT: no such file or directory, open '/var/folders/xd/nsv9jyns7sv48sx1w_x6gcgm0000gn/T/tmpgu0r1ajn.md'
+    at async open (node:internal/fs/promises:639:25)
+    at async readFile (node:internal/fs/promises:1243:14)
+    at async processSingleFile (file:///Users/tim/code/f7i-marketing/seo/prismic_uploader.js:446:23)
+    at async main (file:///Users/tim/code/f7i-marketing/seo/prismic_uploader.js:1088:22) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/var/folders/xd/nsv9jyns7sv48sx1w_x6gcgm0000gn/T/tmpgu0r1ajn.md'
+}
+[ERROR 2025-08-07T01:22:36.476Z] ❌ Operation failed: ENOENT: no such file or directory, open '/var/folders/xd/nsv9jyns7sv48sx1w_x6gcgm0000gn/T/tmpgu0r1ajn.md'
+
+2025-08-07 11:22:36,478 - INFO - Uploading to Prismic...
+2025-08-07 11:22:36,573 - ERROR - Prismic upload failed:
+2025-08-07 11:22:36,574 - ERROR - Error: [ERROR 2025-08-07T01:22:36.571Z] ❌ Error processing file: /var/folders/xd/nsv9jyns7sv48sx1w_x6gcgm0000gn/T/tmpgu0r1ajn.json
+  Error: Error: ENOENT: no such file or directory, open '/var/folders/xd/nsv9jyns7sv48sx1w_x6gcgm0000gn/T/tmpgu0r1ajn.md'
+    at async open (node:internal/fs/promises:639:25)
+    at async readFile (node:internal/fs/promises:1243:14)
+    at async processSingleFile (file:///Users/tim/code/f7i-marketing/seo/prismic_uploader.js:446:23)
+    at async main (file:///Users/tim/code/f7i-marketing/seo/prismic_uploader.js:1088:22) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/var/folders/xd/nsv9jyns7sv48sx1w_x6gcgm0000gn/T/tmpgu0r1ajn.md'
+}
+[ERROR 2025-08-07T01:22:36.572Z] ❌ Operation failed: ENOENT: no such file or directory, open '/var/folders/xd/nsv9jyns7sv48sx1w_x6gcgm0000gn/T/tmpgu0r1ajn.md'
+

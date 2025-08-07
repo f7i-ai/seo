@@ -1,0 +1,16 @@
+{
+  "meta_title": "AI Predictive Maintenance in Electronics: A Yield-First Guide",
+  "meta_description": "Discover key AI predictive maintenance use cases in electronics manufacturing. Learn how a yield-first approach for SMT lines and fabs boosts OEE and",
+  "title": "Beyond Downtime: The Yield-First Approach to AI Predictive Maintenance in Electronics Manufacturing",
+  "keyword": "ai predictive maintenance use cases in electronics manufacturing",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/ai-predictive-maintenance-use-cases-in-electronics.png",
+    "alt": "Hero image for Beyond Downtime: The Yield-First Approach to AI Predictive Maintenance in Electronics Manufacturing",
+    "source": "gpt-image-1"
+  },
+  "image_prompt": "A high-quality, photorealistic image set in a brightly lit, modern electronics manufacturing facility. In the foreground, a female maintenance engineer of East Asian descent and a male operations manager of African descent are looking at a tablet. The tablet screen displays complex data visualizations, including vibration waveform graphs and a thermal map of a machine. Both are wearing light blue cleanroom suits and safety glasses. In the background, slightly out of focus, is a pristine SMT production line with a pick-and-place machine actively working. The overall mood is professional, high-tech, and collaborative.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 3074,
+  "link_count": 6
+}

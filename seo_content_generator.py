@@ -688,7 +688,9 @@ class SEOContentGenerator:
         - The image should not have any words or text.
         - When showing multiple people, use different genders and ethnicities.
         - People should be from diverse backgrounds.
-        - People should be wearing protective equipment, such as hard hats or hair nets, safety glasses, and high-visibility clothing or PPE.
+        - People should be wearing protective equipment, such as hard hats or hair nets, safety glasses, and high-visibility clothing or PPE and safety shoes.
+        - Image should show the full body of the people.
+        - Any handheld devices (such as tablets and smartphones) in the picture should only show the back of the device, not the display.
 
         Output in this EXACT structured markdown format:
 
@@ -1003,7 +1005,7 @@ class SEOContentGenerator:
 
         return json_filepath, md_filepath
 
-    def upload_to_prismic(self, json_filepath: str, skip_upload: bool = False) -> Dict[str, Any]:
+    def upload_to_prismic(self, json_filepath: str, skip_upload: bool = False, profile: str = "tim") -> Dict[str, Any]:
         """Upload generated content to Prismic CMS using Node.js script"""
         try:
             logger.info(f"Uploading to Prismic...")
@@ -1012,6 +1014,8 @@ class SEOContentGenerator:
             cmd = ["node", "prismic_uploader.js", json_filepath]
             if skip_upload:
                 cmd.append("--skip-upload")
+            if profile:
+                cmd.extend(["--profile", profile])
 
             # Run the Node.js uploader
             result = subprocess.run(
@@ -1067,6 +1071,33 @@ def main() -> None:
         "Enter sitemap URL (default: https://f7i.ai/sitemap.xml): ").strip()
     if not sitemap_url:
         sitemap_url = "https://f7i.ai/sitemap.xml"
+
+    # Get profile selection
+    print("\n👤 Available author profiles:")
+    print("  1. Tim Cheung - CTO and Co-Founder of Factory AI")
+    print("  2. JP - CEO and Co-founder of Factory AI")
+    print("  3. Luka - Founding AI Engineer of Factory AI")
+
+    profile_choice: str = input(
+        "Select author profile (1/2/3) [1]: ").strip()
+    if not profile_choice:
+        profile_choice = "1"
+
+    # Map choice to profile names
+    profile_map = {
+        "1": "tim",
+        "2": "jp",
+        "3": "luka"
+    }
+
+    selected_profile = profile_map.get(profile_choice, "tim")
+    profile_names = {
+        "tim": "Tim Cheung, CTO and Co-Founder of Factory AI",
+        "jp": "JP, CEO and Co-founder of Factory AI",
+        "luka": "Luka, Founding AI Engineer of Factory AI"
+    }
+
+    print(f"✅ Selected profile: {profile_names[selected_profile]}")
 
     # Get Prismic upload preference
     prismic_choice: str = input(
@@ -1191,7 +1222,7 @@ def main() -> None:
             # Upload to Prismic if enabled
             if upload_to_prismic:
                 prismic_result = generator.upload_to_prismic(
-                    json_path, skip_prismic_upload)
+                    json_path, skip_prismic_upload, selected_profile)
 
                 if prismic_result["success"]:
                     if prismic_result.get("skipped"):

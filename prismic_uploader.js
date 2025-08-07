@@ -15,6 +15,29 @@ const PRISMIC_API_KEY = process.env.PRISMIC_API_KEY;
 const REPOSITORY_NAME = 'factory-ai';
 const DEBUG = process.env.DEBUG === 'true' || process.argv.includes('--debug');
 
+// Profile data helper function
+function getProfileData(profileName = 'tim') {
+  const profiles = {
+    tim: {
+      slice_type: 'profile_tim',
+      field_name: 'tim1',
+      display_name: 'Tim Cheung, CTO and Co-Founder of Factory AI'
+    },
+    jp: {
+      slice_type: 'profile_jp',
+      field_name: 'jp1',
+      display_name: 'JP, CEO and Co-founder of Factory AI'
+    },
+    luka: {
+      slice_type: 'profile_luka', 
+      field_name: 'luka1',
+      display_name: 'Luka, Founding AI Engineer of Factory AI'
+    }
+  };
+  
+  return profiles[profileName] || profiles.tim;
+}
+
 // Debug logging utility
 function debugLog(message, data = null) {
   if (DEBUG) {
@@ -391,7 +414,7 @@ async function createImageAsset(localPath, alt, filename) {
 }
 
 // Function to process a single JSON file
-async function processSingleFile(jsonFilePath, skipUpload = false) {
+async function processSingleFile(jsonFilePath, skipUpload = false, profile = 'tim') {
   const startTime = Date.now();
   debugLog('Starting processSingleFile', { jsonFilePath, skipUpload });
   
@@ -488,10 +511,10 @@ async function processSingleFile(jsonFilePath, skipUpload = false) {
           }
         },
         {
-          slice_type: 'profile_tim',
+          slice_type: getProfileData(profile).slice_type,
           variation: 'default',
           primary: {
-            tim1: 'Tim Cheung, CTO and Co-Founder of Factory AI'
+            [getProfileData(profile).field_name]: getProfileData(profile).display_name
           }
         }
       ]
@@ -676,7 +699,7 @@ async function processSingleFile(jsonFilePath, skipUpload = false) {
 }
 
 // Function to read and process all content files
-async function processContentFiles(migration) {
+async function processContentFiles(migration, profile = 'tim') {
   const startTime = Date.now();
   const contentDir = './generated_content';
   
@@ -767,10 +790,10 @@ async function processContentFiles(migration) {
             }
           },
           {
-            slice_type: 'profile_tim',
+            slice_type: getProfileData(profile).slice_type,
             variation: 'default',
             primary: {
-              tim1: 'Tim Cheung, CTO and Co-Founder of Factory AI'
+              [getProfileData(profile).field_name]: getProfileData(profile).display_name
             }
           }
         ]
@@ -823,7 +846,7 @@ async function processContentFiles(migration) {
 }
 
 // Main migration function for batch upload
-async function runBatchMigration() {
+async function runBatchMigration(profile = 'tim') {
   const startTime = Date.now();
   debugLog('Starting batch migration process');
   
@@ -844,7 +867,7 @@ async function runBatchMigration() {
     
     // Process all content files with migration instance
     debugLog('Processing content files');
-    const documents = await processContentFiles(migration);
+    const documents = await processContentFiles(migration, profile);
     
     infoLog(`Successfully processed ${documents.length} documents`);
     
@@ -1000,12 +1023,13 @@ async function main() {
 🚀 Prismic Content Uploader
 
 Usage:
-  node prismic_uploader.js <json_file> [--skip-upload] [--debug]
-  node prismic_uploader.js --batch [--skip-upload] [--debug]
+  node prismic_uploader.js <json_file> [--skip-upload] [--profile <name>] [--debug]
+  node prismic_uploader.js --batch [--skip-upload] [--profile <name>] [--debug]
 
 Options:
   --skip-upload    Skip actual upload (test mode)
   --batch          Process all files in generated_content/
+  --profile <name> Author profile to use (tim, jp, luka) [default: tim]
   --debug          Enable detailed debug logging
 
 Environment Variables:
@@ -1013,8 +1037,8 @@ Environment Variables:
 
 Examples:
   node prismic_uploader.js generated_content/my-keyword.json
-  node prismic_uploader.js generated_content/my-keyword.json --skip-upload
-  node prismic_uploader.js --batch --debug
+  node prismic_uploader.js generated_content/my-keyword.json --skip-upload --profile jp
+  node prismic_uploader.js --batch --debug --profile luka
     `);
     process.exit(1);
   }
@@ -1022,7 +1046,14 @@ Examples:
   const skipUpload = args.includes('--skip-upload');
   const batchMode = args.includes('--batch');
   
-  debugLog('CLI arguments parsed', { skipUpload, batchMode, debugMode: DEBUG });
+  // Parse profile parameter
+  let profile = 'tim'; // default
+  const profileIndex = args.indexOf('--profile');
+  if (profileIndex !== -1 && profileIndex + 1 < args.length) {
+    profile = args[profileIndex + 1];
+  }
+  
+  debugLog('CLI arguments parsed', { skipUpload, batchMode, profile, debugMode: DEBUG });
   
   if (skipUpload) {
     infoLog(`🧪 Running in test mode - no uploads will be performed`);
@@ -1042,7 +1073,7 @@ Examples:
         process.exit(1);
       }
       
-      await runBatchMigration();
+      await runBatchMigration(profile);
       
     } else {
       const targetFile = args[0];
@@ -1054,7 +1085,7 @@ Examples:
         process.exit(1);
       }
       
-      const result = await processSingleFile(targetFile, skipUpload);
+      const result = await processSingleFile(targetFile, skipUpload, profile);
       
       if (result.success) {
         const totalTime = Date.now() - startTime;
