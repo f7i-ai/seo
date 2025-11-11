@@ -24,6 +24,8 @@ interface ProductUpdateEmailProps {
   ctaText?: string;
   ctaUrl?: string;
   showComingSoon?: boolean;
+  domain?: string;
+  unsubscribeUrl?: string;
 }
 
 export const ProductUpdateEmail = ({
@@ -36,7 +38,7 @@ export const ProductUpdateEmail = ({
     },
     {
       number: 2,
-      title: "Batch Updates",
+      title: "Bulk Updates",
       description:
         "Stop updating assets one at a time. Bulk edit hundreds of work orders and equipment records instantly. Hours of repetitive work, done in seconds.",
     },
@@ -56,6 +58,8 @@ export const ProductUpdateEmail = ({
   ctaText = "Get Started",
   ctaUrl = "https://app.f7i.ai",
   showComingSoon = false,
+  domain = "{{domain}}",
+  unsubscribeUrl = "{{amazonSESUnsubscribeUrl}}",
 }: ProductUpdateEmailProps) => (
   <Html lang="en">
     <Head>
@@ -73,9 +77,15 @@ export const ProductUpdateEmail = ({
           .dark-mode-logo-border { border-color: #333333 !important; }
         }
         @media only screen and (max-width: 600px) {
-          .product-stack-container {
-            height: 180px !important;
-            margin-bottom: 8px !important;
+          .update-card-mobile {
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+            box-shadow: none !important;
+            margin-bottom: 32px !important;
+          }
+          .content-mobile {
+            padding: 0 16px !important;
           }
         }
       `}</style>
@@ -94,16 +104,10 @@ export const ProductUpdateEmail = ({
               }}
             >
               <Img
-                src="http://cdn.mcauto-images-production.sendgrid.net/9fd54d63e9989f76/642d38ed-92d9-4e05-8704-8e3c11496fff/1250x1250.png"
+                src="http://cdn.mcauto-images-production.sendgrid.net/9fd54d63e9989f76/7e3fb38f-97e0-47e4-953e-3cb893fa64b0/100x100.png"
                 alt="Factory AI Logo"
                 width="32"
                 height="32"
-                style={{
-                  width: "32px",
-                  height: "32px",
-                  display: "block",
-                  filter: "brightness(0)",
-                }}
               />
             </div>
           </div>
@@ -120,10 +124,10 @@ export const ProductUpdateEmail = ({
         </Section>
 
         {/* Product Updates */}
-        <Section style={content}>
+        <Section style={content} className="content-mobile">
           {updates.map((update, index) => (
             <div key={update.number}>
-              <div style={updateCard}>
+              <div style={updateCard} className="update-card-mobile">
                 {index === 0 && (
                   <Img
                     src="http://cdn.mcauto-images-production.sendgrid.net/9fd54d63e9989f76/799ec221-4d94-4207-8872-fe8676dd9cf5/1536x1024.png"
@@ -141,7 +145,7 @@ export const ProductUpdateEmail = ({
                 {index === 1 && (
                   <Img
                     src="http://cdn.mcauto-images-production.sendgrid.net/9fd54d63e9989f76/59dc0f7a-6659-4741-80cc-2e8268abcb6f/1200x800.png"
-                    alt="Batch Updates"
+                    alt="Bulk Updates"
                     style={{
                       width: "100%",
                       height: "auto",
@@ -167,94 +171,26 @@ export const ProductUpdateEmail = ({
                   />
                 )}
                 {index === 3 && (
-                  <div
-                    className="product-stack-container"
+                  <Img
+                    src="http://cdn.mcauto-images-production.sendgrid.net/9fd54d63e9989f76/7336e12e-48ef-4d3a-9c34-cbe4643aa600/1200x400.png"
+                    alt="Factory AI Predict"
                     style={{
-                      position: "relative" as const,
                       width: "100%",
-                      height: "240px",
+                      maxWidth: "600px",
+                      height: "auto",
+                      minHeight: "220px",
                       marginBottom: "28px",
+                      marginTop: "8px",
+                      borderRadius: "8px",
+                      display: "block",
                     }}
-                  >
-                    {/* Background Image */}
-                    <div
-                      style={{
-                        position: "absolute" as const,
-                        top: "0",
-                        left: "50%",
-                        transform: "translateX(-50%) rotate(-3deg)",
-                        width: "75%",
-                        zIndex: "1",
-                      }}
-                    >
-                      <Img
-                        src="http://cdn.mcauto-images-production.sendgrid.net/9fd54d63e9989f76/f40ea267-9ace-4824-84df-b6491e16d143/1892x949.png"
-                        alt="Factory AI Platform"
-                        style={{
-                          width: "100%",
-                          height: "auto",
-                          borderRadius: "8px",
-                          border: "1px solid #000000",
-                          boxShadow:
-                            "0 12px 35px -8px rgba(0, 0, 0, 0.1), 0 5px 10px -5px rgba(0, 0, 0, 0.05)",
-                        }}
-                      />
-                    </div>
-                    {/* Middle Image */}
-                    <div
-                      style={{
-                        position: "absolute" as const,
-                        top: "30px",
-                        left: "50%",
-                        transform: "translateX(-50%) rotate(1deg)",
-                        width: "80%",
-                        zIndex: "2",
-                      }}
-                    >
-                      <Img
-                        src="http://cdn.mcauto-images-production.sendgrid.net/9fd54d63e9989f76/e9558b8d-e1be-4184-91ce-bf35745f1412/1895x967.png"
-                        alt="Factory AI Dashboard"
-                        style={{
-                          width: "100%",
-                          height: "auto",
-                          borderRadius: "8px",
-                          border: "1px solid #000000",
-                          boxShadow:
-                            "0 18px 45px -10px rgba(0, 0, 0, 0.15), 0 7px 14px -7px rgba(0, 0, 0, 0.08)",
-                        }}
-                      />
-                    </div>
-                    {/* Front Image */}
-                    <div
-                      style={{
-                        position: "absolute" as const,
-                        top: "60px",
-                        left: "50%",
-                        transform: "translateX(-50%) rotate(-2deg)",
-                        width: "85%",
-                        zIndex: "3",
-                      }}
-                    >
-                      <Img
-                        src="http://cdn.mcauto-images-production.sendgrid.net/9fd54d63e9989f76/0cdd9594-ed47-46db-9278-ecf07053adef/1898x966.png"
-                        alt="Factory AI Predict"
-                        style={{
-                          width: "100%",
-                          height: "auto",
-                          borderRadius: "8px",
-                          border: "1px solid #000000",
-                          boxShadow:
-                            "0 24px 55px -12px rgba(0, 0, 0, 0.2), 0 10px 18px -8px rgba(0, 0, 0, 0.12)",
-                        }}
-                      />
-                    </div>
-                  </div>
+                  />
                 )}
                 <div style={updateNumber}>{update.number}</div>
                 <Text style={updateTitle}>{update.title}</Text>
                 <Text style={updateDescription}>{update.description}</Text>
                 {index < 2 && (
-                  <Link href={ctaUrl} style={inlineCtaButton}>
+                  <Link href={domain} style={inlineCtaButton}>
                     Try it now →
                   </Link>
                 )}
@@ -265,7 +201,7 @@ export const ProductUpdateEmail = ({
 
         {/* Coming Soon Section */}
         {showComingSoon && (
-          <Section style={comingSoon}>
+          <Section style={comingSoon} className="update-card-mobile">
             <div style={comingSoonBadge}>Coming Soon</div>
             <Text style={comingSoonTitle}>
               Predict Agent: Your AI Vibration Analyst
@@ -465,16 +401,8 @@ export const ProductUpdateEmail = ({
             Factory AI &copy; 2025. All rights reserved.
           </Text>
           <Text style={footerText}>
-            <Link href="#" style={footerLink}>
+            <Link href={unsubscribeUrl} style={footerLink}>
               Unsubscribe
-            </Link>{" "}
-            •{" "}
-            <Link href="#" style={footerLink}>
-              Preferences
-            </Link>{" "}
-            •{" "}
-            <Link href="#" style={footerLink}>
-              View in Browser
             </Link>
           </Text>
         </Section>
@@ -716,6 +644,7 @@ const footerText = {
 const footerLink = {
   color: "#3ecf8e",
   textDecoration: "none",
+  cursor: "pointer",
 };
 
 const socialContainer = {
