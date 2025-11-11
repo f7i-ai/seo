@@ -1,0 +1,30 @@
+{
+  "name": "emails",
+  "version": "1.0.0",
+  "description": "React Email templates for SEO notifications",
+  "main": "index.js",
+  "scripts": {
+    "dev": "email dev",
+    "export": "email export"
+  },
+  "keywords": [
+    "react",
+    "email",
+    "templates"
+  ],
+  "author": "f7i.ai",
+  "license": "MIT",
+  "dependencies": {
+    "@react-email/components": "^0.5.7",
+    "lucide-react": "^0.548.0",
+    "react": "^19.2.0",
+    "react-email": "^4.3.2"
+  },
+  "devDependencies": {
+    "@react-email/preview-server": "^4.3.2",
+    "@types/node": "^24.9.2",
+    "@types/react": "^19.2.2",
+    "archiver": "^7.0.1",
+    "typescript": "^5.9.3"
+  }
+}

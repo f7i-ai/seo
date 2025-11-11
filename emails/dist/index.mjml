@@ -1,0 +1,210 @@
+<mjml>
+  <mj-head>
+    <mj-title>November Product Updates - Factory AI</mj-title>
+    <mj-attributes>
+      <mj-text font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif" line-height="1.6" color="#0a0a0a" />
+      <mj-section padding="0" />
+    </mj-attributes>
+    <mj-style>
+      .update-number {
+        display: inline-block;
+        width: 28px;
+        height: 28px;
+        background: #000000;
+        color: #ffffff;
+        border-radius: 6px;
+        text-align: center;
+        line-height: 28px;
+        font-weight: 700;
+        font-size: 13px;
+      }
+      .inline-cta {
+        color: #3ecf8e;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .avatar {
+        border-radius: 50%;
+        border: 4px solid #ffffff;
+        width: 44px;
+        height: 44px;
+      }
+      .logo-grayscale {
+        filter: brightness(0);
+      }
+    </mj-style>
+  </mj-head>
+  <mj-body background-color="#fcfcfd">
+    <mj-section padding="48px 32px 32px">
+      <mj-column>
+        <!-- Logo -->
+        <mj-image 
+          src="img/logo.png" 
+          alt="Factory AI Logo" 
+          width="32px" 
+          align="center"
+          padding="0 0 8px 0"
+          css-class="logo-grayscale"
+        />
+        <mj-text align="center" font-size="24px" font-weight="600" padding="0 0 8px 0">
+          Factory AI
+        </mj-text>
+        <mj-text align="center" font-size="14px" color="#666666" padding="0">
+          Stop downtime before it stops you
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Hero -->
+    <mj-section padding="0 32px 32px">
+      <mj-column>
+        <mj-text align="center" font-size="32px" font-weight="600" line-height="1.2" padding="0 0 16px 0">
+          November Product Updates
+        </mj-text>
+        <mj-text align="center" font-size="16px" color="#525252" line-height="1.5" padding="0">
+          We have 4 new exciting updates
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Update 1: Factory AI Agent -->
+    <mj-section padding="0 32px">
+      <mj-column background-color="#ffffff" border="1px solid #e5e7eb" border-radius="16px" padding="32px">
+        <mj-image 
+          src="img/factory-1.png" 
+          alt="Factory AI Agent" 
+          border-radius="8px"
+          padding="0 0 20px 0"
+        />
+        <mj-text padding="0 0 14px 0">
+          <span class="update-number">1</span>
+        </mj-text>
+        <mj-text font-size="22px" font-weight="700" color="#111827" padding="0 0 12px 0" line-height="1.2">
+          Factory AI Agent
+        </mj-text>
+        <mj-text font-size="15px" color="#6b7280" line-height="1.7" padding="0 0 12px 0">
+          Eliminate hours of manual data entry and scheduling. AI automatically creates assets, plans maintenance, and prioritizes work based on your equipment's real condition. Spend your time fixing problems, not filling out forms.
+        </mj-text>
+        <mj-text padding="0">
+          <a href="https://app.f7i.ai" class="inline-cta">Try it now →</a>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Update 2: Batch Updates -->
+    <mj-section padding="20px 32px 0">
+      <mj-column background-color="#ffffff" border="1px solid #e5e7eb" border-radius="16px" padding="32px">
+        <mj-image 
+          src="img/factory-2.png" 
+          alt="Batch Updates" 
+          border-radius="8px"
+          padding="0 0 20px 0"
+        />
+        <mj-text padding="0 0 14px 0">
+          <span class="update-number">2</span>
+        </mj-text>
+        <mj-text font-size="22px" font-weight="700" color="#111827" padding="0 0 12px 0" line-height="1.2">
+          Batch Updates
+        </mj-text>
+        <mj-text font-size="15px" color="#6b7280" line-height="1.7" padding="0 0 12px 0">
+          Stop updating assets one at a time. Bulk edit hundreds of work orders and equipment records instantly. Hours of repetitive work, done in seconds.
+        </mj-text>
+        <mj-text padding="0">
+          <a href="https://app.f7i.ai" class="inline-cta">Try it now →</a>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Update 3: Voice-Enabled Work Orders -->
+    <mj-section padding="20px 32px 0">
+      <mj-column background-color="#ffffff" border="1px solid #e5e7eb" border-radius="16px" padding="32px">
+        <mj-image 
+          src="img/factory-3.png" 
+          alt="Voice-Enabled Work Orders" 
+          border-radius="8px"
+          padding="0 0 20px 0"
+        />
+        <mj-text padding="0 0 14px 0">
+          <span class="update-number">3</span>
+        </mj-text>
+        <mj-text font-size="22px" font-weight="700" color="#111827" padding="0 0 12px 0" line-height="1.2">
+          Voice-Enabled Work Orders
+        </mj-text>
+        <mj-text font-size="15px" color="#6b7280" line-height="1.7" padding="0">
+          Stop pulling off gloves to type. Speak your updates in any language and AI handles the rest. Create work orders, update asset status, all hands-free on the factory floor.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Update 4: What's Next with stacked images -->
+    <mj-section padding="20px 32px 0">
+      <mj-column background-color="#ffffff" border="1px solid #e5e7eb" border-radius="16px" padding="32px">
+        <!-- Stacked Images Container -->
+        <mj-image 
+          src="img/product-3.png" 
+          alt="Factory AI Predict" 
+          border-radius="8px"
+          padding="0 0 20px 0"
+        />
+        <mj-text padding="0 0 14px 0">
+          <span class="update-number">4</span>
+        </mj-text>
+        <mj-text font-size="22px" font-weight="700" color="#111827" padding="0 0 12px 0" line-height="1.2">
+          What's Next?
+        </mj-text>
+        <mj-text font-size="15px" color="#6b7280" line-height="1.7" padding="0">
+          Anomaly alerts without context are useless. Now ask AI follow-up questions: "What's causing this spike?" "When did it start?" "Any similar failures?" Get instant answers instead of digging through data for hours. No more static reports—ask dynamic questions and get real-time insights tailored to your exact situation.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- CTA Section -->
+    <mj-section padding="48px 32px 20px">
+      <mj-column>
+        <mj-button 
+          background-color="#000000" 
+          color="#ffffff" 
+          border-radius="8px"
+          font-weight="700"
+          font-size="14px"
+          href="https://app.f7i.ai"
+          padding="0 0 16px 0"
+        >
+          Explore All Features
+        </mj-button>
+        <mj-text align="center" font-size="14px" color="#666666" padding="0 0 20px 0">
+          Have questions? <a href="mailto:support@f7i.ai" style="color: #3ecf8e; text-decoration: none; font-weight: 600;">Talk to our team</a>
+        </mj-text>
+        
+        <!-- Avatars -->
+        <mj-table padding="0">
+          <tr>
+            <td style="text-align: center;">
+              <img src="img/t.png" alt="Tim Cheung" class="avatar" style="margin-right: -12px;" />
+              <img src="img/jp.png" alt="Jean-Philippe Picard" class="avatar" style="margin-right: -12px;" />
+              <img src="img/lk.png" alt="Luka Gamulin" class="avatar" style="margin-right: -12px;" />
+              <img src="img/alec.png" alt="Alec Panetta" class="avatar" />
+            </td>
+          </tr>
+        </mj-table>
+      </mj-column>
+    </mj-section>
+
+    <!-- Footer -->
+    <mj-section padding="32px" border-top="1px solid #d1d5db">
+      <mj-column>
+        <mj-social font-size="15px" icon-size="20px" mode="horizontal" padding="0 0 16px 0">
+          <mj-social-element name="linkedin" href="https://www.linkedin.com/company/factory-ai" />
+        </mj-social>
+        <mj-text align="center" font-size="13px" color="#999999" padding="0 0 8px 0">
+          Factory AI © 2025. All rights reserved.
+        </mj-text>
+        <mj-text align="center" font-size="13px" color="#999999" padding="0">
+          <a href="{unsubscribe_link}" style="color: #3ecf8e; text-decoration: none;">Unsubscribe</a>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
+
