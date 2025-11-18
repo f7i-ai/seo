@@ -15,12 +15,14 @@ interface ContentPublishedEmailProps {
   title?: string;
   url?: string;
   publishDate?: string;
+  recipientEmail?: string;
 }
 
 export const ContentPublishedEmail = ({
   title = "Your Content",
   url = "https://f7i.ai",
   publishDate = new Date().toLocaleDateString(),
+  recipientEmail = "{{email}}",
 }: ContentPublishedEmailProps) => (
   <Html>
     <Head />
@@ -44,6 +46,11 @@ export const ContentPublishedEmail = ({
         </Link>
         <Text style={footer}>
           This is an automated notification from your SEO content generator.
+        </Text>
+        <Text style={unsubscribe}>
+          <Link href={`https://f7i.ai/unsubscribe?email=${recipientEmail}`} style={unsubscribeLink}>
+            Unsubscribe
+          </Link>
         </Text>
       </Container>
     </Body>
@@ -112,5 +119,18 @@ const footer = {
   fontSize: "12px",
   lineHeight: "22px",
   marginTop: "24px",
+};
+
+const unsubscribe = {
+  color: "#898989",
+  fontSize: "12px",
+  lineHeight: "22px",
+  marginTop: "8px",
+};
+
+const unsubscribeLink = {
+  color: "#0070f3",
+  fontSize: "12px",
+  textDecoration: "underline",
 };
 

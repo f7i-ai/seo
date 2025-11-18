@@ -10,7 +10,6 @@ import {
   Row,
   Column,
 } from "@react-email/components";
-import { Linkedin } from "lucide-react";
 import * as React from "react";
 
 interface UpdateItem {
@@ -25,7 +24,7 @@ interface ProductUpdateEmailProps {
   ctaUrl?: string;
   showComingSoon?: boolean;
   domain?: string;
-  unsubscribeUrl?: string;
+  recipientEmail?: string;
 }
 
 export const ProductUpdateEmail = ({
@@ -56,10 +55,10 @@ export const ProductUpdateEmail = ({
     },
   ],
   ctaText = "Get Started",
-  ctaUrl = "https://app.f7i.ai",
+  ctaUrl = "{{Attributes.Customer.Attributes.domain}}",
   showComingSoon = false,
-  domain = "{{domain}}",
-  unsubscribeUrl = "{{amazonSESUnsubscribeUrl}}",
+   domain = "{{Attributes.Customer.Attributes.domain}}",
+  recipientEmail = "{{Attributes.Customer.EmailAddress}}",
 }: ProductUpdateEmailProps) => (
   <Html lang="en">
     <Head>
@@ -190,7 +189,7 @@ export const ProductUpdateEmail = ({
                 <Text style={updateTitle}>{update.title}</Text>
                 <Text style={updateDescription}>{update.description}</Text>
                 {index < 2 && (
-                  <Link href={domain} style={inlineCtaButton}>
+                  <Link href="{{Attributes.Customer.Attributes.domain}}" style={inlineCtaButton}>
                     Try it now →
                   </Link>
                 )}
@@ -226,7 +225,7 @@ export const ProductUpdateEmail = ({
 
         {/* CTA */}
         <Section style={cta}>
-          <Link href={ctaUrl} style={ctaButton}>
+          <Link href="{{Attributes.Customer.Attributes.domain}}" style={ctaButton}>
             Explore All Features
           </Link>
           <Text style={ctaSubtext}>
@@ -393,7 +392,13 @@ export const ProductUpdateEmail = ({
         <Section style={footer}>
           <div style={socialContainer}>
             <Link href="https://www.linkedin.com/company/factory-ai">
-              <Linkedin size={20} color="#666666" />
+              <Img 
+                src="http://cdn.mcauto-images-production.sendgrid.net/9fd54d63e9989f76/0a7a9470-68d1-4f52-922d-37bc43bbcfb8/100x100.png"
+                alt="LinkedIn"
+                width="30"
+                height="30"
+                style={{ display: "inline-block" }}
+              />
             </Link>
           </div>
           
@@ -401,7 +406,7 @@ export const ProductUpdateEmail = ({
             Factory AI &copy; 2025. All rights reserved.
           </Text>
           <Text style={footerText}>
-            <Link href={unsubscribeUrl} style={footerLink}>
+            <Link href="https://f7i.ai/unsubscribe?email={{Attributes.Customer.EmailAddress}}" style={footerLink}>
               Unsubscribe
             </Link>
           </Text>

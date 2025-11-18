@@ -12,10 +12,12 @@ import * as React from "react";
 
 interface WelcomeEmailProps {
   username?: string;
+  recipientEmail?: string;
 }
 
 export const WelcomeEmail = ({
   username = "there",
+  recipientEmail = "{{email}}",
 }: WelcomeEmailProps) => (
   <Html>
     <Head />
@@ -35,6 +37,11 @@ export const WelcomeEmail = ({
         </Link>
         <Text style={footer}>
           If you didn't create this account, you can safely ignore this email.
+        </Text>
+        <Text style={unsubscribe}>
+          <Link href={`https://f7i.ai/unsubscribe?email=${recipientEmail}`} style={link}>
+            Unsubscribe
+          </Link>
         </Text>
       </Container>
     </Body>
@@ -80,5 +87,12 @@ const footer = {
   fontSize: "12px",
   lineHeight: "22px",
   marginTop: "12px",
+};
+
+const unsubscribe = {
+  color: "#898989",
+  fontSize: "12px",
+  lineHeight: "22px",
+  marginTop: "8px",
 };
 
