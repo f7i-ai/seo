@@ -12,6 +12,7 @@ from urllib.parse import urlparse
 import os
 from dotenv import load_dotenv
 import google.generativeai as genai  # type: ignore
+from google import genai as genai_new  # type: ignore
 import openai
 from bs4 import BeautifulSoup
 from pydantic import BaseModel, Field, field_validator, model_validator
@@ -169,10 +170,15 @@ class SEOContentGenerator:
     """Main class for generating SEO-optimized content with proper typing"""
 
     def __init__(self) -> None:
-        # Configure Gemini 2.5 Pro
+        # Configure Gemini 3 Pro
         genai.configure(api_key=os.getenv('GEMINI_API_KEY'))  # type: ignore
         self.gemini_model = genai.GenerativeModel(  # type: ignore
-            'gemini-2.5-pro-preview-03-25')
+            'gemini-3-pro-preview')
+
+        # Configure Gemini image generation client (uses newer SDK)
+        self.gemini_image_client = genai_new.Client(  # type: ignore
+            api_key=os.getenv('GEMINI_API_KEY')
+        )
 
         self.openai_client: openai.OpenAI = openai.OpenAI(
             api_key=os.getenv('OPENAI_API_KEY')
@@ -652,45 +658,61 @@ class SEOContentGenerator:
         """
 
         content_prompt = f"""
-        Write a comprehensive, in-depth blog post for the keyword: "{keyword}"
+        Write a comprehensive blog post for the keyword: "{keyword}"
 
         Research insights:
         {research_summary}
         {internal_urls_context}
 
-        CRITICAL REQUIREMENTS:
-        - MINIMUM 2500 words in the BODY_CONTENT section - this is NON-NEGOTIABLE
-        - Target 3000-4000 words for maximum SEO impact
-        - Write for maintenance managers, facility operators, and industrial decision-makers
-        - Include actionable insights, practical advice, real-world examples, and step-by-step guidance
-        - Avoid content similar to competitors: getmaintainx.com, limblecmms.com, upkeep.com
-        - Cover the topic comprehensively with multiple angles and detailed explanations
-        - The year is 2025.
+        CONTENT PHILOSOPHY - QUESTION-DRIVEN DEPTH:
+        Think like a user interacting with an AI assistant. They start with an initial question, get an answer, then ask follow-up questions to go deeper. Structure this article the same way:
 
-        CONTENT STRUCTURE REQUIREMENTS:
-        - Use multiple H2 sections (## headings) to organize content
-        - Include H3 subsections (### headings) for detailed coverage
-        - Provide concrete examples, case studies, and actionable tips
-        - Include troubleshooting guides, best practices, and implementation steps
-        - Add technical details, calculations, and industry standards where relevant
+        1. IDENTIFY THE CORE QUESTION: What is the searcher really asking when they type "{keyword}"? What problem are they trying to solve? What decision are they trying to make?
+
+        2. ANSWER IT DIRECTLY: Don't bury the answer. Give them the core insight upfront.
+
+        3. ANTICIPATE FOLLOW-UP QUESTIONS: After reading the initial answer, what would they naturally ask next? Build sections around these follow-ups:
+           - "How does this actually work in practice?"
+           - "What are the common mistakes to avoid?"
+           - "How do I get started?"
+           - "What does this cost / what's the ROI?"
+           - "What if my situation is different because of X?"
+           - "How do I know if it's working?"
+           - "What are the edge cases or exceptions?"
+
+        4. GO DEEPER ON EACH FOLLOW-UP: Each follow-up answer should itself anticipate the next level of questions. This creates natural depth rather than superficial breadth.
+
+        AUDIENCE & CONTEXT:
+        - Write for maintenance managers, facility operators, and industrial decision-makers
+        - These are busy professionals who need actionable information, not fluff
+        - They've likely already read generic articles - give them insights they haven't seen
+        - Avoid content similar to competitors: getmaintainx.com, limblecmms.com, upkeep.com
+        - The year is 2026.
+
+        WHAT MAKES CONTENT VALUABLE:
+        - Specific numbers, thresholds, and benchmarks (not "regularly" but "every 500 hours")
+        - Real scenarios that acknowledge complexity ("If your facility runs 24/7, here's how this changes...")
+        - Decision frameworks ("Use this approach when X, but switch to Y when Z")
+        - Honest trade-offs ("This method is faster but requires more upfront investment")
+        - Troubleshooting actual problems ("If you're seeing X symptom, check Y first")
+
+        STRUCTURE REQUIREMENTS:
+        - MINIMUM 2500 words, target 3000-4000 for comprehensive coverage
+        - Use H2 sections (##) for major follow-up questions/topics
+        - Use H3 subsections (###) for drilling into specifics
+        - Each section should feel like a complete answer to a question someone would actually ask
 
         MARKDOWN LINK REQUIREMENTS:
-        - EMBED 3-5 internal links directly in the BODY_CONTENT using markdown format: [anchor text](/url/path)
-        - Use ONLY URLs from the available internal URLs list provided above
-        - EMBED 2-3 external links to authoritative sources using markdown format: [anchor text](https://example.com)
-        - Use reputable domains like: isixsigma.com, nist.gov, ieee.org, asme.org, reliabilityweb.com, maintenanceworld.com
-        - Place links naturally in context where they add value
+        - EMBED 3-5 internal links naturally in context using: [anchor text](/url/path)
+        - Use ONLY URLs from the available internal URLs list above
+        - EMBED 2-3 external links to authoritative sources: [anchor text](https://example.com)
+        - Prefer: isixsigma.com, nist.gov, ieee.org, asme.org, reliabilityweb.com, maintenanceworld.com
 
         IMAGE PROMPT REQUIREMENTS:
-        - Generate a hero image for the blog post using the IMAGE_PROMPT section
-        - The image should be relevant manufacturing, maintenance, and operations and the keyword and the content of the blog post
-        - The image should be a high-quality, photo realistic, professional image
-        - The image should not have any words or text.
-        - When showing multiple people, use different genders and ethnicities.
-        - People should be from diverse backgrounds.
-        - People should be wearing protective equipment, such as hard hats or hair nets, safety glasses, and high-visibility clothing or PPE and safety shoes.
-        - Image should show the full body of the people.
-        - Any handheld devices (such as tablets and smartphones) in the picture should only show the back of the device, not the display.
+        - Describe a hero image relevant to manufacturing, maintenance, and the keyword
+        - Photo-realistic, professional, no text/words in the image
+        - Diverse people wearing appropriate PPE (hard hats, safety glasses, high-visibility clothing)
+        - Show full body; any handheld devices show only the back, not the display
 
         Output in this EXACT structured markdown format:
 
@@ -703,19 +725,13 @@ class SEOContentGenerator:
         [150-160 characters, includes keyword and call-to-action]
 
         ## MAIN_TITLE
-        [Engaging H1 that includes the target keyword]
+        [Engaging H1 that includes the target keyword - frame it as addressing the core question]
 
         ## BODY_CONTENT
-        [MINIMUM 2500 words in clean Markdown format with proper H2 and H3 headings. Include 3-5 internal links and 2-3 external links embedded naturally in the content using markdown link syntax [text](url). This should be a comprehensive, detailed article covering all aspects of the topic.]
+        [MINIMUM 2500 words. Start by directly answering the core question, then structure remaining sections as follow-up questions and answers. Include internal and external links naturally embedded in the markdown.]
 
         ## IMAGE_PROMPT
-        [Detailed prompt for generating a relevant hero image related to the keyword]
-
-        REMEMBER:
-        - The BODY_CONTENT section must be at least 2500 words
-        - Include links directly in the markdown content, not as separate sections
-        - Only use internal URLs from the provided list
-        - Test external links to ensure they work
+        [Detailed prompt for generating the hero image]
         """
 
         try:
@@ -851,59 +867,54 @@ class SEOContentGenerator:
             logger.error(f"Error saving base64 image: {e}")
             return None
 
-    def generate_image_with_openai(self, image_prompt: str, keyword: str = "", output_dir: str = "generated_content") -> Tuple[Optional[str], Optional[str]]:
-        """Generate hero image using OpenAI GPT-4 Image Generation and save it locally"""
+    def generate_image_with_gemini(self, image_prompt: str, keyword: str = "", output_dir: str = "generated_content") -> Tuple[Optional[str], Optional[str]]:
+        """Generate hero image using Gemini 3 Pro Image Preview and save it locally"""
         try:
             logger.info(f"Generating image with prompt: {image_prompt}")
             logger.debug(f"Prompt length: {len(image_prompt)} characters")
 
-            # Use the actual image prompt from Gemini
-            logger.info(f"Calling OpenAI GPT-4 Image Generation API...")
-            response = self.openai_client.images.generate(
-                model="gpt-image-1",
-                prompt=image_prompt,
-                size="1536x1024",
-                quality="auto",
-                n=1,
+            logger.info(f"Calling Gemini Image Generation API...")
+            response = self.gemini_image_client.models.generate_content(  # type: ignore
+                model="gemini-3-pro-image-preview",
+                contents=image_prompt,
+                config=genai_new.types.GenerateContentConfig(  # type: ignore
+                    response_modalities=['IMAGE'],
+                ),
             )
 
             logger.info(f"Image generated successfully!")
-            if response.data and len(response.data) > 0:
-                first_image = response.data[0]
+            # Check for image data in the response parts
+            if response.candidates and len(response.candidates) > 0:
+                content = response.candidates[0].content
+                if content is not None and content.parts is not None:
+                    for part in content.parts:
+                        if hasattr(part, 'inline_data') and part.inline_data is not None:
+                            inline_data = part.inline_data
+                            if inline_data.data is not None and keyword:
+                                # Create the output directory if it doesn't exist
+                                os.makedirs(output_dir, exist_ok=True)
 
-                # GPT-4 Image returns base64 data, not URLs
-                if hasattr(first_image, 'b64_json') and first_image.b64_json:
-                    logger.info(f"Received base64 image data")
+                                # Create local filename
+                                safe_keyword = keyword.replace(' ', '-').replace('/', '-')
+                                local_filename = f"{safe_keyword}.png"
+                                local_path = os.path.join(output_dir, local_filename)
 
-                    if keyword:
-                        local_path = self.save_base64_image(
-                            first_image.b64_json, keyword, output_dir)
-                        # For base64 images, we don't have a remote URL
-                        return None, local_path
-                    else:
-                        return None, None
+                                # Save the image data (already bytes from SDK)
+                                image_bytes = inline_data.data if isinstance(inline_data.data, bytes) else base64.b64decode(inline_data.data)
+                                with open(local_path, 'wb') as f:
+                                    f.write(image_bytes)
+                                logger.info(f"Image saved to: {local_path}")
 
-                # Fallback: check for URL (for compatibility with other models)
-                elif hasattr(first_image, 'url') and first_image.url:
-                    image_url = first_image.url
-                    logger.info(f"Image URL: {image_url[:50]}...")
+                                return None, local_path
+                            elif not keyword:
+                                return None, None
 
-                    if keyword:
-                        local_path = self.download_image_from_url(
-                            image_url, keyword, output_dir)
-                        return image_url, local_path
-                    else:
-                        return image_url, None
-                else:
-                    logger.error(f"No usable image data in response")
-                    return None, None
-            else:
-                logger.error(f"No image data received from OpenAI")
-                return None, None
+            logger.error(f"No image data received from Gemini")
+            return None, None
 
         except Exception as e:
             logger.error(
-                f"Error generating image with GPT-4 Image Generation: {e}")
+                f"Error generating image with Gemini Image Generation: {e}")
             logger.warning(f"No fallback model - returning None")
             return None, None
 
@@ -914,7 +925,7 @@ class SEOContentGenerator:
             "url": blog_post.image_url or "",
             "local_path": blog_post.local_image_path or "",
             "alt": f"Hero image for {blog_post.title}",
-            "source": "gpt-image-1" if blog_post.local_image_path and not blog_post.image_url else "url"
+            "source": "gemini-3-pro-image-preview" if blog_post.local_image_path and not blog_post.image_url else "url"
         }
 
         return PrismicData(
@@ -1201,7 +1212,7 @@ def main() -> None:
             # Generate image
             print("  🎨 Generating hero image...")
             logger.info("Generating hero image...")
-            image_url, local_image_path = generator.generate_image_with_openai(
+            image_url, local_image_path = generator.generate_image_with_gemini(
                 blog_post.image_prompt, keyword)
             blog_post.image_url = image_url
             blog_post.local_image_path = local_image_path
