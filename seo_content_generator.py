@@ -15,7 +15,7 @@ import google.generativeai as genai  # type: ignore
 from google import genai as genai_new  # type: ignore
 import openai
 from bs4 import BeautifulSoup
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import BaseModel, Field, field_validator, model_validator, ValidationError
 
 # Load environment variables
 load_dotenv()
@@ -475,7 +475,7 @@ class SEOContentGenerator:
             logger.info(f"Calling Gemini API...")
             api_start = time.time()
 
-            # Add retry logic for rate limiting
+            # Add retry logic for rate limiting and timeouts
             max_retries = 3
             response = None
             for attempt in range(max_retries):
@@ -485,20 +485,28 @@ class SEOContentGenerator:
                         generation_config=genai.types.GenerationConfig(  # type: ignore
                             temperature=0.3,
                             max_output_tokens=4000,  # Reduced for free tier
-                        )
+                        ),
+                        request_options={"timeout": 120}  # 2 minute timeout
                     )
                     break  # Success, exit retry loop
 
                 except Exception as e:
-                    if "429" in str(e) or "quota" in str(e).lower():
-                        wait_time = min(60 * (attempt + 1),
-                                        300)  # Max 5 minutes
+                    error_str = str(e).lower()
+                    is_retryable = (
+                        "429" in str(e) or
+                        "quota" in error_str or
+                        "504" in str(e) or
+                        "deadline" in error_str or
+                        "timeout" in error_str
+                    )
+                    if is_retryable:
+                        wait_time = min(30 * (attempt + 1), 90)  # Max 90 seconds
                         logger.warning(
-                            f"Rate limit hit, waiting {wait_time}s (attempt {attempt + 1}/{max_retries})")
+                            f"Retryable error ({e}), waiting {wait_time}s (attempt {attempt + 1}/{max_retries})")
                         if attempt < max_retries - 1:  # Don't wait on last attempt
                             time.sleep(wait_time)
                             continue
-                    raise e  # Re-raise if not rate limit or last attempt
+                    raise e  # Re-raise if not retryable or last attempt
 
             if response is None:
                 raise Exception("Failed to get response from Gemini API")
@@ -735,7 +743,7 @@ class SEOContentGenerator:
         """
 
         try:
-            # Add retry logic for rate limiting
+            # Add retry logic for rate limiting and timeouts
             max_retries = 3
             response = None
             for attempt in range(max_retries):
@@ -745,20 +753,28 @@ class SEOContentGenerator:
                         generation_config=genai.types.GenerationConfig(  # type: ignore
                             temperature=0.4,
                             max_output_tokens=12000,  # Increased for full 4000-word content
-                        )
+                        ),
+                        request_options={"timeout": 180}  # 3 minute timeout for longer content
                     )
                     break  # Success, exit retry loop
 
                 except Exception as e:
-                    if "429" in str(e) or "quota" in str(e).lower():
-                        wait_time = min(60 * (attempt + 1),
-                                        300)  # Max 5 minutes
+                    error_str = str(e).lower()
+                    is_retryable = (
+                        "429" in str(e) or
+                        "quota" in error_str or
+                        "504" in str(e) or
+                        "deadline" in error_str or
+                        "timeout" in error_str
+                    )
+                    if is_retryable:
+                        wait_time = min(30 * (attempt + 1), 90)  # Max 90 seconds
                         logger.warning(
-                            f"Rate limit hit, waiting {wait_time}s (attempt {attempt + 1}/{max_retries})")
+                            f"Retryable error ({e}), waiting {wait_time}s (attempt {attempt + 1}/{max_retries})")
                         if attempt < max_retries - 1:  # Don't wait on last attempt
                             time.sleep(wait_time)
                             continue
-                    raise e  # Re-raise if not rate limit or last attempt
+                    raise e  # Re-raise if not retryable or last attempt
 
             if response is None:
                 raise Exception("Failed to get response from Gemini API")
@@ -778,16 +794,26 @@ class SEOContentGenerator:
             cleaned_body: str = self.validate_and_clean_markdown_links(
                 content_data.body)
 
-            return BlogPost(
-                keyword=keyword,
-                meta_title=content_data.meta_title,
-                meta_description=content_data.meta_description,
-                title=content_data.title,
-                body=cleaned_body,
-                image_prompt=content_data.image_prompt,
-                internal_links=[],  # No longer using separate link sections
-                external_links=[]   # Links are now embedded in the markdown
-            )
+            try:
+                return BlogPost(
+                    keyword=keyword,
+                    meta_title=content_data.meta_title,
+                    meta_description=content_data.meta_description,
+                    title=content_data.title,
+                    body=cleaned_body,
+                    image_prompt=content_data.image_prompt,
+                    internal_links=[],  # No longer using separate link sections
+                    external_links=[]   # Links are now embedded in the markdown
+                )
+            except ValidationError as e:
+                # Check if it's a word count error - save to drafts for review
+                error_str = str(e)
+                if "Body must have at least 2000 words" in error_str:
+                    word_count = len(cleaned_body.split())
+                    logger.warning(f"Content under minimum word count ({word_count}/2000), saving to drafts")
+                    self._save_draft(keyword, content_data, cleaned_body, word_count)
+                logger.error(f"Error generating content: {e}")
+                return None
 
         except Exception as e:
             logger.error(f"Error generating content: {e}")
@@ -869,19 +895,54 @@ class SEOContentGenerator:
 
     def generate_image_with_gemini(self, image_prompt: str, keyword: str = "", output_dir: str = "generated_content") -> Tuple[Optional[str], Optional[str]]:
         """Generate hero image using Gemini 3 Pro Image Preview and save it locally"""
+        logger.info(f"Generating image with prompt: {image_prompt}")
+        logger.debug(f"Prompt length: {len(image_prompt)} characters")
+
+        # Add retry logic for timeouts and transient errors
+        max_retries = 3
+        response = None
+
+        for attempt in range(max_retries):
+            try:
+                logger.info(f"Calling Gemini Image Generation API (attempt {attempt + 1}/{max_retries})...")
+                response = self.gemini_image_client.models.generate_content(  # type: ignore
+                    model="gemini-3-pro-image-preview",
+                    contents=image_prompt,
+                    config=genai_new.types.GenerateContentConfig(  # type: ignore
+                        response_modalities=['IMAGE'],
+                        automatic_function_calling=genai_new.types.AutomaticFunctionCallingConfig(  # type: ignore
+                            disable=True
+                        ),
+                    ),
+                )
+                break  # Success, exit retry loop
+
+            except Exception as e:
+                error_str = str(e).lower()
+                is_retryable = (
+                    "429" in str(e) or
+                    "quota" in error_str or
+                    "504" in str(e) or
+                    "deadline" in error_str or
+                    "timeout" in error_str or
+                    "afc" in error_str
+                )
+                if is_retryable and attempt < max_retries - 1:
+                    wait_time = min(30 * (attempt + 1), 60)  # Max 60 seconds
+                    logger.warning(
+                        f"Retryable error ({e}), waiting {wait_time}s (attempt {attempt + 1}/{max_retries})")
+                    time.sleep(wait_time)
+                    continue
+                else:
+                    logger.error(f"Error generating image with Gemini: {e}")
+                    logger.warning(f"No fallback model - returning None")
+                    return None, None
+
+        if response is None:
+            logger.error(f"Failed to get image response after {max_retries} attempts")
+            return None, None
+
         try:
-            logger.info(f"Generating image with prompt: {image_prompt}")
-            logger.debug(f"Prompt length: {len(image_prompt)} characters")
-
-            logger.info(f"Calling Gemini Image Generation API...")
-            response = self.gemini_image_client.models.generate_content(  # type: ignore
-                model="gemini-3-pro-image-preview",
-                contents=image_prompt,
-                config=genai_new.types.GenerateContentConfig(  # type: ignore
-                    response_modalities=['IMAGE'],
-                ),
-            )
-
             logger.info(f"Image generated successfully!")
             # Check for image data in the response parts
             if response.candidates and len(response.candidates) > 0:
@@ -914,8 +975,7 @@ class SEOContentGenerator:
 
         except Exception as e:
             logger.error(
-                f"Error generating image with Gemini Image Generation: {e}")
-            logger.warning(f"No fallback model - returning None")
+                f"Error processing image response: {e}")
             return None, None
 
     def format_for_prismic(self, blog_post: BlogPost) -> PrismicData:
@@ -967,6 +1027,14 @@ class SEOContentGenerator:
         else:
             return False
 
+    def check_draft_exists(self, keyword: str, output_dir: str = "generated_content/drafts") -> bool:
+        """Check if a draft exists for this keyword"""
+        safe_keyword = re.sub(r'[^\w\s-]', '', keyword).strip()
+        safe_keyword = re.sub(r'[-\s]+', '-', safe_keyword)
+
+        md_filepath = os.path.join(output_dir, f"{safe_keyword[:50]}.md")
+        return os.path.exists(md_filepath)
+
     def save_output(self, prismic_data: PrismicData, keyword: str, body_markdown: str, output_dir: str = "generated_content") -> Tuple[str, str]:
         """Save generated content to JSON file and separate markdown file"""
         os.makedirs(output_dir, exist_ok=True)
@@ -1013,6 +1081,48 @@ class SEOContentGenerator:
             if os.path.exists(image_file):
                 logger.info(f"  Image: {image_file}")
                 break
+
+        return json_filepath, md_filepath
+
+    def _save_draft(self, keyword: str, content_data: ContentData, body: str, word_count: int, output_dir: str = "generated_content/drafts") -> Tuple[str, str]:
+        """Save under-length content to drafts folder for review"""
+        os.makedirs(output_dir, exist_ok=True)
+
+        # Create safe filename
+        safe_keyword = re.sub(r'[^\w\s-]', '', keyword).strip()
+        safe_keyword = re.sub(r'[-\s]+', '-', safe_keyword)
+
+        # Save JSON
+        json_data = {
+            "keyword": keyword,
+            "meta_title": content_data.meta_title,
+            "meta_description": content_data.meta_description,
+            "title": content_data.title,
+            "image_prompt": content_data.image_prompt,
+            "word_count": word_count,
+            "shortfall": 2000 - word_count,
+            "status": "draft_under_length"
+        }
+
+        json_filepath = os.path.join(output_dir, f"{safe_keyword[:50]}.json")
+        with open(json_filepath, 'w', encoding='utf-8') as f:
+            json.dump(json_data, f, indent=2, ensure_ascii=False)
+
+        # Save Markdown
+        md_filepath = os.path.join(output_dir, f"{safe_keyword[:50]}.md")
+        with open(md_filepath, 'w', encoding='utf-8') as f:
+            f.write(f"# {content_data.title}\n\n")
+            f.write(f"**Status:** DRAFT - Under minimum word count\n")
+            f.write(f"**Word Count:** {word_count}/2000 ({2000 - word_count} words short)\n\n")
+            f.write(f"**Keyword:** {keyword}\n")
+            f.write(f"**Meta Title:** {content_data.meta_title}\n")
+            f.write(f"**Meta Description:** {content_data.meta_description}\n\n")
+            f.write("---\n\n")
+            f.write(body)
+
+        logger.info(f"Draft saved to: {output_dir}/")
+        logger.info(f"  JSON: {json_filepath}")
+        logger.info(f"  Markdown: {md_filepath}")
 
         return json_filepath, md_filepath
 
@@ -1178,6 +1288,7 @@ def main() -> None:
         "total": len(filtered_keywords),
         "successful": 0,
         "failed": 0,
+        "drafts_saved": 0,
         "prismic_uploaded": 0,
         "prismic_failed": 0,
         "prismic_tested": 0
@@ -1197,6 +1308,14 @@ def main() -> None:
             research_data = generator.research_keyword_with_gemini(
                 keyword, serp_data)
 
+            # Check if research failed before attempting content generation
+            if research_data.error:
+                print(f"  ❌ Research failed for: {keyword}")
+                print(f"     Error: {research_data.error}")
+                logger.error(f"Research failed for {keyword}: {research_data.error}")
+                generation_stats["failed"] += 1
+                continue
+
             # Generate content
             print("  ✍️  Generating content...")
             logger.info("Generating content...")
@@ -1204,8 +1323,14 @@ def main() -> None:
                 keyword, research_data)
 
             if not blog_post:
-                print(f"  ❌ Failed to generate content for: {keyword}")
-                logger.error(f"Failed to generate content for: {keyword}")
+                # Check if a draft was saved (under-length content)
+                if generator.check_draft_exists(keyword):
+                    print(f"  📝 Content saved as draft (under word count): {keyword}")
+                    logger.info(f"Draft saved for under-length content: {keyword}")
+                    generation_stats["drafts_saved"] += 1
+                else:
+                    print(f"  ❌ Failed to generate content for: {keyword}")
+                    logger.error(f"Failed to generate content for: {keyword}")
                 generation_stats["failed"] += 1
                 continue
 
@@ -1265,6 +1390,9 @@ def main() -> None:
     print(f"   • Total keywords processed: {generation_stats['total']}")
     print(f"   • Successfully generated: {generation_stats['successful']}")
     print(f"   • Failed: {generation_stats['failed']}")
+    if generation_stats['drafts_saved'] > 0:
+        print(f"   • Drafts saved (under word count): {generation_stats['drafts_saved']}")
+        print(f"     └─ Review in: generated_content/drafts/")
 
     if upload_to_prismic:
         if skip_prismic_upload:
