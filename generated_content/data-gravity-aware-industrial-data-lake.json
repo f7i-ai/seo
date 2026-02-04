@@ -1,0 +1,16 @@
+{
+  "meta_title": "Data Gravity Aware Industrial Data Lakes: Architecture for 2026",
+  "meta_description": "Stop drowning in egress fees. Learn how a data gravity aware industrial data lake optimizes edge computing, reduces latency, and scales IIoT ROI effectively.",
+  "title": "The Physics of IIoT: Why Your Industrial Data Lake Needs to Be \"Gravity Aware\"",
+  "keyword": "data gravity aware industrial data lake",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/data-gravity-aware-industrial-data-lake.png",
+    "alt": "Hero image for The Physics of IIoT: Why Your Industrial Data Lake Needs to Be \"Gravity Aware\"",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photorealistic, cinematic shot inside a modern, high-tech manufacturing facility. In the foreground, a diverse group of reliability engineers and OT specialists (wearing hard hats, safety glasses, and high-visibility vests) are gathered around a large industrial turbine. One engineer is holding a ruggedized tablet (back facing the camera) while pointing at a physical edge gateway device mounted on the machine. The background features blurred, automated production lines with cool blue and metallic tones. The lighting is professional and dramatic, highlighting the convergence of physical machinery and digital technology. No text or overlays.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2291,
+  "link_count": 12
+}

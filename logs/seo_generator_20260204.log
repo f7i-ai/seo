@@ -1,0 +1,33 @@
+2026-02-04 13:10:36,017 - INFO - ==================================================
+2026-02-04 13:10:36,017 - INFO - SEO Content Generator session started
+2026-02-04 13:10:36,017 - INFO - ==================================================
+2026-02-04 13:10:42,981 - INFO - ==================================================
+2026-02-04 13:10:42,981 - INFO - SEO Content Generator session started
+2026-02-04 13:10:42,981 - INFO - ==================================================
+2026-02-04 13:10:57,120 - INFO - Successfully loaded 12 unique keywords with SERP data using utf-8 encoding
+2026-02-04 13:10:57,120 - INFO - Loading existing content from sitemap: https://f7i.ai/sitemap.xml
+2026-02-04 13:10:57,120 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-02-04 13:10:59,797 - INFO - Found 324 existing blog posts from sitemap
+2026-02-04 13:10:59,797 - INFO - Cached 364 internal URLs for verification
+2026-02-04 13:10:59,798 - WARNING - Skipping 'complete guide to maintenance strategies' - overlaps with existing blog content
+2026-02-04 13:10:59,799 - WARNING - Skipping 'predictive maintenance for food and beverage manufacturing' - overlaps with existing blog content
+2026-02-04 13:10:59,799 - WARNING - Skipping 'predictive maintenance for packaging operations' - overlaps with existing blog content
+2026-02-04 13:10:59,800 - WARNING - Skipping 'industrial compressor maintenance guide' - overlaps with existing blog content
+2026-02-04 13:10:59,801 - INFO - Processing keyword 1/8: signal analysis for condition monitoring
+2026-02-04 13:10:59,801 - INFO - Researching keyword with SERP analysis...
+2026-02-04 13:10:59,801 - INFO - Starting deep research for keyword: 'signal analysis for condition monitoring'
+2026-02-04 13:10:59,801 - INFO - Analyzing 1 SERP results...
+2026-02-04 13:10:59,802 - INFO - Calling Gemini API...
+2026-02-04 13:11:37,098 - INFO - Gemini API call took 37.30 seconds
+2026-02-04 13:11:37,099 - INFO - Received response (8312 characters)
+2026-02-04 13:11:37,099 - INFO - Parsing markdown response...
+2026-02-04 13:11:37,101 - INFO - Successfully parsed markdown with 11 sections
+2026-02-04 13:11:37,102 - INFO - Research completed in 37.30 seconds total
+2026-02-04 13:11:37,102 - INFO - Generating pillar content...
+2026-02-04 13:12:42,604 - INFO - Parsing markdown content response...
+2026-02-04 13:12:42,606 - INFO - Validating and cleaning markdown links...
+2026-02-04 13:12:42,607 - INFO - Link validation: 7 verified, 0 removed
+2026-02-04 13:12:42,607 - WARNING - Pillar content under minimum (2725/3000 words)
+2026-02-04 13:12:42,607 - INFO - Attempting expansion for pillar content...
+2026-02-04 13:12:42,607 - INFO - Expanding content: 2725 words -> target 3500 (need +775 words)
+2026-02-04 13:12:42,607 - INFO - Calling Gemini API for content expansion...

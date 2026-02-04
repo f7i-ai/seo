@@ -1,0 +1,16 @@
+{
+  "meta_title": "MSB Signal Processing: Beyond FFT for Fault Diagnosis",
+  "meta_description": "Discover how Modulation Signal Bispectrum (MSB) outperforms standard FFT in detecting gearbox and bearing faults. A technical guide for reliability engineers.",
+  "title": "MSB Signal Processing for Fault Diagnosis: Why Your Standard Vibration Analysis Misses Gearbox Faults",
+  "keyword": "MSB signal processing for fault diagnosis",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/MSB-signal-processing-for-fault-diagnosis.png",
+    "alt": "Hero image for MSB Signal Processing for Fault Diagnosis: Why Your Standard Vibration Analysis Misses Gearbox Faults",
+    "source": "gpt-image-1"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern, high-tech manufacturing facility. In the foreground, a reliability engineer (wearing a white hard hat, safety glasses, and a high-visibility vest) is inspecting a large industrial motor and gearbox assembly. The engineer is holding a ruggedized tablet (back of tablet visible, no screen content shown) and looking at a sensor mounted on the gearbox. In the background, slightly out of focus, other technicians in PPE are working on a conveyor line. The lighting is a mix of cool industrial LED and warm ambient light, highlighting the metallic textures of the machinery. The atmosphere conveys precision, technology, and industrial scale. No text or overlays in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2364,
+  "link_count": 10
+}

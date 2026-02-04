@@ -1,0 +1,16 @@
+{
+  "meta_title": "Industrial Data Gravity: The Edge-to-Cloud Architecture Guide (2026)",
+  "meta_description": "Data gravity is breaking traditional cloud-first maintenance strategies. Learn how to architect an edge-to-cloud model that balances cost, latency, and",
+  "title": "Industrial Data Gravity: Why Physics Dictates Your Edge-to-Cloud Strategy",
+  "keyword": "industrial data gravity in edge-to-cloud",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/industrial-data-gravity-in-edge-to-cloud.png",
+    "alt": "Hero image for Industrial Data Gravity: Why Physics Dictates Your Edge-to-Cloud Strategy",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern, high-tech manufacturing facility. In the foreground, a diverse group of reliability engineers and OT architects (wearing hard hats, safety glasses, and high-visibility vests) are gathered around a large industrial pump and motor assembly. One engineer is pointing at a ruggedized edge gateway device mounted on the motor, while another holds a tablet (back of tablet visible only) showing a data visualization. In the background, blurred slightly, are automated conveyor lines and robotic arms. The lighting is a mix of cool industrial LED and warm accent lighting on the machinery, emphasizing a clean, futuristic \"Industry 4.0\" atmosphere. No text or overlays. The image should convey technical collaboration and advanced technology.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2284,
+  "link_count": 8
+}

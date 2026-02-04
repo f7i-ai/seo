@@ -1,0 +1,16 @@
+{
+  "meta_title": "Reinforcement Learning for Pump Speed Control: Beyond PID",
+  "meta_description": "Move beyond PID. Discover how Reinforcement Learning (RL) optimizes pump speed for energy efficiency and asset health. A technical guide for 2026.",
+  "title": "Reinforcement Learning for Pump Speed Control: Why PID is No Longer Enough for Complex Hydraulics",
+  "keyword": "reinforcement learning for pump speed control",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/reinforcement-learning-for-pump-speed-control.png",
+    "alt": "Hero image for Reinforcement Learning for Pump Speed Control: Why PID is No Longer Enough for Complex Hydraulics",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern industrial water treatment facility or manufacturing plant. In the foreground, a reliability engineer (wearing a white hard hat, safety glasses, and a high-visibility vest) is inspecting a large, blue industrial centrifugal pump. The engineer is holding a tablet (back of tablet visible) looking at data. In the background, blurred slightly, are piping networks and a digital control panel with green status lights. The lighting is cool and professional, emphasizing a clean, high-tech industrial environment. No text overlays.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2094,
+  "link_count": 7
+}

@@ -1,0 +1,1157 @@
+2026-01-31 18:11:05,545 - INFO - ==================================================
+2026-01-31 18:11:05,545 - INFO - SEO Content Generator session started
+2026-01-31 18:11:05,545 - INFO - ==================================================
+2026-01-31 18:15:56,804 - INFO - ==================================================
+2026-01-31 18:15:56,804 - INFO - SEO Content Generator session started
+2026-01-31 18:15:56,804 - INFO - ==================================================
+2026-01-31 18:16:15,277 - INFO - Successfully loaded 15 unique keywords with SERP data using utf-8 encoding
+2026-01-31 18:16:15,277 - INFO - Loading existing content from sitemap: https://f7i.ai/sitemap.xml
+2026-01-31 18:16:15,277 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-01-31 18:16:17,786 - INFO - Found 217 existing blog posts from sitemap
+2026-01-31 18:16:17,786 - INFO - Cached 257 internal URLs for verification
+2026-01-31 18:16:17,790 - INFO - Processing keyword 1/15: world models for industrial robotics
+2026-01-31 18:16:17,790 - INFO - Researching keyword with SERP analysis...
+2026-01-31 18:16:17,790 - INFO - Starting deep research for keyword: 'world models for industrial robotics'
+2026-01-31 18:16:17,790 - INFO - Analyzing 1 SERP results...
+2026-01-31 18:16:17,790 - INFO - Calling Gemini API...
+2026-01-31 18:16:18,146 - WARNING - Rate limit hit, waiting 60s (attempt 1/3)
+2026-01-31 18:17:18,326 - WARNING - Rate limit hit, waiting 120s (attempt 2/3)
+2026-01-31 18:27:33,673 - WARNING - Rate limit hit, waiting 180s (attempt 3/3)
+2026-01-31 18:27:33,674 - ERROR - Error in keyword research after 675.88 seconds: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3-pro
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3-pro
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3-pro
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3-pro
+Please retry in 26.37740747s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-pro"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-pro"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-pro"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerDay-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-pro"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 26
+}
+]
+2026-01-31 18:27:33,675 - INFO - Generating content...
+2026-01-31 18:27:34,143 - WARNING - Rate limit hit, waiting 60s (attempt 1/3)
+2026-01-31 18:55:59,981 - ERROR - Error generating content: 504 Deadline Exceeded
+2026-01-31 18:55:59,982 - ERROR - Failed to generate content for: world models for industrial robotics
+2026-01-31 18:55:59,982 - INFO - Processing keyword 2/15: CHPP throughput loss monitoring software
+2026-01-31 18:55:59,982 - INFO - Researching keyword with SERP analysis...
+2026-01-31 18:55:59,982 - INFO - Starting deep research for keyword: 'CHPP throughput loss monitoring software'
+2026-01-31 18:55:59,982 - INFO - Analyzing 1 SERP results...
+2026-01-31 18:55:59,982 - INFO - Calling Gemini API...
+2026-01-31 18:56:04,127 - WARNING - Rate limit hit, waiting 60s (attempt 1/3)
+2026-01-31 19:02:17,196 - WARNING - Rate limit hit, waiting 120s (attempt 2/3)
+2026-01-31 19:17:39,830 - WARNING - Rate limit hit, waiting 180s (attempt 3/3)
+2026-01-31 19:17:39,831 - ERROR - Error in keyword research after 1299.85 seconds: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3-pro
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3-pro
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3-pro
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3-pro
+Please retry in 20.22073426s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerDay-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-pro"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-pro"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-pro"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-pro"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 20
+}
+]
+2026-01-31 19:17:39,831 - INFO - Generating content...
+2026-01-31 19:17:40,318 - WARNING - Rate limit hit, waiting 60s (attempt 1/3)
+2026-01-31 19:22:00,366 - WARNING - Rate limit hit, waiting 120s (attempt 2/3)
+2026-01-31 19:39:21,244 - WARNING - Rate limit hit, waiting 180s (attempt 3/3)
+2026-01-31 19:39:21,246 - ERROR - Error generating content: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3-pro
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3-pro
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3-pro
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3-pro
+Please retry in 38.807644806s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerDay-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-pro"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-pro"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-pro"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-pro"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 38
+}
+]
+2026-01-31 19:39:21,246 - ERROR - Failed to generate content for: CHPP throughput loss monitoring software
+2026-01-31 19:39:21,246 - INFO - Processing keyword 3/15: reciprocating compressor rod drop monitoring
+2026-01-31 19:39:21,246 - INFO - Researching keyword with SERP analysis...
+2026-01-31 19:39:21,246 - INFO - Starting deep research for keyword: 'reciprocating compressor rod drop monitoring'
+2026-01-31 19:39:21,246 - INFO - Analyzing 1 SERP results...
+2026-01-31 19:39:21,246 - INFO - Calling Gemini API...
+2026-01-31 19:39:21,685 - WARNING - Rate limit hit, waiting 60s (attempt 1/3)
+2026-01-31 19:45:34,044 - WARNING - Rate limit hit, waiting 120s (attempt 2/3)
+2026-01-31 19:56:22,650 - WARNING - Rate limit hit, waiting 180s (attempt 3/3)
+2026-01-31 19:56:22,651 - ERROR - Error in keyword research after 1021.40 seconds: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3-pro
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3-pro
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3-pro
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3-pro
+Please retry in 37.398473392s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerDay-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-pro"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-pro"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-pro"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-pro"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 37
+}
+]
+2026-01-31 19:56:22,651 - INFO - Generating content...
+2026-01-31 19:56:23,122 - WARNING - Rate limit hit, waiting 60s (attempt 1/3)
+2026-01-31 19:57:43,739 - WARNING - Rate limit hit, waiting 120s (attempt 2/3)
+2026-01-31 20:20:07,569 - WARNING - Rate limit hit, waiting 180s (attempt 3/3)
+2026-01-31 20:20:07,570 - ERROR - Error generating content: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3-pro
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3-pro
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3-pro
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3-pro
+Please retry in 52.482125753s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerDay-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-pro"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-pro"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-pro"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-pro"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 52
+}
+]
+2026-01-31 20:20:07,572 - ERROR - Failed to generate content for: reciprocating compressor rod drop monitoring
+2026-01-31 20:20:07,572 - INFO - Processing keyword 4/15: PPO reinforcement learning for compressor SEC
+2026-01-31 20:20:07,572 - INFO - Researching keyword with SERP analysis...
+2026-01-31 20:20:07,572 - INFO - Starting deep research for keyword: 'PPO reinforcement learning for compressor SEC'
+2026-01-31 20:20:07,572 - INFO - Analyzing 1 SERP results...
+2026-01-31 20:20:07,572 - INFO - Calling Gemini API...
+2026-01-31 20:20:07,785 - WARNING - Rate limit hit, waiting 60s (attempt 1/3)
+2026-01-31 20:23:05,858 - WARNING - Rate limit hit, waiting 120s (attempt 2/3)
+2026-01-31 20:24:23,911 - INFO - ==================================================
+2026-01-31 20:24:23,911 - INFO - SEO Content Generator session started
+2026-01-31 20:24:23,911 - INFO - ==================================================
+2026-01-31 20:24:38,367 - INFO - ==================================================
+2026-01-31 20:24:38,367 - INFO - SEO Content Generator session started
+2026-01-31 20:24:38,367 - INFO - ==================================================
+2026-01-31 20:24:45,818 - INFO - Successfully loaded 15 unique keywords with SERP data using utf-8 encoding
+2026-01-31 20:24:45,818 - INFO - Loading existing content from sitemap: https://f7i.ai/sitemap.xml
+2026-01-31 20:24:45,818 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-01-31 20:24:48,551 - INFO - Found 217 existing blog posts from sitemap
+2026-01-31 20:24:48,552 - INFO - Cached 257 internal URLs for verification
+2026-01-31 20:24:48,556 - INFO - Processing keyword 1/15: world models for industrial robotics
+2026-01-31 20:24:48,556 - INFO - Researching keyword with SERP analysis...
+2026-01-31 20:24:48,556 - INFO - Starting deep research for keyword: 'world models for industrial robotics'
+2026-01-31 20:24:48,556 - INFO - Analyzing 1 SERP results...
+2026-01-31 20:24:48,556 - INFO - Calling Gemini API...
+2026-01-31 20:25:24,054 - INFO - Gemini API call took 35.50 seconds
+2026-01-31 20:25:24,056 - INFO - Received response (7946 characters)
+2026-01-31 20:25:24,056 - INFO - Parsing markdown response...
+2026-01-31 20:25:24,059 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 20:25:24,059 - INFO - Research completed in 35.50 seconds total
+2026-01-31 20:25:24,059 - INFO - Generating content...
+2026-01-31 20:26:22,077 - INFO - Parsing markdown content response...
+2026-01-31 20:26:22,080 - INFO - Validating and cleaning markdown links...
+2026-01-31 20:26:22,247 - INFO - Link validation: 13 verified, 0 removed
+2026-01-31 20:26:22,248 - INFO - Generating hero image...
+2026-01-31 20:26:22,248 - INFO - Generating image with prompt: A photo-realistic, cinematic wide shot inside a futuristic, high-tech automotive manufacturing plant. In the foreground, a diverse group of three industrial engineers (one female, two male) wearing hard hats, safety glasses, and high-visibility vests are standing near a large, orange articulated robotic arm. They are looking at a tablet held by the central figure (back of tablet visible only), discussing the operation. The robotic arm is in motion, handling a complex metal component. The background is filled with depth, showing other automated machinery, clean floors, and cool blue industrial lighting mixed with warm safety lights. The atmosphere is professional, advanced, and focused on precision. No text or overlays. 8k resolution.
+2026-01-31 20:26:22,248 - INFO - Calling OpenAI GPT-4 Image Generation API...
+2026-01-31 20:27:31,084 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2026-01-31 20:27:32,608 - INFO - Image generated successfully!
+2026-01-31 20:27:32,608 - INFO - Received base64 image data
+2026-01-31 20:27:32,609 - INFO - Saving base64 image data locally...
+2026-01-31 20:27:32,614 - INFO - Base64 image saved to: generated_content/world-models-for-industrial-robotics.png
+2026-01-31 20:27:32,614 - INFO - Formatting for Prismic...
+2026-01-31 20:27:32,616 - INFO - Content saved to:
+2026-01-31 20:27:32,616 - INFO -   JSON: generated_content/world-models-for-industrial-robotics.json
+2026-01-31 20:27:32,616 - INFO -   Markdown: generated_content/world-models-for-industrial-robotics.md
+2026-01-31 20:27:32,616 - INFO -   Stats: 2259 words, 13 links
+2026-01-31 20:27:32,616 - INFO -   Image: generated_content/world-models-for-industrial-robotics.png
+2026-01-31 20:27:32,616 - INFO - Content generated successfully for: world models for industrial robotics
+2026-01-31 20:27:32,616 - INFO - Uploading to Prismic...
+2026-01-31 20:27:44,214 - INFO - Successfully uploaded to Prismic
+2026-01-31 20:27:44,215 - INFO - Content published to Prismic CMS for: world models for industrial robotics
+2026-01-31 20:27:46,219 - INFO - Processing keyword 2/15: CHPP throughput loss monitoring software
+2026-01-31 20:27:46,219 - INFO - Researching keyword with SERP analysis...
+2026-01-31 20:27:46,219 - INFO - Starting deep research for keyword: 'CHPP throughput loss monitoring software'
+2026-01-31 20:27:46,220 - INFO - Analyzing 1 SERP results...
+2026-01-31 20:27:46,220 - INFO - Calling Gemini API...
+2026-01-31 20:28:25,754 - INFO - Gemini API call took 39.53 seconds
+2026-01-31 20:28:25,755 - INFO - Received response (8108 characters)
+2026-01-31 20:28:25,755 - INFO - Parsing markdown response...
+2026-01-31 20:28:25,755 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 20:28:25,755 - INFO - Research completed in 39.54 seconds total
+2026-01-31 20:28:25,755 - INFO - Generating content...
+2026-01-31 20:29:19,073 - INFO - Parsing markdown content response...
+2026-01-31 20:29:19,075 - INFO - Validating and cleaning markdown links...
+2026-01-31 20:29:19,188 - WARNING - Invalid external link removed: https://reliabilityweb.com
+2026-01-31 20:29:19,888 - INFO - Link validation: 8 verified, 1 removed
+2026-01-31 20:29:19,894 - ERROR - Error generating content: 1 validation error for BlogPost
+body
+  Value error, Body must have at least 2000 words, got 1872 [type=value_error, input_value='You are likely reading t...a fully optimized CHPP.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.12/v/value_error
+2026-01-31 20:29:19,894 - ERROR - Failed to generate content for: CHPP throughput loss monitoring software
+2026-01-31 20:29:19,894 - INFO - Processing keyword 3/15: reciprocating compressor rod drop monitoring
+2026-01-31 20:29:19,894 - INFO - Researching keyword with SERP analysis...
+2026-01-31 20:29:19,894 - INFO - Starting deep research for keyword: 'reciprocating compressor rod drop monitoring'
+2026-01-31 20:29:19,894 - INFO - Analyzing 1 SERP results...
+2026-01-31 20:29:19,895 - INFO - Calling Gemini API...
+2026-01-31 20:29:54,892 - INFO - Gemini API call took 35.00 seconds
+2026-01-31 20:29:54,893 - INFO - Received response (8113 characters)
+2026-01-31 20:29:54,893 - INFO - Parsing markdown response...
+2026-01-31 20:29:54,894 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 20:29:54,894 - INFO - Research completed in 35.00 seconds total
+2026-01-31 20:29:54,894 - INFO - Generating content...
+2026-01-31 20:30:53,861 - INFO - Parsing markdown content response...
+2026-01-31 20:30:53,862 - INFO - Validating and cleaning markdown links...
+2026-01-31 20:30:57,325 - INFO - Link validation: 7 verified, 0 removed
+2026-01-31 20:30:57,326 - WARNING - Meta description truncated from 176 to 154 characters
+2026-01-31 20:30:57,327 - INFO - Generating hero image...
+2026-01-31 20:30:57,327 - INFO - Generating image with prompt: A high-resolution, photorealistic image inside a modern industrial gas processing facility. In the foreground, a reliability engineer wearing a white hard hat, safety glasses, and a high-visibility vest is inspecting a large reciprocating compressor. The engineer is looking at a tablet (back of device visible) while gesturing toward a specific sensor mounted near the packing case of the compressor cylinder. The background shows the massive scale of the machinery with piping, valves, and steel structures. The lighting is industrial but clean, highlighting the metallic textures of the compressor rod and the blue/grey paint of the equipment. No text or words should be visible in the image.
+2026-01-31 20:30:57,327 - INFO - Calling OpenAI GPT-4 Image Generation API...
+2026-01-31 20:31:57,859 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2026-01-31 20:31:59,563 - INFO - Image generated successfully!
+2026-01-31 20:31:59,563 - INFO - Received base64 image data
+2026-01-31 20:31:59,563 - INFO - Saving base64 image data locally...
+2026-01-31 20:31:59,573 - INFO - Base64 image saved to: generated_content/reciprocating-compressor-rod-drop-monitoring.png
+2026-01-31 20:31:59,573 - INFO - Formatting for Prismic...
+2026-01-31 20:31:59,575 - INFO - Content saved to:
+2026-01-31 20:31:59,575 - INFO -   JSON: generated_content/reciprocating-compressor-rod-drop-monitoring.json
+2026-01-31 20:31:59,575 - INFO -   Markdown: generated_content/reciprocating-compressor-rod-drop-monitoring.md
+2026-01-31 20:31:59,575 - INFO -   Stats: 2224 words, 7 links
+2026-01-31 20:31:59,575 - INFO -   Image: generated_content/reciprocating-compressor-rod-drop-monitoring.png
+2026-01-31 20:31:59,575 - INFO - Content generated successfully for: reciprocating compressor rod drop monitoring
+2026-01-31 20:31:59,575 - INFO - Uploading to Prismic...
+2026-01-31 20:32:08,454 - INFO - Successfully uploaded to Prismic
+2026-01-31 20:32:08,454 - INFO - Content published to Prismic CMS for: reciprocating compressor rod drop monitoring
+2026-01-31 20:32:10,456 - INFO - Processing keyword 4/15: PPO reinforcement learning for compressor SEC
+2026-01-31 20:32:10,456 - INFO - Researching keyword with SERP analysis...
+2026-01-31 20:32:10,456 - INFO - Starting deep research for keyword: 'PPO reinforcement learning for compressor SEC'
+2026-01-31 20:32:10,456 - INFO - Analyzing 1 SERP results...
+2026-01-31 20:32:10,457 - INFO - Calling Gemini API...
+2026-01-31 20:32:46,337 - INFO - Gemini API call took 35.88 seconds
+2026-01-31 20:32:46,338 - INFO - Received response (7497 characters)
+2026-01-31 20:32:46,338 - INFO - Parsing markdown response...
+2026-01-31 20:32:46,339 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 20:32:46,339 - INFO - Research completed in 35.88 seconds total
+2026-01-31 20:32:46,340 - INFO - Generating content...
+2026-01-31 20:33:45,408 - INFO - Parsing markdown content response...
+2026-01-31 20:33:45,410 - INFO - Validating and cleaning markdown links...
+2026-01-31 20:33:45,410 - INFO - Link validation: 6 verified, 0 removed
+2026-01-31 20:33:45,411 - INFO - Generating hero image...
+2026-01-31 20:33:45,411 - INFO - Generating image with prompt: A photo-realistic, cinematic wide shot inside a modern, high-tech industrial compressor room. In the foreground, a diverse group of two engineers (one male, one female) wearing hard hats, safety glasses, and high-visibility vests are looking at a large, blurred industrial tablet held by one of them (screen not visible). They are standing in front of a massive, sleek centrifugal compressor painted in industrial blue and grey. The background shows complex piping, pressure gauges, and digital displays with glowing indicators. The lighting is dramatic, mixing cool industrial LED white with subtle blue accent lighting to suggest advanced technology. The atmosphere conveys precision, safety, and futuristic manufacturing. No text or overlays.
+2026-01-31 20:33:45,411 - INFO - Calling OpenAI GPT-4 Image Generation API...
+2026-01-31 20:34:40,949 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2026-01-31 20:34:42,522 - INFO - Image generated successfully!
+2026-01-31 20:34:42,522 - INFO - Received base64 image data
+2026-01-31 20:34:42,522 - INFO - Saving base64 image data locally...
+2026-01-31 20:34:42,532 - INFO - Base64 image saved to: generated_content/PPO-reinforcement-learning-for-compressor-SEC.png
+2026-01-31 20:34:42,532 - INFO - Formatting for Prismic...
+2026-01-31 20:34:42,535 - INFO - Content saved to:
+2026-01-31 20:34:42,535 - INFO -   JSON: generated_content/PPO-reinforcement-learning-for-compressor-SEC.json
+2026-01-31 20:34:42,535 - INFO -   Markdown: generated_content/PPO-reinforcement-learning-for-compressor-SEC.md
+2026-01-31 20:34:42,535 - INFO -   Stats: 2319 words, 6 links
+2026-01-31 20:34:42,535 - INFO -   Image: generated_content/PPO-reinforcement-learning-for-compressor-SEC.png
+2026-01-31 20:34:42,535 - INFO - Content generated successfully for: PPO reinforcement learning for compressor SEC
+2026-01-31 20:34:42,535 - INFO - Uploading to Prismic...
+2026-01-31 20:34:51,245 - INFO - Successfully uploaded to Prismic
+2026-01-31 20:34:51,246 - INFO - Content published to Prismic CMS for: PPO reinforcement learning for compressor SEC
+2026-01-31 20:34:53,251 - INFO - Processing keyword 5/15: AI vision for coal flotation froth analysis
+2026-01-31 20:34:53,252 - INFO - Researching keyword with SERP analysis...
+2026-01-31 20:34:53,252 - INFO - Starting deep research for keyword: 'AI vision for coal flotation froth analysis'
+2026-01-31 20:34:53,252 - INFO - Analyzing 1 SERP results...
+2026-01-31 20:34:53,252 - INFO - Calling Gemini API...
+2026-01-31 20:35:28,838 - INFO - Gemini API call took 35.59 seconds
+2026-01-31 20:35:28,839 - INFO - Received response (8114 characters)
+2026-01-31 20:35:28,839 - INFO - Parsing markdown response...
+2026-01-31 20:35:28,840 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 20:35:28,840 - INFO - Research completed in 35.59 seconds total
+2026-01-31 20:35:28,841 - INFO - Generating content...
+2026-01-31 20:36:17,907 - INFO - Parsing markdown content response...
+2026-01-31 20:36:17,910 - INFO - Validating and cleaning markdown links...
+2026-01-31 20:36:17,910 - INFO - Link validation: 9 verified, 0 removed
+2026-01-31 20:36:17,913 - ERROR - Error generating content: 1 validation error for BlogPost
+body
+  Value error, Body must have at least 2000 words, got 1841 [type=value_error, input_value='For decades, the efficie...ay](/products/predict).', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.12/v/value_error
+2026-01-31 20:36:17,914 - ERROR - Failed to generate content for: AI vision for coal flotation froth analysis
+2026-01-31 20:36:17,914 - INFO - Processing keyword 6/15: hyper-automation in pharmaceutical packaging
+2026-01-31 20:36:17,914 - INFO - Researching keyword with SERP analysis...
+2026-01-31 20:36:17,915 - INFO - Starting deep research for keyword: 'hyper-automation in pharmaceutical packaging'
+2026-01-31 20:36:17,915 - INFO - Analyzing 1 SERP results...
+2026-01-31 20:36:17,916 - INFO - Calling Gemini API...
+2026-01-31 20:36:53,228 - INFO - Gemini API call took 35.31 seconds
+2026-01-31 20:36:53,228 - INFO - Received response (7711 characters)
+2026-01-31 20:36:53,228 - INFO - Parsing markdown response...
+2026-01-31 20:36:53,229 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 20:36:53,229 - INFO - Research completed in 35.31 seconds total
+2026-01-31 20:36:53,229 - INFO - Generating content...
+2026-01-31 20:37:49,340 - INFO - Parsing markdown content response...
+2026-01-31 20:37:49,342 - INFO - Validating and cleaning markdown links...
+2026-01-31 20:37:49,755 - WARNING - Invalid external link removed: https://reliabilityweb.com
+2026-01-31 20:37:49,756 - INFO - Link validation: 9 verified, 1 removed
+2026-01-31 20:37:49,756 - ERROR - Error generating content: 1 validation error for BlogPost
+body
+  Value error, Body must have at least 2000 words, got 1985 [type=value_error, input_value='It is 2026. The era of s...d digital intelligence.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.12/v/value_error
+2026-01-31 20:37:49,757 - ERROR - Failed to generate content for: hyper-automation in pharmaceutical packaging
+2026-01-31 20:37:49,757 - INFO - Processing keyword 7/15: machine vision for corrosion detection in mining
+2026-01-31 20:37:49,757 - INFO - Researching keyword with SERP analysis...
+2026-01-31 20:37:49,757 - INFO - Starting deep research for keyword: 'machine vision for corrosion detection in mining'
+2026-01-31 20:37:49,757 - INFO - Analyzing 1 SERP results...
+2026-01-31 20:37:49,757 - INFO - Calling Gemini API...
+2026-01-31 20:38:27,433 - INFO - Gemini API call took 37.68 seconds
+2026-01-31 20:38:27,434 - INFO - Received response (8784 characters)
+2026-01-31 20:38:27,434 - INFO - Parsing markdown response...
+2026-01-31 20:38:27,434 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 20:38:27,435 - INFO - Research completed in 37.68 seconds total
+2026-01-31 20:38:27,435 - INFO - Generating content...
+2026-01-31 20:39:18,597 - INFO - Parsing markdown content response...
+2026-01-31 20:39:18,598 - INFO - Validating and cleaning markdown links...
+2026-01-31 20:39:19,879 - INFO - Link validation: 10 verified, 0 removed
+2026-01-31 20:39:19,879 - WARNING - Meta description truncated from 162 to 151 characters
+2026-01-31 20:39:19,880 - ERROR - Error generating content: 1 validation error for BlogPost
+body
+  Value error, Body must have at least 2000 words, got 1802 [type=value_error, input_value='In the harsh environment...rn industrial sensors.*', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.12/v/value_error
+2026-01-31 20:39:19,880 - ERROR - Failed to generate content for: machine vision for corrosion detection in mining
+2026-01-31 20:39:19,880 - INFO - Processing keyword 8/15: generative AI for sustainable packaging design
+2026-01-31 20:39:19,880 - INFO - Researching keyword with SERP analysis...
+2026-01-31 20:39:19,880 - INFO - Starting deep research for keyword: 'generative AI for sustainable packaging design'
+2026-01-31 20:39:19,880 - INFO - Analyzing 1 SERP results...
+2026-01-31 20:39:19,880 - INFO - Calling Gemini API...
+2026-01-31 20:39:55,593 - INFO - Gemini API call took 35.71 seconds
+2026-01-31 20:39:55,594 - INFO - Received response (8212 characters)
+2026-01-31 20:39:55,595 - INFO - Parsing markdown response...
+2026-01-31 20:39:55,595 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 20:39:55,596 - INFO - Research completed in 35.72 seconds total
+2026-01-31 20:39:55,596 - INFO - Generating content...
+2026-01-31 20:40:45,689 - INFO - Parsing markdown content response...
+2026-01-31 20:40:45,692 - INFO - Validating and cleaning markdown links...
+2026-01-31 20:40:46,707 - WARNING - Invalid external link removed: https://www.nist.gov/el/systems-integration-division-73400/lifecycle-engineering-group/sustainable-manufacturing
+2026-01-31 20:40:47,483 - INFO - Link validation: 6 verified, 1 removed
+2026-01-31 20:40:47,484 - ERROR - Error generating content: 1 validation error for BlogPost
+body
+  Value error, Body must have at least 2000 words, got 1791 [type=value_error, input_value='It is 2026. The era of u...lity needs to innovate.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.12/v/value_error
+2026-01-31 20:40:47,484 - ERROR - Failed to generate content for: generative AI for sustainable packaging design
+2026-01-31 20:40:47,484 - INFO - Processing keyword 9/15: MSB signal processing for fault diagnosis
+2026-01-31 20:40:47,484 - INFO - Researching keyword with SERP analysis...
+2026-01-31 20:40:47,484 - INFO - Starting deep research for keyword: 'MSB signal processing for fault diagnosis'
+2026-01-31 20:40:47,484 - INFO - Analyzing 1 SERP results...
+2026-01-31 20:40:47,484 - INFO - Calling Gemini API...
+2026-01-31 20:41:21,705 - INFO - Gemini API call took 34.22 seconds
+2026-01-31 20:41:21,706 - INFO - Received response (7984 characters)
+2026-01-31 20:41:21,706 - INFO - Parsing markdown response...
+2026-01-31 20:41:21,706 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 20:41:21,706 - INFO - Research completed in 34.22 seconds total
+2026-01-31 20:41:21,707 - INFO - Generating content...
+2026-01-31 20:42:20,569 - INFO - Parsing markdown content response...
+2026-01-31 20:42:20,571 - INFO - Validating and cleaning markdown links...
+2026-01-31 20:42:20,654 - WARNING - Invalid external link removed: https://reliabilityweb.com
+2026-01-31 20:42:23,204 - INFO - Link validation: 10 verified, 1 removed
+2026-01-31 20:42:23,205 - INFO - Generating hero image...
+2026-01-31 20:42:23,205 - INFO - Generating image with prompt: A photo-realistic, cinematic shot inside a modern, high-tech manufacturing facility. In the foreground, a reliability engineer (wearing a white hard hat, safety glasses, and a high-visibility vest) is inspecting a large industrial motor and gearbox assembly. The engineer is holding a ruggedized tablet (back of tablet visible, no screen content shown) and looking at a sensor mounted on the gearbox. In the background, slightly out of focus, other technicians in PPE are working on a conveyor line. The lighting is a mix of cool industrial LED and warm ambient light, highlighting the metallic textures of the machinery. The atmosphere conveys precision, technology, and industrial scale. No text or overlays in the image.
+2026-01-31 20:42:23,205 - INFO - Calling OpenAI GPT-4 Image Generation API...
+2026-01-31 20:43:25,101 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2026-01-31 20:43:26,369 - INFO - Image generated successfully!
+2026-01-31 20:43:26,369 - INFO - Received base64 image data
+2026-01-31 20:43:26,369 - INFO - Saving base64 image data locally...
+2026-01-31 20:43:26,379 - INFO - Base64 image saved to: generated_content/MSB-signal-processing-for-fault-diagnosis.png
+2026-01-31 20:43:26,380 - INFO - Formatting for Prismic...
+2026-01-31 20:43:26,383 - INFO - Content saved to:
+2026-01-31 20:43:26,383 - INFO -   JSON: generated_content/MSB-signal-processing-for-fault-diagnosis.json
+2026-01-31 20:43:26,383 - INFO -   Markdown: generated_content/MSB-signal-processing-for-fault-diagnosis.md
+2026-01-31 20:43:26,383 - INFO -   Stats: 2364 words, 10 links
+2026-01-31 20:43:26,383 - INFO -   Image: generated_content/MSB-signal-processing-for-fault-diagnosis.png
+2026-01-31 20:43:26,383 - INFO - Content generated successfully for: MSB signal processing for fault diagnosis
+2026-01-31 20:43:26,383 - INFO - Uploading to Prismic...
+2026-01-31 20:43:37,540 - INFO - Successfully uploaded to Prismic
+2026-01-31 20:43:37,540 - INFO - Content published to Prismic CMS for: MSB signal processing for fault diagnosis
+2026-01-31 20:43:39,545 - INFO - Processing keyword 10/15: rotary screw compressor VFD optimization AI
+2026-01-31 20:43:39,545 - INFO - Researching keyword with SERP analysis...
+2026-01-31 20:43:39,545 - INFO - Starting deep research for keyword: 'rotary screw compressor VFD optimization AI'
+2026-01-31 20:43:39,545 - INFO - Analyzing 1 SERP results...
+2026-01-31 20:43:39,546 - INFO - Calling Gemini API...
+2026-01-31 20:44:18,457 - INFO - Gemini API call took 38.91 seconds
+2026-01-31 20:44:18,458 - INFO - Received response (9097 characters)
+2026-01-31 20:44:18,459 - INFO - Parsing markdown response...
+2026-01-31 20:44:18,460 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 20:44:18,460 - INFO - Research completed in 38.91 seconds total
+2026-01-31 20:44:18,460 - INFO - Generating content...
+2026-01-31 20:45:16,821 - INFO - Parsing markdown content response...
+2026-01-31 20:45:16,824 - INFO - Validating and cleaning markdown links...
+2026-01-31 20:45:16,936 - WARNING - Invalid external link removed: https://reliabilityweb.com
+2026-01-31 20:45:16,937 - INFO - Link validation: 6 verified, 1 removed
+2026-01-31 20:45:16,937 - INFO - Generating hero image...
+2026-01-31 20:45:16,937 - INFO - Generating image with prompt: A photo-realistic, cinematic shot inside a modern industrial compressor room. In the foreground, a reliability engineer (wearing a hard hat, safety glasses, and a high-vis vest) is inspecting a large, industrial rotary screw compressor. The engineer is holding a tablet (back of tablet visible) that is connected via a cable to a sleek edge gateway device mounted on the side of the compressor. The background shows piping, receiver tanks, and other industrial machinery, slightly out of focus to emphasize the subject. The lighting is cool industrial blue with warm accent lighting on the compressor control panel, symbolizing the integration of technology and heavy machinery. No text or words in the image. 8k resolution.
+2026-01-31 20:45:16,937 - INFO - Calling OpenAI GPT-4 Image Generation API...
+2026-01-31 20:46:09,671 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2026-01-31 20:46:10,783 - INFO - Image generated successfully!
+2026-01-31 20:46:10,783 - INFO - Received base64 image data
+2026-01-31 20:46:10,783 - INFO - Saving base64 image data locally...
+2026-01-31 20:46:10,789 - INFO - Base64 image saved to: generated_content/rotary-screw-compressor-VFD-optimization-AI.png
+2026-01-31 20:46:10,789 - INFO - Formatting for Prismic...
+2026-01-31 20:46:10,791 - INFO - Content saved to:
+2026-01-31 20:46:10,791 - INFO -   JSON: generated_content/rotary-screw-compressor-VFD-optimization-AI.json
+2026-01-31 20:46:10,791 - INFO -   Markdown: generated_content/rotary-screw-compressor-VFD-optimization-AI.md
+2026-01-31 20:46:10,791 - INFO -   Stats: 2037 words, 6 links
+2026-01-31 20:46:10,791 - INFO -   Image: generated_content/rotary-screw-compressor-VFD-optimization-AI.png
+2026-01-31 20:46:10,791 - INFO - Content generated successfully for: rotary screw compressor VFD optimization AI
+2026-01-31 20:46:10,791 - INFO - Uploading to Prismic...
+2026-01-31 20:46:20,866 - INFO - Successfully uploaded to Prismic
+2026-01-31 20:46:20,867 - INFO - Content published to Prismic CMS for: rotary screw compressor VFD optimization AI
+2026-01-31 20:46:22,872 - INFO - Processing keyword 11/15: digital twin for coal preparation operations
+2026-01-31 20:46:22,872 - INFO - Researching keyword with SERP analysis...
+2026-01-31 20:46:22,872 - INFO - Starting deep research for keyword: 'digital twin for coal preparation operations'
+2026-01-31 20:46:22,873 - INFO - Analyzing 1 SERP results...
+2026-01-31 20:46:22,873 - INFO - Calling Gemini API...
+2026-01-31 20:46:57,279 - INFO - Gemini API call took 34.41 seconds
+2026-01-31 20:46:57,280 - INFO - Received response (8204 characters)
+2026-01-31 20:46:57,280 - INFO - Parsing markdown response...
+2026-01-31 20:46:57,281 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 20:46:57,281 - INFO - Research completed in 34.41 seconds total
+2026-01-31 20:46:57,281 - INFO - Generating content...
+2026-01-31 20:47:56,701 - INFO - Parsing markdown content response...
+2026-01-31 20:47:56,704 - INFO - Validating and cleaning markdown links...
+2026-01-31 20:47:56,808 - WARNING - Invalid external link removed: https://reliabilityweb.com
+2026-01-31 20:47:57,093 - WARNING - Invalid external link removed: https://www.ieee.org
+2026-01-31 20:47:57,093 - INFO - Link validation: 7 verified, 2 removed
+2026-01-31 20:47:57,094 - INFO - Generating hero image...
+2026-01-31 20:47:57,094 - INFO - Generating image with prompt: A photorealistic, cinematic wide shot inside a modern industrial coal preparation plant (wash plant). The lighting is dramatic but professional, highlighting the scale of the machinery. In the foreground, a diverse group of three engineers (two men, one woman) are wearing full PPE: hard hats, high-visibility orange and yellow vests, safety glasses, and steel-toed boots. They are standing on a metal grating walkway looking up at a massive vibrating screen and cyclone cluster. One engineer is holding a ruggedized tablet, but the screen of the tablet is NOT visible (we see the back of the device). The machinery looks used but well-maintained, with visible pipes, steel beams, and conveyor belts in the background. No text or words in the image. Atmosphere conveys high-tech industrial efficiency.
+2026-01-31 20:47:57,094 - INFO - Calling OpenAI GPT-4 Image Generation API...
+2026-01-31 20:48:55,854 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2026-01-31 20:48:57,169 - INFO - Image generated successfully!
+2026-01-31 20:48:57,170 - INFO - Received base64 image data
+2026-01-31 20:48:57,170 - INFO - Saving base64 image data locally...
+2026-01-31 20:48:57,181 - INFO - Base64 image saved to: generated_content/digital-twin-for-coal-preparation-operations.png
+2026-01-31 20:48:57,181 - INFO - Formatting for Prismic...
+2026-01-31 20:48:57,183 - INFO - Content saved to:
+2026-01-31 20:48:57,183 - INFO -   JSON: generated_content/digital-twin-for-coal-preparation-operations.json
+2026-01-31 20:48:57,183 - INFO -   Markdown: generated_content/digital-twin-for-coal-preparation-operations.md
+2026-01-31 20:48:57,183 - INFO -   Stats: 2072 words, 7 links
+2026-01-31 20:48:57,183 - INFO -   Image: generated_content/digital-twin-for-coal-preparation-operations.png
+2026-01-31 20:48:57,183 - INFO - Content generated successfully for: digital twin for coal preparation operations
+2026-01-31 20:48:57,183 - INFO - Uploading to Prismic...
+2026-01-31 20:49:06,283 - INFO - Successfully uploaded to Prismic
+2026-01-31 20:49:06,285 - INFO - Content published to Prismic CMS for: digital twin for coal preparation operations
+2026-01-31 20:49:08,291 - INFO - Processing keyword 12/15: embedded world models for fault prediction
+2026-01-31 20:49:08,291 - INFO - Researching keyword with SERP analysis...
+2026-01-31 20:49:08,291 - INFO - Starting deep research for keyword: 'embedded world models for fault prediction'
+2026-01-31 20:49:08,292 - INFO - Analyzing 1 SERP results...
+2026-01-31 20:49:08,292 - INFO - Calling Gemini API...
+2026-01-31 20:49:46,928 - INFO - Gemini API call took 38.64 seconds
+2026-01-31 20:49:46,929 - INFO - Received response (8708 characters)
+2026-01-31 20:49:46,929 - INFO - Parsing markdown response...
+2026-01-31 20:49:46,930 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 20:49:46,930 - INFO - Research completed in 38.64 seconds total
+2026-01-31 20:49:46,931 - INFO - Generating content...
+2026-01-31 20:50:43,456 - INFO - Parsing markdown content response...
+2026-01-31 20:50:43,458 - INFO - Validating and cleaning markdown links...
+2026-01-31 20:50:43,458 - INFO - Link validation: 7 verified, 0 removed
+2026-01-31 20:50:43,458 - WARNING - Meta description truncated from 165 to 154 characters
+2026-01-31 20:50:43,459 - ERROR - Error generating content: 1 validation error for BlogPost
+body
+  Value error, Body must have at least 2000 words, got 1984 [type=value_error, input_value='It is 2026. The industri...r next-gen AI strategy.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.12/v/value_error
+2026-01-31 20:50:43,459 - ERROR - Failed to generate content for: embedded world models for fault prediction
+2026-01-31 20:50:43,459 - INFO - Processing keyword 13/15: screw compressor slide valve AI control
+2026-01-31 20:50:43,459 - INFO - Researching keyword with SERP analysis...
+2026-01-31 20:50:43,460 - INFO - Starting deep research for keyword: 'screw compressor slide valve AI control'
+2026-01-31 20:50:43,460 - INFO - Analyzing 1 SERP results...
+2026-01-31 20:50:43,460 - INFO - Calling Gemini API...
+2026-01-31 20:51:19,356 - INFO - Gemini API call took 35.90 seconds
+2026-01-31 20:51:19,357 - INFO - Received response (8543 characters)
+2026-01-31 20:51:19,358 - INFO - Parsing markdown response...
+2026-01-31 20:51:19,358 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 20:51:19,358 - INFO - Research completed in 35.90 seconds total
+2026-01-31 20:51:19,358 - INFO - Generating content...
+2026-01-31 20:52:15,742 - INFO - Parsing markdown content response...
+2026-01-31 20:52:15,745 - INFO - Validating and cleaning markdown links...
+2026-01-31 20:52:17,816 - WARNING - Invalid external link removed: https://reliabilityweb.com
+2026-01-31 20:52:17,816 - INFO - Link validation: 7 verified, 1 removed
+2026-01-31 20:52:17,816 - WARNING - Meta description truncated from 187 to 148 characters
+2026-01-31 20:52:17,817 - INFO - Generating hero image...
+2026-01-31 20:52:17,817 - INFO - Generating image with prompt: A photo-realistic, cinematic shot inside a clean, modern industrial compressor room. In the foreground, a reliability engineer (wearing a white hard hat, safety glasses, and a high-vis vest) is standing next to a large, industrial rotary screw compressor (painted industrial blue or green). The engineer is holding a tablet (back of tablet visible) and looking at a holographic-style data overlay appearing near the compressor's control panel, showing a smooth graph curve labeled "Slide Valve Position" and "Predicted Demand." The background shows piping, pressure gauges, and other industrial equipment, slightly blurred to focus on the engineer and the machine. Lighting is cool industrial blue with warm highlights on the machinery. No text on the image itself. 8k resolution.
+2026-01-31 20:52:17,817 - INFO - Calling OpenAI GPT-4 Image Generation API...
+2026-01-31 20:53:14,904 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2026-01-31 20:53:16,330 - INFO - Image generated successfully!
+2026-01-31 20:53:16,330 - INFO - Received base64 image data
+2026-01-31 20:53:16,331 - INFO - Saving base64 image data locally...
+2026-01-31 20:53:16,342 - INFO - Base64 image saved to: generated_content/screw-compressor-slide-valve-AI-control.png
+2026-01-31 20:53:16,343 - INFO - Formatting for Prismic...
+2026-01-31 20:53:16,350 - INFO - Content saved to:
+2026-01-31 20:53:16,351 - INFO -   JSON: generated_content/screw-compressor-slide-valve-AI-control.json
+2026-01-31 20:53:16,351 - INFO -   Markdown: generated_content/screw-compressor-slide-valve-AI-control.md
+2026-01-31 20:53:16,351 - INFO -   Stats: 2077 words, 7 links
+2026-01-31 20:53:16,353 - INFO -   Image: generated_content/screw-compressor-slide-valve-AI-control.png
+2026-01-31 20:53:16,353 - INFO - Content generated successfully for: screw compressor slide valve AI control
+2026-01-31 20:53:16,353 - INFO - Uploading to Prismic...
+2026-01-31 20:53:25,048 - INFO - Successfully uploaded to Prismic
+2026-01-31 20:53:25,049 - INFO - Content published to Prismic CMS for: screw compressor slide valve AI control
+2026-01-31 20:53:27,049 - INFO - Processing keyword 14/15: robotic case packing mixed SKU vision
+2026-01-31 20:53:27,050 - INFO - Researching keyword with SERP analysis...
+2026-01-31 20:53:27,050 - INFO - Starting deep research for keyword: 'robotic case packing mixed SKU vision'
+2026-01-31 20:53:27,050 - INFO - Analyzing 1 SERP results...
+2026-01-31 20:53:27,050 - INFO - Calling Gemini API...
+2026-01-31 20:54:02,240 - INFO - Gemini API call took 35.19 seconds
+2026-01-31 20:54:02,241 - INFO - Received response (7699 characters)
+2026-01-31 20:54:02,241 - INFO - Parsing markdown response...
+2026-01-31 20:54:02,241 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 20:54:02,241 - INFO - Research completed in 35.19 seconds total
+2026-01-31 20:54:02,241 - INFO - Generating content...
+2026-01-31 20:55:00,052 - INFO - Parsing markdown content response...
+2026-01-31 20:55:00,054 - INFO - Validating and cleaning markdown links...
+2026-01-31 20:55:00,129 - WARNING - Invalid external link removed: https://reliabilityweb.com
+2026-01-31 20:55:00,130 - INFO - Link validation: 6 verified, 1 removed
+2026-01-31 20:55:00,130 - INFO - Generating hero image...
+2026-01-31 20:55:00,130 - INFO - Generating image with prompt: A photo-realistic, high-quality image inside a modern manufacturing facility. In the foreground, a diverse team of two maintenance engineers (one male, one female) wearing hard hats, safety glasses, and high-visibility vests are inspecting a robotic arm. The robot is equipped with a vacuum gripper and is in the process of picking various sized and colored boxes (mixed SKUs) from a conveyor belt. A 3D vision camera is mounted above the conveyor, emitting a subtle structured light pattern (blue or red lines) onto the boxes. The female engineer is holding a tablet (back of device visible only) checking data, while the male engineer points toward the vision sensor. The background is slightly blurred but shows a clean, high-tech industrial environment with safety fencing. No text in the image. Lighting is professional and industrial.
+2026-01-31 20:55:00,130 - INFO - Calling OpenAI GPT-4 Image Generation API...
+2026-01-31 20:56:11,285 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2026-01-31 20:56:12,429 - INFO - Image generated successfully!
+2026-01-31 20:56:12,429 - INFO - Received base64 image data
+2026-01-31 20:56:12,430 - INFO - Saving base64 image data locally...
+2026-01-31 20:56:12,434 - INFO - Base64 image saved to: generated_content/robotic-case-packing-mixed-SKU-vision.png
+2026-01-31 20:56:12,435 - INFO - Formatting for Prismic...
+2026-01-31 20:56:12,437 - INFO - Content saved to:
+2026-01-31 20:56:12,437 - INFO -   JSON: generated_content/robotic-case-packing-mixed-SKU-vision.json
+2026-01-31 20:56:12,437 - INFO -   Markdown: generated_content/robotic-case-packing-mixed-SKU-vision.md
+2026-01-31 20:56:12,437 - INFO -   Stats: 2029 words, 6 links
+2026-01-31 20:56:12,437 - INFO -   Image: generated_content/robotic-case-packing-mixed-SKU-vision.png
+2026-01-31 20:56:12,437 - INFO - Content generated successfully for: robotic case packing mixed SKU vision
+2026-01-31 20:56:12,437 - INFO - Uploading to Prismic...
+2026-01-31 20:56:21,251 - INFO - Successfully uploaded to Prismic
+2026-01-31 20:56:21,251 - INFO - Content published to Prismic CMS for: robotic case packing mixed SKU vision
+2026-01-31 20:56:23,255 - INFO - Processing keyword 15/15: LCSA circularity mapping AI packaging
+2026-01-31 20:56:23,255 - INFO - Researching keyword with SERP analysis...
+2026-01-31 20:56:23,255 - INFO - Starting deep research for keyword: 'LCSA circularity mapping AI packaging'
+2026-01-31 20:56:23,255 - INFO - Analyzing 1 SERP results...
+2026-01-31 20:56:23,255 - INFO - Calling Gemini API...
+2026-01-31 20:56:58,889 - INFO - Gemini API call took 35.63 seconds
+2026-01-31 20:56:58,890 - INFO - Received response (9073 characters)
+2026-01-31 20:56:58,890 - INFO - Parsing markdown response...
+2026-01-31 20:56:58,891 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 20:56:58,891 - INFO - Research completed in 35.64 seconds total
+2026-01-31 20:56:58,891 - INFO - Generating content...
+2026-01-31 20:57:49,885 - INFO - Parsing markdown content response...
+2026-01-31 20:57:49,887 - INFO - Validating and cleaning markdown links...
+2026-01-31 20:57:52,223 - WARNING - Invalid external link removed: https://www.nist.gov/el/systems-integration-division-73400/sustainable-manufacturing
+2026-01-31 20:57:52,223 - INFO - Link validation: 8 verified, 1 removed
+2026-01-31 20:57:52,223 - ERROR - Error generating content: 1 validation error for BlogPost
+body
+  Value error, Body must have at least 2000 words, got 1717 [type=value_error, input_value='The year is 2026. The er...ur circularity journey.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.12/v/value_error
+2026-01-31 20:57:52,223 - ERROR - Failed to generate content for: LCSA circularity mapping AI packaging
+2026-01-31 20:57:52,224 - INFO - SEO content generation session completed
+2026-01-31 20:57:52,224 - INFO - ==================================================
+2026-01-31 22:00:07,661 - INFO - ==================================================
+2026-01-31 22:00:07,661 - INFO - SEO Content Generator session started
+2026-01-31 22:00:07,661 - INFO - ==================================================
+2026-01-31 22:00:15,499 - INFO - Successfully loaded 15 unique keywords with SERP data using utf-8 encoding
+2026-01-31 22:00:15,499 - INFO - Loading existing content from sitemap: https://f7i.ai/sitemap.xml
+2026-01-31 22:00:15,500 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-01-31 22:00:24,951 - INFO - Found 225 existing blog posts from sitemap
+2026-01-31 22:00:24,951 - INFO - Cached 265 internal URLs for verification
+2026-01-31 22:00:24,952 - WARNING - Skipping 'rod drop monitoring reciprocating compressor' - overlaps with existing blog content
+2026-01-31 22:00:24,955 - WARNING - Skipping 'PPO reinforcement learning compressor control' - overlaps with existing blog content
+2026-01-31 22:00:24,956 - INFO - Processing keyword 1/13: IP69K vibration sensors food processing
+2026-01-31 22:00:24,956 - INFO - Researching keyword with SERP analysis...
+2026-01-31 22:00:24,956 - INFO - Starting deep research for keyword: 'IP69K vibration sensors food processing'
+2026-01-31 22:00:24,956 - INFO - Analyzing 1 SERP results...
+2026-01-31 22:00:24,956 - INFO - Calling Gemini API...
+2026-01-31 22:01:01,176 - INFO - Gemini API call took 36.22 seconds
+2026-01-31 22:01:01,177 - INFO - Received response (7703 characters)
+2026-01-31 22:01:01,177 - INFO - Parsing markdown response...
+2026-01-31 22:01:01,178 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 22:01:01,179 - INFO - Research completed in 36.22 seconds total
+2026-01-31 22:01:01,179 - INFO - Generating content...
+2026-01-31 22:01:56,035 - INFO - Parsing markdown content response...
+2026-01-31 22:01:56,038 - INFO - Validating and cleaning markdown links...
+2026-01-31 22:01:56,038 - INFO - Link validation: 7 verified, 0 removed
+2026-01-31 22:01:56,039 - INFO - Generating hero image...
+2026-01-31 22:01:56,039 - INFO - Generating image with prompt: A high-quality, photorealistic hero image inside a modern, sterile food processing facility. The scene features a stainless steel industrial mixer or conveyor system. In the foreground, a reliability engineer wearing a white hard hat, safety glasses, ear protection, and a white hygienic lab coat is inspecting a small, stainless steel cylindrical sensor mounted on the machinery. The sensor is sleek and metallic. The background is slightly blurred but shows clean, bright stainless steel tanks and piping. The lighting is clinical and bright, emphasizing cleanliness and high technology. No text or overlays. The engineer is holding a tablet, but only the back of the device is visible.
+2026-01-31 22:01:56,039 - INFO - Calling Gemini Image Generation API...
+2026-01-31 22:01:56,820 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:predict "HTTP/1.1 404 Not Found"
+2026-01-31 22:01:56,822 - ERROR - Error generating image with Gemini Image Generation: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-3-pro-image-preview is not found for API version v1beta, or is not supported for predict. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}
+2026-01-31 22:01:56,822 - WARNING - No fallback model - returning None
+2026-01-31 22:01:56,822 - INFO - Formatting for Prismic...
+2026-01-31 22:01:56,826 - INFO - Content saved to:
+2026-01-31 22:01:56,826 - INFO -   JSON: generated_content/IP69K-vibration-sensors-food-processing.json
+2026-01-31 22:01:56,826 - INFO -   Markdown: generated_content/IP69K-vibration-sensors-food-processing.md
+2026-01-31 22:01:56,826 - INFO -   Stats: 2034 words, 7 links
+2026-01-31 22:01:56,827 - INFO - Content generated successfully for: IP69K vibration sensors food processing
+2026-01-31 22:01:56,827 - INFO - Uploading to Prismic...
+2026-01-31 22:02:03,621 - ERROR - Prismic upload failed:
+2026-01-31 22:02:03,621 - ERROR - Error: [ERROR 2026-01-31T11:02:03.613Z] ❌ Error processing file: generated_content/IP69K-vibration-sensors-food-processing.json
+  Error: ParsingError: Validation failed
+    at WriteClient.fetch (file:///Users/tim/Projects/seo/node_modules/@prismicio/client/dist/Client.js:1214:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async WriteClient.updateDocument (file:///Users/tim/Projects/seo/node_modules/@prismicio/client/dist/WriteClient.js:437:5)
+    at async WriteClient.migrateUpdateDocuments (file:///Users/tim/Projects/seo/node_modules/@prismicio/client/dist/WriteClient.js:224:7)
+    at async WriteClient.migrate (file:///Users/tim/Projects/seo/node_modules/@prismicio/client/dist/WriteClient.js:76:5)
+    at async processSingleFile (file:///Users/tim/Projects/seo/prismic_uploader.js:616:27)
+    at async main (file:///Users/tim/Projects/seo/prismic_uploader.js:1150:22) {
+  url: 'https://migration.prismic.io/documents/aX3hKBAAACEAZzJ2',
+  response: { message: 'Validation failed', details: [ [Object], [Object] ] }
+}
+[ERROR 2026-01-31T11:02:03.614Z] ❌ Operation failed: Validation failed
+
+2026-01-31 22:02:03,621 - ERROR - Prismic upload failed for: IP69K vibration sensors food processing
+2026-01-31 22:02:05,626 - INFO - Processing keyword 2/13: vibrating screen performance monitoring CHPP
+2026-01-31 22:02:05,626 - INFO - Researching keyword with SERP analysis...
+2026-01-31 22:02:05,626 - INFO - Starting deep research for keyword: 'vibrating screen performance monitoring CHPP'
+2026-01-31 22:02:05,626 - INFO - Analyzing 1 SERP results...
+2026-01-31 22:02:05,627 - INFO - Calling Gemini API...
+2026-01-31 22:02:41,556 - INFO - Gemini API call took 35.93 seconds
+2026-01-31 22:02:41,557 - INFO - Received response (7547 characters)
+2026-01-31 22:02:41,557 - INFO - Parsing markdown response...
+2026-01-31 22:02:41,557 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 22:02:41,558 - INFO - Research completed in 35.93 seconds total
+2026-01-31 22:02:41,558 - INFO - Generating content...
+2026-01-31 22:03:35,918 - INFO - Parsing markdown content response...
+2026-01-31 22:03:35,920 - INFO - Validating and cleaning markdown links...
+2026-01-31 22:03:35,920 - INFO - Link validation: 8 verified, 0 removed
+2026-01-31 22:03:35,920 - WARNING - Meta description truncated from 169 to 151 characters
+2026-01-31 22:03:35,920 - INFO - Generating hero image...
+2026-01-31 22:03:35,920 - INFO - Generating image with prompt: A photo-realistic, cinematic wide shot inside a modern industrial Coal Handling and Preparation Plant (CHPP). The focus is on a large, yellow industrial vibrating screen in operation, slightly blurred to suggest motion. In the foreground, a reliability engineer wearing a white hard hat, safety glasses, and high-visibility orange mining workwear is inspecting the machine. They are holding a rugged industrial tablet (back of device visible) which displays a green digital twin wireframe of the screen. The background is filled with conveyor belts, steel walkways, and industrial lighting, creating a gritty but high-tech atmosphere. No text in the image. 8k resolution, dramatic lighting.
+2026-01-31 22:03:35,920 - INFO - Calling Gemini Image Generation API...
+2026-01-31 22:03:36,194 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:predict "HTTP/1.1 404 Not Found"
+2026-01-31 22:03:36,195 - ERROR - Error generating image with Gemini Image Generation: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-3-pro-image-preview is not found for API version v1beta, or is not supported for predict. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}
+2026-01-31 22:03:36,196 - WARNING - No fallback model - returning None
+2026-01-31 22:03:36,196 - INFO - Formatting for Prismic...
+2026-01-31 22:03:36,197 - INFO - Content saved to:
+2026-01-31 22:03:36,197 - INFO -   JSON: generated_content/vibrating-screen-performance-monitoring-CHPP.json
+2026-01-31 22:03:36,197 - INFO -   Markdown: generated_content/vibrating-screen-performance-monitoring-CHPP.md
+2026-01-31 22:03:36,197 - INFO -   Stats: 2001 words, 8 links
+2026-01-31 22:03:36,197 - INFO - Content generated successfully for: vibrating screen performance monitoring CHPP
+2026-01-31 22:03:36,197 - INFO - Uploading to Prismic...
+2026-01-31 22:03:41,805 - ERROR - Prismic upload failed:
+2026-01-31 22:03:41,805 - ERROR - Error: [ERROR 2026-01-31T11:03:41.797Z] ❌ Error processing file: generated_content/vibrating-screen-performance-monitoring-CHPP.json
+  Error: ParsingError: Validation failed
+    at WriteClient.fetch (file:///Users/tim/Projects/seo/node_modules/@prismicio/client/dist/Client.js:1214:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async WriteClient.updateDocument (file:///Users/tim/Projects/seo/node_modules/@prismicio/client/dist/WriteClient.js:437:5)
+    at async WriteClient.migrateUpdateDocuments (file:///Users/tim/Projects/seo/node_modules/@prismicio/client/dist/WriteClient.js:224:7)
+    at async WriteClient.migrate (file:///Users/tim/Projects/seo/node_modules/@prismicio/client/dist/WriteClient.js:76:5)
+    at async processSingleFile (file:///Users/tim/Projects/seo/prismic_uploader.js:616:27)
+    at async main (file:///Users/tim/Projects/seo/prismic_uploader.js:1150:22) {
+  url: 'https://migration.prismic.io/documents/aX3hihAAACEAZzMJ',
+  response: { message: 'Validation failed', details: [ [Object], [Object] ] }
+}
+[ERROR 2026-01-31T11:03:41.798Z] ❌ Operation failed: Validation failed
+
+2026-01-31 22:03:41,806 - ERROR - Prismic upload failed for: vibrating screen performance monitoring CHPP
+2026-01-31 22:03:43,811 - INFO - Processing keyword 3/13: industrial data gravity strategy
+2026-01-31 22:03:43,811 - INFO - Researching keyword with SERP analysis...
+2026-01-31 22:03:43,811 - INFO - Starting deep research for keyword: 'industrial data gravity strategy'
+2026-01-31 22:03:43,812 - INFO - Analyzing 1 SERP results...
+2026-01-31 22:03:43,812 - INFO - Calling Gemini API...
+2026-01-31 22:04:20,057 - INFO - Gemini API call took 36.24 seconds
+2026-01-31 22:04:20,058 - INFO - Received response (7804 characters)
+2026-01-31 22:04:20,059 - INFO - Parsing markdown response...
+2026-01-31 22:04:20,059 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 22:04:20,060 - INFO - Research completed in 36.25 seconds total
+2026-01-31 22:04:20,060 - INFO - Generating content...
+2026-01-31 22:05:17,330 - INFO - Parsing markdown content response...
+2026-01-31 22:05:17,332 - INFO - Validating and cleaning markdown links...
+2026-01-31 22:05:17,332 - INFO - Link validation: 11 verified, 0 removed
+2026-01-31 22:05:17,332 - WARNING - Meta description truncated from 162 to 149 characters
+2026-01-31 22:05:17,332 - INFO - Generating hero image...
+2026-01-31 22:05:17,332 - INFO - Generating image with prompt: A photo-realistic, cinematic shot inside a modern, high-tech manufacturing facility. In the foreground, a diverse group of reliability engineers and plant managers (wearing hard hats, safety glasses, and high-visibility vests) are gathered around a large industrial turbine. One engineer is pointing at a ruggedized edge computing device mounted on the machine, while another holds a tablet (back of tablet facing camera) showing a data visualization. The background is slightly blurred but shows active automated machinery and clean industrial lighting. The atmosphere is professional, collaborative, and focused on technology. No text or overlays in the image. 8k resolution.
+2026-01-31 22:05:17,332 - INFO - Calling Gemini Image Generation API...
+2026-01-31 22:05:17,617 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:predict "HTTP/1.1 404 Not Found"
+2026-01-31 22:05:17,618 - ERROR - Error generating image with Gemini Image Generation: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-3-pro-image-preview is not found for API version v1beta, or is not supported for predict. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}
+2026-01-31 22:05:17,618 - WARNING - No fallback model - returning None
+2026-01-31 22:05:17,618 - INFO - Formatting for Prismic...
+2026-01-31 22:05:17,619 - INFO - Content saved to:
+2026-01-31 22:05:17,619 - INFO -   JSON: generated_content/industrial-data-gravity-strategy.json
+2026-01-31 22:05:17,620 - INFO -   Markdown: generated_content/industrial-data-gravity-strategy.md
+2026-01-31 22:05:17,620 - INFO -   Stats: 2031 words, 11 links
+2026-01-31 22:05:17,620 - INFO - Content generated successfully for: industrial data gravity strategy
+2026-01-31 22:05:17,620 - INFO - Uploading to Prismic...
+2026-01-31 22:05:22,212 - ERROR - Prismic upload failed:
+2026-01-31 22:05:22,213 - ERROR - Error: [ERROR 2026-01-31T11:05:22.202Z] ❌ Error processing file: generated_content/industrial-data-gravity-strategy.json
+  Error: ParsingError: Validation failed
+    at WriteClient.fetch (file:///Users/tim/Projects/seo/node_modules/@prismicio/client/dist/Client.js:1214:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async WriteClient.updateDocument (file:///Users/tim/Projects/seo/node_modules/@prismicio/client/dist/WriteClient.js:437:5)
+    at async WriteClient.migrateUpdateDocuments (file:///Users/tim/Projects/seo/node_modules/@prismicio/client/dist/WriteClient.js:224:7)
+    at async WriteClient.migrate (file:///Users/tim/Projects/seo/node_modules/@prismicio/client/dist/WriteClient.js:76:5)
+    at async processSingleFile (file:///Users/tim/Projects/seo/prismic_uploader.js:616:27)
+    at async main (file:///Users/tim/Projects/seo/prismic_uploader.js:1150:22) {
+  url: 'https://migration.prismic.io/documents/aX3h7xAAACEAZzOt',
+  response: { message: 'Validation failed', details: [ [Object], [Object] ] }
+}
+[ERROR 2026-01-31T11:05:22.203Z] ❌ Operation failed: Validation failed
+
+2026-01-31 22:05:22,213 - ERROR - Prismic upload failed for: industrial data gravity strategy
+2026-01-31 22:05:24,215 - INFO - Processing keyword 4/13: wake on motion interrupt IMU maintenance
+2026-01-31 22:05:24,216 - INFO - Researching keyword with SERP analysis...
+2026-01-31 22:05:24,216 - INFO - Starting deep research for keyword: 'wake on motion interrupt IMU maintenance'
+2026-01-31 22:05:24,216 - INFO - Analyzing 1 SERP results...
+2026-01-31 22:05:24,216 - INFO - Calling Gemini API...
+2026-01-31 22:07:34,862 - INFO - ==================================================
+2026-01-31 22:07:34,862 - INFO - SEO Content Generator session started
+2026-01-31 22:07:34,862 - INFO - ==================================================
+2026-01-31 22:07:44,496 - INFO - Successfully loaded 15 unique keywords with SERP data using utf-8 encoding
+2026-01-31 22:07:44,496 - INFO - Loading existing content from sitemap: https://f7i.ai/sitemap.xml
+2026-01-31 22:07:44,496 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-01-31 22:07:46,818 - INFO - Found 225 existing blog posts from sitemap
+2026-01-31 22:07:46,818 - INFO - Cached 265 internal URLs for verification
+2026-01-31 22:07:46,818 - WARNING - Skipping 'rod drop monitoring reciprocating compressor' - overlaps with existing blog content
+2026-01-31 22:07:46,820 - WARNING - Skipping 'PPO reinforcement learning compressor control' - overlaps with existing blog content
+2026-01-31 22:07:46,821 - INFO - Processing keyword 1/13: IP69K vibration sensors food processing
+2026-01-31 22:07:46,821 - INFO - Researching keyword with SERP analysis...
+2026-01-31 22:07:46,822 - INFO - Starting deep research for keyword: 'IP69K vibration sensors food processing'
+2026-01-31 22:07:46,822 - INFO - Analyzing 1 SERP results...
+2026-01-31 22:07:46,822 - INFO - Calling Gemini API...
+2026-01-31 22:08:24,540 - INFO - Gemini API call took 37.72 seconds
+2026-01-31 22:08:24,541 - INFO - Received response (8419 characters)
+2026-01-31 22:08:24,541 - INFO - Parsing markdown response...
+2026-01-31 22:08:24,543 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 22:08:24,544 - INFO - Research completed in 37.72 seconds total
+2026-01-31 22:08:24,544 - INFO - Generating content...
+2026-01-31 22:09:19,476 - INFO - Parsing markdown content response...
+2026-01-31 22:09:19,481 - INFO - Validating and cleaning markdown links...
+2026-01-31 22:09:21,076 - INFO - Link validation: 7 verified, 0 removed
+2026-01-31 22:09:21,077 - INFO - Generating hero image...
+2026-01-31 22:09:21,077 - INFO - Generating image with prompt: A photo-realistic, cinematic shot inside a modern, high-tech food processing facility. The scene focuses on a stainless steel sanitary pump and motor assembly. A reliability engineer, wearing a white hard hat, safety glasses, ear protection, and a white hygienic lab coat, is inspecting a small, cylindrical stainless steel sensor mounted on the equipment. The engineer is holding a tablet (back of tablet visible) likely checking data. The background shows clean, gleaming stainless steel piping and conveyor systems. The lighting is bright and clinical, typical of a food plant, with a slight cool blue tint to emphasize hygiene and technology. No text in the image.
+2026-01-31 22:09:21,077 - INFO - Calling Gemini Image Generation API...
+2026-01-31 22:09:21,079 - INFO - AFC is enabled with max remote calls: 10.
+2026-01-31 22:09:38,988 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-01-31 22:09:39,799 - INFO - Image generated successfully!
+2026-01-31 22:09:39,800 - INFO - Image saved to: generated_content/IP69K-vibration-sensors-food-processing.png
+2026-01-31 22:09:39,801 - INFO - Formatting for Prismic...
+2026-01-31 22:09:39,802 - INFO - Content saved to:
+2026-01-31 22:09:39,802 - INFO -   JSON: generated_content/IP69K-vibration-sensors-food-processing.json
+2026-01-31 22:09:39,802 - INFO -   Markdown: generated_content/IP69K-vibration-sensors-food-processing.md
+2026-01-31 22:09:39,802 - INFO -   Stats: 2014 words, 7 links
+2026-01-31 22:09:39,802 - INFO -   Image: generated_content/IP69K-vibration-sensors-food-processing.png
+2026-01-31 22:09:39,802 - INFO - Content generated successfully for: IP69K vibration sensors food processing
+2026-01-31 22:09:39,802 - INFO - Uploading to Prismic...
+2026-01-31 22:09:48,233 - INFO - Successfully uploaded to Prismic
+2026-01-31 22:09:48,234 - INFO - Content published to Prismic CMS for: IP69K vibration sensors food processing
+2026-01-31 22:09:50,238 - INFO - Processing keyword 2/13: vibrating screen performance monitoring CHPP
+2026-01-31 22:09:50,239 - INFO - Researching keyword with SERP analysis...
+2026-01-31 22:09:50,239 - INFO - Starting deep research for keyword: 'vibrating screen performance monitoring CHPP'
+2026-01-31 22:09:50,239 - INFO - Analyzing 1 SERP results...
+2026-01-31 22:09:50,239 - INFO - Calling Gemini API...
+2026-01-31 22:10:29,743 - INFO - Gemini API call took 39.50 seconds
+2026-01-31 22:10:29,745 - INFO - Received response (8518 characters)
+2026-01-31 22:10:29,745 - INFO - Parsing markdown response...
+2026-01-31 22:10:29,746 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 22:10:29,746 - INFO - Research completed in 39.51 seconds total
+2026-01-31 22:10:29,746 - INFO - Generating content...
+2026-01-31 22:11:27,922 - INFO - Parsing markdown content response...
+2026-01-31 22:11:27,925 - INFO - Validating and cleaning markdown links...
+2026-01-31 22:11:30,047 - INFO - Link validation: 11 verified, 0 removed
+2026-01-31 22:11:30,047 - WARNING - Meta description truncated from 181 to 152 characters
+2026-01-31 22:11:30,048 - INFO - Generating hero image...
+2026-01-31 22:11:30,048 - INFO - Generating image with prompt: A photo-realistic, cinematic shot inside a modern industrial Coal Handling and Preparation Plant (CHPP). The focus is on a large, yellow industrial vibrating screen in operation. The environment is industrial—steel walkways, conveyor belts in the background, slightly dusty atmosphere but well-lit with industrial LED lighting. In the foreground, a reliability engineer (wearing a white hard hat, safety glasses, high-vis orange vest, and gloves) is inspecting the side of the vibrating screen. They are holding a rugged tablet device (back of the device facing the camera) as if checking data. A small, wireless vibration sensor is visible mounted on the side plate of the screen. The image conveys technology meeting heavy industry. No text overlays. 16:9 aspect ratio.
+2026-01-31 22:11:30,048 - INFO - Calling Gemini Image Generation API...
+2026-01-31 22:11:30,049 - INFO - AFC is enabled with max remote calls: 10.
+2026-01-31 22:11:50,175 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-01-31 22:11:51,002 - INFO - Image generated successfully!
+2026-01-31 22:11:51,004 - INFO - Image saved to: generated_content/vibrating-screen-performance-monitoring-CHPP.png
+2026-01-31 22:11:51,004 - INFO - Formatting for Prismic...
+2026-01-31 22:11:51,006 - INFO - Content saved to:
+2026-01-31 22:11:51,006 - INFO -   JSON: generated_content/vibrating-screen-performance-monitoring-CHPP.json
+2026-01-31 22:11:51,006 - INFO -   Markdown: generated_content/vibrating-screen-performance-monitoring-CHPP.md
+2026-01-31 22:11:51,006 - INFO -   Stats: 2174 words, 11 links
+2026-01-31 22:11:51,007 - INFO -   Image: generated_content/vibrating-screen-performance-monitoring-CHPP.png
+2026-01-31 22:11:51,007 - INFO - Content generated successfully for: vibrating screen performance monitoring CHPP
+2026-01-31 22:11:51,007 - INFO - Uploading to Prismic...
+2026-01-31 22:11:59,121 - INFO - Successfully uploaded to Prismic
+2026-01-31 22:11:59,121 - INFO - Content published to Prismic CMS for: vibrating screen performance monitoring CHPP
+2026-01-31 22:12:01,124 - INFO - Processing keyword 3/13: industrial data gravity strategy
+2026-01-31 22:12:01,124 - INFO - Researching keyword with SERP analysis...
+2026-01-31 22:12:01,124 - INFO - Starting deep research for keyword: 'industrial data gravity strategy'
+2026-01-31 22:12:01,124 - INFO - Analyzing 1 SERP results...
+2026-01-31 22:12:01,124 - INFO - Calling Gemini API...
+2026-01-31 22:12:36,439 - INFO - Gemini API call took 35.31 seconds
+2026-01-31 22:12:36,441 - INFO - Received response (7757 characters)
+2026-01-31 22:12:36,441 - INFO - Parsing markdown response...
+2026-01-31 22:12:36,441 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 22:12:36,441 - INFO - Research completed in 35.32 seconds total
+2026-01-31 22:12:36,442 - INFO - Generating content...
+2026-01-31 22:13:38,832 - INFO - Parsing markdown content response...
+2026-01-31 22:13:38,834 - INFO - Validating and cleaning markdown links...
+2026-01-31 22:13:39,896 - WARNING - Invalid external link removed: https://www.ieee-ies.org/
+2026-01-31 22:13:41,043 - INFO - Link validation: 9 verified, 1 removed
+2026-01-31 22:13:41,044 - INFO - Generating hero image...
+2026-01-31 22:13:41,044 - INFO - Generating image with prompt: A photo-realistic, cinematic wide shot inside a modern, high-tech manufacturing facility in the year 2026. In the foreground, a reliability engineer (wearing a white hard hat, safety glasses, and a high-vis vest) is looking at a ruggedized tablet (back of tablet visible only) while standing next to a large industrial electric motor. The motor has a sleek, glowing edge-computing sensor attached to it. In the background, blurred slightly, are other diverse technicians working on automated conveyor lines. The lighting is a mix of cool industrial blue LEDs and warm amber safety lights. The atmosphere conveys a sense of advanced technology seamlessly integrated with heavy machinery. No text or overlays.
+2026-01-31 22:13:41,044 - INFO - Calling Gemini Image Generation API...
+2026-01-31 22:13:41,045 - INFO - AFC is enabled with max remote calls: 10.
+2026-01-31 22:13:59,868 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-01-31 22:14:00,656 - INFO - Image generated successfully!
+2026-01-31 22:14:00,657 - INFO - Image saved to: generated_content/industrial-data-gravity-strategy.png
+2026-01-31 22:14:00,657 - INFO - Formatting for Prismic...
+2026-01-31 22:14:00,657 - INFO - Content saved to:
+2026-01-31 22:14:00,658 - INFO -   JSON: generated_content/industrial-data-gravity-strategy.json
+2026-01-31 22:14:00,658 - INFO -   Markdown: generated_content/industrial-data-gravity-strategy.md
+2026-01-31 22:14:00,658 - INFO -   Stats: 2342 words, 9 links
+2026-01-31 22:14:00,658 - INFO -   Image: generated_content/industrial-data-gravity-strategy.png
+2026-01-31 22:14:00,658 - INFO - Content generated successfully for: industrial data gravity strategy
+2026-01-31 22:14:00,658 - INFO - Uploading to Prismic...
+2026-01-31 22:14:08,953 - INFO - Successfully uploaded to Prismic
+2026-01-31 22:14:08,953 - INFO - Content published to Prismic CMS for: industrial data gravity strategy
+2026-01-31 22:14:10,955 - INFO - Processing keyword 4/13: wake on motion interrupt IMU maintenance
+2026-01-31 22:14:10,955 - INFO - Researching keyword with SERP analysis...
+2026-01-31 22:14:10,955 - INFO - Starting deep research for keyword: 'wake on motion interrupt IMU maintenance'
+2026-01-31 22:14:10,955 - INFO - Analyzing 1 SERP results...
+2026-01-31 22:14:10,955 - INFO - Calling Gemini API...
+2026-01-31 22:14:47,925 - INFO - Gemini API call took 36.97 seconds
+2026-01-31 22:14:47,926 - INFO - Received response (7970 characters)
+2026-01-31 22:14:47,926 - INFO - Parsing markdown response...
+2026-01-31 22:14:47,926 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 22:14:47,927 - INFO - Research completed in 36.97 seconds total
+2026-01-31 22:14:47,927 - INFO - Generating content...
+2026-01-31 22:15:43,207 - INFO - Parsing markdown content response...
+2026-01-31 22:15:43,210 - INFO - Validating and cleaning markdown links...
+2026-01-31 22:15:43,210 - INFO - Link validation: 9 verified, 0 removed
+2026-01-31 22:15:43,212 - ERROR - Error generating content: 1 validation error for BlogPost
+body
+  Value error, Body must have at least 2000 words, got 1932 [type=value_error, input_value='The year is 2026. The in...actionable work orders.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.12/v/value_error
+2026-01-31 22:15:43,212 - ERROR - Failed to generate content for: wake on motion interrupt IMU maintenance
+2026-01-31 22:15:43,212 - INFO - Processing keyword 5/13: scaling industrial AI pilot to production
+2026-01-31 22:15:43,212 - INFO - Researching keyword with SERP analysis...
+2026-01-31 22:15:43,212 - INFO - Starting deep research for keyword: 'scaling industrial AI pilot to production'
+2026-01-31 22:15:43,212 - INFO - Analyzing 1 SERP results...
+2026-01-31 22:15:43,212 - INFO - Calling Gemini API...
+2026-01-31 22:16:20,623 - INFO - Gemini API call took 37.41 seconds
+2026-01-31 22:16:20,625 - INFO - Received response (8146 characters)
+2026-01-31 22:16:20,625 - INFO - Parsing markdown response...
+2026-01-31 22:16:20,626 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 22:16:20,626 - INFO - Research completed in 37.41 seconds total
+2026-01-31 22:16:20,626 - INFO - Generating content...
+2026-01-31 22:17:15,534 - INFO - Parsing markdown content response...
+2026-01-31 22:17:15,536 - INFO - Validating and cleaning markdown links...
+2026-01-31 22:17:16,538 - WARNING - Invalid external link removed: https://reliabilityweb.com
+2026-01-31 22:17:17,790 - WARNING - Invalid external link removed: https://ieee.org
+2026-01-31 22:17:17,790 - INFO - Link validation: 12 verified, 2 removed
+2026-01-31 22:17:17,791 - WARNING - Meta description truncated from 163 to 155 characters
+2026-01-31 22:17:17,791 - ERROR - Error generating content: 1 validation error for BlogPost
+body
+  Value error, Body must have at least 2000 words, got 1916 [type=value_error, input_value='It is 2026. By now, almo... data interoperability.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.12/v/value_error
+2026-01-31 22:17:17,791 - ERROR - Failed to generate content for: scaling industrial AI pilot to production
+2026-01-31 22:17:17,791 - INFO - Processing keyword 6/13: reciprocating compressor valve failure detection
+2026-01-31 22:17:17,791 - INFO - Researching keyword with SERP analysis...
+2026-01-31 22:17:17,791 - INFO - Starting deep research for keyword: 'reciprocating compressor valve failure detection'
+2026-01-31 22:17:17,791 - INFO - Analyzing 1 SERP results...
+2026-01-31 22:17:17,791 - INFO - Calling Gemini API...
+2026-01-31 22:17:51,785 - INFO - Gemini API call took 33.99 seconds
+2026-01-31 22:17:51,786 - INFO - Received response (8124 characters)
+2026-01-31 22:17:51,786 - INFO - Parsing markdown response...
+2026-01-31 22:17:51,787 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 22:17:51,787 - INFO - Research completed in 34.00 seconds total
+2026-01-31 22:17:51,787 - INFO - Generating content...
+2026-01-31 22:30:00,941 - ERROR - Error generating content: 504 Deadline Exceeded
+2026-01-31 22:30:00,942 - ERROR - Failed to generate content for: reciprocating compressor valve failure detection
+2026-01-31 22:30:00,942 - INFO - Processing keyword 7/13: rotary screw compressor energy efficiency AI
+2026-01-31 22:30:00,942 - INFO - Researching keyword with SERP analysis...
+2026-01-31 22:30:00,942 - INFO - Starting deep research for keyword: 'rotary screw compressor energy efficiency AI'
+2026-01-31 22:30:00,942 - INFO - Analyzing 1 SERP results...
+2026-01-31 22:30:00,942 - INFO - Calling Gemini API...
+2026-01-31 22:30:37,610 - INFO - Gemini API call took 36.67 seconds
+2026-01-31 22:30:37,612 - INFO - Received response (8305 characters)
+2026-01-31 22:30:37,612 - INFO - Parsing markdown response...
+2026-01-31 22:30:37,613 - INFO - Successfully parsed markdown with 11 sections
+2026-01-31 22:30:37,613 - INFO - Research completed in 36.67 seconds total
+2026-01-31 22:30:37,613 - INFO - Generating content...
+2026-01-31 22:31:32,046 - INFO - Parsing markdown content response...
+2026-01-31 22:31:32,048 - INFO - Validating and cleaning markdown links...
+2026-01-31 22:31:32,048 - INFO - Link validation: 5 verified, 0 removed
+2026-01-31 22:31:32,048 - ERROR - Error generating content: 1 validation error for BlogPost
+body
+  Value error, Body must have at least 2000 words, got 1952 [type=value_error, input_value='If you are managing an i...\'re currently wasting.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.12/v/value_error
+2026-01-31 22:31:32,049 - ERROR - Failed to generate content for: rotary screw compressor energy efficiency AI
+2026-01-31 22:31:32,049 - INFO - Processing keyword 8/13: predictive maintenance for freezer conveyors
+2026-01-31 22:31:32,049 - INFO - Researching keyword with SERP analysis...
+2026-01-31 22:31:32,049 - INFO - Starting deep research for keyword: 'predictive maintenance for freezer conveyors'
+2026-01-31 22:31:32,049 - INFO - Analyzing 1 SERP results...
+2026-01-31 22:31:32,049 - INFO - Calling Gemini API...
+2026-01-31 22:47:07,857 - ERROR - Error in keyword research after 935.81 seconds: 504 Deadline Exceeded
+2026-01-31 22:47:07,901 - INFO - Generating content...
+2026-01-31 22:57:07,914 - ERROR - Error generating content: 504 Deadline Exceeded
+2026-01-31 22:57:07,915 - ERROR - Failed to generate content for: predictive maintenance for freezer conveyors
+2026-01-31 22:57:07,916 - INFO - Processing keyword 9/13: washdown motor water ingress prediction
+2026-01-31 22:57:07,916 - INFO - Researching keyword with SERP analysis...
+2026-01-31 22:57:07,916 - INFO - Starting deep research for keyword: 'washdown motor water ingress prediction'
+2026-01-31 22:57:07,916 - INFO - Analyzing 1 SERP results...
+2026-01-31 22:57:07,916 - INFO - Calling Gemini API...
+2026-01-31 23:07:07,928 - ERROR - Error in keyword research after 600.01 seconds: 504 Deadline Exceeded
+2026-01-31 23:07:07,929 - INFO - Generating content...
+2026-01-31 23:25:34,872 - ERROR - Error generating content: 504 Deadline Exceeded
+2026-01-31 23:25:34,872 - ERROR - Failed to generate content for: washdown motor water ingress prediction
+2026-01-31 23:25:34,873 - INFO - Processing keyword 10/13: OEE trained AI layer packaging
+2026-01-31 23:25:34,873 - INFO - Researching keyword with SERP analysis...
+2026-01-31 23:25:34,873 - INFO - Starting deep research for keyword: 'OEE trained AI layer packaging'
+2026-01-31 23:25:34,873 - INFO - Analyzing 1 SERP results...
+2026-01-31 23:25:34,873 - INFO - Calling Gemini API...
+2026-01-31 23:41:06,000 - ERROR - Error in keyword research after 931.13 seconds: 504 Deadline Exceeded
+2026-01-31 23:41:06,000 - INFO - Generating content...
+2026-01-31 23:57:09,873 - ERROR - Error generating content: 504 Deadline Exceeded
+2026-01-31 23:57:09,873 - ERROR - Failed to generate content for: OEE trained AI layer packaging
+2026-01-31 23:57:09,873 - INFO - Processing keyword 11/13: CHPP throughput loss monitoring software
+2026-01-31 23:57:09,873 - INFO - Researching keyword with SERP analysis...
+2026-01-31 23:57:09,873 - INFO - Starting deep research for keyword: 'CHPP throughput loss monitoring software'
+2026-01-31 23:57:09,873 - INFO - Analyzing 1 SERP results...
+2026-01-31 23:57:09,874 - INFO - Calling Gemini API...
+2026-02-01 00:12:16,023 - ERROR - Error in keyword research after 906.15 seconds: 504 Deadline Exceeded
+2026-02-01 00:12:16,023 - INFO - Generating content...
+2026-02-01 00:36:45,506 - ERROR - Error generating content: 504 Deadline Exceeded
+2026-02-01 00:36:45,507 - ERROR - Failed to generate content for: CHPP throughput loss monitoring software
+2026-02-01 00:36:45,507 - INFO - Processing keyword 12/13: data gravity aware hybrid cloud architecture
+2026-02-01 00:36:45,507 - INFO - Researching keyword with SERP analysis...
+2026-02-01 00:36:45,507 - INFO - Starting deep research for keyword: 'data gravity aware hybrid cloud architecture'
+2026-02-01 00:36:45,507 - INFO - Analyzing 1 SERP results...
+2026-02-01 00:36:45,507 - INFO - Calling Gemini API...
+2026-02-01 00:54:40,875 - ERROR - Error in keyword research after 1075.37 seconds: 504 Deadline Exceeded
+2026-02-01 00:54:40,920 - INFO - Generating content...
+2026-02-01 01:10:50,013 - ERROR - Error generating content: 504 Deadline Exceeded
+2026-02-01 01:10:50,013 - ERROR - Failed to generate content for: data gravity aware hybrid cloud architecture
+2026-02-01 01:10:50,013 - INFO - Processing keyword 13/13: outcome driven predictive maintenance expansion
+2026-02-01 01:10:50,013 - INFO - Researching keyword with SERP analysis...
+2026-02-01 01:10:50,013 - INFO - Starting deep research for keyword: 'outcome driven predictive maintenance expansion'
+2026-02-01 01:10:50,013 - INFO - Analyzing 1 SERP results...
+2026-02-01 01:10:50,013 - INFO - Calling Gemini API...
+2026-02-01 01:28:28,201 - ERROR - Error in keyword research after 1058.19 seconds: 504 Deadline Exceeded
+2026-02-01 01:28:28,201 - INFO - Generating content...
+2026-02-01 01:44:55,905 - ERROR - Error generating content: 504 Deadline Exceeded
+2026-02-01 01:44:55,930 - ERROR - Failed to generate content for: outcome driven predictive maintenance expansion
+2026-02-01 01:44:55,931 - INFO - SEO content generation session completed
+2026-02-01 01:44:55,931 - INFO - ==================================================

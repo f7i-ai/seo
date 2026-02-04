@@ -1,0 +1,16 @@
+{
+  "meta_title": "Washdown Motor Vibration Limits: Why Standard ISO Charts Fail",
+  "meta_description": "Don't rely on generic ISO 10816 charts for washdown motors. Learn the specific vibration limit standards, sensor strategies, and failure modes for IP69K",
+  "title": "Why Standard Vibration Limits Fail in Washdown Environments: A Guide to Setting Accurate Baselines",
+  "keyword": "washdown motor vibration limit standards",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/washdown-motor-vibration-limit-standards.png",
+    "alt": "Hero image for Why Standard Vibration Limits Fail in Washdown Environments: A Guide to Setting Accurate Baselines",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern, high-tech food processing facility. In the foreground, a reliability engineer wearing a white hard hat, safety glasses, and a white sanitary lab coat is inspecting a stainless steel washdown motor mounted on a conveyor belt. The engineer is holding a tablet (back facing camera) displaying data graphs. The motor is shiny, silver, and sleek (IP69K style). The background shows a clean, blurred production line with stainless steel piping and machinery. The lighting is bright, cool, and clinical, emphasizing hygiene and technology. No text in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2252,
+  "link_count": 7
+}

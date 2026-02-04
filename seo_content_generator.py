@@ -185,6 +185,7 @@ class SEOContentGenerator:
         )
         self.requirements: ContentRequirements = ContentRequirements()
         self.existing_content: List[str] = []
+        self.expansion_stats: Dict[str, int] = {"attempted": 0, "successful": 0}
         self.competitor_domains: List[str] = [
             'getmaintainx.com',
             'limblecmms.com',
@@ -638,8 +639,140 @@ class SEOContentGenerator:
             logger.error(f"Error parsing content markdown: {e}")
             return None
 
-    def generate_content_with_gemini(self, keyword: str, research_data: ResearchData) -> Optional[BlogPost]:
-        """Generate high-quality blog content using Gemini"""
+    def _get_pillar_prompt(self, keyword: str, research_summary: str, internal_urls_context: str) -> str:
+        """Generate the prompt for pillar/hub content - longer, broader coverage with extensive internal linking"""
+        return f"""
+        Write a comprehensive PILLAR GUIDE for the topic: "{keyword}"
+
+        Research insights:
+        {research_summary}
+        {internal_urls_context}
+
+        CRITICAL THINKING PHILOSOPHY - THIS IS NON-NEGOTIABLE:
+
+        Do NOT write generic "best practices" content. The reliability industry is drowning in superficial advice that sounds good but doesn't survive contact with reality. Your job is to write content that a 20-year reliability veteran would respect.
+
+        QUESTION EVERYTHING:
+        - If you mention a metric (OEE, MTBF, etc.), ask: Is this actually the right thing to measure? When does this metric mislead people? What are they really trying to understand?
+        - If you mention a "best practice," ask: When does this practice fail? What context is required for it to work? What are organizations actually doing wrong when they adopt it?
+        - If you recommend a technology or approach, ask: What are the trade-offs? When should someone NOT do this? What's the cheaper/simpler alternative that might work just as well?
+
+        THE "JOHN SEWELL TEST" - For every section, ask:
+        1. Am I describing the actual PROBLEM, or just a symptom?
+        2. Am I helping readers make better DECISIONS, or just giving them more data to ignore?
+        3. Would a smart reliability engineer read this and learn something, or roll their eyes?
+
+        AVOID THESE CONTENT FAILURES:
+        - Bullet-point lists without explanation (if you list 5 things, explain WHY each matters and WHEN each fails)
+        - Metrics without context (don't just say "track OEE" - explain when OEE is useful vs. when it's a vanity metric that hides real problems)
+        - "Best practices" without trade-offs (every approach has downsides - acknowledge them)
+        - Solutions without problem definition (most organizations fix the wrong things because they confuse symptoms with root causes)
+        - Generic advice that could apply to any industry (be specific to this topic's context)
+
+        WHAT MAKES CONTENT VALUABLE:
+        - Challenge conventional wisdom when appropriate
+        - Acknowledge complexity and nuance
+        - Explain the "why" behind every recommendation
+        - Include honest trade-offs and limitations
+        - Give readers frameworks for DECISIONS, not just information to collect
+        - Write in confident prose, not superficial bullet points
+
+        PILLAR CONTENT STRUCTURE (5000-6000 words total):
+
+        1. THE REAL PROBLEM (400-500 words)
+           - What is this topic actually trying to solve?
+           - Why do most organizations get this wrong?
+           - What does success actually look like (not vanity metrics)?
+
+        2. FOUNDATIONAL CONCEPTS (800-1000 words)
+           - Define key terms, but explain WHY the distinctions matter
+           - Challenge any industry jargon that obscures rather than clarifies
+           - Explain the mental models that experienced practitioners use
+
+        3. HOW IT ACTUALLY WORKS (1000-1200 words)
+           - Step-by-step explanation with technical depth
+           - What happens when each step is done poorly?
+           - The difference between "textbook" implementation and reality
+
+        4. IMPLEMENTATION APPROACHES (1000-1200 words)
+           - Different strategies and WHEN each applies
+           - Decision framework for choosing (not just "it depends")
+           - What the vendors won't tell you
+           - Common failure modes and how to avoid them
+
+        5. MEASURING WHAT MATTERS (600-800 words)
+           - Which metrics actually drive improvement vs. vanity metrics
+           - When common metrics (OEE, MTBF) are misleading
+           - Leading indicators vs. lagging indicators
+           - How to know if you're solving the right problem
+
+        6. COMMON MISTAKES AND HARD TRUTHS (600-800 words)
+           - What organizations consistently get wrong
+           - Why "best practices" often fail
+           - The gap between conference presentations and shop floor reality
+           - Uncomfortable truths the industry doesn't discuss
+
+        7. GETTING STARTED WITHOUT GETTING OVERWHELMED (500-600 words)
+           - First steps that actually matter (not "buy software")
+           - How to build a business case that resonates
+           - What to do in your first 90 days
+           - When to slow down vs. when to move fast
+
+        AUDIENCE & CONTEXT:
+        - Write for experienced maintenance managers and reliability engineers
+        - These readers have heard the generic advice before - give them something new
+        - Assume they're skeptical of vendor claims and "thought leadership"
+        - The year is 2026
+
+        LENGTH REQUIREMENTS:
+        - MINIMUM 3500 words, target 4000-4500 for comprehensive coverage
+        - NO superficial bullet points - use prose with substance
+        - Every section must have DEPTH, not just breadth
+
+        INTERNAL LINKING REQUIREMENTS (CRITICAL FOR PILLAR CONTENT):
+        - EMBED 10-15 internal links to related articles using: [anchor text](/url/path)
+        - Use ONLY URLs from the available internal URLs list above
+        - Link to deeper articles when mentioning subtopics
+        - Create a web of connections to cluster content
+
+        EXTERNAL LINKING:
+        - Include 3-5 external links to authoritative sources
+        - Prefer: isixsigma.com, nist.gov, ieee.org, asme.org, reliabilityweb.com
+
+        IMAGE PROMPT REQUIREMENTS:
+        - Describe a hero image showing the breadth of this topic
+        - Photo-realistic, professional, industrial setting
+        - Diverse people in appropriate PPE
+        - No text in the image
+
+        Output in this EXACT structured markdown format:
+
+        # Pillar Guide: {keyword}
+
+        ## META_TITLE
+        [Less than 60 characters - compelling, not generic]
+
+        ## META_DESCRIPTION
+        [150-160 characters, emphasizes insight over comprehensiveness]
+
+        ## MAIN_TITLE
+        [Engaging H1 that promises VALUE, not just coverage]
+
+        ## BODY_CONTENT
+        [MINIMUM 3500 words following the structure above. Write in confident prose, not bullet points. Question assumptions. Acknowledge trade-offs.]
+
+        ## IMAGE_PROMPT
+        [Detailed prompt for hero image]
+        """
+
+    def generate_content_with_gemini(self, keyword: str, research_data: ResearchData, is_pillar: bool = False) -> Optional[BlogPost]:
+        """Generate high-quality blog content using Gemini
+
+        Args:
+            keyword: Target keyword for content
+            research_data: Research data from keyword analysis
+            is_pillar: If True, generates longer pillar/hub content (4500+ words)
+        """
 
         # Create simplified research summary for the prompt
         research_summary: str = ""
@@ -652,12 +785,12 @@ class SEOContentGenerator:
         if research_data.content_angles:
             research_summary += f"Content Angles: {research_data.content_angles[:200]}...\n"
 
-        # Build available internal URLs context
+        # Build available internal URLs context - more URLs for pillar content
         internal_urls_context = ""
         if self.available_internal_urls:
-            # Show a sample of available URLs for reference
-            # First 20 URLs as examples
-            sample_urls = self.available_internal_urls[:20]
+            # Show more URLs for pillar content (needs more internal links)
+            url_count = 50 if is_pillar else 20
+            sample_urls = self.available_internal_urls[:url_count]
             internal_urls_context = f"""
 
         AVAILABLE INTERNAL URLS (for reference when adding internal links):
@@ -665,7 +798,11 @@ class SEOContentGenerator:
         (And {len(self.available_internal_urls)} total available internal URLs)
         """
 
-        content_prompt = f"""
+        # Use pillar prompt for hub/pillar content
+        if is_pillar:
+            content_prompt = self._get_pillar_prompt(keyword, research_summary, internal_urls_context)
+        else:
+            content_prompt = f"""
         Write a comprehensive blog post for the keyword: "{keyword}"
 
         Research insights:
@@ -705,10 +842,12 @@ class SEOContentGenerator:
         - Troubleshooting actual problems ("If you're seeing X symptom, check Y first")
 
         STRUCTURE REQUIREMENTS:
-        - MINIMUM 2500 words, target 3000-4000 for comprehensive coverage
+        - MINIMUM 3000 words, target 3500-4000 for comprehensive coverage
+        - Include at least 6-8 major H2 sections, each 400-600 words minimum
         - Use H2 sections (##) for major follow-up questions/topics
         - Use H3 subsections (###) for drilling into specifics
         - Each section should feel like a complete answer to a question someone would actually ask
+        - Do NOT pad with fluff - each sentence should add value
 
         MARKDOWN LINK REQUIREMENTS:
         - EMBED 3-5 internal links naturally in context using: [anchor text](/url/path)
@@ -736,11 +875,14 @@ class SEOContentGenerator:
         [Engaging H1 that includes the target keyword - frame it as addressing the core question]
 
         ## BODY_CONTENT
-        [MINIMUM 2500 words. Start by directly answering the core question, then structure remaining sections as follow-up questions and answers. Include internal and external links naturally embedded in the markdown.]
+        [MINIMUM 3000 words with 6-8 H2 sections of 400-600 words each. Start by directly answering the core question, then structure remaining sections as follow-up questions and answers. Include internal and external links naturally embedded in the markdown.]
 
         ## IMAGE_PROMPT
         [Detailed prompt for generating the hero image]
         """
+
+        # Set max tokens based on content type
+        max_tokens = 12000 if is_pillar else 10000
 
         try:
             # Add retry logic for rate limiting and timeouts
@@ -752,9 +894,9 @@ class SEOContentGenerator:
                         content_prompt,
                         generation_config=genai.types.GenerationConfig(  # type: ignore
                             temperature=0.4,
-                            max_output_tokens=12000,  # Increased for full 4000-word content
+                            max_output_tokens=max_tokens,
                         ),
-                        request_options={"timeout": 180}  # 3 minute timeout for longer content
+                        request_options={"timeout": 240 if is_pillar else 180}
                     )
                     break  # Success, exit retry loop
 
@@ -794,6 +936,42 @@ class SEOContentGenerator:
             cleaned_body: str = self.validate_and_clean_markdown_links(
                 content_data.body)
 
+            # Pre-validation for pillar content (higher word count requirement)
+            # Prompt asks for 3500+, but we accept 3000+ as passing
+            word_count = len(cleaned_body.split())
+            min_words = 3000 if is_pillar else 2000
+
+            if is_pillar and word_count < min_words:
+                logger.warning(f"Pillar content under minimum ({word_count}/{min_words} words)")
+
+                # Try expansion for near-misses (2700-2999 words for pillar)
+                if 2700 <= word_count < 3000:
+                    logger.info(f"Attempting expansion for pillar content...")
+                    self.expansion_stats["attempted"] += 1
+                    expanded_body = self.expand_content(keyword, content_data, cleaned_body, target_words=3500)
+
+                    if expanded_body:
+                        expanded_word_count = len(expanded_body.split())
+                        logger.info(f"Pillar expansion result: {word_count} -> {expanded_word_count} words")
+
+                        if expanded_word_count >= 3000:
+                            cleaned_body = expanded_body
+                            word_count = expanded_word_count
+                            self.expansion_stats["successful"] += 1
+                        else:
+                            logger.warning(f"Pillar expansion insufficient ({expanded_word_count}/3000), saving to drafts")
+                            self._save_draft(keyword, content_data, expanded_body, expanded_word_count)
+                            return None
+                    else:
+                        logger.warning(f"Pillar expansion failed, saving original to drafts")
+                        self._save_draft(keyword, content_data, cleaned_body, word_count)
+                        return None
+                else:
+                    # Too short for expansion
+                    logger.warning(f"Pillar content too short for expansion ({word_count}/3000), saving to drafts")
+                    self._save_draft(keyword, content_data, cleaned_body, word_count)
+                    return None
+
             try:
                 return BlogPost(
                     keyword=keyword,
@@ -806,17 +984,120 @@ class SEOContentGenerator:
                     external_links=[]   # Links are now embedded in the markdown
                 )
             except ValidationError as e:
-                # Check if it's a word count error - save to drafts for review
+                # Check if it's a word count error
                 error_str = str(e)
                 if "Body must have at least 2000 words" in error_str:
                     word_count = len(cleaned_body.split())
-                    logger.warning(f"Content under minimum word count ({word_count}/2000), saving to drafts")
-                    self._save_draft(keyword, content_data, cleaned_body, word_count)
+
+                    # For near-misses (1700-1999 words), try to expand the content
+                    if 1700 <= word_count < 2000:
+                        logger.warning(f"Near-miss word count ({word_count}/2000), attempting expansion...")
+                        self.expansion_stats["attempted"] += 1
+                        expanded_body = self.expand_content(keyword, content_data, cleaned_body, target_words=2200)
+
+                        if expanded_body:
+                            expanded_word_count = len(expanded_body.split())
+                            logger.info(f"Expansion result: {word_count} -> {expanded_word_count} words")
+
+                            if expanded_word_count >= 2000:
+                                # Try again with expanded content
+                                try:
+                                    self.expansion_stats["successful"] += 1
+                                    return BlogPost(
+                                        keyword=keyword,
+                                        meta_title=content_data.meta_title,
+                                        meta_description=content_data.meta_description,
+                                        title=content_data.title,
+                                        body=expanded_body,
+                                        image_prompt=content_data.image_prompt,
+                                        internal_links=[],
+                                        external_links=[]
+                                    )
+                                except ValidationError as e2:
+                                    self.expansion_stats["successful"] -= 1  # Undo the increment
+                                    logger.warning(f"Expansion still failed validation: {e2}")
+                                    # Save expanded version to drafts
+                                    self._save_draft(keyword, content_data, expanded_body, expanded_word_count)
+                            else:
+                                # Expansion didn't reach target, save expanded version to drafts
+                                logger.warning(f"Expansion insufficient ({expanded_word_count}/2000), saving to drafts")
+                                self._save_draft(keyword, content_data, expanded_body, expanded_word_count)
+                        else:
+                            # Expansion failed, save original to drafts
+                            logger.warning(f"Expansion failed, saving original ({word_count} words) to drafts")
+                            self._save_draft(keyword, content_data, cleaned_body, word_count)
+                    else:
+                        # Too short for expansion (< 1700), save to drafts directly
+                        logger.warning(f"Content too short for expansion ({word_count}/2000), saving to drafts")
+                        self._save_draft(keyword, content_data, cleaned_body, word_count)
+
                 logger.error(f"Error generating content: {e}")
                 return None
 
         except Exception as e:
             logger.error(f"Error generating content: {e}")
+            return None
+
+    def expand_content(self, keyword: str, content_data: ContentData, current_body: str, target_words: int = 2200) -> Optional[str]:
+        """Expand under-length content by asking LLM to add more depth to existing sections"""
+        current_words = len(current_body.split())
+        words_needed = target_words - current_words
+
+        logger.info(f"Expanding content: {current_words} words -> target {target_words} (need +{words_needed} words)")
+
+        expand_prompt = f"""
+        The following blog post about "{keyword}" is {current_words} words but needs to be at least {target_words} words.
+
+        EXPAND the content by adding {words_needed}+ more words. Do NOT rewrite - ADD to existing sections.
+
+        EXPANSION STRATEGIES (pick 2-3):
+        1. Add a real-world example or case study to an existing section
+        2. Add a "Common Mistakes" or "Troubleshooting" section if missing
+        3. Expand the "How to get started" or implementation guidance
+        4. Add specific numbers, thresholds, or benchmarks where generic advice exists
+        5. Add a comparison table or decision framework
+        6. Expand on edge cases or "what if" scenarios
+
+        RULES:
+        - Keep the existing structure and content intact
+        - Add depth, not fluff - every sentence should add value
+        - Maintain the same professional tone for industrial/maintenance audience
+        - Keep all existing markdown links intact
+        - Output the COMPLETE expanded article (not just the additions)
+
+        CURRENT CONTENT:
+        {current_body}
+
+        OUTPUT: The complete expanded article in markdown format (just the body content, no meta fields).
+        """
+
+        try:
+            logger.info("Calling Gemini API for content expansion...")
+            response = self.gemini_model.generate_content(  # type: ignore
+                expand_prompt,
+                generation_config=genai.types.GenerationConfig(  # type: ignore
+                    temperature=0.3,  # Lower temperature for more consistent expansion
+                    max_output_tokens=15000,
+                ),
+                request_options={"timeout": 180}
+            )
+
+            if response is None:
+                logger.error("No response from expansion API call")
+                return None
+
+            expanded_body = response.text.strip()
+            new_word_count = len(expanded_body.split())
+
+            logger.info(f"Expansion complete: {current_words} -> {new_word_count} words (+{new_word_count - current_words})")
+
+            # Validate and clean links in the expanded content
+            cleaned_expanded = self.validate_and_clean_markdown_links(expanded_body)
+
+            return cleaned_expanded
+
+        except Exception as e:
+            logger.error(f"Error expanding content: {e}")
             return None
 
     def download_image_from_url(self, image_url: str, keyword: str, output_dir: str = "generated_content") -> Optional[str]:
@@ -1238,6 +1519,17 @@ def main() -> None:
     else:
         print("⏭️  Prismic upload disabled: Only local files will be created")
 
+    # Get pillar content mode
+    pillar_choice: str = input(
+        "Generate PILLAR content (longer, hub pages)? (y/n) [n]: ").strip().lower()
+    is_pillar_mode: bool = pillar_choice in ['y', 'yes']
+
+    if is_pillar_mode:
+        print("📚 Pillar mode: Will generate comprehensive hub content (4500+ words)")
+        print("   └─ Best for: topic overviews, ultimate guides, cluster hubs")
+    else:
+        print("📝 Standard mode: Will generate focused blog content (3000+ words)")
+
     # Load keywords with SERP data
     keyword_data: Dict[str, List[Dict[str, Any]]
                        ] = generator.load_keywords_from_csv(csv_path)
@@ -1317,10 +1609,11 @@ def main() -> None:
                 continue
 
             # Generate content
-            print("  ✍️  Generating content...")
-            logger.info("Generating content...")
+            content_type = "pillar content" if is_pillar_mode else "content"
+            print(f"  ✍️  Generating {content_type}...")
+            logger.info(f"Generating {content_type}...")
             blog_post = generator.generate_content_with_gemini(
-                keyword, research_data)
+                keyword, research_data, is_pillar=is_pillar_mode)
 
             if not blog_post:
                 # Check if a draft was saved (under-length content)
@@ -1393,6 +1686,11 @@ def main() -> None:
     if generation_stats['drafts_saved'] > 0:
         print(f"   • Drafts saved (under word count): {generation_stats['drafts_saved']}")
         print(f"     └─ Review in: generated_content/drafts/")
+
+    # Show expansion stats if any were attempted
+    if generator.expansion_stats["attempted"] > 0:
+        print(f"   • Content expansions attempted: {generator.expansion_stats['attempted']}")
+        print(f"     └─ Successful: {generator.expansion_stats['successful']}")
 
     if upload_to_prismic:
         if skip_prismic_upload:

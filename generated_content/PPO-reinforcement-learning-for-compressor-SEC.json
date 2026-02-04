@@ -1,0 +1,16 @@
+{
+  "meta_title": "PPO Reinforcement Learning for Compressor SEC: Beyond PID Control",
+  "meta_description": "Discover how Proximal Policy Optimization (PPO) reduces Specific Energy Consumption (SEC) in industrial compressors. A technical guide for 2026 engineers.",
+  "title": "PPO Reinforcement Learning for Compressor SEC: How to Move from Reactive PID to Proactive Energy Optimization",
+  "keyword": "PPO reinforcement learning for compressor SEC",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/PPO-reinforcement-learning-for-compressor-SEC.png",
+    "alt": "Hero image for PPO Reinforcement Learning for Compressor SEC: How to Move from Reactive PID to Proactive Energy Optimization",
+    "source": "gpt-image-1"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern, high-tech industrial compressor room. In the foreground, a diverse group of two engineers (one male, one female) wearing hard hats, safety glasses, and high-visibility vests are looking at a large, blurred industrial tablet held by one of them (screen not visible). They are standing in front of a massive, sleek centrifugal compressor painted in industrial blue and grey. The background shows complex piping, pressure gauges, and digital displays with glowing indicators. The lighting is dramatic, mixing cool industrial LED white with subtle blue accent lighting to suggest advanced technology. The atmosphere conveys precision, safety, and futuristic manufacturing. No text or overlays.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2319,
+  "link_count": 6
+}

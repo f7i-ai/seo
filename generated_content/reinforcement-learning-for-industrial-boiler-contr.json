@@ -1,0 +1,16 @@
+{
+  "meta_title": "Reinforcement Learning for Industrial Boiler Control: A 2026 Guide",
+  "meta_description": "Discover how Reinforcement Learning (RL) optimizes industrial boiler control. Learn about DDPG, Digital Twins, and safe deployment strategies for NOx reduction.",
+  "title": "Reinforcement Learning for Industrial Boiler Control: Moving Beyond PID in Complex Thermodynamics",
+  "keyword": "reinforcement learning for industrial boiler control",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/reinforcement-learning-for-industrial-boiler-control.png",
+    "alt": "Hero image for Reinforcement Learning for Industrial Boiler Control: Moving Beyond PID in Complex Thermodynamics",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern industrial power plant or boiler room. In the foreground, a diverse group of two engineers (one male, one female) wearing full PPE (hard hats, safety glasses, high-vis vests) are looking at a ruggedized tablet held by the female engineer. The back of the tablet is visible, not the screen. They are standing in front of a massive, complex industrial boiler system with intricate piping, valves, and digital gauges. The lighting is dramatic but professional, with cool blue and warm orange tones reflecting the \"digital twin\" concept merging with industrial heat. The background is slightly out of focus to emphasize the people and the scale of the machinery. No text or overlays. 8k resolution, highly detailed textures on the metal pipes.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2252,
+  "link_count": 6
+}

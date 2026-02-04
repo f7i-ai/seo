@@ -1,0 +1,16 @@
+{
+  "meta_title": "Root Cause Analysis & Risk Management: The Reliability Loop",
+  "meta_description": "Stop firefighting. Learn how to connect Root Cause Analysis (RCA) directly to Risk Management to create a closed-loop reliability strategy that prevents",
+  "title": "From Autopsy to Immunity: How to Feed Root Cause Analysis into Your Risk Management Strategy",
+  "keyword": "root cause analysis risk management",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/root-cause-analysis-risk-management.png",
+    "alt": "Hero image for From Autopsy to Immunity: How to Feed Root Cause Analysis into Your Risk Management Strategy",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern, clean manufacturing facility. In the foreground, a diverse group of three reliability engineers (one female, two male) wearing hard hats, safety glasses, and high-visibility vests are gathered around a large industrial pump system. They are looking at a tablet held by one of the engineers (back of tablet visible only), pointing at a specific component of the pump, engaged in serious discussion. In the background, blurred slightly, are automated conveyor lines and digital dashboard screens glowing with data visualizations. The lighting is cool industrial blue with warm accent lighting on the machinery. No text or words in the image. High resolution, 8k.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2460,
+  "link_count": 9
+}

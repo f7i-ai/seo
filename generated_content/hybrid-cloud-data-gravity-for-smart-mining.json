@@ -1,0 +1,16 @@
+{
+  "meta_title": "Hybrid Cloud Data Gravity: The Edge-First Strategy for Smart Mining",
+  "meta_description": "Overcome data gravity in mining with a hybrid cloud architecture. Learn how Edge AI, private 5G, and local processing solve latency issues for remote assets.",
+  "title": "Hybrid Cloud Data Gravity: Why Your \"Cloud-First\" Strategy is Failing Your Remote Mines",
+  "keyword": "hybrid cloud data gravity for smart mining",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/hybrid-cloud-data-gravity-for-smart-mining.png",
+    "alt": "Hero image for Hybrid Cloud Data Gravity: Why Your \"Cloud-First\" Strategy is Failing Your Remote Mines",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern open-pit mine at twilight. In the foreground, a diverse group of mining engineers and reliability technicians (men and women, various ethnicities) are wearing high-visibility vests, hard hats with lamps, and safety glasses. They are gathered around a ruggedized industrial server rack (Edge Gateway) that is mounted near a large conveyor belt system. One technician is holding a rugged tablet (back facing camera) pointing at the server. In the background, massive autonomous haul trucks are visible, and a private 5G tower stands silhouetted against the darkening sky. The lighting should emphasize the contrast between the dusty, gritty industrial environment and the sleek, blue-LED glow of the edge computing hardware. No text overlays. Professional 8k resolution.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2201,
+  "link_count": 12
+}

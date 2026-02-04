@@ -1,0 +1,16 @@
+{
+  "meta_title": "AI Predictive Maintenance for Vacuum Pumps: The Retrofit Guide",
+  "meta_description": "Stop unexpected downtime. Learn how to retrofit legacy vacuum pumps with AI predictive maintenance to detect cavitation, oil back-streaming, and bearing wear.",
+  "title": "AI Predictive Maintenance for Vacuum Pumps: How to Retrofit Legacy Assets for Zero Unplanned Downtime",
+  "keyword": "AI predictive maintenance for vacuum pumps",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/AI-predictive-maintenance-for-vacuum-pumps.png",
+    "alt": "Hero image for AI Predictive Maintenance for Vacuum Pumps: How to Retrofit Legacy Assets for Zero Unplanned Downtime",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern industrial manufacturing facility. In the foreground, a reliability engineer (wearing a hard hat, safety glasses, and a high-visibility vest) is inspecting a large, industrial blue vacuum pump system. The engineer is holding a tablet (screen not visible) and looking at a wireless sensor mounted on the pump housing. The background is slightly blurred, showing clean piping, pressure gauges, and other industrial machinery. The lighting is dramatic but professional, highlighting the texture of the metal and the technology. No text or words in the image. 8k resolution.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2157,
+  "link_count": 7
+}

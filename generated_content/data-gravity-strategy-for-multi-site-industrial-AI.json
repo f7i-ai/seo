@@ -1,0 +1,16 @@
+{
+  "meta_title": "Data Gravity Strategy for Multi-Site Industrial AI: A 2026 Guide",
+  "meta_description": "Stop drowning in cloud egress fees. Learn the \"Hybrid-Gravity\" strategy to scale industrial AI across multiple sites by moving compute to the data, not vice",
+  "title": "The Physics of Scale: A Data Gravity Strategy for Multi-Site Industrial AI",
+  "keyword": "data gravity strategy for multi-site industrial AI",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/data-gravity-strategy-for-multi-site-industrial-AI.png",
+    "alt": "Hero image for The Physics of Scale: A Data Gravity Strategy for Multi-Site Industrial AI",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern, high-tech manufacturing facility. In the foreground, a diverse group of industrial engineers and data scientists (wearing hard hats, safety glasses, and high-visibility vests) are gathered around a large industrial turbine. One engineer is holding a ruggedized tablet (back facing camera) pointing at the machine. Superimposed subtly in the air near the machine are holographic-style data visualizations (wireframe graphs, efficiency percentages) representing \"Edge AI\" processing. The background shows a busy factory floor with automated conveyors and robotic arms, slightly blurred to emphasize depth. The lighting is a mix of cool industrial blue LEDs and warm amber safety lights. High resolution, 8k, professional architectural photography style.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2135,
+  "link_count": 10
+}

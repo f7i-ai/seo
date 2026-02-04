@@ -29,12 +29,12 @@ function getProfileData(profileName = 'tim') {
       display_name: 'JP, CEO and Co-founder of Factory AI'
     },
     luka: {
-      slice_type: 'profile_luka', 
+      slice_type: 'profile_luka',
       field_name: 'luka1',
       display_name: 'Luka, Founding AI Engineer of Factory AI'
     }
   };
-  
+
   return profiles[profileName] || profiles.tim;
 }
 
@@ -92,29 +92,30 @@ infoLog('Prismic write client created successfully');
 
 // Function to remove metadata section from markdown content
 function removeMarkdownMetadata(markdown) {
-  debugLog('Removing metadata section from markdown content', { 
+  debugLog('Removing metadata section from markdown content', {
     originalLength: markdown.length,
     firstLine: markdown.split('\n')[0]
   });
-  
+
   const lines = markdown.split('\n');
   let contentStartIndex = 0;
-  
+
   // Skip the initial heading (starts with #)
   if (lines[0] && lines[0].startsWith('#')) {
     contentStartIndex = 1;
   }
-  
+
   // Skip empty lines after heading
   while (contentStartIndex < lines.length && lines[contentStartIndex].trim() === '') {
     contentStartIndex++;
   }
-  
-  // Skip metadata lines (Keyword, Meta Title, Meta Description, Word Count, Link Count)
+
+  // Skip metadata lines (Keyword, Topic, Meta Title, Meta Description, Word Count, Link Count)
   while (contentStartIndex < lines.length) {
     const line = lines[contentStartIndex].trim();
-    
+
     if (line.startsWith('**Keyword:**') ||
+        line.startsWith('**Topic:**') ||
         line.startsWith('**Meta Title:**') ||
         line.startsWith('**Meta Description:**') ||
         line.startsWith('**Word Count:**') ||
@@ -126,66 +127,66 @@ function removeMarkdownMetadata(markdown) {
       break;
     }
   }
-  
+
   // Join the remaining content
   const cleanedContent = lines.slice(contentStartIndex).join('\n').trim();
-  
-  debugLog('Metadata section removed', { 
+
+  debugLog('Metadata section removed', {
     originalLength: markdown.length,
     cleanedLength: cleanedContent.length,
     removedLines: contentStartIndex,
     newFirstLine: cleanedContent.split('\n')[0]
   });
-  
+
   return cleanedContent;
 }
 
 // Function to convert markdown to rich text
 function markdownToRichText(markdown) {
-  debugLog('Starting markdown to rich text conversion', { 
+  debugLog('Starting markdown to rich text conversion', {
     markdownLength: markdown.length,
     firstLine: markdown.split('\n')[0]
   });
-  
+
   // Remove the metadata section from markdown
   const content = removeMarkdownMetadata(markdown);
-  debugLog('Metadata section removed', { 
+  debugLog('Metadata section removed', {
     originalLength: markdown.length,
-    newLength: content.length 
+    newLength: content.length
   });
-  
+
   // Split into paragraphs and process each one
   const paragraphs = content.split('\n\n').filter(p => p.trim());
   debugLog('Content split into paragraphs', { paragraphCount: paragraphs.length });
-  
+
   const richText = [];
-  
+
   for (let i = 0; i < paragraphs.length; i++) {
     const paragraph = paragraphs[i];
     const text = paragraph.replace(/\n/g, ' ').trim();
-    
-    debugLog(`Processing paragraph ${i + 1}/${paragraphs.length}`, { 
+
+    debugLog(`Processing paragraph ${i + 1}/${paragraphs.length}`, {
       originalText: paragraph.substring(0, 100) + (paragraph.length > 100 ? '...' : ''),
       cleanedText: text.substring(0, 100) + (text.length > 100 ? '...' : '')
     });
-    
+
     if (!text) {
       debugLog(`Skipping empty paragraph ${i + 1}`);
       continue;
     }
-    
+
     // Handle headings
     if (text.startsWith('#')) {
       const level = text.match(/^#+/)[0].length;
       const cleanText = text.replace(/^#+\s*/, '');
       const headingType = `heading${Math.min(level, 6)}`;
-      
-      debugLog(`Processing heading level ${level}`, { 
+
+      debugLog(`Processing heading level ${level}`, {
         headingType,
         originalText: text,
-        cleanText 
+        cleanText
       });
-      
+
       richText.push({
         type: headingType,
         text: cleanText,
@@ -193,20 +194,20 @@ function markdownToRichText(markdown) {
       });
       continue;
     }
-    
+
     // Handle list items
     if (text.match(/^[\*\-\+]\s/) || text.match(/^\d+\.\s/)) {
       const isOrdered = text.match(/^\d+\.\s/);
       const cleanText = text.replace(/^[\*\-\+\d]+[\.\s]*/, '');
       const listType = isOrdered ? 'o-list-item' : 'list-item';
-      
-      debugLog(`Processing list item`, { 
+
+      debugLog(`Processing list item`, {
         isOrdered,
         listType,
         originalText: text,
-        cleanText 
+        cleanText
       });
-      
+
       richText.push({
         type: listType,
         text: cleanText,
@@ -214,20 +215,20 @@ function markdownToRichText(markdown) {
       });
       continue;
     }
-    
+
     // Handle bold text at start of paragraph
     if (text.startsWith('**') && text.includes('**:')) {
       const endBold = text.indexOf('**', 2);
       if (endBold > 2) {
         const boldText = text.substring(2, endBold);
         const restText = text.substring(endBold + 2);
-        
-        debugLog(`Processing bold paragraph`, { 
+
+        debugLog(`Processing bold paragraph`, {
           boldText,
           restText: restText.substring(0, 50) + (restText.length > 50 ? '...' : ''),
           boldLength: boldText.length
         });
-        
+
         richText.push({
           type: 'paragraph',
           text: boldText + restText,
@@ -240,100 +241,100 @@ function markdownToRichText(markdown) {
         continue;
       }
     }
-    
+
     // Regular paragraph
-    debugLog(`Processing regular paragraph`, { 
+    debugLog(`Processing regular paragraph`, {
       textLength: text.length,
       preview: text.substring(0, 100) + (text.length > 100 ? '...' : '')
     });
-    
+
     richText.push({
       type: 'paragraph',
       text: text,
       spans: []
     });
   }
-  
-  debugLog('Markdown to rich text conversion completed', { 
+
+  debugLog('Markdown to rich text conversion completed', {
     totalElements: richText.length,
     elementTypes: richText.map(el => el.type)
   });
-  
+
   return richText;
 }
 
 // Function to create a slug from title
 function createSlug(title) {
   debugLog('Creating slug from title', { originalTitle: title });
-  
+
   const slug = title
     .toLowerCase()
     .replace(/[^a-z0-9\s-]/g, '')
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-')
     .trim('-');
-    
+
   debugLog('Slug created', { originalTitle: title, slug });
   return slug;
 }
 
-// Function to check if document exists by UID
+// Function to check if document exists by UID (including drafts)
 async function checkDocumentExists(uid) {
   try {
-    debugLog('Checking if document exists', { uid });
-    
-    // Create a read-only client to check existing documents
-    const readClient = prismic.createClient(REPOSITORY_NAME);
-    
-    const document = await readClient.getByUID('blog', uid);
-    debugLog('Document exists', { uid, documentId: document.id });
-    return document;
-  } catch (error) {
-    // Handle various "not found" error patterns
-    if (error.type === 'prismic-not-found' || 
-        error.message === 'No documents were returned' ||
-        error.constructor.name === 'NotFoundError' ||
-        error.name === 'NotFoundError') {
-      debugLog('Document does not exist', { uid });
-      return null;
+    debugLog('Checking if document exists (including drafts)', { uid });
+
+    // Try published documents via read client first
+    try {
+      const readClient = prismic.createClient(REPOSITORY_NAME);
+      const document = await readClient.getByUID('blog', uid);
+      debugLog('Document exists (published)', { uid, documentId: document.id });
+      return document;
+    } catch (readError) {
+      debugLog('Document not found via read client (may be draft)', { uid });
     }
+
+    // For drafts, we can't query them directly via the Migration API with current auth
+    // We'll handle the conflict when it occurs during creation
+    return null;
+
+  } catch (error) {
     debugLog('Error checking document existence', { uid, error: error.message });
-    throw error;
+    return null;
   }
 }
 
 // Function to upload asset to Prismic Asset API from local file
 async function uploadAssetToPrismic(localPath, alt, filename) {
-  debugLog('Starting asset upload to Prismic from local file', { 
+  debugLog('Starting asset upload to Prismic from local file', {
     localPath,
     alt,
     filename
   });
-  
+
   try {
     // Check if local file exists
     debugLog('Checking if local image file exists');
     if (!existsSync(localPath)) {
       throw new Error(`Local image file does not exist: ${localPath}`);
     }
-    
+
     debugLog('Reading local image file');
     const imageStream = createReadStream(localPath);
-    
+
     // Create form data for upload
     const formData = new FormData();
     formData.append('file', imageStream, {
       filename: filename,
       contentType: 'image/png'  // Assuming PNG for generated images
     });
-    
+
     // Add metadata
     if (alt) {
       formData.append('alt', alt);
     }
-    
+
     debugLog('Uploading asset to Prismic Asset API');
-    
+
     // Upload to Prismic Asset API
     const uploadResponse = await fetch('https://asset-api.prismic.io/assets', {
       method: 'POST',
@@ -344,24 +345,24 @@ async function uploadAssetToPrismic(localPath, alt, filename) {
       },
       body: formData
     });
-    
+
     if (!uploadResponse.ok) {
       const errorText = await uploadResponse.text();
       throw new Error(`Asset upload failed: ${uploadResponse.status} ${uploadResponse.statusText} - ${errorText}`);
     }
-    
+
     const assetData = await uploadResponse.json();
-    debugLog('Asset uploaded successfully', { 
+    debugLog('Asset uploaded successfully', {
       assetId: assetData.id,
       assetUrl: assetData.url,
       filename,
       localPath
     });
-    
+
     // Rate limiting: Asset API allows 1 request per second
     debugLog('Waiting 1 second for Asset API rate limit');
     await new Promise(resolve => setTimeout(resolve, 1000));
-    
+
     // Return asset in Prismic format
     return {
       id: assetData.id,
@@ -373,10 +374,10 @@ async function uploadAssetToPrismic(localPath, alt, filename) {
         height: assetData.height
       } : null
     };
-    
+
   } catch (error) {
     errorLog(`Error uploading asset: ${filename}`, error, { localPath, alt });
-    
+
     // Return null for failed uploads - document can still be created without image
     return null;
   }
@@ -384,21 +385,21 @@ async function uploadAssetToPrismic(localPath, alt, filename) {
 
 // Function to create asset (now with actual upload from local file)
 async function createImageAsset(localPath, alt, filename) {
-  debugLog('Creating image asset from local file', { 
+  debugLog('Creating image asset from local file', {
     localPath,
     alt,
     filename
   });
-  
+
   if (!localPath) {
     debugLog('No local path provided');
     return null;
   }
-  
+
   try {
     // Upload the asset to Prismic
     const asset = await uploadAssetToPrismic(localPath, alt, filename);
-    
+
     if (asset) {
       infoLog(`Successfully uploaded asset: ${filename}`);
       return asset;
@@ -406,33 +407,62 @@ async function createImageAsset(localPath, alt, filename) {
       infoLog(`Failed to upload asset: ${filename}`);
       return null;
     }
-    
+
   } catch (error) {
     errorLog(`Error creating asset: ${filename}`, error, { localPath, alt });
     return null;
   }
 }
 
+// Function to get publish URL for a document
+// Note: Prismic does NOT allow programmatic publishing as a security measure
+// All documents are created as drafts and must be published via the dashboard
+function getPublishUrl(documentId) {
+  return `https://${REPOSITORY_NAME}.prismic.io/documents~b=working&c=published&l=en-us/${documentId}`;
+}
+
+// Show publish instructions for a document
+function showPublishInstructions(documentId, documentTitle) {
+  const dashboardUrl = getPublishUrl(documentId);
+  infoLog(`\n📋 READY TO PUBLISH: ${documentTitle}`);
+  infoLog(`   Click here to publish → ${dashboardUrl}\n`);
+  return dashboardUrl;
+}
+
+// Function to get document ID by UID
+async function getDocumentIdByUID(uid) {
+  try {
+    debugLog('Getting document ID by UID', { uid });
+    const readClient = prismic.createClient(REPOSITORY_NAME);
+    const document = await readClient.getByUID('blog', uid);
+    debugLog('Found document', { uid, id: document.id });
+    return document.id;
+  } catch (error) {
+    debugLog('Could not find document by UID', { uid, error: error.message });
+    return null;
+  }
+}
+
 // Function to process a single JSON file
-async function processSingleFile(jsonFilePath, skipUpload = false, profile = 'tim') {
+async function processSingleFile(jsonFilePath, skipUpload = false, profile = 'tim', autoPublish = false) {
   const startTime = Date.now();
   debugLog('Starting processSingleFile', { jsonFilePath, skipUpload });
-  
+
   try {
     infoLog(`Processing: ${jsonFilePath}`);
-    
+
     const baseName = jsonFilePath.replace('.json', '').split('/').pop();
     const contentDir = jsonFilePath.includes('/') ? jsonFilePath.substring(0, jsonFilePath.lastIndexOf('/')) : '.';
     const mdPath = join(contentDir, `${baseName}.md`);
-    
+
     debugLog('File paths calculated', { baseName, contentDir, mdPath });
-    
+
     // Read JSON metadata
     debugLog('Reading JSON metadata file');
     const jsonContent = await readFile(jsonFilePath, 'utf8');
     const metadata = JSON.parse(jsonContent);
-    
-    debugLog('JSON metadata parsed', { 
+
+    debugLog('JSON metadata parsed', {
       title: metadata.title,
       keyword: metadata.keyword,
       hasHeroImage: !!metadata.hero_image,
@@ -440,38 +470,38 @@ async function processSingleFile(jsonFilePath, skipUpload = false, profile = 'ti
       metaTitle: metadata.meta_title,
       metaDescription: metadata.meta_description?.substring(0, 100) + '...'
     });
-    
+
     // Read markdown content
     debugLog('Reading markdown content file');
     const mdContent = await readFile(mdPath, 'utf8');
-    debugLog('Markdown content read', { 
+    debugLog('Markdown content read', {
       contentLength: mdContent.length,
       lineCount: mdContent.split('\n').length
     });
-    
+
     if (skipUpload) {
       const slug = createSlug(metadata.title);
       infoLog(`✅ Test mode - would upload: ${metadata.title}`);
       infoLog(`   UID would be: ${slug}`);
       infoLog(`   Repository: ${REPOSITORY_NAME}`);
-      
+
       debugLog('Test mode completed', {
         processingTime: Date.now() - startTime + 'ms',
         title: metadata.title,
         slug
       });
-      
+
       return { success: true, skipped: true, title: metadata.title };
     }
-    
+
     // Create document slug first to check if document exists
     debugLog('Creating document slug');
     const slug = createSlug(metadata.title);
-    
+
     // Check if document already exists
     debugLog('Checking if document exists');
     const existingDocument = await checkDocumentExists(slug);
-    
+
     // Create featured image asset
     debugLog('Processing featured image');
     let featuredImage = null;
@@ -480,20 +510,20 @@ async function processSingleFile(jsonFilePath, skipUpload = false, profile = 'ti
       featuredImage = await createImageAsset(metadata.hero_image.local_path, metadata.hero_image.alt, filename);
       debugLog('Featured image processed', { filename, hasAsset: !!featuredImage, localPath: metadata.hero_image.local_path });
     } else {
-      debugLog('No featured image found in metadata or no local_path', { 
+      debugLog('No featured image found in metadata or no local_path', {
         hasHeroImage: !!metadata.hero_image,
         hasLocalPath: !!(metadata.hero_image && metadata.hero_image.local_path)
       });
     }
-    
+
     // Prepare markdown content (remove metadata section)
     debugLog('Preparing markdown content for direct insertion');
     const cleanMarkdown = removeMarkdownMetadata(mdContent);
-    debugLog('Markdown cleaned', { 
+    debugLog('Markdown cleaned', {
       originalLength: mdContent.length,
-      cleanedLength: cleanMarkdown.length 
+      cleanedLength: cleanMarkdown.length
     });
-    
+
     // Create document data structure
     const documentData = {
       meta_title: metadata.meta_title,
@@ -519,7 +549,7 @@ async function processSingleFile(jsonFilePath, skipUpload = false, profile = 'ti
         }
       ]
     };
-    
+
     debugLog('Document structure created', {
       uid: slug,
       sliceCount: documentData.slices.length,
@@ -527,44 +557,61 @@ async function processSingleFile(jsonFilePath, skipUpload = false, profile = 'ti
       hasFeaturedImage: !!featuredImage,
       existingDocument: !!existingDocument
     });
-    
+
     let migrationResult;
-    
+
     if (existingDocument) {
-      // Update existing document
+      // Update existing document using direct API
       infoLog(`Updating existing document: ${metadata.title}`);
-      debugLog('Updating existing document', { 
+      debugLog('Updating existing document via API', {
         existingId: existingDocument.id,
-        uid: slug 
+        uid: slug
       });
-      
-      migrationResult = await writeClient.updateDocument({
-        id: existingDocument.id,
-        data: documentData
+
+      // Use direct API call for updates
+      const updateResponse = await fetch(`https://migration.prismic.io/documents/${existingDocument.id}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${PRISMIC_API_KEY}`,
+          'x-api-key': PRISMIC_API_KEY,
+          'repository': REPOSITORY_NAME,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          title: metadata.meta_title || metadata.title,
+          uid: slug,
+          data: documentData
+        })
       });
-      
+
+      if (!updateResponse.ok) {
+        const errorText = await updateResponse.text();
+        throw new Error(`Update failed: ${updateResponse.status} ${updateResponse.statusText} - ${errorText}`);
+      }
+
+      migrationResult = await updateResponse.json();
       infoLog(`✅ Successfully updated: ${metadata.title}`);
-      
+
     } else {
       // Create new document
       infoLog(`Creating new document: ${metadata.title}`);
       debugLog('Creating new document via migration');
-      
+
       const migration = prismic.createMigration();
-      
+
       const document = {
         type: 'blog',
         uid: slug,
         lang: 'en-us',
         data: documentData
       };
-      
+
       migration.createDocument(document, metadata.meta_title || metadata.title);
       debugLog('Document added to migration');
-      
+
       // Run migration
       infoLog('Uploading to Prismic...');
-      
+
       try {
         migrationResult = await writeClient.migrate(migration, {
           reporter: (event) => {
@@ -572,122 +619,110 @@ async function processSingleFile(jsonFilePath, skipUpload = false, profile = 'ti
             infoLog(`Migration: ${event.type}`);
           },
         });
-        
+
         infoLog(`✅ Successfully created: ${metadata.title}`);
-        
+
       } catch (migrationError) {
         // Handle UID already exists error by falling back to update
-        if (migrationError.message.includes('already exists') || 
+        if (migrationError.message.includes('already exists') ||
             migrationError.response === 'A document with this UID already exists') {
-          
+
           infoLog(`Document exists in Prismic but not detected by read client. Attempting update...`);
           debugLog('Migration failed due to existing UID, attempting update fallback', {
             uid: slug,
             error: migrationError.message
           });
-          
-          // Try multiple approaches to find the existing document
+
+          // Document exists but we can't find it via normal queries (it's in draft state)
+          // Provide clear instructions to the user
+          infoLog(`⚠️  Document with this UID already exists in Prismic as a draft.`);
+          infoLog(`    The document may need to be published or deleted before updating.`);
+          infoLog(`    Dashboard: https://${REPOSITORY_NAME}.prismic.io/documents`);
+
+          // Try one more approach: use writeClient to create with update behavior
           try {
-            let existingDoc = null;
-            
-            // Approach 1: Try with a different read client
-            try {
-              debugLog('Trying to find document with standard read client');
-              const readClientForUpdate = prismic.createClient(REPOSITORY_NAME);
-              existingDoc = await readClientForUpdate.getByUID('blog', slug);
-              debugLog('Found document with standard read client', { uid: slug, id: existingDoc.id });
-            } catch (readError) {
-              debugLog('Standard read client failed', { error: readError.message });
-              
-              // Approach 2: Try searching all documents
-              try {
-                debugLog('Trying to find document by searching all blog documents');
-                const readClientForSearch = prismic.createClient(REPOSITORY_NAME);
-                const searchResults = await readClientForSearch.getByType('blog', {
-                  filters: [prismic.filter.at('my.blog.uid', slug)],
-                  pageSize: 1
-                });
-                
-                if (searchResults.results && searchResults.results.length > 0) {
-                  existingDoc = searchResults.results[0];
-                  debugLog('Found document via search', { uid: slug, id: existingDoc.id });
-                } else {
-                  debugLog('No document found via search either');
-                }
-              } catch (searchError) {
-                debugLog('Search approach also failed', { error: searchError.message });
-              }
-            }
-            
-            if (existingDoc) {
-              debugLog('Found existing document for update', {
-                uid: slug,
-                existingId: existingDoc.id
-              });
-              
-              // Update the existing document
-              migrationResult = await writeClient.updateDocument({
-                id: existingDoc.id,
-                data: documentData
-              });
-              
-              infoLog(`✅ Successfully updated existing document: ${metadata.title}`);
-            } else {
-              // If we can't find it but migration says it exists, let's try to force create with a slightly different UID
-              const newSlug = slug + '-' + Date.now();
-              infoLog(`Could not find existing document for update. Creating with new UID: ${newSlug}`);
-              
-              const newMigration = prismic.createMigration();
-              const newDocument = {
-                type: 'blog',
-                uid: newSlug,
-                lang: 'en-us',
-                data: documentData
-              };
-              
-              newMigration.createDocument(newDocument, metadata.meta_title || metadata.title);
-              
-              migrationResult = await writeClient.migrate(newMigration, {
-                reporter: (event) => {
-                  debugLog(`Fallback migration event: ${event.type}`, event);
-                  infoLog(`Fallback migration: ${event.type}`);
-                },
-              });
-              
-              infoLog(`✅ Successfully created with new UID: ${newSlug}`);
-            }
-            
-          } catch (updateError) {
-            debugLog('All update approaches failed', {
+            // The writeClient.createDocument may support updates - let's try
+            debugLog('Attempting writeClient.createDocument with existing UID');
+
+            const docPayload = {
+              type: 'blog',
               uid: slug,
-              updateError: updateError.message
-            });
-            throw migrationError; // Re-throw the original migration error
+              lang: 'en-us',
+              data: documentData
+            };
+
+            // This might throw but let's try - some versions support upsert behavior
+            migrationResult = await writeClient.createDocument(docPayload, metadata.meta_title || metadata.title);
+            infoLog(`✅ Successfully updated document: ${metadata.title}`);
+
+          } catch (createError) {
+            debugLog('writeClient.createDocument also failed', { error: createError.message });
+
+            // Provide helpful error message
+            errorLog(`Cannot update existing draft document programmatically.`);
+            infoLog(`\n📋 TO FIX: Go to Prismic dashboard and either:`);
+            infoLog(`   1. Publish the existing draft, OR`);
+            infoLog(`   2. Delete the draft to allow recreation`);
+            infoLog(`   Dashboard: https://${REPOSITORY_NAME}.prismic.io/documents~b=working&c=draft&l=en-us\n`);
+            throw migrationError;
           }
-          
+
         } else {
           throw migrationError; // Re-throw if it's not a UID conflict
         }
       }
     }
-    
+
+    // Show publish link if requested
+    let publishUrl = null;
+    if (autoPublish) {
+      // Try to get document ID from migration result or existing document
+      let documentId = null;
+
+      if (existingDocument) {
+        documentId = existingDocument.id;
+      } else if (migrationResult && migrationResult.documents) {
+        // Migration result contains created documents
+        const createdDocs = Array.from(migrationResult.documents.values());
+        if (createdDocs.length > 0) {
+          documentId = createdDocs[0].id;
+        }
+      }
+
+      // Fallback: try to query for the document
+      if (!documentId) {
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        documentId = await getDocumentIdByUID(slug);
+      }
+
+      if (documentId) {
+        publishUrl = showPublishInstructions(documentId, metadata.title);
+      } else {
+        // Provide generic dashboard link
+        infoLog(`\n📋 READY TO PUBLISH: ${metadata.title}`);
+        infoLog(`   Open Prismic dashboard → https://${REPOSITORY_NAME}.prismic.io/documents\n`);
+      }
+    }
+
     const processingTime = Date.now() - startTime;
     debugLog('Operation completed successfully', {
       uid: slug,
       title: metadata.title,
       processingTime: processingTime + 'ms',
       wasUpdate: !!existingDocument,
+      publishUrl,
       migrationResult
     });
-    
-    return { 
-      success: true, 
-      uid: slug, 
-      title: metadata.title, 
+
+    return {
+      success: true,
+      uid: slug,
+      title: metadata.title,
       result: migrationResult,
-      wasUpdate: !!existingDocument 
+      wasUpdate: !!existingDocument,
+      publishUrl
     };
-    
+
   } catch (error) {
     const processingTime = Date.now() - startTime;
     errorLog(`❌ Error processing file: ${jsonFilePath}`, error, {
@@ -702,66 +737,66 @@ async function processSingleFile(jsonFilePath, skipUpload = false, profile = 'ti
 async function processContentFiles(migration, profile = 'tim') {
   const startTime = Date.now();
   const contentDir = './generated_content';
-  
+
   debugLog('Starting batch content processing', { contentDir });
-  
+
   const files = await readdir(contentDir);
-  debugLog('Content directory read', { 
+  debugLog('Content directory read', {
     totalFiles: files.length,
     files: files.slice(0, 10) // Log first 10 files
   });
-  
+
   // Filter for JSON files
   const jsonFiles = files.filter(file => file.endsWith('.json'));
   infoLog(`Found ${jsonFiles.length} JSON files to process`);
   debugLog('JSON files found', { jsonFiles });
-  
+
   const documents = [];
   let processedCount = 0;
   let errorCount = 0;
-  
+
   for (const jsonFile of jsonFiles) {
     const fileStartTime = Date.now();
     debugLog(`Processing file ${processedCount + 1}/${jsonFiles.length}`, { jsonFile });
-    
+
     try {
       const baseName = jsonFile.replace('.json', '');
       const jsonPath = join(contentDir, jsonFile);
       const mdPath = join(contentDir, `${baseName}.md`);
-      
+
       debugLog('File paths for batch processing', { baseName, jsonPath, mdPath });
-      
+
       // Read JSON metadata
       debugLog('Reading JSON metadata for batch');
       const jsonContent = await readFile(jsonPath, 'utf8');
       const metadata = JSON.parse(jsonContent);
-      
+
       debugLog('JSON metadata parsed for batch', {
         title: metadata.title,
         keyword: metadata.keyword,
         hasHeroImage: !!metadata.hero_image,
         hasLocalPath: !!(metadata.hero_image && metadata.hero_image.local_path)
       });
-      
+
       // Read markdown content
       debugLog('Reading markdown content for batch');
       const mdContent = await readFile(mdPath, 'utf8');
-      
+
       // Create document slug
       const slug = createSlug(metadata.title);
-      
+
       // Check if document already exists
       debugLog('Checking if document exists for batch processing', { uid: slug });
       const existingDocument = await checkDocumentExists(slug);
-      
+
       if (existingDocument) {
         infoLog(`Document ${slug} already exists, will be updated`);
-        debugLog('Existing document found in batch', { 
+        debugLog('Existing document found in batch', {
           uid: slug,
-          existingId: existingDocument.id 
+          existingId: existingDocument.id
         });
       }
-      
+
       // Create featured image asset
       debugLog('Processing featured image for batch');
       let featuredImage = null;
@@ -769,10 +804,10 @@ async function processContentFiles(migration, profile = 'tim') {
         const filename = `${baseName}-hero.png`;
         featuredImage = await createImageAsset(metadata.hero_image.local_path, metadata.hero_image.alt, filename);
       }
-      
+
       // Prepare markdown content (remove metadata section)
       const cleanMarkdown = removeMarkdownMetadata(mdContent);
-      
+
       // Create document data structure
       const documentData = {
         meta_title: metadata.meta_title,
@@ -798,7 +833,7 @@ async function processContentFiles(migration, profile = 'tim') {
           }
         ]
       };
-      
+
       // Create document structure for batch processing
       const document = {
         type: 'blog',
@@ -807,10 +842,10 @@ async function processContentFiles(migration, profile = 'tim') {
         data: documentData,
         existingDocument: existingDocument  // Track if this needs updating
       };
-      
+
       documents.push(document);
       processedCount++;
-      
+
       const fileProcessingTime = Date.now() - fileStartTime;
       infoLog(`Processed: ${metadata.title}`);
       debugLog('File processed successfully in batch', {
@@ -819,7 +854,7 @@ async function processContentFiles(migration, profile = 'tim') {
         processingTime: fileProcessingTime + 'ms',
         documentsCreated: documents.length
       });
-      
+
     } catch (error) {
       errorCount++;
       const fileProcessingTime = Date.now() - fileStartTime;
@@ -830,7 +865,7 @@ async function processContentFiles(migration, profile = 'tim') {
       });
     }
   }
-  
+
   const totalProcessingTime = Date.now() - startTime;
   infoLog(`Batch processing completed: ${processedCount} successful, ${errorCount} errors`);
   debugLog('Batch processing summary', {
@@ -841,115 +876,115 @@ async function processContentFiles(migration, profile = 'tim') {
     totalProcessingTime: totalProcessingTime + 'ms',
     avgTimePerFile: Math.round(totalProcessingTime / jsonFiles.length) + 'ms'
   });
-  
+
   return documents;
 }
 
 // Main migration function for batch upload
-async function runBatchMigration(profile = 'tim') {
+async function runBatchMigration(profile = 'tim', autoPublish = false) {
   const startTime = Date.now();
   debugLog('Starting batch migration process');
-  
+
   try {
     infoLog('Starting batch migration process...');
     infoLog(`Repository: ${REPOSITORY_NAME}`);
     infoLog(`API Key configured: ${PRISMIC_API_KEY ? 'Yes' : 'No'}`);
-    
+
     debugLog('Batch migration configuration', {
       repository: REPOSITORY_NAME,
       hasApiKey: !!PRISMIC_API_KEY,
       startTime: new Date(startTime).toISOString()
     });
-    
+
     // Create migration first
     debugLog('Creating migration instance');
     const migration = prismic.createMigration();
-    
+
     // Process all content files with migration instance
     debugLog('Processing content files');
     const documents = await processContentFiles(migration, profile);
-    
+
     infoLog(`Successfully processed ${documents.length} documents`);
-    
+
     if (documents.length === 0) {
       infoLog('No documents to migrate. Exiting...');
       debugLog('Migration terminated - no documents found');
       return;
     }
-    
+
     // Separate documents into new and existing
     const newDocuments = documents.filter(doc => !doc.existingDocument);
     const existingDocuments = documents.filter(doc => doc.existingDocument);
-    
+
     infoLog(`Processing ${newDocuments.length} new documents and ${existingDocuments.length} existing documents`);
-    debugLog('Document separation complete', { 
+    debugLog('Document separation complete', {
       newCount: newDocuments.length,
-      existingCount: existingDocuments.length 
+      existingCount: existingDocuments.length
     });
-    
+
     let migrationResult = null;
     let updateResults = [];
-    
+
     // Handle new documents via migration
     if (newDocuments.length > 0) {
       infoLog('Adding new documents to migration...');
       debugLog('Starting new document addition to migration', { documentCount: newDocuments.length });
-      
+
       for (let i = 0; i < newDocuments.length; i++) {
         const doc = newDocuments[i];
         // Remove the existingDocument property before migration
         const cleanDoc = { ...doc };
         delete cleanDoc.existingDocument;
-        
+
         migration.createDocument(cleanDoc, doc.data.meta_title || 'Untitled Document');
-        
+
         debugLog(`Added new document ${i + 1}/${newDocuments.length}`, {
           uid: doc.uid,
           title: doc.data.meta_title,
           type: doc.type
         });
-        
+
         infoLog(`Added new document: ${doc.uid}`);
       }
-      
+
       debugLog('All new documents added to migration');
-      
+
       // Run migration for new documents
       infoLog('Running migration for new documents...');
       debugLog('Starting Prismic migration upload');
-      
+
       migrationResult = await writeClient.migrate(migration, {
         reporter: (event) => {
           debugLog(`Migration event received: ${event.type}`, event);
           infoLog(`Migration event: ${event.type}`);
         },
       });
-      
+
       infoLog(`✅ Successfully created ${newDocuments.length} new documents`);
     }
-    
+
     // Handle existing documents via updates
     if (existingDocuments.length > 0) {
       infoLog('Updating existing documents...');
       debugLog('Starting existing document updates', { updateCount: existingDocuments.length });
-      
+
       for (let i = 0; i < existingDocuments.length; i++) {
         const doc = existingDocuments[i];
-        
+
         try {
           debugLog(`Updating document ${i + 1}/${existingDocuments.length}`, {
             uid: doc.uid,
             existingId: doc.existingDocument.id
           });
-          
+
           const updateResult = await writeClient.updateDocument({
             id: doc.existingDocument.id,
             data: doc.data
           });
-          
+
           updateResults.push(updateResult);
           infoLog(`Updated document: ${doc.uid}`);
-          
+
         } catch (error) {
           errorLog(`Failed to update document: ${doc.uid}`, error, {
             existingId: doc.existingDocument.id
@@ -957,27 +992,45 @@ async function runBatchMigration(profile = 'tim') {
           // Continue with other updates even if one fails
         }
       }
-      
+
       infoLog(`✅ Successfully updated ${updateResults.length}/${existingDocuments.length} existing documents`);
     }
-    
+
+    // Show publish links for all documents if requested
+    if (autoPublish && documents.length > 0) {
+      infoLog('\n📋 DOCUMENTS READY TO PUBLISH:');
+      infoLog('   (Prismic requires manual publishing for security reasons)\n');
+
+      // Wait a moment for Prismic to fully process all documents
+      await new Promise(resolve => setTimeout(resolve, 3000));
+
+      for (const doc of documents) {
+        const documentId = await getDocumentIdByUID(doc.uid);
+        if (documentId) {
+          const url = getPublishUrl(documentId);
+          infoLog(`   → ${doc.data.meta_title || doc.uid}`);
+          infoLog(`     ${url}\n`);
+        }
+      }
+    }
+
     const totalTime = Date.now() - startTime;
     infoLog('Batch processing completed successfully!');
-    
+
     const totalProcessed = (migrationResult ? newDocuments.length : 0) + updateResults.length;
     const totalAttempted = documents.length;
-    
+
     infoLog(`Results: ${totalProcessed}/${totalAttempted} documents processed successfully`);
     infoLog(`  - Created: ${newDocuments.length}`);
     infoLog(`  - Updated: ${updateResults.length}`);
-    
+
     if (migrationResult) {
       debugLog('Migration result:', migrationResult);
     }
     if (updateResults.length > 0) {
       debugLog('Update results:', { updateCount: updateResults.length });
     }
-    
+
     debugLog('Batch processing completed successfully', {
       totalDocuments: documents.length,
       newDocuments: newDocuments.length,
@@ -986,14 +1039,14 @@ async function runBatchMigration(profile = 'tim') {
       totalTime: totalTime + 'ms',
       avgTimePerDocument: totalAttempted > 0 ? Math.round(totalTime / totalAttempted) + 'ms' : '0ms'
     });
-    
+
   } catch (error) {
     const totalTime = Date.now() - startTime;
     errorLog('Migration failed', error, {
       totalTime: totalTime + 'ms',
       repository: REPOSITORY_NAME
     });
-    
+
     if (error.response) {
       errorLog('HTTP Response details', null, {
         status: error.response.status,
@@ -1001,7 +1054,7 @@ async function runBatchMigration(profile = 'tim') {
         data: error.response.data
       });
     }
-    
+
     process.exit(1);
   }
 }
@@ -1010,55 +1063,64 @@ async function runBatchMigration(profile = 'tim') {
 async function main() {
   const startTime = Date.now();
   const args = process.argv.slice(2);
-  
-  debugLog('Main function started', { 
+
+  debugLog('Main function started', {
     args,
     nodeVersion: process.version,
     platform: process.platform,
     cwd: process.cwd()
   });
-  
+
   if (args.length === 0) {
     console.log(`
 🚀 Prismic Content Uploader
 
 Usage:
-  node prismic_uploader.js <json_file> [--skip-upload] [--profile <name>] [--debug]
-  node prismic_uploader.js --batch [--skip-upload] [--profile <name>] [--debug]
+  node prismic_uploader.js <json_file> [--publish] [--skip-upload] [--profile <name>] [--debug]
+  node prismic_uploader.js --batch [--publish] [--skip-upload] [--profile <name>] [--debug]
 
 Options:
+  --publish        Show direct link to publish in Prismic dashboard
   --skip-upload    Skip actual upload (test mode)
   --batch          Process all files in generated_content/
   --profile <name> Author profile to use (tim, jp, luka) [default: tim]
   --debug          Enable detailed debug logging
 
+Note: Prismic does not allow programmatic publishing for security reasons.
+      The --publish flag provides a direct link to publish in the dashboard.
+
 Environment Variables:
   DEBUG=true       Enable debug mode via environment variable
 
 Examples:
-  node prismic_uploader.js generated_content/my-keyword.json
+  node prismic_uploader.js generated_content/my-keyword.json --publish
   node prismic_uploader.js generated_content/my-keyword.json --skip-upload --profile jp
-  node prismic_uploader.js --batch --debug --profile luka
+  node prismic_uploader.js --batch --publish --profile luka
     `);
     process.exit(1);
   }
 
   const skipUpload = args.includes('--skip-upload');
   const batchMode = args.includes('--batch');
-  
+  const autoPublish = args.includes('--publish');
+
   // Parse profile parameter
   let profile = 'tim'; // default
   const profileIndex = args.indexOf('--profile');
   if (profileIndex !== -1 && profileIndex + 1 < args.length) {
     profile = args[profileIndex + 1];
   }
-  
-  debugLog('CLI arguments parsed', { skipUpload, batchMode, profile, debugMode: DEBUG });
-  
+
+  debugLog('CLI arguments parsed', { skipUpload, batchMode, autoPublish, profile, debugMode: DEBUG });
+
   if (skipUpload) {
     infoLog(`🧪 Running in test mode - no uploads will be performed`);
   }
-  
+
+  if (autoPublish) {
+    infoLog(`📢 Auto-publish enabled - documents will be published after upload`);
+  }
+
   if (DEBUG) {
     infoLog(`🔍 Debug mode enabled - detailed logging active`);
   }
@@ -1066,35 +1128,35 @@ Examples:
   try {
     if (batchMode) {
       debugLog('Starting batch mode processing');
-      
+
       if (skipUpload) {
         infoLog('Batch test mode not implemented - use single file test instead');
         debugLog('Batch test mode requested but not supported');
         process.exit(1);
       }
-      
-      await runBatchMigration(profile);
-      
+
+      await runBatchMigration(profile, autoPublish);
+
     } else {
       const targetFile = args[0];
       debugLog('Starting single file processing', { targetFile });
-      
+
       if (!targetFile || targetFile.startsWith('--')) {
         errorLog('No target file specified');
         console.error('❌ Please specify a JSON file to process');
         process.exit(1);
       }
-      
-      const result = await processSingleFile(targetFile, skipUpload, profile);
-      
+
+      const result = await processSingleFile(targetFile, skipUpload, profile, autoPublish);
+
       if (result.success) {
         const totalTime = Date.now() - startTime;
         infoLog(`✅ Operation completed successfully`);
-        
+
         if (result.skipped) {
           infoLog(`⏭️  Upload was skipped (test mode)`);
         }
-        
+
         debugLog('Single file operation completed', {
           success: true,
           skipped: result.skipped,
@@ -1102,7 +1164,7 @@ Examples:
           uid: result.uid,
           totalTime: totalTime + 'ms'
         });
-        
+
       } else {
         const totalTime = Date.now() - startTime;
         errorLog(`❌ Operation failed: ${result.error}`, null, {
@@ -1112,7 +1174,7 @@ Examples:
         process.exit(1);
       }
     }
-    
+
   } catch (error) {
     const totalTime = Date.now() - startTime;
     errorLog(`❌ Fatal error in main function`, error, {
@@ -1123,9 +1185,9 @@ Examples:
     });
     process.exit(1);
   }
-  
+
   const totalTime = Date.now() - startTime;
-  debugLog('Main function completed', { 
+  debugLog('Main function completed', {
     totalTime: totalTime + 'ms',
     success: true
   });
@@ -1140,4 +1202,4 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   });
 } else {
   debugLog('Script imported as module, not executing main function');
-} 
+}

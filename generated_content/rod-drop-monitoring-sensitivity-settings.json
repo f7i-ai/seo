@@ -1,0 +1,16 @@
+{
+  "meta_title": "Rod Drop Monitoring Sensitivity: The Zero-False-Trip Guide (2026)",
+  "meta_description": "Stop false trips and missed failures. A reliability engineer’s guide to optimizing rod drop monitoring sensitivity settings, API 670 standards, and alarm logic.",
+  "title": "Rod Drop Monitoring Sensitivity Settings: How to Balance Protection with Reliability",
+  "keyword": "rod drop monitoring sensitivity settings",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/rod-drop-monitoring-sensitivity-settings.png",
+    "alt": "Hero image for Rod Drop Monitoring Sensitivity Settings: How to Balance Protection with Reliability",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photorealistic, high-quality image inside a modern industrial petrochemical facility. In the foreground, a reliability engineer wearing a white hard hat, safety glasses, and blue flame-resistant coveralls is inspecting a large reciprocating compressor. The engineer is looking at a mounted eddy current probe assembly near the packing case, holding a tablet device (screen not visible) in one hand. The background shows the complexity of the compressor piping, valves, and steel structures, slightly blurred to emphasize the engineer and the machine. Lighting is industrial but dramatic, highlighting the metallic textures of the compressor rod and the instrumentation. No text or overlays.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2192,
+  "link_count": 6
+}

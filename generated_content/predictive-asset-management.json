@@ -1,0 +1,16 @@
+{
+  "meta_title": "Predictive Asset Management: The Crawl, Walk, Run Guide (2026)",
+  "meta_description": "Stop guessing when equipment will fail. Master predictive asset management with our maturity model framework. Move from reactive repairs to AI-driven",
+  "title": "Predictive Asset Management: A Maturity Model for Reliability Engineers",
+  "keyword": "predictive asset management",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/predictive-asset-management.png",
+    "alt": "Hero image for Predictive Asset Management: A Maturity Model for Reliability Engineers",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern, high-tech manufacturing facility in the year 2026. In the foreground, a diverse group of reliability engineers (men and women) wearing hard hats, safety glasses, and high-visibility vests are gathered around a large industrial motor. One engineer is holding a tablet (back of device visible only) pointing it at the machinery, suggesting augmented reality or data reading. The background shows clean, automated production lines with blurred motion of moving parts. The lighting is professional, with cool blue and industrial steel tones, highlighting the advanced nature of the facility. No text or words in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2089,
+  "link_count": 16
+}

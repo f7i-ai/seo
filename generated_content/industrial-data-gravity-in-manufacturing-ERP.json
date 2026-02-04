@@ -1,0 +1,16 @@
+{
+  "meta_title": "Industrial Data Gravity: Why Your ERP Can't Be Your Data Lake",
+  "meta_description": "Is your ERP slowing down operations? Learn why \"Industrial Data Gravity\" makes centralized architectures fail and how to build an edge-first strategy for 2026.",
+  "title": "Industrial Data Gravity: Why the \"Single Source of Truth\" Cannot Be Your ERP",
+  "keyword": "industrial data gravity in manufacturing ERP",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/industrial-data-gravity-in-manufacturing-ERP.png",
+    "alt": "Hero image for Industrial Data Gravity: Why the \"Single Source of Truth\" Cannot Be Your ERP",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern, high-tech manufacturing facility. In the foreground, a diverse group of three engineers (wearing hard hats, safety glasses, and high-vis vests) are gathered around a large industrial pump. One engineer is pointing at a tablet (screen not visible, back of device only) while looking at the machine. In the background, blurred slightly to create depth, are automated conveyor belts and robotic arms in motion. Superimposed subtly in the air, representing \"data gravity,\" are faint, glowing digital particles or streams of light flowing from the machines into a localized hub near the engineers, rather than flying off into the ceiling/cloud. The lighting is a mix of cool industrial blue and warm safety orange. 8k resolution, highly detailed textures on the machinery.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2085,
+  "link_count": 13
+}

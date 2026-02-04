@@ -1,0 +1,16 @@
+{
+  "meta_title": "Prescriptive Maintenance (RxM): The 2026 Guide to Decision Engineering",
+  "meta_description": "Don't just predict failure—prevent it. Learn how Prescriptive Maintenance (RxM) automates decision-making, optimizes asset performance, and closes the gap",
+  "title": "Prescriptive Maintenance: Moving Beyond \"When Will It Break?\" to \"How Do We Fix It?\"",
+  "keyword": "prescriptive maintenance",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/prescriptive-maintenance.png",
+    "alt": "Hero image for Prescriptive Maintenance: Moving Beyond \"When Will It Break?\" to \"How Do We Fix It?\"",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern, high-tech manufacturing facility. In the foreground, a diverse group of maintenance engineers (a woman and a man) wearing hard hats, safety glasses, and high-visibility vests are looking at a large, transparent digital overlay or holographic interface projecting from a machine. The interface displays complex data visualizations: a 3D \"Digital Twin\" of a motor, a fluctuating graph line turning from red to green, and a clear text box (simulated, no readable text) indicating a \"Prescription\" or path forward. The background is a blur of automated machinery, conveyor belts, and robotic arms, lit with cool industrial blues and warm amber safety lights. The atmosphere is professional, focused, and futuristic, emphasizing the collaboration between human expertise and artificial intelligence. 8k resolution, highly detailed textures on the PPE and machinery.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2184,
+  "link_count": 7
+}

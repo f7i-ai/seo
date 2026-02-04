@@ -1,0 +1,16 @@
+{
+  "meta_title": "Industrial IoT and Manufacturing: The Autonomous Maintenance Loop",
+  "meta_description": "Move beyond basic data collection. Learn how to implement Industrial IoT in manufacturing to create an autonomous maintenance workflow that drives OEE and",
+  "title": "Industrial IoT and Manufacturing: Moving From \"Connected\" to \"Autonomous\"",
+  "keyword": "Industrial IoT and Manufacturing",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/Industrial-IoT-and-Manufacturing.png",
+    "alt": "Hero image for Industrial IoT and Manufacturing: Moving From \"Connected\" to \"Autonomous\"",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot of a modern manufacturing facility interior. In the foreground, a diverse group of reliability engineers and technicians (wearing hard hats, safety glasses, and high-visibility vests) are gathered around a large industrial motor. One technician is using a tablet (back of device visible) to scan a QR code on the machine, while another points to a wireless sensor attached to the motor housing. The background shows a clean, high-tech production line with blurred motion of automated machinery. The lighting is professional and industrial, with cool blue tones accented by warm safety lighting. No text or overlays. High resolution, 8k.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2111,
+  "link_count": 12
+}

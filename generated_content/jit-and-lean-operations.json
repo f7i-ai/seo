@@ -1,0 +1,16 @@
+{
+  "meta_title": "JIT and Lean Operations: The Reliability Requirement (2026 Guide)",
+  "meta_description": "JIT and Lean operations reduce waste, but they fail without high reliability. Learn why predictive maintenance is the backbone of successful Just-in-Time",
+  "title": "JIT and Lean Operations: Why Your Inventory Strategy Will Fail Without Reliability",
+  "keyword": "jit and lean operations",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/jit-and-lean-operations.png",
+    "alt": "Hero image for JIT and Lean Operations: Why Your Inventory Strategy Will Fail Without Reliability",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern, clean manufacturing facility in the year 2026. In the foreground, a diverse group of three professionals (one female engineer in a white hard hat and safety glasses, one male maintenance technician in a blue uniform and bump cap, and one operations manager in a high-vis vest) are standing around a complex automated conveyor system. They are looking at a holographic tablet or transparent digital display held by the engineer (back of device visible only) that shows a green \"efficiency flow\" graph. The background shows blurred motion of automated machinery and robotic arms, emphasizing speed and flow. The lighting is cool industrial blue with warm highlights on the people. No text or words in the image. High resolution, 8k.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2254,
+  "link_count": 10
+}

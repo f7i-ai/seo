@@ -1,0 +1,16 @@
+{
+  "meta_title": "Data Gravity Aware Hybrid Cloud: The 2026 Industrial Guide",
+  "meta_description": "Stop moving petabytes to the cloud. Learn how a Data Gravity Aware Hybrid Cloud Architecture reduces latency, cuts egress fees, and powers real-time AI.",
+  "title": "The Physics of Maintenance Data: Why Your Cloud-First Strategy is Failing (And How Data Gravity Fixes It)",
+  "keyword": "data gravity aware hybrid cloud architecture",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/data-gravity-aware-hybrid-cloud-architecture.png",
+    "alt": "Hero image for The Physics of Maintenance Data: Why Your Cloud-First Strategy is Failing (And How Data Gravity Fixes It)",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern, high-tech manufacturing facility. In the foreground, a diverse group of three engineers (one female, two male) are wearing hard hats, safety glasses, and high-visibility vests. They are standing around a large industrial turbine. One engineer is pointing at a ruggedized edge server rack mounted directly next to the machine, while another holds a tablet (back of tablet visible only). In the background, blurred slightly to create depth, are automated conveyor belts and robotic arms. The lighting is a mix of cool industrial blue LED strips and warm ambient factory lighting. No text or holograms. The atmosphere conveys serious, professional industrial operations.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2170,
+  "link_count": 10
+}

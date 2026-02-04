@@ -3,3 +3,5 @@
 __pycache__/*
 *.pyc
 node_modules/
+generated_content/drafts/*
+generated_content/*.png

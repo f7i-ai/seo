@@ -1,0 +1,16 @@
+{
+  "meta_title": "AI for Ammonia Leak Prediction: The Virtual Sensor Revolution",
+  "meta_description": "Move beyond reactive sensors. Discover how AI uses thermodynamic modeling and virtual sensors for ammonia refrigeration leak prediction and inventory control.",
+  "title": "Beyond the Alarm: How AI Predicts Ammonia Refrigeration Leaks Before Sensors Detect Them",
+  "keyword": "AI for ammonia refrigeration leak prediction",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/AI-for-ammonia-refrigeration-leak-prediction.png",
+    "alt": "Hero image for Beyond the Alarm: How AI Predicts Ammonia Refrigeration Leaks Before Sensors Detect Them",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern industrial ammonia refrigeration engine room. In the foreground, a reliability engineer wearing a white hard hat, safety glasses, and a high-visibility vest is inspecting a large blue compressor. The engineer is holding a tablet (screen not visible) looking at a digital gauge on the pipe. In the background, rows of color-coded insulated piping (yellow for ammonia) run along the ceiling. The lighting is industrial but clean, with cool blue tones contrasting with the yellow pipes. No text overlays. The atmosphere conveys precision and high-tech maintenance.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2075,
+  "link_count": 7
+}

@@ -1,0 +1,16 @@
+{
+  "meta_title": "Mining Monitoring Systems: The 2026 Guide to Integrated Asset Health",
+  "meta_description": "Move beyond basic SCADA. Discover how a modern mining monitoring system integrates IIoT, AI, and geotechnical data to predict failures and optimize OEE.",
+  "title": "The Central Nervous System of the Mine: Building a Holistic Mining Monitoring System",
+  "keyword": "mining monitoring system",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/mining-monitoring-system.png",
+    "alt": "Hero image for The Central Nervous System of the Mine: Building a Holistic Mining Monitoring System",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern open-pit mine processing facility. In the foreground, a diverse group of reliability engineers (men and women) wearing standard mining PPE (orange high-vis vests, hard hats with ear muffs attached, safety glasses) are looking at a ruggedized tablet held by one of them (back of tablet visible only). They are standing near a large conveyor belt system. In the background, massive crushing equipment and yellow haul trucks are visible in the distance. The lighting is a mix of natural sunlight and industrial LED lighting. Superimposed subtly in the air near the machinery are holographic-style data visualizations (graphs, heatmaps) representing the \"digital twin\" aspect, but kept realistic and not overly sci-fi. The atmosphere is professional, high-tech, and industrial.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2268,
+  "link_count": 9
+}

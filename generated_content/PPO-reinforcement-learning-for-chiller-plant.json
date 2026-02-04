@@ -1,0 +1,16 @@
+{
+  "meta_title": "PPO Reinforcement Learning for Chiller Plants: A 2026 Implementation Guide",
+  "meta_description": "Discover how Proximal Policy Optimization (PPO) reduces chiller energy costs by 15-25%. A technical guide on reward functions, safety constraints, and",
+  "title": "PPO Reinforcement Learning for Chiller Plants: Moving Beyond PID Control",
+  "keyword": "PPO reinforcement learning for chiller plant",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/PPO-reinforcement-learning-for-chiller-plant.png",
+    "alt": "Hero image for PPO Reinforcement Learning for Chiller Plants: Moving Beyond PID Control",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, high-tech industrial mechanical room featuring large centrifugal chillers and color-coded piping (blue for chilled water, green for condenser water). In the foreground, a diverse group of reliability engineers and data scientists (wearing hard hats, safety glasses, and reflective vests) are examining a tablet (screen hidden) and gesturing towards a digital overlay or holographic projection near the equipment that implies data flow or digital twin technology. The lighting is professional, cool-toned industrial LED, emphasizing a clean, modern facility. No text or words in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2083,
+  "link_count": 5
+}

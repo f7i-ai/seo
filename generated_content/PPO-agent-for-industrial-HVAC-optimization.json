@@ -1,0 +1,16 @@
+{
+  "meta_title": "PPO Agent for Industrial HVAC: Beyond PID Control (2026 Guide)",
+  "meta_description": "Discover how a PPO agent for industrial HVAC optimization outperforms PID and MPC. Learn to balance energy savings with asset health using Deep Reinforcement",
+  "title": "Is a PPO Agent the Missing Link Between Energy Efficiency and Asset Health in Industrial HVAC?",
+  "keyword": "PPO agent for industrial HVAC optimization",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/PPO-agent-for-industrial-HVAC-optimization.png",
+    "alt": "Hero image for Is a PPO Agent the Missing Link Between Energy Efficiency and Asset Health in Industrial HVAC?",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, wide-angle shot inside a modern, high-tech industrial chiller plant. The scene is clean and metallic, dominated by large pipes (insulated in silver and blue) and massive centrifugal chillers. In the foreground, a diverse group of two engineers (one male, one female) wearing hard hats, safety glasses, and high-visibility vests are looking at a tablet held by the female engineer (we see the back of the tablet, not the screen). They are gesturing toward a large digital gauge on a pipe. The lighting is cool and professional, with a subtle blue hue suggesting advanced technology. No text or overlays in the image. High resolution, 8k.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2171,
+  "link_count": 8
+}

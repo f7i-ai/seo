@@ -1,0 +1,16 @@
+{
+  "meta_title": "Reinforcement Learning for Reactor Control: Beyond MPC & PID",
+  "meta_description": "Discover how reinforcement learning for chemical reactor control optimizes yield and extends asset life. A technical guide to DRL, SAC, and PPO in 2026.",
+  "title": "Reinforcement Learning for Chemical Reactor Control: How to Optimize Yield While Extending Asset Life",
+  "keyword": "reinforcement learning for chemical reactor control",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/reinforcement-learning-for-chemical-reactor-control.png",
+    "alt": "Hero image for Reinforcement Learning for Chemical Reactor Control: How to Optimize Yield While Extending Asset Life",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern chemical plant control room. In the foreground, a diverse group of process engineers (wearing hard hats and safety glasses) are looking at a large bank of monitors. The monitors display complex data visualizations, heat maps of a reactor, and neural network topology diagrams, but no legible text. One engineer in the center is holding a tablet, back facing the camera. In the background, through a large safety glass window, the blurred industrial silhouette of a large stainless steel chemical reactor and piping is visible. The lighting is professional, with cool blue tones from the screens contrasting with the warm industrial lighting of the plant floor. High-tech, 2026 aesthetic.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2197,
+  "link_count": 7
+}
