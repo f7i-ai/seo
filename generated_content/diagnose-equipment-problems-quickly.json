@@ -1,0 +1,16 @@
+{
+  "meta_title": "Diagnose Equipment Problems Quickly: A Framework for Lower MTTR",
+  "meta_description": "Learn how to diagnose equipment problems quickly using data-driven frameworks, mobile CMMS tools, and root cause analysis to drastically reduce Mean Time To",
+  "title": "How to Diagnose Equipment Problems Quickly: The \"Data-First\" Framework for Reducing MTTR",
+  "keyword": "diagnose equipment problems quickly",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/diagnose-equipment-problems-quickly.png",
+    "alt": "Hero image for How to Diagnose Equipment Problems Quickly: The \"Data-First\" Framework for Reducing MTTR",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, high-quality image inside a modern, clean industrial manufacturing facility. In the foreground, a diverse maintenance technician (wearing a hard hat, safety glasses, and high-visibility vest) is standing next to a large, complex industrial machine (perhaps a conveyor or motor assembly). The technician is looking at a ruggedized tablet held in their hand (showing the back of the device, no screen content visible), appearing to reference data or a schematic while inspecting the machine. In the background, slightly out of focus, another worker in PPE is observing a different section of the line. The lighting is bright and professional, highlighting the clean, high-tech nature of modern manufacturing (Industry 4.0). No text or words in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2265,
+  "link_count": 13
+}

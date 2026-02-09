@@ -1,0 +1,16 @@
+{
+  "meta_title": "CMMS Data Cleanup Guide: A Technical Playbook for Reliability",
+  "meta_description": "Don't just delete duplicates. This CMMS data cleanup guide covers ISO 14224 taxonomy, Noun-Modifier naming, and hierarchy restructuring for 2026.",
+  "title": "The Technical Playbook: A Comprehensive CMMS Data Cleanup Guide for Reliability Engineers",
+  "keyword": "CMMS data cleanup guide",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/CMMS-data-cleanup-guide.png",
+    "alt": "Hero image for The Technical Playbook: A Comprehensive CMMS Data Cleanup Guide for Reliability Engineers",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern industrial manufacturing facility. In the foreground, a reliability engineer (wearing a white hard hat, safety glasses, and a high-visibility vest) is viewed from behind, holding a ruggedized tablet. The tablet screen glows faintly, implying data analysis, but the specific text is not legible. In the background, out of focus, is a complex assembly line with metallic piping and yellow safety railings. The lighting is a mix of cool industrial LED and warm ambient light. The atmosphere conveys precision, technology, and industrial scale. No text overlays.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2245,
+  "link_count": 7
+}

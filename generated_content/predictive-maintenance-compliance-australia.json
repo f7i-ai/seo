@@ -1,0 +1,47 @@
+{
+  "meta_title": "Predictive Maintenance Compliance Australia: WHS & Mining Guide",
+  "meta_description": "Complete guide to Australian maintenance compliance. Federal WHS Act, state mining regulations, AS standards, and food safety requirements for predictive maintenance.",
+  "title": "Predictive Maintenance Compliance in Australia: WHS, Mining, and Food Safety Requirements",
+  "keyword": "predictive maintenance compliance australia",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/predictive-maintenance-compliance-australia.png",
+    "alt": "Hero image for Predictive Maintenance Compliance in Australia",
+    "source": "pending"
+  },
+  "image_prompt": "A photo-realistic image of a professional compliance audit scene in an Australian industrial facility. A safety inspector in high-visibility vest and hard hat reviewing documentation on a tablet with a maintenance manager. Industrial equipment visible in background with safety signage. Clean, well-organised facility. Australian flag or map subtly visible. Professional lighting, no text or logos in main focus.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 3287,
+  "link_count": 12,
+  "content_type": "supporting",
+  "target_audience": "Compliance officers, maintenance managers, HSE managers, plant managers in Australian industry",
+  "geographic_focus": "Australia",
+  "regulatory_frameworks_covered": [
+    "Model WHS Act",
+    "VIC OHS Act 2004",
+    "WA Mines Safety and Inspection Act 1994",
+    "QLD Mining and Quarrying Safety and Health Act 1999",
+    "QLD Coal Mining Safety and Health Act 1999",
+    "NSW Work Health and Safety (Mines and Petroleum Sites) Act 2013",
+    "AS/NZS 4024 - Safety of Machinery",
+    "AS 3788 - Pressure Equipment",
+    "AS 3800 - Electrical Equipment for Explosive Atmospheres",
+    "FSANZ Food Standards Code"
+  ],
+  "state_coverage": [
+    "WA",
+    "QLD",
+    "NSW",
+    "VIC",
+    "SA",
+    "TAS"
+  ],
+  "internal_links": [
+    "/blog/predictive-maintenance-for-food-processing-complete-guide",
+    "/blog/predictive-maintenance-australia-guide",
+    "/blog/what-is-predictive-maintenance",
+    "/blog/how-to-get-started-with-predictive-maintenance-a-12-step-roadmap-for-reliability-leaders",
+    "/blog/predictive-maintenance-mining-equipment",
+    "/resources/roi-calculator"
+  ]
+}

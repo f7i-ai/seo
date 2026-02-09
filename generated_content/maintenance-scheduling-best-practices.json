@@ -1,0 +1,16 @@
+{
+  "meta_title": "Maintenance Scheduling Best Practices: The Gatekeeper Framework",
+  "meta_description": "Move beyond basic lists. Master maintenance scheduling with the \"Gatekeeper\" framework: RIME prioritization, capacity leveling, and the frozen week workflow.",
+  "title": "Maintenance Scheduling Best Practices: The Gatekeeper Framework for Reliability",
+  "keyword": "maintenance scheduling best practices",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/maintenance-scheduling-best-practices.png",
+    "alt": "Hero image for Maintenance Scheduling Best Practices: The Gatekeeper Framework for Reliability",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern, clean manufacturing facility. In the foreground, a diverse group of maintenance professionals (a scheduler holding a tablet, a technician in a hard hat and safety glasses, and an operations manager) are standing around a large digital scheduling board or monitor. They are engaged in a collaborative discussion. The background shows blurred industrial machinery, perhaps a conveyor system or automated assembly line, emphasizing a high-tech industrial setting. The lighting is professional and bright, highlighting the PPE and the seriousness of the planning session. No text on the screens. 8k resolution.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2077,
+  "link_count": 7
+}

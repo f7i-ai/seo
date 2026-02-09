@@ -1,0 +1,16 @@
+{
+  "meta_title": "Downtime Pattern Analysis: The Forensic Guide to Asset Reliability",
+  "meta_description": "Move beyond basic MTBF. Learn how to perform downtime pattern analysis to identify \"ghost\" stoppages, systemic failures, and hidden ROI in your facility.",
+  "title": "Downtime Pattern Analysis: How to Move From \"Fixing It\" to \"Solving It\"",
+  "keyword": "downtime pattern analysis",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/downtime-pattern-analysis.png",
+    "alt": "Hero image for Downtime Pattern Analysis: How to Move From \"Fixing It\" to \"Solving It\"",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern, high-tech manufacturing facility. In the foreground, a reliability engineer (wearing a white hard hat, safety glasses, and a high-visibility vest) is examining a large industrial motor or conveyor system. They are holding a tablet (back of the device visible) as if comparing data on the screen to the physical asset. In the background, blurred slightly, are other technicians working and automated machinery in motion. The lighting is industrial but dramatic, with cool blue and warm amber tones highlighting the metallic textures of the equipment. No text or overlays. The atmosphere conveys precision, technology, and forensic analysis.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2306,
+  "link_count": 12
+}

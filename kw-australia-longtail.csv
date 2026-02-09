@@ -1,0 +1,113 @@
+Keyword,Volume,Difficulty,CPC,Intents,Tier,State,Base Keyword,Source,Compliance_relevant
+WHS compliance checklist for maintenance teams,,,,Informational,National,,WHS maintenance,curated,Y
+WHS risk assessment for maintenance work Australia,,,,Informational,National,,WHS maintenance,curated,Y
+PCBU obligations for maintenance managers Australia,,,,Informational,National,,WHS maintenance,curated,Y
+duty of care maintenance managers Australia,,,,Informational,National,,WHS maintenance,curated,Y
+notifiable incident reporting maintenance Australia,,,,Informational,National,,WHS maintenance,curated,Y
+plant and equipment register requirements Australia,,,,Informational,National,,WHS maintenance,curated,Y
+hazard identification maintenance work Australia,,,,Informational,National,,WHS maintenance,curated,Y
+how to write a SWMS for maintenance work,,,,Informational,National,,SWMS,curated,Y
+SWMS requirements for high risk construction work,,,,Informational,National,,SWMS,curated,Y
+SWMS review and update frequency Australia,,,,Informational,National,,SWMS,curated,Y
+who is responsible for signing off a SWMS,,,,Informational,National,,SWMS,curated,Y
+SWMS requirements NSW,,,,Informational,State,nsw,SWMS,curated,Y
+SWMS requirements Victoria,,,,Informational,State,victoria,SWMS,curated,Y
+SWMS requirements Queensland,,,,Informational,State,queensland,SWMS,curated,Y
+SWMS requirements Western Australia,,,,Informational,State,western australia,SWMS,curated,Y
+SafeWork NSW maintenance compliance requirements,,,,Informational,State,nsw,WHS state,curated,Y
+WorkSafe Victoria maintenance compliance requirements,,,,Informational,State,victoria,WHS state,curated,Y
+WorkSafe Queensland maintenance compliance requirements,,,,Informational,State,queensland,WHS state,curated,Y
+WorkSafe WA maintenance compliance requirements,,,,Informational,State,western australia,WHS state,curated,Y
+SafeWork SA maintenance compliance requirements,,,,Informational,State,south australia,WHS state,curated,Y
+confined space entry requirements Australia,,,,Informational,National,,confined space,curated,Y
+confined space entry permit requirements NSW,,,,Informational,State,nsw,confined space,curated,Y
+confined space entry permit requirements Victoria,,,,Informational,State,victoria,confined space,curated,Y
+confined space entry permit requirements Queensland,,,,Informational,State,queensland,confined space,curated,Y
+confined space entry permit requirements Western Australia,,,,Informational,State,western australia,confined space,curated,Y
+confined space gas testing requirements Australia,,,,Informational,National,,confined space,curated,Y
+working at height requirements Australia,,,,Informational,National,,working at height,curated,Y
+working at height permit requirements NSW,,,,Informational,State,nsw,working at height,curated,Y
+working at height permit requirements Victoria,,,,Informational,State,victoria,working at height,curated,Y
+working at height permit requirements Queensland,,,,Informational,State,queensland,working at height,curated,Y
+working at height permit requirements Western Australia,,,,Informational,State,western australia,working at height,curated,Y
+working at height training requirements Australia,,,,Informational,National,,working at height,curated,Y
+hot works permit requirements Australia,,,,Informational,National,,hot works,curated,Y
+hot works permit requirements NSW,,,,Informational,State,nsw,hot works,curated,Y
+hot works permit requirements Victoria,,,,Informational,State,victoria,hot works,curated,Y
+hot works permit requirements Queensland,,,,Informational,State,queensland,hot works,curated,Y
+hot works fire watch requirements Australia,,,,Informational,National,,hot works,curated,Y
+isolation procedures for maintenance Australia,,,,Informational,National,,LOTO,curated,Y
+lockout tagout procedures Australia,,,,Informational,National,,LOTO,curated,Y
+isolation procedures vs lockout tagout Australia,,,,Informational,National,,LOTO,curated,Y
+electrical isolation requirements maintenance Australia,,,,Informational,National,,LOTO,curated,Y
+maintenance contractor WHS obligations Australia,,,,Informational,National,,contractor compliance,curated,Y
+contractor induction requirements maintenance Australia,,,,Informational,National,,contractor compliance,curated,Y
+contractor safety management plan maintenance Australia,,,,Informational,National,,contractor compliance,curated,Y
+maintenance record keeping WHS requirements Australia,,,,Informational,National,,maintenance records,curated,Y
+maintenance audit requirements WHS Australia,,,,Informational,National,,maintenance records,curated,Y
+how long to keep maintenance records Australia,,,,Informational,National,,maintenance records,curated,Y
+forklift licence requirements Australia,,,,Informational,National,,certification,curated,Y
+forklift licence requirements NSW,,,,Informational,State,nsw,certification,curated,Y
+forklift licence requirements Victoria,,,,Informational,State,victoria,certification,curated,Y
+forklift licence requirements Queensland,,,,Informational,State,queensland,certification,curated,Y
+forklift licence requirements Western Australia,,,,Informational,State,western australia,certification,curated,Y
+scissor lift certification requirements Australia,,,,Informational,National,,certification,curated,Y
+high risk work licence categories Australia,,,,Informational,National,,certification,curated,Y
+CMMS software Australia,,,,Commercial,National,,CMMS,curated,N
+best CMMS for Australian manufacturing,,,,Commercial,National,,CMMS,curated,N
+CMMS implementation guide for Australian industry,,,,Informational,National,,CMMS,curated,N
+MEX CMMS vs other CMMS Australia,,,,Commercial,National,,CMMS,curated,N
+work order management software Australia,,,,Commercial,National,,work order,curated,N
+maintenance management software Australia,,,,Commercial,National,,maintenance software,curated,N
+asset management software for Australian manufacturers,,,,Commercial,National,,asset management,curated,N
+equipment maintenance software Australia,,,,Commercial,National,,maintenance software,curated,N
+predictive maintenance software Australia,,,,Commercial,National,,predictive maintenance,curated,N
+predictive maintenance solutions Australia,,,,Commercial,National,,predictive maintenance,curated,N
+predictive maintenance companies Australia,,,,Commercial,National,,predictive maintenance,curated,N
+how to implement predictive maintenance in Australia,,,,Informational,National,,predictive maintenance,curated,N
+predictive maintenance ROI Australian manufacturing,,,,Informational,National,,predictive maintenance,curated,N
+AI predictive maintenance Australia,,,,Commercial,National,,predictive maintenance,curated,N
+condition monitoring services Australia,,,,Commercial,National,,condition monitoring,curated,N
+vibration monitoring services Australia,,,,Commercial,National,,vibration monitoring,curated,N
+vibration analysis services Australia,,,,Commercial,National,,vibration analysis,curated,N
+IoT sensors for predictive maintenance Australia,,,,Commercial,National,,IoT sensors,curated,N
+industrial IoT adoption Australia,,,,Informational,National,,IoT,curated,N
+smart factory solutions Australia,,,,Commercial,National,,smart factory,curated,N
+mining maintenance Western Australia,,,,Commercial,State,western australia,mining maintenance,curated,N
+mining predictive maintenance Western Australia,,,,Commercial,State,western australia,mining maintenance,curated,N
+mining condition monitoring Western Australia,,,,Commercial,State,western australia,mining maintenance,curated,N
+mining equipment maintenance Queensland,,,,Commercial,State,queensland,mining maintenance,curated,N
+mining predictive maintenance Queensland,,,,Commercial,State,queensland,mining maintenance,curated,N
+CHPP maintenance Queensland,,,,Commercial,State,queensland,mining maintenance,curated,N
+coal handling and preparation plant maintenance Australia,,,,Commercial,National,,mining maintenance,curated,N
+conveyor maintenance mining Australia,,,,Commercial,National,,mining maintenance,curated,N
+mining conveyor belt monitoring Australia,,,,Commercial,National,,mining maintenance,curated,N
+food processing maintenance Victoria,,,,Commercial,State,victoria,food processing,curated,N
+food and beverage manufacturing maintenance Australia,,,,Commercial,National,,food processing,curated,N
+food processing predictive maintenance Australia,,,,Commercial,National,,food processing,curated,N
+washdown rated sensors for food processing Australia,,,,Commercial,National,,food processing,curated,N
+pharmaceutical manufacturing maintenance Australia,,,,Commercial,National,,pharma,curated,N
+packaging line maintenance Australia,,,,Commercial,National,,packaging,curated,N
+Australian Standards predictive maintenance,,,,Informational,National,,AU standards,curated,N
+AS 3788 pressure equipment maintenance Australia,,,,Informational,National,,AU standards,curated,Y
+AS 2550 crane maintenance requirements Australia,,,,Informational,National,,AU standards,curated,Y
+Australian mining maintenance regulations,,,,Informational,National,,AU regulations,curated,Y
+Queensland mining safety compliance maintenance,,,,Informational,State,queensland,AU regulations,curated,Y
+Western Australia mining safety regulations maintenance,,,,Informational,State,western australia,AU regulations,curated,Y
+reliability centred maintenance Australia,,,,Informational,National,,RCM,curated,N
+condition based maintenance Australia,,,,Informational,National,,CBM,curated,N
+preventive maintenance program Australia,,,,Informational,National,,preventive maintenance,curated,N
+maintenance strategy for Australian manufacturers,,,,Informational,National,,maintenance strategy,curated,N
+reducing unplanned downtime Australian manufacturing,,,,Informational,National,,downtime,curated,N
+maintenance KPIs benchmarks Australian industry,,,,Informational,National,,KPIs,curated,N
+OEE benchmarks Australian manufacturing,,,,Informational,National,,OEE,curated,N
+maintenance outsourcing vs in-house Australia,,,,Informational,National,,maintenance strategy,curated,N
+maintenance contractor licensing requirements Australia,,,,Informational,National,,contractor compliance,curated,Y
+maintenance team training requirements Australia,,,,Informational,National,,training,curated,N
+change management for maintenance teams Australia,,,,Informational,National,,change management,curated,N
+continuous improvement manufacturing Australia,,,,Informational,National,,continuous improvement,curated,N
+lean maintenance practices Australia,,,,Informational,National,,lean,curated,N
+root cause analysis Australian manufacturing,,,,Informational,National,,RCA,curated,N
+FMEA for Australian manufacturing,,,,Informational,National,,FMEA,curated,N
+digital twin for Australian manufacturing,,,,Informational,National,,digital twin,curated,N
+machine learning predictive maintenance Australia,,,,Informational,National,,ML,curated,N

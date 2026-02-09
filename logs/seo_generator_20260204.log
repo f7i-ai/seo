@@ -31,3 +31,531 @@
 2026-02-04 13:12:42,607 - INFO - Attempting expansion for pillar content...
 2026-02-04 13:12:42,607 - INFO - Expanding content: 2725 words -> target 3500 (need +775 words)
 2026-02-04 13:12:42,607 - INFO - Calling Gemini API for content expansion...
+2026-02-04 13:13:45,850 - INFO - Expansion complete: 2725 -> 3642 words (+917)
+2026-02-04 13:13:45,850 - INFO - Validating and cleaning markdown links...
+2026-02-04 13:13:45,850 - INFO - Link validation: 7 verified, 0 removed
+2026-02-04 13:13:45,850 - INFO - Pillar expansion result: 2725 -> 3642 words
+2026-02-04 13:13:45,851 - INFO - Generating hero image...
+2026-02-04 13:13:45,851 - INFO - Generating image with prompt: A close-up, photorealistic shot inside a modern industrial facility. Focus on a reliability engineer's hand holding a high-end vibration analyzer stylus against the bearing housing of a large, blue electric motor. In the background, slightly out of focus, is a complex array of piping and industrial machinery. The lighting is dramatic, highlighting the texture of the metal and the digital waveform display on the analyzer screen (which shows a spectral graph, not text). The engineer is wearing a safety glove and a high-visibility sleeve. The image conveys precision, technology, and industrial grit. No text overlays.
+2026-02-04 13:13:45,851 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-04 13:14:03,065 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-04 13:14:03,886 - INFO - Image generated successfully!
+2026-02-04 13:14:03,887 - INFO - Image saved to: generated_content/signal-analysis-for-condition-monitoring.png
+2026-02-04 13:14:03,888 - INFO - Formatting for Prismic...
+2026-02-04 13:14:03,888 - INFO - Content saved to:
+2026-02-04 13:14:03,888 - INFO -   JSON: generated_content/signal-analysis-for-condition-monitoring.json
+2026-02-04 13:14:03,889 - INFO -   Markdown: generated_content/signal-analysis-for-condition-monitoring.md
+2026-02-04 13:14:03,889 - INFO -   Stats: 3642 words, 7 links
+2026-02-04 13:14:03,889 - INFO -   Image: generated_content/signal-analysis-for-condition-monitoring.png
+2026-02-04 13:14:03,889 - INFO - Content generated successfully for: signal analysis for condition monitoring
+2026-02-04 13:14:03,889 - INFO - Uploading to Prismic...
+2026-02-04 13:14:12,575 - INFO - Successfully uploaded to Prismic
+2026-02-04 13:14:12,575 - INFO - Content published to Prismic CMS for: signal analysis for condition monitoring
+2026-02-04 13:14:14,580 - INFO - Processing keyword 2/8: industrial sensor selection guide
+2026-02-04 13:14:14,581 - INFO - Researching keyword with SERP analysis...
+2026-02-04 13:14:14,581 - INFO - Starting deep research for keyword: 'industrial sensor selection guide'
+2026-02-04 13:14:14,581 - INFO - Analyzing 1 SERP results...
+2026-02-04 13:14:14,581 - INFO - Calling Gemini API...
+2026-02-04 13:14:51,576 - INFO - Gemini API call took 36.99 seconds
+2026-02-04 13:14:51,576 - INFO - Received response (8126 characters)
+2026-02-04 13:14:51,576 - INFO - Parsing markdown response...
+2026-02-04 13:14:51,577 - INFO - Successfully parsed markdown with 11 sections
+2026-02-04 13:14:51,577 - INFO - Research completed in 37.00 seconds total
+2026-02-04 13:14:51,577 - INFO - Generating pillar content...
+2026-02-04 13:15:58,085 - INFO - Parsing markdown content response...
+2026-02-04 13:15:58,087 - INFO - Validating and cleaning markdown links...
+2026-02-04 13:15:58,087 - INFO - Link validation: 10 verified, 0 removed
+2026-02-04 13:15:58,087 - WARNING - Pillar content under minimum (2610/3000 words)
+2026-02-04 13:15:58,088 - WARNING - Pillar content too short for expansion (2610/3000), saving to drafts
+2026-02-04 13:15:58,090 - INFO - Draft saved to: generated_content/drafts/
+2026-02-04 13:15:58,090 - INFO -   JSON: generated_content/drafts/industrial-sensor-selection-guide.json
+2026-02-04 13:15:58,090 - INFO -   Markdown: generated_content/drafts/industrial-sensor-selection-guide.md
+2026-02-04 13:15:58,091 - INFO - Draft saved for under-length content: industrial sensor selection guide
+2026-02-04 13:15:58,091 - INFO - Processing keyword 3/8: predictive maintenance for coal handling and preparation plants
+2026-02-04 13:15:58,091 - INFO - Researching keyword with SERP analysis...
+2026-02-04 13:15:58,091 - INFO - Starting deep research for keyword: 'predictive maintenance for coal handling and preparation plants'
+2026-02-04 13:15:58,091 - INFO - Analyzing 1 SERP results...
+2026-02-04 13:15:58,091 - INFO - Calling Gemini API...
+2026-02-04 13:16:35,699 - INFO - Gemini API call took 37.61 seconds
+2026-02-04 13:16:35,700 - INFO - Received response (8799 characters)
+2026-02-04 13:16:35,700 - INFO - Parsing markdown response...
+2026-02-04 13:16:35,701 - INFO - Successfully parsed markdown with 11 sections
+2026-02-04 13:16:35,701 - INFO - Research completed in 37.61 seconds total
+2026-02-04 13:16:35,701 - INFO - Generating pillar content...
+2026-02-04 13:17:41,565 - INFO - Parsing markdown content response...
+2026-02-04 13:17:41,565 - INFO - Validating and cleaning markdown links...
+2026-02-04 13:17:41,566 - INFO - Link validation: 11 verified, 0 removed
+2026-02-04 13:17:41,566 - WARNING - Pillar content under minimum (2279/3000 words)
+2026-02-04 13:17:41,566 - WARNING - Pillar content too short for expansion (2279/3000), saving to drafts
+2026-02-04 13:17:41,567 - INFO - Draft saved to: generated_content/drafts/
+2026-02-04 13:17:41,567 - INFO -   JSON: generated_content/drafts/predictive-maintenance-for-coal-handling-and-prepa.json
+2026-02-04 13:17:41,567 - INFO -   Markdown: generated_content/drafts/predictive-maintenance-for-coal-handling-and-prepa.md
+2026-02-04 13:17:41,567 - INFO - Draft saved for under-length content: predictive maintenance for coal handling and preparation plants
+2026-02-04 13:17:41,567 - INFO - Processing keyword 4/8: predictive maintenance for energy and utilities
+2026-02-04 13:17:41,567 - INFO - Researching keyword with SERP analysis...
+2026-02-04 13:17:41,567 - INFO - Starting deep research for keyword: 'predictive maintenance for energy and utilities'
+2026-02-04 13:17:41,567 - INFO - Analyzing 1 SERP results...
+2026-02-04 13:17:41,568 - INFO - Calling Gemini API...
+2026-02-04 13:18:18,240 - INFO - Gemini API call took 36.67 seconds
+2026-02-04 13:18:18,241 - INFO - Received response (8083 characters)
+2026-02-04 13:18:18,241 - INFO - Parsing markdown response...
+2026-02-04 13:18:18,242 - INFO - Successfully parsed markdown with 11 sections
+2026-02-04 13:18:18,243 - INFO - Research completed in 36.68 seconds total
+2026-02-04 13:18:18,243 - INFO - Generating pillar content...
+2026-02-04 13:19:22,863 - INFO - Parsing markdown content response...
+2026-02-04 13:19:22,864 - INFO - Validating and cleaning markdown links...
+2026-02-04 13:19:22,865 - INFO - Link validation: 12 verified, 0 removed
+2026-02-04 13:19:22,865 - WARNING - Pillar content under minimum (2522/3000 words)
+2026-02-04 13:19:22,865 - WARNING - Pillar content too short for expansion (2522/3000), saving to drafts
+2026-02-04 13:19:22,868 - INFO - Draft saved to: generated_content/drafts/
+2026-02-04 13:19:22,868 - INFO -   JSON: generated_content/drafts/predictive-maintenance-for-energy-and-utilities.json
+2026-02-04 13:19:22,868 - INFO -   Markdown: generated_content/drafts/predictive-maintenance-for-energy-and-utilities.md
+2026-02-04 13:19:22,868 - INFO - Draft saved for under-length content: predictive maintenance for energy and utilities
+2026-02-04 13:19:22,868 - INFO - Processing keyword 5/8: rotating equipment maintenance and monitoring
+2026-02-04 13:19:22,868 - INFO - Researching keyword with SERP analysis...
+2026-02-04 13:19:22,868 - INFO - Starting deep research for keyword: 'rotating equipment maintenance and monitoring'
+2026-02-04 13:19:22,869 - INFO - Analyzing 1 SERP results...
+2026-02-04 13:19:22,869 - INFO - Calling Gemini API...
+2026-02-04 13:19:58,239 - INFO - Gemini API call took 35.37 seconds
+2026-02-04 13:19:58,240 - INFO - Received response (7705 characters)
+2026-02-04 13:19:58,240 - INFO - Parsing markdown response...
+2026-02-04 13:19:58,241 - INFO - Successfully parsed markdown with 11 sections
+2026-02-04 13:19:58,242 - INFO - Research completed in 35.37 seconds total
+2026-02-04 13:19:58,242 - INFO - Generating pillar content...
+2026-02-04 13:20:58,046 - INFO - Parsing markdown content response...
+2026-02-04 13:20:58,047 - INFO - Validating and cleaning markdown links...
+2026-02-04 13:20:58,047 - INFO - Link validation: 13 verified, 0 removed
+2026-02-04 13:20:58,048 - WARNING - Pillar content under minimum (2305/3000 words)
+2026-02-04 13:20:58,048 - WARNING - Pillar content too short for expansion (2305/3000), saving to drafts
+2026-02-04 13:20:58,051 - INFO - Draft saved to: generated_content/drafts/
+2026-02-04 13:20:58,051 - INFO -   JSON: generated_content/drafts/rotating-equipment-maintenance-and-monitoring.json
+2026-02-04 13:20:58,051 - INFO -   Markdown: generated_content/drafts/rotating-equipment-maintenance-and-monitoring.md
+2026-02-04 13:20:58,051 - INFO - Draft saved for under-length content: rotating equipment maintenance and monitoring
+2026-02-04 13:20:58,051 - INFO - Processing keyword 6/8: industrial data architecture for predictive maintenance
+2026-02-04 13:20:58,051 - INFO - Researching keyword with SERP analysis...
+2026-02-04 13:20:58,052 - INFO - Starting deep research for keyword: 'industrial data architecture for predictive maintenance'
+2026-02-04 13:20:58,052 - INFO - Analyzing 1 SERP results...
+2026-02-04 13:20:58,052 - INFO - Calling Gemini API...
+2026-02-04 13:21:34,352 - INFO - Gemini API call took 36.30 seconds
+2026-02-04 13:21:34,353 - INFO - Received response (7353 characters)
+2026-02-04 13:21:34,353 - INFO - Parsing markdown response...
+2026-02-04 13:21:34,353 - INFO - Successfully parsed markdown with 11 sections
+2026-02-04 13:21:34,353 - INFO - Research completed in 36.30 seconds total
+2026-02-04 13:21:34,353 - INFO - Generating pillar content...
+2026-02-04 13:22:41,830 - INFO - Parsing markdown content response...
+2026-02-04 13:22:41,831 - INFO - Validating and cleaning markdown links...
+2026-02-04 13:22:41,832 - INFO - Link validation: 10 verified, 0 removed
+2026-02-04 13:22:41,832 - WARNING - Pillar content under minimum (2717/3000 words)
+2026-02-04 13:22:41,832 - INFO - Attempting expansion for pillar content...
+2026-02-04 13:22:41,832 - INFO - Expanding content: 2717 words -> target 3500 (need +783 words)
+2026-02-04 13:22:41,832 - INFO - Calling Gemini API for content expansion...
+2026-02-04 13:23:47,940 - INFO - Expansion complete: 2717 -> 3718 words (+1001)
+2026-02-04 13:23:47,940 - INFO - Validating and cleaning markdown links...
+2026-02-04 13:23:47,940 - INFO - Link validation: 10 verified, 0 removed
+2026-02-04 13:23:47,941 - INFO - Pillar expansion result: 2717 -> 3718 words
+2026-02-04 13:23:47,941 - INFO - Generating hero image...
+2026-02-04 13:23:47,941 - INFO - Generating image with prompt: A photorealistic, cinematic wide shot of a modern industrial manufacturing floor. In the foreground, a reliability engineer in a hard hat and safety vest is looking at a ruggedized tablet displaying a complex data topology map (nodes and connections). In the background, blurred but visible, are large industrial machines (conveyors, robotic arms) with glowing digital overlays indicating data flow (subtle blue lines connecting machines to an edge gateway). The lighting is industrial but dramatic, mixing cool server-room blues with warm factory floor ambers. No text in the image. High detail, 8k resolution.
+2026-02-04 13:23:47,941 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-04 13:24:04,444 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-04 13:24:05,237 - INFO - Image generated successfully!
+2026-02-04 13:24:05,239 - INFO - Image saved to: generated_content/industrial-data-architecture-for-predictive-maintenance.png
+2026-02-04 13:24:05,239 - INFO - Formatting for Prismic...
+2026-02-04 13:24:05,241 - INFO - Content saved to:
+2026-02-04 13:24:05,242 - INFO -   JSON: generated_content/industrial-data-architecture-for-predictive-mainte.json
+2026-02-04 13:24:05,242 - INFO -   Markdown: generated_content/industrial-data-architecture-for-predictive-mainte.md
+2026-02-04 13:24:05,242 - INFO -   Stats: 3718 words, 10 links
+2026-02-04 13:24:05,242 - INFO - Content generated successfully for: industrial data architecture for predictive maintenance
+2026-02-04 13:24:05,242 - INFO - Uploading to Prismic...
+2026-02-04 13:24:14,647 - INFO - Successfully uploaded to Prismic
+2026-02-04 13:24:14,648 - INFO - Content published to Prismic CMS for: industrial data architecture for predictive maintenance
+2026-02-04 13:24:16,653 - INFO - Processing keyword 7/8: machine learning for industrial predictive maintenance
+2026-02-04 13:24:16,654 - INFO - Researching keyword with SERP analysis...
+2026-02-04 13:24:16,654 - INFO - Starting deep research for keyword: 'machine learning for industrial predictive maintenance'
+2026-02-04 13:24:16,654 - INFO - Analyzing 1 SERP results...
+2026-02-04 13:24:16,654 - INFO - Calling Gemini API...
+2026-02-04 13:24:57,789 - INFO - Gemini API call took 41.14 seconds
+2026-02-04 13:24:57,790 - INFO - Received response (7960 characters)
+2026-02-04 13:24:57,790 - INFO - Parsing markdown response...
+2026-02-04 13:24:57,791 - INFO - Successfully parsed markdown with 11 sections
+2026-02-04 13:24:57,791 - INFO - Research completed in 41.14 seconds total
+2026-02-04 13:24:57,791 - INFO - Generating pillar content...
+2026-02-04 13:26:08,494 - INFO - Parsing markdown content response...
+2026-02-04 13:26:08,496 - INFO - Validating and cleaning markdown links...
+2026-02-04 13:26:08,496 - INFO - Link validation: 12 verified, 0 removed
+2026-02-04 13:26:08,496 - WARNING - Pillar content under minimum (2386/3000 words)
+2026-02-04 13:26:08,497 - WARNING - Pillar content too short for expansion (2386/3000), saving to drafts
+2026-02-04 13:26:08,500 - INFO - Draft saved to: generated_content/drafts/
+2026-02-04 13:26:08,500 - INFO -   JSON: generated_content/drafts/machine-learning-for-industrial-predictive-mainten.json
+2026-02-04 13:26:08,500 - INFO -   Markdown: generated_content/drafts/machine-learning-for-industrial-predictive-mainten.md
+2026-02-04 13:26:08,501 - INFO - Draft saved for under-length content: machine learning for industrial predictive maintenance
+2026-02-04 13:26:08,501 - INFO - Processing keyword 8/8: maintenance operations and CMMS implementation guide
+2026-02-04 13:26:08,501 - INFO - Researching keyword with SERP analysis...
+2026-02-04 13:26:08,501 - INFO - Starting deep research for keyword: 'maintenance operations and CMMS implementation guide'
+2026-02-04 13:26:08,501 - INFO - Analyzing 1 SERP results...
+2026-02-04 13:26:08,501 - INFO - Calling Gemini API...
+2026-02-04 13:26:43,362 - INFO - Gemini API call took 34.86 seconds
+2026-02-04 13:26:43,362 - INFO - Received response (7325 characters)
+2026-02-04 13:26:43,362 - INFO - Parsing markdown response...
+2026-02-04 13:26:43,363 - INFO - Successfully parsed markdown with 11 sections
+2026-02-04 13:26:43,363 - INFO - Research completed in 34.86 seconds total
+2026-02-04 13:26:43,363 - INFO - Generating pillar content...
+2026-02-04 13:27:48,819 - INFO - Parsing markdown content response...
+2026-02-04 13:27:48,820 - INFO - Validating and cleaning markdown links...
+2026-02-04 13:27:48,820 - INFO - Link validation: 15 verified, 0 removed
+2026-02-04 13:27:48,820 - WARNING - Pillar content under minimum (2677/3000 words)
+2026-02-04 13:27:48,820 - WARNING - Pillar content too short for expansion (2677/3000), saving to drafts
+2026-02-04 13:27:48,821 - INFO - Draft saved to: generated_content/drafts/
+2026-02-04 13:27:48,822 - INFO -   JSON: generated_content/drafts/maintenance-operations-and-CMMS-implementation-gui.json
+2026-02-04 13:27:48,822 - INFO -   Markdown: generated_content/drafts/maintenance-operations-and-CMMS-implementation-gui.md
+2026-02-04 13:27:48,822 - INFO - Draft saved for under-length content: maintenance operations and CMMS implementation guide
+2026-02-04 13:27:48,822 - INFO - SEO content generation session completed
+2026-02-04 13:27:48,822 - INFO - ==================================================
+2026-02-04 14:04:35,589 - INFO - ==================================================
+2026-02-04 14:04:35,589 - INFO - SEO Content Generator session started
+2026-02-04 14:04:35,589 - INFO - ==================================================
+2026-02-04 14:05:09,113 - INFO - ==================================================
+2026-02-04 14:05:09,113 - INFO - SEO Content Generator session started
+2026-02-04 14:05:09,113 - INFO - ==================================================
+2026-02-04 14:05:09,118 - WARNING - google.genai not available - image generation disabled
+2026-02-04 14:05:09,136 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-02-04 14:05:19,485 - INFO - Found 330 existing blog posts from sitemap
+2026-02-04 14:05:19,485 - INFO - Cached 370 internal URLs for verification
+2026-02-04 14:05:19,487 - INFO - Adding internal links to content (target: 15-20 links)...
+2026-02-04 14:06:31,721 - INFO - Link injection complete: 7 -> 25 internal links (+18)
+2026-02-04 14:06:31,722 - INFO - Validating and cleaning markdown links...
+2026-02-04 14:06:31,723 - INFO - Link validation: 25 verified, 0 removed
+2026-02-04 14:39:09,801 - INFO - ==================================================
+2026-02-04 14:39:09,801 - INFO - SEO Content Generator session started
+2026-02-04 14:39:09,801 - INFO - ==================================================
+2026-02-04 14:39:09,806 - WARNING - google.genai not available - image generation disabled
+2026-02-04 14:39:09,824 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-02-04 14:39:13,032 - INFO - Found 330 existing blog posts from sitemap
+2026-02-04 14:39:13,032 - INFO - Cached 370 internal URLs for verification
+2026-02-04 14:39:13,033 - INFO - Adding internal links to content (target: 15-20 links)...
+2026-02-04 14:40:29,474 - INFO - Link injection complete: 10 -> 35 internal links (+25)
+2026-02-04 14:40:29,475 - INFO - Validating and cleaning markdown links...
+2026-02-04 14:40:29,475 - INFO - Link validation: 35 verified, 0 removed
+2026-02-04 14:43:03,670 - INFO - ==================================================
+2026-02-04 14:43:03,670 - INFO - SEO Content Generator session started
+2026-02-04 14:43:03,670 - INFO - ==================================================
+2026-02-04 14:43:03,677 - WARNING - google.genai not available - image generation disabled
+2026-02-04 14:43:03,695 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-02-04 14:43:07,055 - INFO - Found 330 existing blog posts from sitemap
+2026-02-04 14:43:07,055 - INFO - Cached 370 internal URLs for verification
+2026-02-04 14:43:07,056 - INFO - Adding internal links to content (target: 15-20 links)...
+2026-02-04 14:44:32,763 - INFO - Link injection complete: 7 -> 28 internal links (+21)
+2026-02-04 14:44:32,763 - INFO - Validating and cleaning markdown links...
+2026-02-04 14:44:32,764 - INFO - Link validation: 28 verified, 0 removed
+2026-02-04 15:30:38,330 - INFO - ==================================================
+2026-02-04 15:30:38,330 - INFO - SEO Content Generator session started
+2026-02-04 15:30:38,330 - INFO - ==================================================
+2026-02-04 15:30:54,015 - INFO - Successfully loaded 12 unique keywords with SERP data using utf-8 encoding
+2026-02-04 15:30:54,016 - INFO - Loading existing content from sitemap: https://f7i.ai/sitemap.xml
+2026-02-04 15:30:54,016 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-02-04 15:31:04,156 - INFO - Found 332 existing blog posts from sitemap
+2026-02-04 15:31:04,156 - INFO - Cached 372 internal URLs for verification
+2026-02-04 15:31:04,158 - WARNING - Skipping 'complete guide to maintenance strategies' - overlaps with existing blog content
+2026-02-04 15:31:04,158 - INFO - Skipping 'signal analysis for condition monitoring' - content already generated
+2026-02-04 15:31:04,159 - WARNING - Skipping 'predictive maintenance for food and beverage manufacturing' - overlaps with existing blog content
+2026-02-04 15:31:04,159 - WARNING - Skipping 'predictive maintenance for packaging operations' - overlaps with existing blog content
+2026-02-04 15:31:04,160 - WARNING - Skipping 'industrial compressor maintenance guide' - overlaps with existing blog content
+2026-02-04 15:31:04,161 - INFO - Skipping 'industrial data architecture for predictive maintenance' - content already generated
+2026-02-04 15:31:04,162 - INFO - Processing keyword 1/6: industrial sensor selection guide
+2026-02-04 15:31:04,162 - INFO - Researching keyword with SERP analysis...
+2026-02-04 15:31:04,162 - INFO - Starting deep research for keyword: 'industrial sensor selection guide'
+2026-02-04 15:31:04,162 - INFO - Analyzing 1 SERP results...
+2026-02-04 15:31:04,162 - INFO - Calling Gemini API...
+2026-02-04 15:31:39,699 - INFO - Gemini API call took 35.54 seconds
+2026-02-04 15:31:39,700 - INFO - Received response (7906 characters)
+2026-02-04 15:31:39,700 - INFO - Parsing markdown response...
+2026-02-04 15:31:39,702 - INFO - Successfully parsed markdown with 11 sections
+2026-02-04 15:31:39,703 - INFO - Research completed in 35.54 seconds total
+2026-02-04 15:31:39,703 - INFO - Generating pillar content...
+2026-02-04 15:32:39,049 - INFO - Parsing markdown content response...
+2026-02-04 15:32:39,051 - INFO - Validating and cleaning markdown links...
+2026-02-04 15:32:39,051 - INFO - Link validation: 9 verified, 0 removed
+2026-02-04 15:32:39,052 - INFO - Generating hero image...
+2026-02-04 15:32:39,052 - INFO - Generating image with prompt: A hyper-realistic, cinematic wide shot of a modern industrial manufacturing facility interior. In the foreground, a focus on a large, complex electric motor and gearbox assembly. Attached to the cooling fins of the motor is a sleek, industrial-grade wireless vibration sensor with a small status LED glowing soft green. The background shows a depth of field with blurred production lines, conveyers, and a reliability engineer in safety glasses and a hard hat holding a tablet, looking at a digital twin visualization. The lighting is dramatic but professional, highlighting the integration of physical machinery with digital sensing technology. No text overlays. 8k resolution.
+2026-02-04 15:32:39,052 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-04 15:32:54,455 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-04 15:32:55,245 - INFO - Image generated successfully!
+2026-02-04 15:32:55,246 - INFO - Image saved to: generated_content/industrial-sensor-selection-guide.png
+2026-02-04 15:32:55,247 - INFO - Formatting for Prismic...
+2026-02-04 15:32:55,248 - INFO - Content saved to:
+2026-02-04 15:32:55,248 - INFO -   JSON: generated_content/industrial-sensor-selection-guide.json
+2026-02-04 15:32:55,248 - INFO -   Markdown: generated_content/industrial-sensor-selection-guide.md
+2026-02-04 15:32:55,248 - INFO -   Stats: 2187 words, 9 links
+2026-02-04 15:32:55,248 - INFO -   Image: generated_content/industrial-sensor-selection-guide.png
+2026-02-04 15:32:55,248 - INFO - Content generated successfully for: industrial sensor selection guide
+2026-02-04 15:32:55,248 - INFO - Uploading to Prismic...
+2026-02-04 15:33:04,801 - INFO - Successfully uploaded to Prismic
+2026-02-04 15:33:04,802 - INFO - Content published to Prismic CMS for: industrial sensor selection guide
+2026-02-04 15:33:06,807 - INFO - Processing keyword 2/6: predictive maintenance for coal handling and preparation plants
+2026-02-04 15:33:06,808 - INFO - Researching keyword with SERP analysis...
+2026-02-04 15:33:06,809 - INFO - Starting deep research for keyword: 'predictive maintenance for coal handling and preparation plants'
+2026-02-04 15:33:06,809 - INFO - Analyzing 1 SERP results...
+2026-02-04 15:33:06,809 - INFO - Calling Gemini API...
+2026-02-04 15:33:44,320 - INFO - Gemini API call took 37.51 seconds
+2026-02-04 15:33:44,321 - INFO - Received response (8774 characters)
+2026-02-04 15:33:44,321 - INFO - Parsing markdown response...
+2026-02-04 15:33:44,321 - INFO - Successfully parsed markdown with 11 sections
+2026-02-04 15:33:44,321 - INFO - Research completed in 37.51 seconds total
+2026-02-04 15:33:44,322 - INFO - Generating pillar content...
+2026-02-04 15:34:49,385 - INFO - Parsing markdown content response...
+2026-02-04 15:34:49,386 - INFO - Validating and cleaning markdown links...
+2026-02-04 15:34:49,386 - INFO - Link validation: 10 verified, 0 removed
+2026-02-04 15:34:49,386 - WARNING - Meta description truncated from 170 to 157 characters
+2026-02-04 15:34:49,387 - INFO - Generating hero image...
+2026-02-04 15:34:49,387 - INFO - Generating image with prompt: A photorealistic, cinematic wide shot of a modern Coal Handling and Preparation Plant (CHPP) at dusk. The scene captures the complexity of the "connected loop," featuring long overland conveyor belts stretching into the distance, a large washing plant structure with steel gantries, and stockpiles of coal. In the foreground, a reliability engineer in high-visibility orange PPE and a hard hat is inspecting a conveyor motor with a handheld tablet device, displaying a data dashboard. The lighting is industrial and dramatic, with safety lights illuminating the steel structures against a twilight sky. The atmosphere conveys heavy industry, precision, and technology. No text overlays.
+2026-02-04 15:34:49,387 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-04 15:35:09,640 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-04 15:35:10,850 - INFO - Image generated successfully!
+2026-02-04 15:35:10,854 - INFO - Image saved to: generated_content/predictive-maintenance-for-coal-handling-and-preparation-plants.png
+2026-02-04 15:35:10,854 - INFO - Formatting for Prismic...
+2026-02-04 15:35:10,856 - INFO - Content saved to:
+2026-02-04 15:35:10,856 - INFO -   JSON: generated_content/predictive-maintenance-for-coal-handling-and-prepa.json
+2026-02-04 15:35:10,856 - INFO -   Markdown: generated_content/predictive-maintenance-for-coal-handling-and-prepa.md
+2026-02-04 15:35:10,856 - INFO -   Stats: 2425 words, 10 links
+2026-02-04 15:35:10,856 - INFO - Content generated successfully for: predictive maintenance for coal handling and preparation plants
+2026-02-04 15:35:10,856 - INFO - Uploading to Prismic...
+2026-02-04 15:35:19,304 - INFO - Successfully uploaded to Prismic
+2026-02-04 15:35:19,304 - INFO - Content published to Prismic CMS for: predictive maintenance for coal handling and preparation plants
+2026-02-04 15:35:21,309 - INFO - Processing keyword 3/6: predictive maintenance for energy and utilities
+2026-02-04 15:35:21,310 - INFO - Researching keyword with SERP analysis...
+2026-02-04 15:35:21,310 - INFO - Starting deep research for keyword: 'predictive maintenance for energy and utilities'
+2026-02-04 15:35:21,310 - INFO - Analyzing 1 SERP results...
+2026-02-04 15:35:21,310 - INFO - Calling Gemini API...
+2026-02-04 15:35:58,108 - INFO - Gemini API call took 36.80 seconds
+2026-02-04 15:35:58,108 - INFO - Received response (8033 characters)
+2026-02-04 15:35:58,109 - INFO - Parsing markdown response...
+2026-02-04 15:35:58,110 - INFO - Successfully parsed markdown with 11 sections
+2026-02-04 15:35:58,110 - INFO - Research completed in 36.80 seconds total
+2026-02-04 15:35:58,110 - INFO - Generating pillar content...
+2026-02-04 15:38:21,026 - INFO - Parsing markdown content response...
+2026-02-04 15:38:21,029 - INFO - Validating and cleaning markdown links...
+2026-02-04 15:38:21,030 - INFO - Link validation: 12 verified, 0 removed
+2026-02-04 15:38:21,030 - WARNING - Meta description truncated from 162 to 151 characters
+2026-02-04 15:38:21,031 - INFO - Generating hero image...
+2026-02-04 15:38:21,031 - INFO - Generating image with prompt: A hyper-realistic, cinematic wide shot of a modern electrical substation at dusk. In the foreground, a reliability engineer in high-visibility safety gear and a hard hat is holding a ruggedized tablet displaying a complex data visualization of asset health (heat maps and waveforms). In the background, large high-voltage transformers and transmission towers are visible, with one transformer subtly highlighted by a digital overlay effect implying sensor connectivity. The lighting is industrial and dramatic, mixing the warm sunset with cool LED indicator lights from the equipment. No text in the image. Atmosphere conveys precision, technology, and industrial scale.
+2026-02-04 15:38:21,031 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-04 15:38:37,493 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-04 15:38:38,443 - INFO - Image generated successfully!
+2026-02-04 15:38:38,446 - INFO - Image saved to: generated_content/predictive-maintenance-for-energy-and-utilities.png
+2026-02-04 15:38:38,447 - INFO - Formatting for Prismic...
+2026-02-04 15:38:38,449 - INFO - Content saved to:
+2026-02-04 15:38:38,449 - INFO -   JSON: generated_content/predictive-maintenance-for-energy-and-utilities.json
+2026-02-04 15:38:38,449 - INFO -   Markdown: generated_content/predictive-maintenance-for-energy-and-utilities.md
+2026-02-04 15:38:38,449 - INFO -   Stats: 2152 words, 12 links
+2026-02-04 15:38:38,449 - INFO -   Image: generated_content/predictive-maintenance-for-energy-and-utilities.png
+2026-02-04 15:38:38,449 - INFO - Content generated successfully for: predictive maintenance for energy and utilities
+2026-02-04 15:38:38,449 - INFO - Uploading to Prismic...
+2026-02-04 15:38:49,599 - INFO - Successfully uploaded to Prismic
+2026-02-04 15:38:49,599 - INFO - Content published to Prismic CMS for: predictive maintenance for energy and utilities
+2026-02-04 15:38:51,605 - INFO - Processing keyword 4/6: rotating equipment maintenance and monitoring
+2026-02-04 15:38:51,605 - INFO - Researching keyword with SERP analysis...
+2026-02-04 15:38:51,605 - INFO - Starting deep research for keyword: 'rotating equipment maintenance and monitoring'
+2026-02-04 15:38:51,605 - INFO - Analyzing 1 SERP results...
+2026-02-04 15:38:51,606 - INFO - Calling Gemini API...
+2026-02-04 15:39:27,631 - INFO - Gemini API call took 36.02 seconds
+2026-02-04 15:39:27,631 - INFO - Received response (8302 characters)
+2026-02-04 15:39:27,631 - INFO - Parsing markdown response...
+2026-02-04 15:39:27,632 - INFO - Successfully parsed markdown with 11 sections
+2026-02-04 15:39:27,632 - INFO - Research completed in 36.03 seconds total
+2026-02-04 15:39:27,632 - INFO - Generating pillar content...
+2026-02-04 15:40:23,818 - INFO - Parsing markdown content response...
+2026-02-04 15:40:23,819 - INFO - Validating and cleaning markdown links...
+2026-02-04 15:40:23,819 - INFO - Link validation: 0 verified, 0 removed
+2026-02-04 15:40:23,820 - WARNING - Meta description truncated from 162 to 149 characters
+2026-02-04 15:40:23,820 - INFO - Generating hero image...
+2026-02-04 15:40:23,820 - INFO - Generating image with prompt: A photorealistic, high-resolution image of a modern industrial setting focusing on rotating equipment. In the foreground, a large industrial centrifugal pump and motor assembly painted in industrial blue or safety orange. Attached to the motor cooling fins is a small, modern wireless vibration sensor with a subtle LED indicator. In the background, out of focus, a reliability engineer in a hard hat, safety glasses, and high-visibility vest is looking at a tablet displaying a spectral waveform graph. The lighting is dramatic but professional, highlighting the contrast between the heavy steel machinery and the modern digital sensor technology. No text overlays.
+2026-02-04 15:40:23,821 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-04 15:40:38,890 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-04 15:40:39,778 - INFO - Image generated successfully!
+2026-02-04 15:40:39,780 - INFO - Image saved to: generated_content/rotating-equipment-maintenance-and-monitoring.png
+2026-02-04 15:40:39,780 - INFO - Formatting for Prismic...
+2026-02-04 15:40:39,782 - INFO - Content saved to:
+2026-02-04 15:40:39,782 - INFO -   JSON: generated_content/rotating-equipment-maintenance-and-monitoring.json
+2026-02-04 15:40:39,782 - INFO -   Markdown: generated_content/rotating-equipment-maintenance-and-monitoring.md
+2026-02-04 15:40:39,782 - INFO -   Stats: 2132 words, 0 links
+2026-02-04 15:40:39,782 - INFO -   Image: generated_content/rotating-equipment-maintenance-and-monitoring.png
+2026-02-04 15:40:39,782 - INFO - Content generated successfully for: rotating equipment maintenance and monitoring
+2026-02-04 15:40:39,782 - INFO - Uploading to Prismic...
+2026-02-04 15:40:47,671 - INFO - Successfully uploaded to Prismic
+2026-02-04 15:40:47,672 - INFO - Content published to Prismic CMS for: rotating equipment maintenance and monitoring
+2026-02-04 15:40:49,676 - INFO - Processing keyword 5/6: machine learning for industrial predictive maintenance
+2026-02-04 15:40:49,676 - INFO - Researching keyword with SERP analysis...
+2026-02-04 15:40:49,676 - INFO - Starting deep research for keyword: 'machine learning for industrial predictive maintenance'
+2026-02-04 15:40:49,676 - INFO - Analyzing 1 SERP results...
+2026-02-04 15:40:49,676 - INFO - Calling Gemini API...
+2026-02-04 15:41:26,145 - INFO - Gemini API call took 36.47 seconds
+2026-02-04 15:41:26,146 - INFO - Received response (8417 characters)
+2026-02-04 15:41:26,146 - INFO - Parsing markdown response...
+2026-02-04 15:41:26,147 - INFO - Successfully parsed markdown with 11 sections
+2026-02-04 15:41:26,147 - INFO - Research completed in 36.47 seconds total
+2026-02-04 15:41:26,147 - INFO - Generating pillar content...
+2026-02-04 15:42:11,884 - INFO - ==================================================
+2026-02-04 15:42:11,884 - INFO - SEO Content Generator session started
+2026-02-04 15:42:11,884 - INFO - ==================================================
+2026-02-04 15:42:11,890 - WARNING - google.genai not available - image generation disabled
+2026-02-04 15:42:11,908 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-02-04 15:42:22,471 - INFO - Parsing markdown content response...
+2026-02-04 15:42:22,474 - INFO - Validating and cleaning markdown links...
+2026-02-04 15:42:23,670 - WARNING - Invalid external link removed: https://www.nist.gov/el/systems-integration-division-73400/predictive-maintenance
+2026-02-04 15:42:24,720 - WARNING - Invalid external link removed: https://rs.ieee.org/
+2026-02-04 15:42:24,721 - INFO - Link validation: 10 verified, 2 removed
+2026-02-04 15:42:24,722 - INFO - Generating hero image...
+2026-02-04 15:42:24,723 - INFO - Generating image with prompt: A photo-realistic, cinematic shot inside a modern industrial manufacturing facility. In the foreground, a focused reliability engineer (wearing safety glasses, hard hat, and high-vis vest) is holding a ruggedized tablet displaying complex data visualizations and a 3D "digital twin" wireframe of a large electric motor. In the background, slightly out of focus, is the actual large industrial motor and pump assembly with visible wireless sensors attached to the cooling fins. The lighting is dramatic but professional, highlighting the connection between the physical machine and the digital analysis. No text overlays. The atmosphere conveys precision, technology, and industrial scale.
+2026-02-04 15:42:24,723 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-04 15:42:40,431 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-04 15:42:41,235 - INFO - Image generated successfully!
+2026-02-04 15:42:41,236 - INFO - Image saved to: generated_content/machine-learning-for-industrial-predictive-maintenance.png
+2026-02-04 15:42:41,236 - INFO - Formatting for Prismic...
+2026-02-04 15:42:41,238 - INFO - Content saved to:
+2026-02-04 15:42:41,238 - INFO -   JSON: generated_content/machine-learning-for-industrial-predictive-mainten.json
+2026-02-04 15:42:41,238 - INFO -   Markdown: generated_content/machine-learning-for-industrial-predictive-mainten.md
+2026-02-04 15:42:41,238 - INFO -   Stats: 2222 words, 10 links
+2026-02-04 15:42:41,238 - INFO - Content generated successfully for: machine learning for industrial predictive maintenance
+2026-02-04 15:42:41,238 - INFO - Uploading to Prismic...
+2026-02-04 15:42:49,828 - INFO - Successfully uploaded to Prismic
+2026-02-04 15:42:49,828 - INFO - Content published to Prismic CMS for: machine learning for industrial predictive maintenance
+2026-02-04 15:42:51,833 - INFO - Processing keyword 6/6: maintenance operations and CMMS implementation guide
+2026-02-04 15:42:51,833 - INFO - Researching keyword with SERP analysis...
+2026-02-04 15:42:51,834 - INFO - Starting deep research for keyword: 'maintenance operations and CMMS implementation guide'
+2026-02-04 15:42:51,834 - INFO - Analyzing 1 SERP results...
+2026-02-04 15:42:51,834 - INFO - Calling Gemini API...
+2026-02-04 15:43:25,518 - INFO - Gemini API call took 33.68 seconds
+2026-02-04 15:43:25,519 - INFO - Received response (7196 characters)
+2026-02-04 15:43:25,519 - INFO - Parsing markdown response...
+2026-02-04 15:43:25,520 - INFO - Successfully parsed markdown with 11 sections
+2026-02-04 15:43:25,521 - INFO - Research completed in 33.69 seconds total
+2026-02-04 15:43:25,521 - INFO - Generating pillar content...
+2026-02-04 15:43:41,068 - INFO - ==================================================
+2026-02-04 15:43:41,068 - INFO - SEO Content Generator session started
+2026-02-04 15:43:41,068 - INFO - ==================================================
+2026-02-04 15:43:41,074 - WARNING - google.genai not available - image generation disabled
+2026-02-04 15:43:41,091 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-02-04 15:43:41,770 - INFO - ==================================================
+2026-02-04 15:43:41,770 - INFO - SEO Content Generator session started
+2026-02-04 15:43:41,770 - INFO - ==================================================
+2026-02-04 15:43:41,775 - WARNING - google.genai not available - image generation disabled
+2026-02-04 15:43:41,787 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-02-04 15:43:42,756 - INFO - ==================================================
+2026-02-04 15:43:42,756 - INFO - SEO Content Generator session started
+2026-02-04 15:43:42,757 - INFO - ==================================================
+2026-02-04 15:43:42,761 - WARNING - google.genai not available - image generation disabled
+2026-02-04 15:43:42,773 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-02-04 15:43:44,137 - INFO - Found 332 existing blog posts from sitemap
+2026-02-04 15:43:44,137 - INFO - Cached 372 internal URLs for verification
+2026-02-04 15:43:44,138 - INFO - Adding internal links to content (target: 15-20 links)...
+2026-02-04 15:43:44,738 - INFO - Found 332 existing blog posts from sitemap
+2026-02-04 15:43:44,738 - INFO - Cached 372 internal URLs for verification
+2026-02-04 15:43:44,740 - INFO - Adding internal links to content (target: 15-20 links)...
+2026-02-04 15:43:45,689 - INFO - Found 332 existing blog posts from sitemap
+2026-02-04 15:43:45,689 - INFO - Cached 372 internal URLs for verification
+2026-02-04 15:43:45,691 - INFO - Adding internal links to content (target: 15-20 links)...
+2026-02-04 15:44:27,928 - INFO - Parsing markdown content response...
+2026-02-04 15:44:27,930 - INFO - Validating and cleaning markdown links...
+2026-02-04 15:44:29,623 - INFO - Link validation: 2 verified, 0 removed
+2026-02-04 15:44:29,624 - INFO - Generating hero image...
+2026-02-04 15:44:29,624 - INFO - Generating image with prompt: A hyper-realistic, cinematic wide shot of a modern industrial manufacturing facility interior. The scene captures the intersection of heavy machinery and digital technology. In the foreground, a reliability engineer in a hard hat and high-visibility vest is holding a ruggedized tablet, looking at a complex holographic overlay or digital dashboard projecting from a large turbine or conveyor system. In the background, blurred technicians are performing maintenance on yellow robotic arms. The lighting is dramatic, mixing the cool blue of digital interfaces with the warm industrial amber of factory lighting. The atmosphere conveys precision, control, and advanced technology. No text in the image.
+2026-02-04 15:44:29,624 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-04 15:44:45,762 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-04 15:44:46,560 - INFO - Image generated successfully!
+2026-02-04 15:44:46,562 - INFO - Image saved to: generated_content/maintenance-operations-and-CMMS-implementation-guide.png
+2026-02-04 15:44:46,563 - INFO - Formatting for Prismic...
+2026-02-04 15:44:46,564 - INFO - Content saved to:
+2026-02-04 15:44:46,564 - INFO -   JSON: generated_content/maintenance-operations-and-CMMS-implementation-gui.json
+2026-02-04 15:44:46,564 - INFO -   Markdown: generated_content/maintenance-operations-and-CMMS-implementation-gui.md
+2026-02-04 15:44:46,564 - INFO -   Stats: 2268 words, 2 links
+2026-02-04 15:44:46,564 - INFO - Content generated successfully for: maintenance operations and CMMS implementation guide
+2026-02-04 15:44:46,564 - INFO - Uploading to Prismic...
+2026-02-04 15:44:54,753 - INFO - Successfully uploaded to Prismic
+2026-02-04 15:44:54,754 - INFO - Content published to Prismic CMS for: maintenance operations and CMMS implementation guide
+2026-02-04 15:44:56,755 - INFO - SEO content generation session completed
+2026-02-04 15:44:56,756 - INFO - ==================================================
+2026-02-04 15:45:07,961 - INFO - Link injection complete: 5 -> 31 internal links (+26)
+2026-02-04 15:45:07,961 - INFO - Validating and cleaning markdown links...
+2026-02-04 15:45:08,986 - INFO - Link validation: 32 verified, 0 removed
+2026-02-04 15:45:11,361 - INFO - Link injection complete: 11 -> 37 internal links (+26)
+2026-02-04 15:45:11,361 - INFO - Validating and cleaning markdown links...
+2026-02-04 15:45:11,361 - INFO - Link validation: 37 verified, 0 removed
+2026-02-04 15:45:17,649 - INFO - Link injection complete: 7 -> 33 internal links (+26)
+2026-02-04 15:45:17,649 - INFO - Validating and cleaning markdown links...
+2026-02-04 15:45:19,490 - INFO - Link validation: 34 verified, 0 removed
+2026-02-04 15:45:30,481 - INFO - ==================================================
+2026-02-04 15:45:30,481 - INFO - ==================================================
+2026-02-04 15:45:30,481 - INFO - SEO Content Generator session started
+2026-02-04 15:45:30,481 - INFO - SEO Content Generator session started
+2026-02-04 15:45:30,481 - INFO - ==================================================
+2026-02-04 15:45:30,481 - INFO - ==================================================
+2026-02-04 15:45:30,487 - WARNING - google.genai not available - image generation disabled
+2026-02-04 15:45:30,487 - WARNING - google.genai not available - image generation disabled
+2026-02-04 15:45:30,504 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-02-04 15:45:30,504 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-02-04 15:45:31,363 - INFO - ==================================================
+2026-02-04 15:45:31,363 - INFO - SEO Content Generator session started
+2026-02-04 15:45:31,363 - INFO - ==================================================
+2026-02-04 15:45:31,368 - WARNING - google.genai not available - image generation disabled
+2026-02-04 15:45:31,380 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-02-04 15:45:33,311 - INFO - Found 332 existing blog posts from sitemap
+2026-02-04 15:45:33,311 - INFO - Cached 372 internal URLs for verification
+2026-02-04 15:45:33,313 - INFO - Adding internal links to content (target: 15-20 links)...
+2026-02-04 15:45:33,479 - INFO - Found 332 existing blog posts from sitemap
+2026-02-04 15:45:33,479 - INFO - Cached 372 internal URLs for verification
+2026-02-04 15:45:33,481 - INFO - Adding internal links to content (target: 15-20 links)...
+2026-02-04 15:45:34,228 - INFO - Found 332 existing blog posts from sitemap
+2026-02-04 15:45:34,228 - INFO - Cached 372 internal URLs for verification
+2026-02-04 15:45:34,229 - INFO - Adding internal links to content (target: 15-20 links)...
+2026-02-04 15:46:48,916 - INFO - Link injection complete: 11 -> 34 internal links (+23)
+2026-02-04 15:46:48,917 - INFO - Validating and cleaning markdown links...
+2026-02-04 15:46:48,917 - INFO - Link validation: 34 verified, 0 removed
+2026-02-04 15:46:54,229 - INFO - Link injection complete: 6 -> 29 internal links (+23)
+2026-02-04 15:46:54,230 - INFO - Validating and cleaning markdown links...
+2026-02-04 15:46:54,231 - INFO - Link validation: 29 verified, 0 removed
+2026-02-04 15:47:07,496 - INFO - Link injection complete: 5 -> 28 internal links (+23)
+2026-02-04 15:47:07,496 - INFO - Validating and cleaning markdown links...
+2026-02-04 15:47:09,063 - INFO - Link validation: 30 verified, 0 removed
+2026-02-04 15:47:18,896 - INFO - ==================================================
+2026-02-04 15:47:18,896 - INFO - SEO Content Generator session started
+2026-02-04 15:47:18,896 - INFO - ==================================================
+2026-02-04 15:47:18,901 - WARNING - google.genai not available - image generation disabled
+2026-02-04 15:47:18,919 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-02-04 15:47:19,583 - INFO - ==================================================
+2026-02-04 15:47:19,583 - INFO - SEO Content Generator session started
+2026-02-04 15:47:19,583 - INFO - ==================================================
+2026-02-04 15:47:19,589 - WARNING - google.genai not available - image generation disabled
+2026-02-04 15:47:19,601 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-02-04 15:47:21,266 - INFO - ==================================================
+2026-02-04 15:47:21,266 - INFO - SEO Content Generator session started
+2026-02-04 15:47:21,266 - INFO - ==================================================
+2026-02-04 15:47:21,271 - WARNING - google.genai not available - image generation disabled
+2026-02-04 15:47:21,284 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-02-04 15:47:21,787 - INFO - Found 332 existing blog posts from sitemap
+2026-02-04 15:47:21,787 - INFO - Cached 372 internal URLs for verification
+2026-02-04 15:47:21,787 - INFO - Adding internal links to content (target: 15-20 links)...
+2026-02-04 15:47:21,818 - INFO - ==================================================
+2026-02-04 15:47:21,818 - INFO - SEO Content Generator session started
+2026-02-04 15:47:21,818 - INFO - ==================================================
+2026-02-04 15:47:21,823 - WARNING - google.genai not available - image generation disabled
+2026-02-04 15:47:21,836 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-02-04 15:47:22,439 - INFO - Found 332 existing blog posts from sitemap
+2026-02-04 15:47:22,439 - INFO - Cached 372 internal URLs for verification
+2026-02-04 15:47:22,440 - INFO - Adding internal links to content (target: 15-20 links)...
+2026-02-04 15:47:24,084 - INFO - Found 332 existing blog posts from sitemap
+2026-02-04 15:47:24,084 - INFO - Cached 372 internal URLs for verification
+2026-02-04 15:47:24,085 - INFO - Adding internal links to content (target: 15-20 links)...
+2026-02-04 15:47:24,107 - INFO - Found 332 existing blog posts from sitemap
+2026-02-04 15:47:24,107 - INFO - Cached 372 internal URLs for verification
+2026-02-04 15:47:24,108 - INFO - Adding internal links to content (target: 15-20 links)...
+2026-02-04 15:48:32,231 - INFO - Link injection complete: 0 -> 21 internal links (+21)
+2026-02-04 15:48:32,231 - INFO - Validating and cleaning markdown links...
+2026-02-04 15:48:33,877 - INFO - Link validation: 23 verified, 0 removed
+2026-02-04 15:48:43,667 - INFO - Link injection complete: 12 -> 42 internal links (+30)
+2026-02-04 15:48:43,667 - INFO - Validating and cleaning markdown links...
+2026-02-04 15:48:43,667 - INFO - Link validation: 42 verified, 0 removed
+2026-02-04 15:48:45,556 - INFO - Link injection complete: 12 -> 40 internal links (+28)
+2026-02-04 15:48:45,557 - INFO - Validating and cleaning markdown links...
+2026-02-04 15:48:45,558 - INFO - Link validation: 40 verified, 0 removed
+2026-02-04 15:48:46,387 - INFO - Link injection complete: 13 -> 36 internal links (+23)
+2026-02-04 15:48:46,387 - INFO - Validating and cleaning markdown links...
+2026-02-04 15:48:46,387 - INFO - Link validation: 36 verified, 0 removed

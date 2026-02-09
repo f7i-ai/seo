@@ -283,7 +283,7 @@ async function checkDocumentExists(uid) {
   try {
     debugLog('Checking if document exists (including drafts)', { uid });
 
-    // Try published documents via read client first
+    // Try published documents via read client first (no token)
     try {
       const readClient = prismic.createClient(REPOSITORY_NAME);
       const document = await readClient.getByUID('blog', uid);
@@ -293,8 +293,18 @@ async function checkDocumentExists(uid) {
       debugLog('Document not found via read client (may be draft)', { uid });
     }
 
-    // For drafts, we can't query them directly via the Migration API with current auth
-    // We'll handle the conflict when it occurs during creation
+    // Try with access token to find drafts (same token may allow draft access)
+    try {
+      const readClientWithToken = prismic.createClient(REPOSITORY_NAME, {
+        accessToken: PRISMIC_API_KEY,
+      });
+      const document = await readClientWithToken.getByUID('blog', uid);
+      debugLog('Document exists (draft or with token)', { uid, documentId: document.id });
+      return document;
+    } catch (tokenReadError) {
+      debugLog('Document not found with token (may be draft only)', { uid });
+    }
+
     return null;
 
   } catch (error) {
@@ -524,11 +534,11 @@ async function processSingleFile(jsonFilePath, skipUpload = false, profile = 'ti
       cleanedLength: cleanMarkdown.length
     });
 
-    // Create document data structure
+    // Create document data structure (omit image fields when null - Prismic validation can fail on null image)
     const documentData = {
       meta_title: metadata.meta_title,
       meta_description: metadata.meta_description,
-      meta_image: featuredImage,
+      ...(featuredImage && { meta_image: featuredImage }),
       slices: [
         {
           slice_type: 'title_and_body',
@@ -536,7 +546,7 @@ async function processSingleFile(jsonFilePath, skipUpload = false, profile = 'ti
           primary: {
             title: [{ type: 'heading1', text: metadata.title, spans: [] }],
             category: metadata.keyword,
-            featuredimage: featuredImage,
+            ...(featuredImage && { featuredimage: featuredImage }),
             markdownmainbody: [{ type: 'preformatted', text: cleanMarkdown, spans: [] }]  // Properly formatted StructuredText
           }
         },
@@ -725,10 +735,16 @@ async function processSingleFile(jsonFilePath, skipUpload = false, profile = 'ti
 
   } catch (error) {
     const processingTime = Date.now() - startTime;
-    errorLog(`❌ Error processing file: ${jsonFilePath}`, error, {
-      processingTime: processingTime + 'ms',
-      skipUpload
-    });
+    const response = error.response;
+    if (response && (response.message === 'Validation failed' || response.details)) {
+      errorLog(`❌ Validation failed for: ${jsonFilePath}`);
+      console.error('  Validation details:', JSON.stringify(response.details || response, null, 2));
+    } else {
+      errorLog(`❌ Error processing file: ${jsonFilePath}`, error, {
+        processingTime: processingTime + 'ms',
+        skipUpload
+      });
+    }
     return { success: false, error: error.message };
   }
 }
@@ -808,11 +824,11 @@ async function processContentFiles(migration, profile = 'tim') {
       // Prepare markdown content (remove metadata section)
       const cleanMarkdown = removeMarkdownMetadata(mdContent);
 
-      // Create document data structure
+      // Create document data structure (omit image fields when null - Prismic validation can fail on null image)
       const documentData = {
         meta_title: metadata.meta_title,
         meta_description: metadata.meta_description,
-        meta_image: featuredImage,
+        ...(featuredImage && { meta_image: featuredImage }),
         slices: [
           {
             slice_type: 'title_and_body',
@@ -820,7 +836,7 @@ async function processContentFiles(migration, profile = 'tim') {
             primary: {
               title: [{ type: 'heading1', text: metadata.title, spans: [] }],
               category: metadata.keyword,
-              featuredimage: featuredImage,
+              ...(featuredImage && { featuredimage: featuredImage }),
               markdownmainbody: [{ type: 'preformatted', text: cleanMarkdown, spans: [] }]  // Properly formatted StructuredText
             }
           },

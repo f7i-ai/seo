@@ -1,0 +1,16 @@
+{
+  "meta_title": "Fast Root Cause Diagnosis: Slash MTTR with Triage Techniques",
+  "meta_description": "Stop guessing and start fixing. Learn how to apply fast root cause diagnosis techniques like the IS/IS NOT method, 5 Whys, and AI-driven triage to reduce MTTR.",
+  "title": "Fast Root Cause Diagnosis: How to Stop \"Part-Swapping\" and Slash MTTR",
+  "keyword": "fast root cause diagnosis techniques",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/fast-root-cause-diagnosis-techniques.png",
+    "alt": "Hero image for Fast Root Cause Diagnosis: How to Stop \"Part-Swapping\" and Slash MTTR",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern, clean manufacturing facility. In the foreground, a diverse group of maintenance technicians (wearing hard hats, safety glasses, and high-visibility vests) are gathered around a large industrial motor. One technician is holding a rugged tablet (back facing camera) pointing it at the machinery, implying the use of augmented reality or digital diagnostics. Another technician is pointing at a specific component of the motor, engaged in discussion. The background is slightly blurred but shows high-tech automated conveyor systems and soft blue industrial lighting. The atmosphere is focused, professional, and collaborative. No text or overlays.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2266,
+  "link_count": 13
+}

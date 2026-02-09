@@ -1,0 +1,16 @@
+{
+  "meta_title": "Work Order Accuracy Best Practices: The AI-Readiness Framework",
+  "meta_description": "Stop \"pencil-whipping\" and start predicting. Discover work order accuracy best practices that transform CMMS data into actionable reliability insights.",
+  "title": "Work Order Accuracy Best Practices: Transforming Maintenance Data into Reliability Intelligence",
+  "keyword": "work order accuracy best practices",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/work-order-accuracy-best-practices.png",
+    "alt": "Hero image for Work Order Accuracy Best Practices: Transforming Maintenance Data into Reliability Intelligence",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-resolution, photo-realistic image inside a modern, clean manufacturing facility. In the foreground, a reliability engineer (wearing a white hard hat, safety glasses, and a high-visibility vest) is holding a tablet, looking at a complex piece of industrial machinery (like a large compressor or conveyor system). The tablet screen is not visible, but the engineer is clearly inputting data or checking a schematic. In the background, a maintenance technician (wearing a blue hard hat and gloves) is inspecting a gauge on the machine. The lighting is bright and industrial, with a slight blue hue to suggest technology and cleanliness. The scene conveys precision, collaboration, and the integration of technology into manual work. No text or overlays in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2210,
+  "link_count": 6
+}

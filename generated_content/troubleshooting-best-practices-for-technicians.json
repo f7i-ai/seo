@@ -1,0 +1,16 @@
+{
+  "meta_title": "Troubleshooting Best Practices: Reducing MTTR & Root Cause Analysis",
+  "meta_description": "Stop \"swap-tronics\" and start solving problems. Discover the 7-step troubleshooting methodology, RCA frameworks, and safety protocols for modern technicians.",
+  "title": "The Technician as Detective: Troubleshooting Best Practices to Slash Downtime and Eliminate Guesswork",
+  "keyword": "troubleshooting best practices for technicians",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/troubleshooting-best-practices-for-technicians.png",
+    "alt": "Hero image for The Technician as Detective: Troubleshooting Best Practices to Slash Downtime and Eliminate Guesswork",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, high-quality image set in a modern, clean industrial manufacturing facility. In the foreground, a diverse team of two technicians (one male, one female) wearing full PPE (hard hats, safety glasses, high-visibility vests) are inspecting a complex automated conveyor system. The female technician is holding a tablet (back of device visible) and pointing at a specific component on the machine, while the male technician holds a multimeter, looking intently at the area she is indicating. The background shows blurred industrial machinery and digital displays indicating \"System Status.\" The lighting is professional and cool-toned, emphasizing technology and precision. No text or words should be visible in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2433,
+  "link_count": 8
+}

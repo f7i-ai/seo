@@ -1,0 +1,16 @@
+{
+  "meta_title": "Asset Data Hygiene: Engineering Best Practices for 2026",
+  "meta_description": "Stop the \"Garbage In, Garbage Out\" cycle. Learn engineering-grade asset data hygiene best practices to prepare your CMMS for AI, ISO 14224 standards, and",
+  "title": "Asset Data Hygiene Best Practices: The Engineering Framework for CMMS Integrity",
+  "keyword": "asset data hygiene best practices",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/asset-data-hygiene-best-practices.png",
+    "alt": "Hero image for Asset Data Hygiene Best Practices: The Engineering Framework for CMMS Integrity",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern, clean manufacturing facility or processing plant. In the foreground, a reliability engineer (wearing a white hard hat, safety glasses, and high-visibility vest) is viewed from behind, holding a ruggedized tablet. The tablet screen is not visible. The engineer is looking up at a complex assembly of industrial piping and large pumps. In the background, slightly out of focus, another technician in blue coveralls and PPE is inspecting a gauge. The lighting is cool and industrial, with shafts of light emphasizing the \"clean\" and organized nature of the facility. No text or overlays. High resolution, 8k.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2468,
+  "link_count": 9
+}

@@ -1,0 +1,16 @@
+{
+  "meta_title": "Predictive Maintenance for CHPP: Beyond Vibration Analysis (2026 Guide)",
+  "meta_description": "Don't just monitor assets; protect the flow. A technical guide to predictive maintenance in Coal Handling and Preparation Plants, focusing on throughput, not",
+  "title": "The Connected Coal Loop: A Reliability Engineer’s Guide to Predictive Maintenance in CHPP",
+  "keyword": "predictive maintenance for coal handling and preparation plants",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/predictive-maintenance-for-coal-handling-and-preparation-plants.png",
+    "alt": "Hero image for The Connected Coal Loop: A Reliability Engineer’s Guide to Predictive Maintenance in CHPP",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photorealistic, cinematic wide shot of a modern Coal Handling and Preparation Plant (CHPP) at dusk. The scene captures the complexity of the \"connected loop,\" featuring long overland conveyor belts stretching into the distance, a large washing plant structure with steel gantries, and stockpiles of coal. In the foreground, a reliability engineer in high-visibility orange PPE and a hard hat is inspecting a conveyor motor with a handheld tablet device, displaying a data dashboard. The lighting is industrial and dramatic, with safety lights illuminating the steel structures against a twilight sky. The atmosphere conveys heavy industry, precision, and technology. No text overlays.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2425,
+  "link_count": 10
+}

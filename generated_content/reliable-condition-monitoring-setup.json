@@ -1,0 +1,16 @@
+{
+  "meta_title": "Reliable Condition Monitoring Setup: The 2026 Technical Guide",
+  "meta_description": "Stop guessing and start predicting. A comprehensive technical blueprint for building a reliable condition monitoring setup, from sensor selection to CMMS",
+  "title": "How to Build a Reliable Condition Monitoring Setup: A \"Full-Stack\" Implementation Guide",
+  "keyword": "reliable condition monitoring setup",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/reliable-condition-monitoring-setup.png",
+    "alt": "Hero image for How to Build a Reliable Condition Monitoring Setup: A \"Full-Stack\" Implementation Guide",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, high-quality image of a modern industrial manufacturing facility. In the foreground, a reliability engineer (wearing a hard hat, safety glasses, and high-visibility vest) is inspecting a large electric motor. The engineer is holding a tablet (back of the device visible) that displays data graphs. In the background, diverse technicians are working on machinery. The environment is clean and high-tech, with subtle blue lighting indicating modern IIoT integration. Focus on the interaction between the human and the machine, conveying precision and technology. No text overlays.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2282,
+  "link_count": 9
+}

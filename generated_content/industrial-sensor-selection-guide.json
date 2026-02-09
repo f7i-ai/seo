@@ -1,0 +1,16 @@
+{
+  "meta_title": "Industrial Sensor Selection Guide: A Failure-Mode First Approach (2026)",
+  "meta_description": "Stop buying hardware and start buying time. A comprehensive guide for reliability engineers on selecting sensors based on failure modes, not vendor hype.",
+  "title": "The Architecture of Insight: A Failure-Mode First Guide to Industrial Sensor Selection",
+  "keyword": "industrial sensor selection guide",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/industrial-sensor-selection-guide.png",
+    "alt": "Hero image for The Architecture of Insight: A Failure-Mode First Guide to Industrial Sensor Selection",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A hyper-realistic, cinematic wide shot of a modern industrial manufacturing facility interior. In the foreground, a focus on a large, complex electric motor and gearbox assembly. Attached to the cooling fins of the motor is a sleek, industrial-grade wireless vibration sensor with a small status LED glowing soft green. The background shows a depth of field with blurred production lines, conveyers, and a reliability engineer in safety glasses and a hard hat holding a tablet, looking at a digital twin visualization. The lighting is dramatic but professional, highlighting the integration of physical machinery with digital sensing technology. No text overlays. 8k resolution.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2187,
+  "link_count": 9
+}

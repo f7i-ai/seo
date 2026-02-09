@@ -1,0 +1,54 @@
+{
+  "meta_title": "Predictive Maintenance in Australia: Complete 2026 Guide",
+  "meta_description": "The definitive guide to predictive maintenance for Australian industry. State regulations, mining & F&B applications, local challenges, and implementation strategies.",
+  "title": "Predictive Maintenance in Australia: The Complete Guide for 2026",
+  "keyword": "predictive maintenance australia",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/predictive-maintenance-australia-guide.png",
+    "alt": "Hero image for Predictive Maintenance in Australia",
+    "source": "pending"
+  },
+  "image_prompt": "A photo-realistic Australian mining operation showing a large haul truck or excavator in the background with the distinctive red earth of the Pilbara. In the foreground, two diverse maintenance workers (one man, one woman) wearing high-visibility orange vests, hard hats, and safety glasses examining equipment with a rugged tablet device (showing only the back). Blue sky with characteristic Australian eucalyptus trees visible at the edge of the operation. Industrial sensors visible on equipment. No text or logos.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 3956,
+  "link_count": 14,
+  "content_type": "pillar",
+  "target_audience": "Australian maintenance managers, reliability engineers, plant managers in mining, food processing, and manufacturing",
+  "geographic_focus": "Australia",
+  "state_coverage": [
+    "WA",
+    "QLD",
+    "NSW",
+    "VIC",
+    "SA",
+    "TAS"
+  ],
+  "industries_covered": [
+    "mining",
+    "food_processing",
+    "manufacturing",
+    "pharmaceuticals",
+    "defence"
+  ],
+  "regulatory_frameworks": [
+    "WHS Act 2011",
+    "VIC OHS Act 2004",
+    "WA Mines Safety and Inspection Act 1994",
+    "QLD Mining and Quarrying Safety and Health Act 1999",
+    "NSW Work Health and Safety (Mines and Petroleum Sites) Act 2013",
+    "FSANZ Food Standards"
+  ],
+  "internal_links": [
+    "/blog/predictive-maintenance-for-food-processing-complete-guide",
+    "/blog/predictive-maintenance-for-dairy-homogenizers",
+    "/blog/predictive-maintenance-compliance-australia",
+    "/blog/how-to-get-started-with-predictive-maintenance-a-12-step-roadmap-for-reliability-leaders",
+    "/blog/what-is-predictive-maintenance",
+    "/blog/predictive-maintenance-mining-western-australia",
+    "/blog/predictive-maintenance-mining-queensland",
+    "/blog/predictive-maintenance-food-beverage-victoria",
+    "/resources/roi-calculator",
+    "/features/prescriptive-maintenance"
+  ]
+}

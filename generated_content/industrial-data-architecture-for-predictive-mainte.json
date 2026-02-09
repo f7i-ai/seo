@@ -1,0 +1,16 @@
+{
+  "meta_title": "Industrial Data Architecture: Beyond the Purdue Model",
+  "meta_description": "Stop building data swamps. Learn how to architect a Unified Namespace (UNS) for predictive maintenance that bridges IT/OT gaps and delivers actual context.",
+  "title": "The Architecture of Reliability: Building a Data Foundation That Actually Predicts Failure",
+  "keyword": "industrial data architecture for predictive maintenance",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/industrial-data-architecture-for-predictive-maintenance.png",
+    "alt": "Hero image for The Architecture of Reliability: Building a Data Foundation That Actually Predicts Failure",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photorealistic, cinematic wide shot of a modern industrial manufacturing floor. In the foreground, a reliability engineer in a hard hat and safety vest is looking at a ruggedized tablet displaying a complex data topology map (nodes and connections). In the background, blurred but visible, are large industrial machines (conveyors, robotic arms) with glowing digital overlays indicating data flow (subtle blue lines connecting machines to an edge gateway). The lighting is industrial but dramatic, mixing cool server-room blues with warm factory floor ambers. No text in the image. High detail, 8k resolution.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 3718,
+  "link_count": 10
+}

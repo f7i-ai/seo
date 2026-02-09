@@ -1,0 +1,16 @@
+{
+  "meta_title": "Predictive Maintenance in Energy: Beyond Detection to Execution",
+  "meta_description": "Predictive maintenance in utilities often fails at the \"action\" stage. Here is a 2026 guide to bridging the gap between IoT diagnostics and maintenance",
+  "title": "The Broken Circuit: Why Predictive Maintenance in Energy Requires a Unified Workflow",
+  "keyword": "predictive maintenance for energy and utilities",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/predictive-maintenance-for-energy-and-utilities.png",
+    "alt": "Hero image for The Broken Circuit: Why Predictive Maintenance in Energy Requires a Unified Workflow",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A hyper-realistic, cinematic wide shot of a modern electrical substation at dusk. In the foreground, a reliability engineer in high-visibility safety gear and a hard hat is holding a ruggedized tablet displaying a complex data visualization of asset health (heat maps and waveforms). In the background, large high-voltage transformers and transmission towers are visible, with one transformer subtly highlighted by a digital overlay effect implying sensor connectivity. The lighting is industrial and dramatic, mixing the warm sunset with cool LED indicator lights from the equipment. No text in the image. Atmosphere conveys precision, technology, and industrial scale.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2152,
+  "link_count": 12
+}

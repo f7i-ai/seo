@@ -1,0 +1,625 @@
+2026-02-07 10:13:29,791 - INFO - ==================================================
+2026-02-07 10:13:29,791 - INFO - SEO Content Generator session started
+2026-02-07 10:13:29,791 - INFO - ==================================================
+2026-02-07 10:13:30,049 - INFO - Generating image with prompt: Professional food manufacturing facility, stainless steel equipment, conveyors and mixing equipment in the background, workers in white hygiene gear and hairnets, clean modern factory floor, soft industrial lighting, photo-realistic, high quality, no text or logos in the image.
+2026-02-07 10:13:30,050 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 10:13:44,385 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 10:13:45,212 - INFO - Image generated successfully!
+2026-02-07 10:13:45,213 - INFO - Image saved to: /Users/tim/code/f7i-public/public/images/industries/food-manufacturing.png
+2026-02-07 10:13:45,213 - INFO - Generating image with prompt: Rugged mining environment, large haul truck or crusher in background, dust and industrial atmosphere, workers in high-vis vests and hard hats, dramatic natural lighting, photo-realistic, high quality, no text or logos in the image.
+2026-02-07 10:13:45,213 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 10:13:58,489 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 10:13:59,335 - INFO - Image generated successfully!
+2026-02-07 10:13:59,338 - INFO - Image saved to: /Users/tim/code/f7i-public/public/images/industries/mining.png
+2026-02-07 10:13:59,338 - INFO - Generating image with prompt: Modern automotive assembly line, car body or assembly station in focus, workers in factory attire, clean industrial setting with overhead lighting, photo-realistic, high quality, no text or logos in the image.
+2026-02-07 10:13:59,338 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 10:14:13,669 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 10:14:14,510 - INFO - Image generated successfully!
+2026-02-07 10:14:14,512 - INFO - Image saved to: /Users/tim/code/f7i-public/public/images/industries/automotive.png
+2026-02-07 10:14:14,512 - INFO - Generating image with prompt: Clean pharmaceutical manufacturing environment, stainless steel vessels or tablet press in background, workers in white lab coats and appropriate PPE, sterile clean room aesthetic, cool neutral lighting, photo-realistic, high quality, no text or logos in the image.
+2026-02-07 10:14:14,512 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 10:14:28,424 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 10:14:29,204 - INFO - Image generated successfully!
+2026-02-07 10:14:29,205 - INFO - Image saved to: /Users/tim/code/f7i-public/public/images/industries/pharmaceutical.png
+2026-02-07 10:14:29,205 - INFO - Generating image with prompt: Packaging production line, form-fill-seal or cartoning equipment, boxes and conveyors, workers in factory setting, well-lit industrial environment, photo-realistic, high quality, no text or logos in the image.
+2026-02-07 10:14:29,205 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 10:14:47,375 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 10:14:48,195 - INFO - Image generated successfully!
+2026-02-07 10:14:48,197 - INFO - Image saved to: /Users/tim/code/f7i-public/public/images/industries/packaging.png
+2026-02-07 10:26:03,873 - INFO - ==================================================
+2026-02-07 10:26:03,873 - INFO - SEO Content Generator session started
+2026-02-07 10:26:03,873 - INFO - ==================================================
+2026-02-07 10:26:03,880 - WARNING - google.genai not available - image generation disabled
+2026-02-07 10:26:03,909 - INFO - Successfully loaded 4036 unique keywords with SERP data using utf-8 encoding
+2026-02-07 10:35:40,722 - INFO - ==================================================
+2026-02-07 10:35:40,722 - INFO - SEO Content Generator session started
+2026-02-07 10:35:40,722 - INFO - ==================================================
+2026-02-07 10:35:40,727 - WARNING - google.genai not available - image generation disabled
+2026-02-07 10:35:40,745 - INFO - Successfully loaded 112 unique keywords with SERP data using utf-8 encoding
+2026-02-07 16:44:29,215 - INFO - ==================================================
+2026-02-07 16:44:29,216 - INFO - SEO Content Generator session started
+2026-02-07 16:44:29,216 - INFO - ==================================================
+2026-02-07 16:44:29,220 - WARNING - google.genai not available - image generation disabled
+2026-02-07 16:44:44,144 - INFO - ==================================================
+2026-02-07 16:44:44,145 - INFO - SEO Content Generator session started
+2026-02-07 16:44:44,145 - INFO - ==================================================
+2026-02-07 16:44:44,413 - INFO - Generating image with prompt: A photo-realistic Australian mining operation showing a large haul truck or excavator in the background with the distinctive red earth of the Pilbara. In the foreground, two diverse maintenance workers (one man, one woman) wearing high-visibility orange vests, hard hats, and safety glasses examining equipment with a rugged tablet device (showing only the back). Blue sky with characteristic Australian eucalyptus trees visible at the edge of the operation. Industrial sensors visible on equipment. No text or logos.
+2026-02-07 16:44:44,413 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 16:45:02,893 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 16:45:03,746 - INFO - Image generated successfully!
+2026-02-07 16:45:03,748 - INFO - Image saved to: /Users/tim/code/seo/generated_content/predictive-maintenance-australia-guide.png
+2026-02-07 16:45:05,755 - INFO - Generating image with prompt: A photo-realistic image of a professional compliance audit scene in an Australian industrial facility. A safety inspector in high-visibility vest and hard hat reviewing documentation on a tablet with a maintenance manager. Industrial equipment visible in background with safety signage. Clean, well-organised facility. Australian flag or map subtly visible. Professional lighting, no text or logos in main focus.
+2026-02-07 16:45:05,756 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 16:45:20,907 - INFO - ==================================================
+2026-02-07 16:45:20,907 - INFO - SEO Content Generator session started
+2026-02-07 16:45:20,907 - INFO - ==================================================
+2026-02-07 16:45:22,292 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 16:45:23,170 - INFO - Image generated successfully!
+2026-02-07 16:45:23,174 - INFO - Image saved to: /Users/tim/code/seo/generated_content/predictive-maintenance-compliance-australia.png
+2026-02-07 16:45:25,181 - INFO - Generating image with prompt: A photo-realistic industrial food processing facility interior showing stainless steel equipment, conveyor systems, and refrigeration units. A diverse maintenance team of two workers (one woman, one man) wearing white food-safe coveralls, hard hats, safety glasses, and blue nitrile gloves inspecting a large industrial mixer with a tablet device (showing only the back of the device). Clean, modern facility with IP69K-rated sensors visible on equipment. Bright LED industrial lighting, polished concrete floors, no text or logos visible.
+2026-02-07 16:45:25,182 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 16:45:33,430 - INFO - ==================================================
+2026-02-07 16:45:33,430 - INFO - SEO Content Generator session started
+2026-02-07 16:45:33,430 - INFO - ==================================================
+2026-02-07 16:45:40,037 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 16:45:40,837 - INFO - Image generated successfully!
+2026-02-07 16:45:40,840 - INFO - Image saved to: /Users/tim/code/seo/generated_content/predictive-maintenance-for-food-processing-complete-guide.png
+2026-02-07 16:45:42,847 - INFO - Generating image with prompt: A photo-realistic business meeting scene in a modern industrial office with glass windows overlooking a manufacturing floor. A diverse group of three professionals (CFO in business attire, maintenance manager in work clothes, and reliability engineer) reviewing financial charts and graphs on a large screen showing ROI calculations. Professional lighting, clean modern office design. No text visible on screen, just abstract graphs and charts.
+2026-02-07 16:45:42,847 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 16:45:57,198 - INFO - Successfully loaded 112 unique keywords with SERP data using utf-8 encoding
+2026-02-07 16:45:57,199 - INFO - Loading existing content from sitemap: https://f7i.ai/sitemap.xml
+2026-02-07 16:45:57,199 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-02-07 16:45:57,984 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 16:45:58,799 - INFO - Image generated successfully!
+2026-02-07 16:45:58,801 - INFO - Image saved to: /Users/tim/code/seo/generated_content/predictive-vs-preventive-maintenance-cost-benefit-2026.png
+2026-02-07 16:46:00,386 - INFO - Found 340 existing blog posts from sitemap
+2026-02-07 16:46:00,386 - INFO - Cached 380 internal URLs for verification
+2026-02-07 16:46:00,393 - WARNING - Skipping 'confined space entry requirements Australia' - overlaps with existing blog content
+2026-02-07 16:46:00,399 - WARNING - Skipping 'lockout tagout procedures Australia' - overlaps with existing blog content
+2026-02-07 16:46:00,403 - WARNING - Skipping 'best CMMS for Australian manufacturing' - overlaps with existing blog content
+2026-02-07 16:46:00,404 - WARNING - Skipping 'maintenance management software Australia' - overlaps with existing blog content
+2026-02-07 16:46:00,405 - WARNING - Skipping 'equipment maintenance software Australia' - overlaps with existing blog content
+2026-02-07 16:46:00,405 - WARNING - Skipping 'predictive maintenance software Australia' - overlaps with existing blog content
+2026-02-07 16:46:00,405 - WARNING - Skipping 'predictive maintenance solutions Australia' - overlaps with existing blog content
+2026-02-07 16:46:00,405 - WARNING - Skipping 'predictive maintenance companies Australia' - overlaps with existing blog content
+2026-02-07 16:46:00,405 - WARNING - Skipping 'how to implement predictive maintenance in Australia' - overlaps with existing blog content
+2026-02-07 16:46:00,405 - WARNING - Skipping 'AI predictive maintenance Australia' - overlaps with existing blog content
+2026-02-07 16:46:00,407 - WARNING - Skipping 'smart factory solutions Australia' - overlaps with existing blog content
+2026-02-07 16:46:00,409 - WARNING - Skipping 'food processing maintenance Victoria' - overlaps with existing blog content
+2026-02-07 16:46:00,410 - WARNING - Skipping 'food processing predictive maintenance Australia' - overlaps with existing blog content
+2026-02-07 16:46:00,410 - WARNING - Skipping 'packaging line maintenance Australia' - overlaps with existing blog content
+2026-02-07 16:46:00,412 - WARNING - Skipping 'condition based maintenance Australia' - overlaps with existing blog content
+2026-02-07 16:46:00,412 - WARNING - Skipping 'preventive maintenance program Australia' - overlaps with existing blog content
+2026-02-07 16:46:00,413 - WARNING - Skipping 'reducing unplanned downtime Australian manufacturing' - overlaps with existing blog content
+2026-02-07 16:46:00,416 - WARNING - Skipping 'machine learning predictive maintenance Australia' - overlaps with existing blog content
+2026-02-07 16:46:00,416 - INFO - Processing keyword 1/94: WHS compliance checklist for maintenance teams
+2026-02-07 16:46:00,416 - INFO - Researching keyword with SERP analysis...
+2026-02-07 16:46:00,416 - INFO - Starting deep research for keyword: 'WHS compliance checklist for maintenance teams'
+2026-02-07 16:46:00,416 - INFO - Analyzing 1 SERP results...
+2026-02-07 16:46:00,416 - INFO - Calling Gemini API...
+2026-02-07 16:46:00,808 - INFO - Generating image with prompt: A photo-realistic industrial manufacturing facility showing a maintenance technician (diverse, wearing safety glasses and high-visibility vest) examining a large industrial motor with a tablet device (showing only the back). Vibration sensors and temperature monitors are visible on the equipment. Modern factory setting with clean machinery and good lighting. No text or logos visible. Professional, educational tone.
+2026-02-07 16:46:00,808 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 16:46:14,830 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 16:46:15,630 - INFO - Image generated successfully!
+2026-02-07 16:46:15,633 - INFO - Image saved to: /Users/tim/code/seo/generated_content/what-is-predictive-maintenance.png
+2026-02-07 16:46:33,763 - INFO - Gemini API call took 33.35 seconds
+2026-02-07 16:46:33,764 - INFO - Received response (8046 characters)
+2026-02-07 16:46:33,765 - INFO - Parsing markdown response...
+2026-02-07 16:46:33,768 - INFO - Successfully parsed markdown with 11 sections
+2026-02-07 16:46:33,768 - INFO - Research completed in 33.35 seconds total
+2026-02-07 16:46:33,768 - INFO - Generating AI visibility content...
+2026-02-07 16:47:27,170 - INFO - Parsing markdown content response...
+2026-02-07 16:47:27,174 - INFO - Validating and cleaning markdown links...
+2026-02-07 16:47:27,174 - WARNING - Invalid internal link removed: /alternatives/augury
+2026-02-07 16:47:27,174 - INFO - Link validation: 17 verified, 1 removed
+2026-02-07 16:47:27,175 - INFO - Generating hero image...
+2026-02-07 16:47:27,176 - INFO - Generating image with prompt: A photo-realistic, high-resolution image inside a modern manufacturing facility. The scene features a diverse group of maintenance technicians (men and women) wearing full PPE including hard hats, safety glasses, and high-visibility vests. They are gathered around a large industrial machine (like a conveyor or pump system). One technician is holding a ruggedized tablet, showing the back of the device (screen not visible), appearing to scan a QR code on the machine. The lighting is bright and industrial, highlighting the cleanliness and organization of the plant. The atmosphere conveys professionalism, safety, and advanced technology. No text or words should be visible in the image.
+2026-02-07 16:47:27,176 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 16:47:42,496 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 16:47:43,328 - INFO - Image generated successfully!
+2026-02-07 16:47:43,330 - INFO - Image saved to: generated_content/WHS-compliance-checklist-for-maintenance-teams.png
+2026-02-07 16:47:43,330 - INFO - Formatting for Prismic...
+2026-02-07 16:47:43,331 - INFO - Content saved to:
+2026-02-07 16:47:43,331 - INFO -   JSON: generated_content/WHS-compliance-checklist-for-maintenance-teams.json
+2026-02-07 16:47:43,331 - INFO -   Markdown: generated_content/WHS-compliance-checklist-for-maintenance-teams.md
+2026-02-07 16:47:43,331 - INFO -   Stats: 2174 words, 17 links
+2026-02-07 16:47:43,331 - INFO -   Image: generated_content/WHS-compliance-checklist-for-maintenance-teams.png
+2026-02-07 16:47:43,331 - INFO - Content generated successfully for: WHS compliance checklist for maintenance teams
+2026-02-07 16:47:43,331 - INFO - Uploading to Prismic...
+2026-02-07 16:47:55,437 - INFO - Successfully uploaded to Prismic
+2026-02-07 16:47:55,438 - INFO - Content published to Prismic CMS for: WHS compliance checklist for maintenance teams
+2026-02-07 16:47:57,439 - INFO - Processing keyword 2/94: WHS risk assessment for maintenance work Australia
+2026-02-07 16:47:57,440 - INFO - Researching keyword with SERP analysis...
+2026-02-07 16:47:57,440 - INFO - Starting deep research for keyword: 'WHS risk assessment for maintenance work Australia'
+2026-02-07 16:47:57,440 - INFO - Analyzing 1 SERP results...
+2026-02-07 16:47:57,440 - INFO - Calling Gemini API...
+2026-02-07 16:48:31,323 - INFO - Gemini API call took 33.88 seconds
+2026-02-07 16:48:31,324 - INFO - Received response (8355 characters)
+2026-02-07 16:48:31,324 - INFO - Parsing markdown response...
+2026-02-07 16:48:31,325 - INFO - Successfully parsed markdown with 11 sections
+2026-02-07 16:48:31,325 - INFO - Research completed in 33.89 seconds total
+2026-02-07 16:48:31,325 - INFO - Generating AI visibility content...
+2026-02-07 16:49:24,349 - INFO - Parsing markdown content response...
+2026-02-07 16:49:24,351 - INFO - Validating and cleaning markdown links...
+2026-02-07 16:49:24,351 - WARNING - Invalid internal link removed: /alternatives/augury
+2026-02-07 16:49:24,351 - WARNING - Invalid internal link removed: /alternatives/nanoprecise
+2026-02-07 16:49:24,351 - WARNING - Invalid internal link removed: /alternatives/fiix
+2026-02-07 16:49:24,351 - INFO - Link validation: 16 verified, 3 removed
+2026-02-07 16:49:24,352 - INFO - Generating hero image...
+2026-02-07 16:49:24,352 - INFO - Generating image with prompt: A photo-realistic, high-quality hero image set inside a modern, clean Australian manufacturing facility. The scene features a diverse group of maintenance technicians (men and women) wearing standard Australian PPE: high-visibility yellow/orange vests with reflective strips, safety glasses, steel-capped boots, and hard hats. One technician is holding a ruggedized tablet (showing only the back of the device) and appears to be inspecting a large industrial motor or pump system. In the background, blurred slightly, is a mix of heavy machinery and conveyor belts. The lighting is bright and industrial. The image conveys safety, professionalism, and modern technology integration. No text or overlays in the image.
+2026-02-07 16:49:24,352 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 16:49:39,185 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 16:49:40,063 - INFO - Image generated successfully!
+2026-02-07 16:49:40,067 - INFO - Image saved to: generated_content/WHS-risk-assessment-for-maintenance-work-Australia.png
+2026-02-07 16:49:40,067 - INFO - Formatting for Prismic...
+2026-02-07 16:49:40,069 - INFO - Content saved to:
+2026-02-07 16:49:40,069 - INFO -   JSON: generated_content/WHS-risk-assessment-for-maintenance-work-Australia.json
+2026-02-07 16:49:40,069 - INFO -   Markdown: generated_content/WHS-risk-assessment-for-maintenance-work-Australia.md
+2026-02-07 16:49:40,069 - INFO -   Stats: 2273 words, 16 links
+2026-02-07 16:49:40,069 - INFO -   Image: generated_content/WHS-risk-assessment-for-maintenance-work-Australia.png
+2026-02-07 16:49:40,069 - INFO - Content generated successfully for: WHS risk assessment for maintenance work Australia
+2026-02-07 16:49:40,069 - INFO - Uploading to Prismic...
+2026-02-07 16:49:53,655 - INFO - Successfully uploaded to Prismic
+2026-02-07 16:49:53,656 - INFO - Content published to Prismic CMS for: WHS risk assessment for maintenance work Australia
+2026-02-07 16:49:55,660 - INFO - Processing keyword 3/94: PCBU obligations for maintenance managers Australia
+2026-02-07 16:49:55,661 - INFO - Researching keyword with SERP analysis...
+2026-02-07 16:49:55,661 - INFO - Starting deep research for keyword: 'PCBU obligations for maintenance managers Australia'
+2026-02-07 16:49:55,661 - INFO - Analyzing 1 SERP results...
+2026-02-07 16:49:55,661 - INFO - Calling Gemini API...
+2026-02-07 16:50:27,986 - INFO - Gemini API call took 32.32 seconds
+2026-02-07 16:50:27,987 - INFO - Received response (8019 characters)
+2026-02-07 16:50:27,987 - INFO - Parsing markdown response...
+2026-02-07 16:50:27,987 - INFO - Successfully parsed markdown with 11 sections
+2026-02-07 16:50:27,987 - INFO - Research completed in 32.33 seconds total
+2026-02-07 16:50:27,988 - INFO - Generating AI visibility content...
+2026-02-07 16:51:16,995 - INFO - Parsing markdown content response...
+2026-02-07 16:51:16,997 - INFO - Validating and cleaning markdown links...
+2026-02-07 16:51:16,997 - WARNING - Invalid internal link removed: /alternatives/augury
+2026-02-07 16:51:16,997 - WARNING - Invalid internal link removed: /alternatives/fiix
+2026-02-07 16:51:16,997 - INFO - Link validation: 19 verified, 2 removed
+2026-02-07 16:51:16,998 - WARNING - Meta description truncated from 177 to 156 characters
+2026-02-07 16:51:17,000 - WARNING - Near-miss word count (1978/2000), attempting expansion...
+2026-02-07 16:51:17,001 - INFO - Expanding content: 1978 words -> target 2200 (need +222 words)
+2026-02-07 16:51:17,001 - INFO - Calling Gemini API for content expansion...
+2026-02-07 16:51:59,985 - INFO - Expansion complete: 1978 -> 2368 words (+390)
+2026-02-07 16:51:59,987 - INFO - Validating and cleaning markdown links...
+2026-02-07 16:51:59,987 - INFO - Link validation: 19 verified, 0 removed
+2026-02-07 16:51:59,987 - INFO - Expansion result: 1978 -> 2368 words
+2026-02-07 16:51:59,987 - WARNING - Meta description truncated from 177 to 156 characters
+2026-02-07 16:51:59,988 - INFO - Generating hero image...
+2026-02-07 16:51:59,988 - INFO - Generating image with prompt: A photorealistic, high-quality hero image set in a modern Australian manufacturing facility. The scene features a diverse group of three professionals: a Maintenance Manager (male, 40s), a Safety Officer (female, 30s), and a Technician (male, 20s). They are wearing full PPE including hard hats, high-visibility vests, and safety glasses. They are standing near a large industrial conveyor system, looking confidently at the machinery, not at screens. The lighting is professional and industrial, highlighting the clean, safe nature of the environment. The image conveys authority, safety, and compliance. No text or overlays in the image.
+2026-02-07 16:51:59,988 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 16:52:20,285 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 16:52:21,089 - INFO - Image generated successfully!
+2026-02-07 16:52:21,093 - INFO - Image saved to: generated_content/PCBU-obligations-for-maintenance-managers-Australia.png
+2026-02-07 16:52:21,093 - INFO - Formatting for Prismic...
+2026-02-07 16:52:21,095 - INFO - Content saved to:
+2026-02-07 16:52:21,095 - INFO -   JSON: generated_content/PCBU-obligations-for-maintenance-managers-Australi.json
+2026-02-07 16:52:21,095 - INFO -   Markdown: generated_content/PCBU-obligations-for-maintenance-managers-Australi.md
+2026-02-07 16:52:21,095 - INFO -   Stats: 2368 words, 19 links
+2026-02-07 16:52:21,095 - INFO - Content generated successfully for: PCBU obligations for maintenance managers Australia
+2026-02-07 16:52:21,095 - INFO - Uploading to Prismic...
+2026-02-07 16:52:30,479 - INFO - Successfully uploaded to Prismic
+2026-02-07 16:52:30,480 - INFO - Content published to Prismic CMS for: PCBU obligations for maintenance managers Australia
+2026-02-07 16:52:32,487 - INFO - Processing keyword 4/94: duty of care maintenance managers Australia
+2026-02-07 16:52:32,488 - INFO - Researching keyword with SERP analysis...
+2026-02-07 16:52:32,488 - INFO - Starting deep research for keyword: 'duty of care maintenance managers Australia'
+2026-02-07 16:52:32,488 - INFO - Analyzing 1 SERP results...
+2026-02-07 16:52:32,488 - INFO - Calling Gemini API...
+2026-02-07 16:53:07,735 - INFO - Gemini API call took 35.25 seconds
+2026-02-07 16:53:07,736 - INFO - Received response (8100 characters)
+2026-02-07 16:53:07,736 - INFO - Parsing markdown response...
+2026-02-07 16:53:07,737 - INFO - Successfully parsed markdown with 11 sections
+2026-02-07 16:53:07,737 - INFO - Research completed in 35.25 seconds total
+2026-02-07 16:53:07,737 - INFO - Generating AI visibility content...
+2026-02-07 16:54:00,235 - INFO - Parsing markdown content response...
+2026-02-07 16:54:00,236 - INFO - Validating and cleaning markdown links...
+2026-02-07 16:54:00,237 - WARNING - Invalid internal link removed: /alternatives/augury
+2026-02-07 16:54:00,237 - WARNING - Invalid internal link removed: /alternatives/fiix
+2026-02-07 16:54:00,237 - WARNING - Invalid internal link removed: /alternatives/nanoprecise
+2026-02-07 16:54:00,237 - INFO - Link validation: 13 verified, 3 removed
+2026-02-07 16:54:00,237 - WARNING - Meta description truncated from 163 to 154 characters
+2026-02-07 16:54:00,238 - INFO - Generating hero image...
+2026-02-07 16:54:00,238 - INFO - Generating image with prompt: A hyper-realistic, cinematic wide shot inside a modern Australian manufacturing facility. In the foreground, a diverse group of maintenance professionals (men and women) are wearing standard Australian PPE: high-visibility orange and yellow vests with reflective strips, white hard hats, and safety glasses. One technician is holding a rugged tablet, but the screen is facing away from the camera. They are looking at a large industrial motor connected to a conveyor belt. The background is slightly blurred but shows a clean, organized factory floor with yellow safety walkways. The lighting is bright and industrial, with a cool blue hue emphasizing technology and safety. No text or words in the image. The atmosphere conveys professionalism, safety, and technological control.
+2026-02-07 16:54:00,238 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 16:54:15,754 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 16:54:16,566 - INFO - Image generated successfully!
+2026-02-07 16:54:16,570 - INFO - Image saved to: generated_content/duty-of-care-maintenance-managers-Australia.png
+2026-02-07 16:54:16,571 - INFO - Formatting for Prismic...
+2026-02-07 16:54:16,573 - INFO - Content saved to:
+2026-02-07 16:54:16,573 - INFO -   JSON: generated_content/duty-of-care-maintenance-managers-Australia.json
+2026-02-07 16:54:16,573 - INFO -   Markdown: generated_content/duty-of-care-maintenance-managers-Australia.md
+2026-02-07 16:54:16,573 - INFO -   Stats: 2168 words, 13 links
+2026-02-07 16:54:16,573 - INFO -   Image: generated_content/duty-of-care-maintenance-managers-Australia.png
+2026-02-07 16:54:16,573 - INFO - Content generated successfully for: duty of care maintenance managers Australia
+2026-02-07 16:54:16,573 - INFO - Uploading to Prismic...
+2026-02-07 16:54:25,491 - INFO - Successfully uploaded to Prismic
+2026-02-07 16:54:25,492 - INFO - Content published to Prismic CMS for: duty of care maintenance managers Australia
+2026-02-07 16:54:27,501 - INFO - Processing keyword 5/94: notifiable incident reporting maintenance Australia
+2026-02-07 16:54:27,501 - INFO - Researching keyword with SERP analysis...
+2026-02-07 16:54:27,502 - INFO - Starting deep research for keyword: 'notifiable incident reporting maintenance Australia'
+2026-02-07 16:54:27,502 - INFO - Analyzing 1 SERP results...
+2026-02-07 16:54:27,502 - INFO - Calling Gemini API...
+2026-02-07 16:55:01,832 - INFO - Gemini API call took 34.33 seconds
+2026-02-07 16:55:01,833 - INFO - Received response (8461 characters)
+2026-02-07 16:55:01,833 - INFO - Parsing markdown response...
+2026-02-07 16:55:01,834 - INFO - Successfully parsed markdown with 11 sections
+2026-02-07 16:55:01,834 - INFO - Research completed in 34.33 seconds total
+2026-02-07 16:55:01,834 - INFO - Generating AI visibility content...
+2026-02-07 16:55:55,832 - INFO - Parsing markdown content response...
+2026-02-07 16:55:55,835 - INFO - Validating and cleaning markdown links...
+2026-02-07 16:55:55,836 - WARNING - Invalid internal link removed: /alternatives/augury
+2026-02-07 16:55:55,836 - WARNING - Invalid internal link removed: /alternatives/fiix
+2026-02-07 16:55:55,836 - INFO - Link validation: 13 verified, 2 removed
+2026-02-07 16:55:55,836 - WARNING - Meta description truncated from 162 to 154 characters
+2026-02-07 16:55:55,837 - INFO - Generating hero image...
+2026-02-07 16:55:55,837 - INFO - Generating image with prompt: A photo-realistic, cinematic wide shot of a modern Australian manufacturing facility interior. The scene features a diverse group of maintenance technicians and a WHS officer. They are wearing standard Australian PPE: high-visibility yellow and orange vests with reflective strips, hard hats, safety glasses, and steel-capped boots. One technician is inspecting a large industrial motor or conveyor system. Another person, likely a manager, is holding a tablet device (back of device visible only) looking at the machinery. The lighting is industrial but warm, highlighting the cleanliness and organization of the plant. No text or words should be visible in the image. The atmosphere conveys safety, professionalism, and advanced technology.
+2026-02-07 16:55:55,837 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 16:56:11,907 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 16:56:12,737 - INFO - Image generated successfully!
+2026-02-07 16:56:12,740 - INFO - Image saved to: generated_content/notifiable-incident-reporting-maintenance-Australia.png
+2026-02-07 16:56:12,740 - INFO - Formatting for Prismic...
+2026-02-07 16:56:12,741 - INFO - Content saved to:
+2026-02-07 16:56:12,741 - INFO -   JSON: generated_content/notifiable-incident-reporting-maintenance-Australi.json
+2026-02-07 16:56:12,741 - INFO -   Markdown: generated_content/notifiable-incident-reporting-maintenance-Australi.md
+2026-02-07 16:56:12,741 - INFO -   Stats: 2304 words, 13 links
+2026-02-07 16:56:12,742 - INFO - Content generated successfully for: notifiable incident reporting maintenance Australia
+2026-02-07 16:56:12,742 - INFO - Uploading to Prismic...
+2026-02-07 16:57:45,730 - INFO - Successfully uploaded to Prismic
+2026-02-07 16:57:45,730 - INFO - Content published to Prismic CMS for: notifiable incident reporting maintenance Australia
+2026-02-07 16:57:47,735 - INFO - Processing keyword 6/94: plant and equipment register requirements Australia
+2026-02-07 16:57:47,737 - INFO - Researching keyword with SERP analysis...
+2026-02-07 16:57:47,737 - INFO - Starting deep research for keyword: 'plant and equipment register requirements Australia'
+2026-02-07 16:57:47,737 - INFO - Analyzing 1 SERP results...
+2026-02-07 16:57:47,737 - INFO - Calling Gemini API...
+2026-02-07 16:58:24,880 - INFO - Gemini API call took 37.14 seconds
+2026-02-07 16:58:24,880 - INFO - Received response (9079 characters)
+2026-02-07 16:58:24,880 - INFO - Parsing markdown response...
+2026-02-07 16:58:24,881 - INFO - Successfully parsed markdown with 11 sections
+2026-02-07 16:58:24,882 - INFO - Research completed in 37.14 seconds total
+2026-02-07 16:58:24,882 - INFO - Generating AI visibility content...
+2026-02-07 17:02:24,897 - WARNING - Retryable error (504 Deadline Exceeded), waiting 30s (attempt 1/3)
+2026-02-07 17:03:50,000 - INFO - Parsing markdown content response...
+2026-02-07 17:03:50,003 - INFO - Validating and cleaning markdown links...
+2026-02-07 17:03:50,003 - WARNING - Invalid internal link removed: /alternatives/augury
+2026-02-07 17:03:50,003 - WARNING - Invalid internal link removed: /alternatives/fiix
+2026-02-07 17:03:50,825 - WARNING - Invalid external link removed: https://www.safeworkaustralia.gov.au/safety-topic/managing-health-and-safety/plant-and-equipment
+2026-02-07 17:03:51,206 - WARNING - Invalid external link removed: https://www.worksafe.vic.gov.au/plant-registration
+2026-02-07 17:03:52,244 - WARNING - Invalid external link removed: https://www.safework.nsw.gov.au/licences-and-registrations/plant-item-registration
+2026-02-07 17:03:52,244 - INFO - Link validation: 14 verified, 5 removed
+2026-02-07 17:03:52,245 - WARNING - Meta description truncated from 171 to 159 characters
+2026-02-07 17:03:52,245 - INFO - Generating hero image...
+2026-02-07 17:03:52,245 - INFO - Generating image with prompt: A photo-realistic, cinematic wide shot inside a modern Australian manufacturing facility. The scene features a diverse group of maintenance engineers and safety officers (men and women) wearing standard Australian PPE: high-visibility vests (orange/yellow with reflective strips), hard hats, and safety glasses. They are standing near a large, complex industrial machine (like a compressor or conveyor system). One engineer is holding a tablet device, showing the back of the device to the camera (screen not visible), appearing to scan a QR code on the machinery. The lighting is professional and industrial, highlighting the clean, organized nature of the plant. No text or words should be visible in the image. The atmosphere conveys safety, compliance, and technological efficiency.
+2026-02-07 17:03:52,246 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 17:04:15,832 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 17:04:16,120 - INFO - Image generated successfully!
+2026-02-07 17:04:16,123 - INFO - Image saved to: generated_content/plant-and-equipment-register-requirements-Australia.png
+2026-02-07 17:04:16,123 - INFO - Formatting for Prismic...
+2026-02-07 17:04:16,125 - INFO - Content saved to:
+2026-02-07 17:04:16,125 - INFO -   JSON: generated_content/plant-and-equipment-register-requirements-Australi.json
+2026-02-07 17:04:16,125 - INFO -   Markdown: generated_content/plant-and-equipment-register-requirements-Australi.md
+2026-02-07 17:04:16,125 - INFO -   Stats: 2301 words, 14 links
+2026-02-07 17:04:16,126 - INFO - Content generated successfully for: plant and equipment register requirements Australia
+2026-02-07 17:04:16,126 - INFO - Uploading to Prismic...
+2026-02-07 17:04:26,818 - INFO - Successfully uploaded to Prismic
+2026-02-07 17:04:26,820 - INFO - Content published to Prismic CMS for: plant and equipment register requirements Australia
+2026-02-07 17:04:28,829 - INFO - Processing keyword 7/94: hazard identification maintenance work Australia
+2026-02-07 17:04:28,830 - INFO - Researching keyword with SERP analysis...
+2026-02-07 17:04:28,830 - INFO - Starting deep research for keyword: 'hazard identification maintenance work Australia'
+2026-02-07 17:04:28,830 - INFO - Analyzing 1 SERP results...
+2026-02-07 17:04:28,830 - INFO - Calling Gemini API...
+2026-02-07 17:05:29,840 - INFO - Gemini API call took 61.01 seconds
+2026-02-07 17:05:29,841 - INFO - Received response (7877 characters)
+2026-02-07 17:05:29,841 - INFO - Parsing markdown response...
+2026-02-07 17:05:29,842 - INFO - Successfully parsed markdown with 11 sections
+2026-02-07 17:05:29,842 - INFO - Research completed in 61.01 seconds total
+2026-02-07 17:05:29,842 - INFO - Generating AI visibility content...
+2026-02-07 17:23:08,534 - WARNING - Retryable error (504 Deadline Exceeded), waiting 30s (attempt 1/3)
+2026-02-07 17:39:09,589 - WARNING - Retryable error (504 Deadline Exceeded), waiting 60s (attempt 2/3)
+2026-02-07 17:57:06,129 - INFO - Parsing markdown content response...
+2026-02-07 17:57:06,131 - INFO - Validating and cleaning markdown links...
+2026-02-07 17:57:06,132 - WARNING - Invalid internal link removed: /alternatives/augury
+2026-02-07 17:57:06,132 - WARNING - Invalid internal link removed: /alternatives/nanoprecise
+2026-02-07 17:57:06,132 - WARNING - Invalid internal link removed: /alternatives/augury
+2026-02-07 17:57:06,132 - INFO - Link validation: 16 verified, 3 removed
+2026-02-07 17:57:06,133 - INFO - Generating hero image...
+2026-02-07 17:57:06,133 - INFO - Generating image with prompt: A hyper-realistic, wide-angle shot of a modern Australian manufacturing facility interior. In the foreground, a diverse group of maintenance technicians (men and women) are conducting a safety briefing. They are wearing standard Australian PPE: high-visibility orange and yellow vests with reflective strips, hard hats, safety glasses, and steel-capped boots. One technician is holding a ruggedized tablet, showing the back of the device to the camera (screen not visible). In the background, blurred but distinguishable, are heavy industrial assets like conveyors and large pumps, painted in industrial safety colors. The lighting is bright and professional, emphasizing a clean, high-tech, and safe working environment. No text or words should be visible in the image.
+2026-02-07 17:57:06,133 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 17:57:25,577 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 17:57:26,401 - INFO - Image generated successfully!
+2026-02-07 17:57:26,403 - INFO - Image saved to: generated_content/hazard-identification-maintenance-work-Australia.png
+2026-02-07 17:57:26,403 - INFO - Formatting for Prismic...
+2026-02-07 17:57:26,406 - INFO - Content saved to:
+2026-02-07 17:57:26,406 - INFO -   JSON: generated_content/hazard-identification-maintenance-work-Australia.json
+2026-02-07 17:57:26,406 - INFO -   Markdown: generated_content/hazard-identification-maintenance-work-Australia.md
+2026-02-07 17:57:26,406 - INFO -   Stats: 2068 words, 16 links
+2026-02-07 17:57:26,406 - INFO -   Image: generated_content/hazard-identification-maintenance-work-Australia.png
+2026-02-07 17:57:26,406 - INFO - Content generated successfully for: hazard identification maintenance work Australia
+2026-02-07 17:57:26,406 - INFO - Uploading to Prismic...
+2026-02-07 17:57:36,730 - INFO - Successfully uploaded to Prismic
+2026-02-07 17:57:36,731 - INFO - Content published to Prismic CMS for: hazard identification maintenance work Australia
+2026-02-07 17:57:38,739 - INFO - Processing keyword 8/94: how to write a SWMS for maintenance work
+2026-02-07 17:57:38,739 - INFO - Researching keyword with SERP analysis...
+2026-02-07 17:57:38,739 - INFO - Starting deep research for keyword: 'how to write a SWMS for maintenance work'
+2026-02-07 17:57:38,740 - INFO - Analyzing 1 SERP results...
+2026-02-07 17:57:38,740 - INFO - Calling Gemini API...
+2026-02-07 18:13:09,247 - WARNING - Retryable error (504 Deadline Exceeded), waiting 30s (attempt 1/3)
+2026-02-07 18:30:06,339 - WARNING - Retryable error (504 Deadline Exceeded), waiting 60s (attempt 2/3)
+2026-02-07 18:44:50,946 - INFO - Gemini API call took 2832.21 seconds
+2026-02-07 18:44:50,947 - INFO - Received response (7840 characters)
+2026-02-07 18:44:50,947 - INFO - Parsing markdown response...
+2026-02-07 18:44:50,948 - INFO - Successfully parsed markdown with 11 sections
+2026-02-07 18:44:50,949 - INFO - Research completed in 2832.21 seconds total
+2026-02-07 18:44:50,949 - INFO - Generating AI visibility content...
+2026-02-07 18:46:41,138 - INFO - Parsing markdown content response...
+2026-02-07 18:46:41,140 - INFO - Validating and cleaning markdown links...
+2026-02-07 18:46:41,140 - WARNING - Invalid internal link removed: /alternatives/augury
+2026-02-07 18:46:41,140 - WARNING - Invalid internal link removed: /alternatives/fiix
+2026-02-07 18:46:41,140 - WARNING - Invalid internal link removed: /alternatives/fiix
+2026-02-07 18:46:41,140 - INFO - Link validation: 13 verified, 3 removed
+2026-02-07 18:46:41,141 - WARNING - Meta description truncated from 168 to 156 characters
+2026-02-07 18:46:41,141 - INFO - Generating hero image...
+2026-02-07 18:46:41,141 - INFO - Generating image with prompt: A photo-realistic, high-resolution image of a modern manufacturing facility interior. In the foreground, a diverse group of maintenance technicians (men and women) are wearing full PPE including hard hats, safety glasses, and high-visibility vests. One technician is holding a ruggedized tablet (showing only the back of the device) and appears to be discussing a safety procedure with a supervisor. In the background, blurred industrial machinery such as conveyors and pumps can be seen. The lighting is professional and bright, emphasizing a clean, safe, and high-tech industrial environment. No text or words should be visible in the image.
+2026-02-07 18:46:41,142 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 18:46:57,395 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 18:46:58,271 - INFO - Image generated successfully!
+2026-02-07 18:46:58,273 - INFO - Image saved to: generated_content/how-to-write-a-SWMS-for-maintenance-work.png
+2026-02-07 18:46:58,273 - INFO - Formatting for Prismic...
+2026-02-07 18:46:58,275 - INFO - Content saved to:
+2026-02-07 18:46:58,275 - INFO -   JSON: generated_content/how-to-write-a-SWMS-for-maintenance-work.json
+2026-02-07 18:46:58,275 - INFO -   Markdown: generated_content/how-to-write-a-SWMS-for-maintenance-work.md
+2026-02-07 18:46:58,275 - INFO -   Stats: 2191 words, 13 links
+2026-02-07 18:46:58,275 - INFO -   Image: generated_content/how-to-write-a-SWMS-for-maintenance-work.png
+2026-02-07 18:46:58,275 - INFO - Content generated successfully for: how to write a SWMS for maintenance work
+2026-02-07 18:46:58,275 - INFO - Uploading to Prismic...
+2026-02-07 18:47:10,230 - INFO - Successfully uploaded to Prismic
+2026-02-07 18:47:10,231 - INFO - Content published to Prismic CMS for: how to write a SWMS for maintenance work
+2026-02-07 18:47:12,236 - INFO - Processing keyword 9/94: SWMS requirements for high risk construction work
+2026-02-07 18:47:12,236 - INFO - Researching keyword with SERP analysis...
+2026-02-07 18:47:12,237 - INFO - Starting deep research for keyword: 'SWMS requirements for high risk construction work'
+2026-02-07 18:47:12,237 - INFO - Analyzing 1 SERP results...
+2026-02-07 18:47:12,237 - INFO - Calling Gemini API...
+2026-02-07 18:47:44,302 - INFO - Gemini API call took 32.07 seconds
+2026-02-07 18:47:44,304 - INFO - Received response (7239 characters)
+2026-02-07 18:47:44,304 - INFO - Parsing markdown response...
+2026-02-07 18:47:44,304 - INFO - Successfully parsed markdown with 11 sections
+2026-02-07 18:47:44,305 - INFO - Research completed in 32.07 seconds total
+2026-02-07 18:47:44,305 - INFO - Generating AI visibility content...
+2026-02-07 18:49:35,741 - INFO - Parsing markdown content response...
+2026-02-07 18:49:35,743 - INFO - Validating and cleaning markdown links...
+2026-02-07 18:49:35,744 - WARNING - Invalid internal link removed: /alternatives/augury
+2026-02-07 18:49:35,744 - WARNING - Invalid internal link removed: /alternatives/fiix
+2026-02-07 18:49:35,744 - INFO - Link validation: 9 verified, 2 removed
+2026-02-07 18:49:35,744 - WARNING - Meta description truncated from 176 to 152 characters
+2026-02-07 18:49:35,745 - INFO - Generating hero image...
+2026-02-07 18:49:35,745 - INFO - Generating image with prompt: A photo-realistic, professional hero image set inside a modern manufacturing facility. In the foreground, a diverse group of maintenance technicians (men and women) are conducting a safety briefing. They are wearing full PPE including hard hats, safety glasses, and high-visibility vests. One technician is holding a ruggedized tablet, showing the back of the device (no screen visible), gesturing towards a large industrial conveyor belt system in the background. The lighting is bright and industrial, highlighting the cleanliness and organization of the modern factory. The image conveys safety, collaboration, and advanced technology. No text or words in the image.
+2026-02-07 18:49:35,745 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 18:49:51,049 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 18:49:52,562 - INFO - Image generated successfully!
+2026-02-07 18:49:52,563 - INFO - Image saved to: generated_content/SWMS-requirements-for-high-risk-construction-work.png
+2026-02-07 18:49:52,563 - INFO - Formatting for Prismic...
+2026-02-07 18:49:52,564 - INFO - Content saved to:
+2026-02-07 18:49:52,564 - INFO -   JSON: generated_content/SWMS-requirements-for-high-risk-construction-work.json
+2026-02-07 18:49:52,564 - INFO -   Markdown: generated_content/SWMS-requirements-for-high-risk-construction-work.md
+2026-02-07 18:49:52,565 - INFO -   Stats: 2242 words, 9 links
+2026-02-07 18:49:52,565 - INFO -   Image: generated_content/SWMS-requirements-for-high-risk-construction-work.png
+2026-02-07 18:49:52,565 - INFO - Content generated successfully for: SWMS requirements for high risk construction work
+2026-02-07 18:49:52,565 - INFO - Uploading to Prismic...
+2026-02-07 18:50:02,801 - INFO - Successfully uploaded to Prismic
+2026-02-07 18:50:02,802 - INFO - Content published to Prismic CMS for: SWMS requirements for high risk construction work
+2026-02-07 18:50:04,813 - INFO - Processing keyword 10/94: SWMS review and update frequency Australia
+2026-02-07 18:50:04,813 - INFO - Researching keyword with SERP analysis...
+2026-02-07 18:50:04,813 - INFO - Starting deep research for keyword: 'SWMS review and update frequency Australia'
+2026-02-07 18:50:04,813 - INFO - Analyzing 1 SERP results...
+2026-02-07 18:50:04,813 - INFO - Calling Gemini API...
+2026-02-07 18:51:35,010 - INFO - Gemini API call took 90.20 seconds
+2026-02-07 18:51:35,011 - INFO - Received response (7578 characters)
+2026-02-07 18:51:35,011 - INFO - Parsing markdown response...
+2026-02-07 18:51:35,012 - INFO - Successfully parsed markdown with 11 sections
+2026-02-07 18:51:35,012 - INFO - Research completed in 90.20 seconds total
+2026-02-07 18:51:35,012 - INFO - Generating AI visibility content...
+2026-02-07 19:08:05,250 - WARNING - Retryable error (504 Deadline Exceeded), waiting 30s (attempt 1/3)
+2026-02-07 19:25:23,842 - WARNING - Retryable error (504 Deadline Exceeded), waiting 60s (attempt 2/3)
+2026-02-07 19:52:18,254 - WARNING - Retryable error (504 Deadline Exceeded), waiting 90s (attempt 3/3)
+2026-02-07 19:52:18,298 - ERROR - Error generating content: 504 Deadline Exceeded
+2026-02-07 19:52:18,300 - ERROR - Failed to generate content for: SWMS review and update frequency Australia
+2026-02-07 19:52:18,300 - INFO - Processing keyword 11/94: who is responsible for signing off a SWMS
+2026-02-07 19:52:18,300 - INFO - Researching keyword with SERP analysis...
+2026-02-07 19:52:18,301 - INFO - Starting deep research for keyword: 'who is responsible for signing off a SWMS'
+2026-02-07 19:52:18,301 - INFO - Analyzing 1 SERP results...
+2026-02-07 19:52:18,301 - INFO - Calling Gemini API...
+2026-02-07 19:52:53,801 - INFO - Gemini API call took 35.50 seconds
+2026-02-07 19:52:53,801 - INFO - Received response (7871 characters)
+2026-02-07 19:52:53,802 - INFO - Parsing markdown response...
+2026-02-07 19:52:53,802 - INFO - Successfully parsed markdown with 11 sections
+2026-02-07 19:52:53,802 - INFO - Research completed in 35.50 seconds total
+2026-02-07 19:52:53,803 - INFO - Generating AI visibility content...
+2026-02-07 19:53:48,207 - INFO - Parsing markdown content response...
+2026-02-07 19:53:48,209 - INFO - Validating and cleaning markdown links...
+2026-02-07 19:53:48,209 - WARNING - Invalid internal link removed: /alternatives/augury
+2026-02-07 19:53:48,209 - WARNING - Invalid internal link removed: /alternatives/fiix
+2026-02-07 19:53:48,210 - INFO - Link validation: 15 verified, 2 removed
+2026-02-07 19:53:48,210 - INFO - Generating hero image...
+2026-02-07 19:53:48,210 - INFO - Generating image with prompt: A photo-realistic, high-resolution hero image inside a modern manufacturing facility. In the foreground, a diverse group of industrial workers (men and women) are gathered for a toolbox talk. They are wearing full PPE including hard hats, safety glasses, and high-visibility vests. One worker, a site supervisor, is holding a ruggedized tablet (back of device visible only) and gesturing towards a large industrial machine in the background. The background shows clean, automated machinery with yellow safety barriers. The lighting is bright and industrial. No text or overlays in the image. The atmosphere is professional, focused, and safety-oriented.
+2026-02-07 19:53:48,210 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 19:54:04,479 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 19:54:05,329 - INFO - Image generated successfully!
+2026-02-07 19:54:05,331 - INFO - Image saved to: generated_content/who-is-responsible-for-signing-off-a-SWMS.png
+2026-02-07 19:54:05,331 - INFO - Formatting for Prismic...
+2026-02-07 19:54:05,332 - INFO - Content saved to:
+2026-02-07 19:54:05,332 - INFO -   JSON: generated_content/who-is-responsible-for-signing-off-a-SWMS.json
+2026-02-07 19:54:05,332 - INFO -   Markdown: generated_content/who-is-responsible-for-signing-off-a-SWMS.md
+2026-02-07 19:54:05,332 - INFO -   Stats: 2232 words, 15 links
+2026-02-07 19:54:05,332 - INFO -   Image: generated_content/who-is-responsible-for-signing-off-a-SWMS.png
+2026-02-07 19:54:05,332 - INFO - Content generated successfully for: who is responsible for signing off a SWMS
+2026-02-07 19:54:05,332 - INFO - Uploading to Prismic...
+2026-02-07 20:00:56,179 - INFO - Successfully uploaded to Prismic
+2026-02-07 20:00:56,180 - INFO - Content published to Prismic CMS for: who is responsible for signing off a SWMS
+2026-02-07 20:00:58,191 - INFO - Processing keyword 12/94: SWMS requirements NSW
+2026-02-07 20:00:58,191 - INFO - Researching keyword with SERP analysis...
+2026-02-07 20:00:58,191 - INFO - Starting deep research for keyword: 'SWMS requirements NSW'
+2026-02-07 20:00:58,191 - INFO - Analyzing 1 SERP results...
+2026-02-07 20:00:58,191 - INFO - Calling Gemini API...
+2026-02-07 20:03:51,592 - WARNING - Retryable error (504 Deadline Exceeded), waiting 30s (attempt 1/3)
+2026-02-07 20:15:29,749 - WARNING - Retryable error (504 Deadline Exceeded), waiting 60s (attempt 2/3)
+2026-02-07 20:50:41,019 - INFO - Gemini API call took 2982.83 seconds
+2026-02-07 20:50:41,021 - INFO - Received response (7812 characters)
+2026-02-07 20:50:41,021 - INFO - Parsing markdown response...
+2026-02-07 20:50:41,022 - INFO - Successfully parsed markdown with 11 sections
+2026-02-07 20:50:41,023 - INFO - Research completed in 2982.83 seconds total
+2026-02-07 20:50:41,023 - INFO - Generating AI visibility content...
+2026-02-07 20:53:31,045 - INFO - Parsing markdown content response...
+2026-02-07 20:53:31,048 - INFO - Validating and cleaning markdown links...
+2026-02-07 20:53:31,048 - WARNING - Invalid internal link removed: /alternatives/augury
+2026-02-07 20:53:31,048 - WARNING - Invalid internal link removed: /alternatives/fiix
+2026-02-07 20:53:31,048 - WARNING - Invalid internal link removed: /alternatives/nanoprecise
+2026-02-07 20:53:31,048 - INFO - Link validation: 15 verified, 3 removed
+2026-02-07 20:53:31,049 - WARNING - Meta description truncated from 168 to 157 characters
+2026-02-07 20:53:31,049 - INFO - Generating hero image...
+2026-02-07 20:53:31,049 - INFO - Generating image with prompt: A photo-realistic, high-resolution image inside a modern manufacturing facility in New South Wales. The scene focuses on a diverse group of maintenance technicians and a safety officer conducting a toolbox talk near a large industrial conveyor belt system. They are wearing full PPE including hard hats, high-visibility vests, and safety glasses. One technician is holding a ruggedized tablet (showing only the back of the device) while gesturing toward the machinery, implying a digital workflow discussion. The lighting is bright and industrial, highlighting the clean, organized nature of the facility. No text or overlays in the image. The atmosphere is professional, safety-conscious, and collaborative.
+2026-02-07 20:53:31,049 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 20:53:46,123 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 20:53:46,944 - INFO - Image generated successfully!
+2026-02-07 20:53:46,946 - INFO - Image saved to: generated_content/SWMS-requirements-NSW.png
+2026-02-07 20:53:46,946 - INFO - Formatting for Prismic...
+2026-02-07 20:53:46,948 - INFO - Content saved to:
+2026-02-07 20:53:46,948 - INFO -   JSON: generated_content/SWMS-requirements-NSW.json
+2026-02-07 20:53:46,948 - INFO -   Markdown: generated_content/SWMS-requirements-NSW.md
+2026-02-07 20:53:46,948 - INFO -   Stats: 2253 words, 15 links
+2026-02-07 20:53:46,948 - INFO -   Image: generated_content/SWMS-requirements-NSW.png
+2026-02-07 20:53:46,948 - INFO - Content generated successfully for: SWMS requirements NSW
+2026-02-07 20:53:46,948 - INFO - Uploading to Prismic...
+2026-02-07 20:53:56,493 - INFO - Successfully uploaded to Prismic
+2026-02-07 20:53:56,493 - INFO - Content published to Prismic CMS for: SWMS requirements NSW
+2026-02-07 20:53:58,495 - INFO - Processing keyword 13/94: SWMS requirements Victoria
+2026-02-07 20:53:58,495 - INFO - Researching keyword with SERP analysis...
+2026-02-07 20:53:58,495 - INFO - Starting deep research for keyword: 'SWMS requirements Victoria'
+2026-02-07 20:53:58,496 - INFO - Analyzing 1 SERP results...
+2026-02-07 20:53:58,496 - INFO - Calling Gemini API...
+2026-02-07 20:57:12,488 - WARNING - Retryable error (504 Deadline Exceeded), waiting 30s (attempt 1/3)
+2026-02-07 20:57:24,725 - INFO - ==================================================
+2026-02-07 20:57:24,725 - INFO - SEO Content Generator session started
+2026-02-07 20:57:24,725 - INFO - ==================================================
+2026-02-07 20:57:32,474 - INFO - ==================================================
+2026-02-07 20:57:32,475 - INFO - SEO Content Generator session started
+2026-02-07 20:57:32,475 - INFO - ==================================================
+2026-02-07 20:57:47,390 - INFO - Successfully loaded 112 unique keywords with SERP data using utf-8 encoding
+2026-02-07 20:57:47,390 - INFO - Loading existing content from sitemap: https://f7i.ai/sitemap.xml
+2026-02-07 20:57:47,391 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-02-07 20:57:50,717 - INFO - Found 340 existing blog posts from sitemap
+2026-02-07 20:57:50,717 - INFO - Cached 380 internal URLs for verification
+2026-02-07 20:57:50,718 - INFO - Skipping 'WHS compliance checklist for maintenance teams' - content already generated
+2026-02-07 20:57:50,718 - INFO - Skipping 'WHS risk assessment for maintenance work Australia' - content already generated
+2026-02-07 20:57:50,718 - INFO - Skipping 'PCBU obligations for maintenance managers Australia' - content already generated
+2026-02-07 20:57:50,718 - INFO - Skipping 'duty of care maintenance managers Australia' - content already generated
+2026-02-07 20:57:50,718 - INFO - Skipping 'notifiable incident reporting maintenance Australia' - content already generated
+2026-02-07 20:57:50,718 - INFO - Skipping 'plant and equipment register requirements Australia' - content already generated
+2026-02-07 20:57:50,718 - INFO - Skipping 'hazard identification maintenance work Australia' - content already generated
+2026-02-07 20:57:50,718 - INFO - Skipping 'how to write a SWMS for maintenance work' - content already generated
+2026-02-07 20:57:50,718 - INFO - Skipping 'SWMS requirements for high risk construction work' - content already generated
+2026-02-07 20:57:50,719 - INFO - Skipping 'who is responsible for signing off a SWMS' - content already generated
+2026-02-07 20:57:50,719 - INFO - Skipping 'SWMS requirements NSW' - content already generated
+2026-02-07 20:57:50,722 - WARNING - Skipping 'confined space entry requirements Australia' - overlaps with existing blog content
+2026-02-07 20:57:50,728 - WARNING - Skipping 'lockout tagout procedures Australia' - overlaps with existing blog content
+2026-02-07 20:57:50,733 - WARNING - Skipping 'best CMMS for Australian manufacturing' - overlaps with existing blog content
+2026-02-07 20:57:50,734 - WARNING - Skipping 'maintenance management software Australia' - overlaps with existing blog content
+2026-02-07 20:57:50,734 - WARNING - Skipping 'equipment maintenance software Australia' - overlaps with existing blog content
+2026-02-07 20:57:50,734 - WARNING - Skipping 'predictive maintenance software Australia' - overlaps with existing blog content
+2026-02-07 20:57:50,734 - WARNING - Skipping 'predictive maintenance solutions Australia' - overlaps with existing blog content
+2026-02-07 20:57:50,735 - WARNING - Skipping 'predictive maintenance companies Australia' - overlaps with existing blog content
+2026-02-07 20:57:50,735 - WARNING - Skipping 'how to implement predictive maintenance in Australia' - overlaps with existing blog content
+2026-02-07 20:57:50,735 - WARNING - Skipping 'AI predictive maintenance Australia' - overlaps with existing blog content
+2026-02-07 20:57:50,737 - WARNING - Skipping 'smart factory solutions Australia' - overlaps with existing blog content
+2026-02-07 20:57:50,740 - WARNING - Skipping 'food processing maintenance Victoria' - overlaps with existing blog content
+2026-02-07 20:57:50,740 - WARNING - Skipping 'food processing predictive maintenance Australia' - overlaps with existing blog content
+2026-02-07 20:57:50,741 - WARNING - Skipping 'packaging line maintenance Australia' - overlaps with existing blog content
+2026-02-07 20:57:50,743 - WARNING - Skipping 'condition based maintenance Australia' - overlaps with existing blog content
+2026-02-07 20:57:50,743 - WARNING - Skipping 'preventive maintenance program Australia' - overlaps with existing blog content
+2026-02-07 20:57:50,744 - WARNING - Skipping 'reducing unplanned downtime Australian manufacturing' - overlaps with existing blog content
+2026-02-07 20:57:50,747 - WARNING - Skipping 'machine learning predictive maintenance Australia' - overlaps with existing blog content
+2026-02-07 20:57:50,747 - INFO - Processing keyword 1/83: SWMS review and update frequency Australia
+2026-02-07 20:57:50,747 - INFO - Researching keyword with SERP analysis...
+2026-02-07 20:57:50,747 - INFO - Starting deep research for keyword: 'SWMS review and update frequency Australia'
+2026-02-07 20:57:50,747 - INFO - Analyzing 1 SERP results...
+2026-02-07 20:57:50,747 - INFO - Calling Gemini API...
+2026-02-07 20:58:24,613 - INFO - Gemini API call took 33.87 seconds
+2026-02-07 20:58:24,613 - INFO - Received response (8111 characters)
+2026-02-07 20:58:24,613 - INFO - Parsing markdown response...
+2026-02-07 20:58:24,615 - INFO - Successfully parsed markdown with 11 sections
+2026-02-07 20:58:24,616 - INFO - Research completed in 33.87 seconds total
+2026-02-07 20:58:24,616 - INFO - Generating AI visibility content...
+2026-02-07 20:59:16,586 - INFO - Parsing markdown content response...
+2026-02-07 20:59:16,590 - INFO - Validating and cleaning markdown links...
+2026-02-07 20:59:16,590 - WARNING - Invalid internal link removed: /alternatives/fiix
+2026-02-07 20:59:16,591 - INFO - Link validation: 15 verified, 1 removed
+2026-02-07 20:59:16,591 - INFO - Generating hero image...
+2026-02-07 20:59:16,591 - INFO - Generating image with prompt: A hyper-realistic, wide-angle shot inside a modern, clean manufacturing facility. In the foreground, a diverse group of three maintenance technicians (one female, two male) are gathered around a large industrial pump. They are wearing full PPE including hard hats, safety glasses, and high-visibility vests. The female technician is holding a ruggedized tablet, showing the back of the device to the camera (screen hidden), while pointing at a specific component on the pump. The other two are looking attentively at the area she is indicating. The background shows a busy but organized factory floor with yellow safety walkways and blurred machinery. The lighting is bright and industrial, highlighting the professionalism and safety focus of the team. No text or overlays.
+2026-02-07 20:59:16,591 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 20:59:33,566 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 20:59:34,357 - INFO - Image generated successfully!
+2026-02-07 20:59:34,359 - INFO - Image saved to: generated_content/SWMS-review-and-update-frequency-Australia.png
+2026-02-07 20:59:34,359 - INFO - Formatting for Prismic...
+2026-02-07 20:59:34,361 - INFO - Content saved to:
+2026-02-07 20:59:34,361 - INFO -   JSON: generated_content/SWMS-review-and-update-frequency-Australia.json
+2026-02-07 20:59:34,361 - INFO -   Markdown: generated_content/SWMS-review-and-update-frequency-Australia.md
+2026-02-07 20:59:34,361 - INFO -   Stats: 2046 words, 15 links
+2026-02-07 20:59:34,361 - INFO -   Image: generated_content/SWMS-review-and-update-frequency-Australia.png
+2026-02-07 20:59:34,361 - INFO - Content generated successfully for: SWMS review and update frequency Australia
+2026-02-07 20:59:34,361 - INFO - Uploading to Prismic...
+2026-02-07 20:59:44,054 - INFO - Successfully uploaded to Prismic
+2026-02-07 20:59:44,054 - INFO - Content published to Prismic CMS for: SWMS review and update frequency Australia
+2026-02-07 20:59:46,059 - INFO - Processing keyword 2/83: SWMS requirements Victoria
+2026-02-07 20:59:46,059 - INFO - Researching keyword with SERP analysis...
+2026-02-07 20:59:46,059 - INFO - Starting deep research for keyword: 'SWMS requirements Victoria'
+2026-02-07 20:59:46,059 - INFO - Analyzing 1 SERP results...
+2026-02-07 20:59:46,059 - INFO - Calling Gemini API...
+2026-02-07 21:07:13,515 - WARNING - Retryable error (504 Deadline Exceeded), waiting 30s (attempt 1/3)
+2026-02-07 21:08:16,432 - INFO - Gemini API call took 510.37 seconds
+2026-02-07 21:08:16,434 - INFO - Received response (7658 characters)
+2026-02-07 21:08:16,434 - INFO - Parsing markdown response...
+2026-02-07 21:08:16,434 - INFO - Successfully parsed markdown with 11 sections
+2026-02-07 21:08:16,435 - INFO - Research completed in 510.38 seconds total
+2026-02-07 21:08:16,435 - INFO - Generating AI visibility content...
+2026-02-07 21:09:10,075 - INFO - Parsing markdown content response...
+2026-02-07 21:09:10,077 - INFO - Validating and cleaning markdown links...
+2026-02-07 21:09:10,077 - WARNING - Invalid internal link removed: /alternatives/augury
+2026-02-07 21:09:10,078 - WARNING - Invalid internal link removed: /alternatives/fiix
+2026-02-07 21:09:10,078 - INFO - Link validation: 9 verified, 2 removed
+2026-02-07 21:09:10,079 - INFO - Generating hero image...
+2026-02-07 21:09:10,079 - INFO - Generating image with prompt: A photo-realistic, high-quality hero image inside a modern manufacturing facility in Victoria. The scene features a diverse group of maintenance technicians and a safety manager. They are wearing full PPE including hard hats, high-visibility vests, and safety glasses. One technician is holding a rugged tablet (showing only the back of the device, no screen content visible) and appears to be discussing a digital workflow with the manager. In the background, there is industrial machinery like conveyors and motors, clean and well-lit. The atmosphere is professional, focused on safety and technology. No text or words in the image. Cinematic lighting. 8k resolution.
+2026-02-07 21:09:10,079 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-07 21:09:26,243 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-07 21:09:27,055 - INFO - Image generated successfully!
+2026-02-07 21:09:27,056 - INFO - Image saved to: generated_content/SWMS-requirements-Victoria.png
+2026-02-07 21:09:27,057 - INFO - Formatting for Prismic...
+2026-02-07 21:09:27,058 - INFO - Content saved to:
+2026-02-07 21:09:27,058 - INFO -   JSON: generated_content/SWMS-requirements-Victoria.json
+2026-02-07 21:09:27,058 - INFO -   Markdown: generated_content/SWMS-requirements-Victoria.md
+2026-02-07 21:09:27,058 - INFO -   Stats: 2087 words, 9 links
+2026-02-07 21:09:27,058 - INFO -   Image: generated_content/SWMS-requirements-Victoria.png
+2026-02-07 21:09:27,058 - INFO - Content generated successfully for: SWMS requirements Victoria
+2026-02-07 21:09:27,058 - INFO - Uploading to Prismic...
+2026-02-07 21:09:36,994 - INFO - Successfully uploaded to Prismic
+2026-02-07 21:09:36,995 - INFO - Content published to Prismic CMS for: SWMS requirements Victoria
+2026-02-07 21:27:01,807 - INFO - Processing keyword 3/83: SWMS requirements Queensland
+2026-02-07 21:27:01,807 - INFO - Researching keyword with SERP analysis...
+2026-02-07 21:27:01,808 - INFO - Starting deep research for keyword: 'SWMS requirements Queensland'
+2026-02-07 21:27:01,808 - INFO - Analyzing 1 SERP results...
+2026-02-07 21:27:01,808 - INFO - Calling Gemini API...
+2026-02-07 21:43:57,380 - WARNING - Retryable error (504 Deadline Exceeded), waiting 30s (attempt 1/3)
+2026-02-07 22:18:40,412 - WARNING - Retryable error (504 Deadline Exceeded), waiting 60s (attempt 2/3)
+2026-02-07 22:32:18,046 - INFO - Gemini API call took 3916.24 seconds
+2026-02-07 22:32:18,047 - INFO - Received response (7807 characters)
+2026-02-07 22:32:18,048 - INFO - Parsing markdown response...
+2026-02-07 22:32:18,048 - INFO - Successfully parsed markdown with 11 sections
+2026-02-07 22:32:18,049 - INFO - Research completed in 3916.24 seconds total
+2026-02-07 22:32:18,049 - INFO - Generating AI visibility content...
+2026-02-07 22:35:05,025 - INFO - Parsing markdown content response...
+2026-02-07 22:35:05,027 - INFO - Validating and cleaning markdown links...
+2026-02-07 22:35:05,027 - WARNING - Invalid internal link removed: /alternatives/augury
+2026-02-07 22:35:05,027 - WARNING - Invalid internal link removed: /alternatives/fiix
+2026-02-07 22:35:05,027 - INFO - Link validation: 13 verified, 2 removed
+2026-02-07 22:35:05,028 - WARNING - Meta description truncated from 168 to 156 characters
+2026-02-07 22:35:05,028 - INFO - Generating hero image...
+2026-02-07 22:35:05,028 - INFO - Generating image with prompt: A photo-realistic, high-quality hero image set in a modern Queensland industrial manufacturing facility. The scene features a diverse group of maintenance technicians and safety officers. One technician (female) is wearing a hard hat, high-visibility vest, and safety glasses, looking at the back of a ruggedized tablet held in her hand (screen not visible). She is standing next to a large industrial conveyor motor. In the background, a safety officer (male) is pointing to a specific part of the machinery while consulting a digital device. The lighting is bright and professional, highlighting the cleanliness and organization of the facility. No text or overlays in the image. The atmosphere conveys safety, technology, and collaboration.
+2026-02-07 22:35:05,028 - INFO - Calling Gemini Image Generation API (attempt 1/3)...

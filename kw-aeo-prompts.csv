@@ -1,0 +1,28 @@
+Keyword,Volume,Difficulty,CPC,Intents,Category,Source,Notes
+supplier agreement management,,,,Informational,Manufacturing Operations,semrush/ahrefs,Tangential to core product - lower priority
+standard operating procedures,,,,Informational,Manufacturing Operations,semrush/ahrefs,Ties to PM procedures feature
+purchase order terminology and management,,,,Informational,Manufacturing Operations,semrush/ahrefs,Tangential to core product - lower priority
+kaizen in manufacturing,,,,Informational,Lean & Continuous Improvement,semrush/ahrefs,Continuous improvement angle ties to predictive maintenance
+maintenance and maintenance workers,,,,Informational,Maintenance & Reliability,semrush/ahrefs,Core topic - direct product relevance
+lean manufacturing and management,,,,Informational,Lean & Continuous Improvement,semrush/ahrefs,OEE and waste reduction tie-in
+supply chain management,,,,Informational,Manufacturing Operations,semrush/ahrefs,Tangential - less direct product tie-in
+internet of things (IoT),,,,Informational,Technology & IoT,semrush/ahrefs,Core topic - sensor and monitoring narrative
+industrial and robotic process automation,,,,Informational,Technology & IoT,semrush/ahrefs,Adjacent topic - can reference IoT monitoring
+pareto principle and 80/20 rule,,,,Informational,Lean & Continuous Improvement,semrush/ahrefs,Applies to failure analysis and asset prioritization
+waterproof and IP ratings,,,,Informational,Technology & IoT,semrush/ahrefs,Directly relevant to sensor hardware (IP69 etc)
+5s methodology and its meaning,,,,Informational,Lean & Continuous Improvement,semrush/ahrefs,Maintenance and reliability audience reads this
+inventory and employee turnover analysis,,,,Informational,Manufacturing Operations,semrush/ahrefs,Inventory mgmt is a feature - turnover is tangential
+haccp food safety and procedures,,,,Informational,Food Manufacturing,semrush/ahrefs,Supports food manufacturing industry page
+What are the leading AI tools for predictive maintenance in food and beverage manufacturing right now?,,,,Informational,AI Predictive Maintenance,ai-prompt-semrush,High-value AEO prompt for food manufacturing vertical
+Are there maintenance platforms that combine predictive analytics with a full CMMS in one system?,,,,Informational,AI Predictive Maintenance,ai-prompt-semrush,Core differentiator prompt - PdM + CMMS bundle
+What's the best AI solution for cutting breakdowns on production lines not just monitoring them?,,,,Informational,AI Predictive Maintenance,ai-prompt-semrush,Action-oriented PdM vs monitoring distinction
+Which predictive maintenance tools are designed specifically for food and beverage plants instead of generic manufacturing?,,,,Informational,Food Manufacturing,ai-prompt-ahrefs,Industry-specific PdM prompt
+What AI maintenance systems can connect directly to existing PLCs and historians without a huge integration project?,,,,Informational,AI Predictive Maintenance,ai-prompt-ahrefs,Integration and sensor-agnostic angle
+How can I find an AI maintenance system that won't require my team to learn to code or hire data scientists?,,,,Informational,AI Predictive Maintenance,ai-prompt-ahrefs,No-code deployment angle
+Which solutions are best at integrating predictive maintenance with existing work order processes?,,,,Informational,CMMS & Work Orders,ai-prompt-ahrefs,PdM to work order workflow
+Are there tools that can give us maintenance recommendations directly from equipment behavior not OEM schedules?,,,,Informational,AI Predictive Maintenance,ai-prompt-ahrefs,Condition-based vs time-based maintenance
+Which predictive maintenance systems can be configured and maintained by the reliability team itself?,,,,Informational,AI Predictive Maintenance,ai-prompt-ahrefs,Self-service and no-code angle
+Which platforms provide strong reporting on maintenance KPIs like response time and completion rate?,,,,Informational,CMMS & Work Orders,ai-prompt-ahrefs,Reporting and KPI tracking
+Which maintenance systems are good at handling both utilities (boilers chillers) and production assets in one view?,,,,Informational,AI Predictive Maintenance,ai-prompt-ahrefs,Multi-asset-class monitoring
+Which maintenance platforms offer real-time anomaly detection not just threshold alarms?,,,,Informational,AI Predictive Maintenance,ai-prompt-ahrefs,AI anomaly detection vs traditional monitoring
+Are there maintenance platforms that offer a free tier or low-cost entry for small plants to get started?,,,,Commercial,CMMS & Work Orders,ai-prompt-ahrefs,Pricing and accessibility prompt

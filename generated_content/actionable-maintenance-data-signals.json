@@ -1,0 +1,16 @@
+{
+  "meta_title": "Actionable Maintenance Data Signals: From Noise to Work Orders",
+  "meta_description": "Stop drowning in sensor noise. Learn how to filter raw IIoT data into actionable maintenance data signals that trigger automated work orders and prevent",
+  "title": "Actionable Maintenance Data Signals: Turning Sensor Noise into Reliability Strategy",
+  "keyword": "actionable maintenance data signals",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/actionable-maintenance-data-signals.png",
+    "alt": "Hero image for Actionable Maintenance Data Signals: Turning Sensor Noise into Reliability Strategy",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern, high-tech manufacturing facility. In the foreground, a diverse group of reliability engineers (wearing hard hats, safety glasses, and reflective vests) are gathered around a large industrial motor. One engineer is holding a tablet (screen not visible) and pointing at a specific component on the motor, while another engineer inspects it with a thermal imaging tool. In the background, blurred slightly, are automated conveyor belts and robotic arms in motion. The lighting is a mix of cool industrial LED and warm accent lighting from the machinery indicators. The atmosphere conveys professional collaboration and high-tech precision. No text or overlays.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2277,
+  "link_count": 9
+}

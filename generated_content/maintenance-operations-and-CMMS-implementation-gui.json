@@ -1,0 +1,16 @@
+{
+  "meta_title": "CMMS Implementation & Ops: The Risk-Mitigation Guide (2026)",
+  "meta_description": "Don't just buy software. This guide covers the operational realities, data hierarchies, and failure modes of CMMS implementation that vendors won't tell you.",
+  "title": "The Architecture of Control: A Real-World Guide to Maintenance Operations and CMMS Implementation",
+  "keyword": "maintenance operations and CMMS implementation guide",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/maintenance-operations-and-CMMS-implementation-guide.png",
+    "alt": "Hero image for The Architecture of Control: A Real-World Guide to Maintenance Operations and CMMS Implementation",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A hyper-realistic, cinematic wide shot of a modern industrial manufacturing facility interior. The scene captures the intersection of heavy machinery and digital technology. In the foreground, a reliability engineer in a hard hat and high-visibility vest is holding a ruggedized tablet, looking at a complex holographic overlay or digital dashboard projecting from a large turbine or conveyor system. In the background, blurred technicians are performing maintenance on yellow robotic arms. The lighting is dramatic, mixing the cool blue of digital interfaces with the warm industrial amber of factory lighting. The atmosphere conveys precision, control, and advanced technology. No text in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2268,
+  "link_count": 2
+}

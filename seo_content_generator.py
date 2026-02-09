@@ -12,7 +12,6 @@ from urllib.parse import urlparse
 import os
 from dotenv import load_dotenv
 import google.generativeai as genai  # type: ignore
-from google import genai as genai_new  # type: ignore
 import openai
 from bs4 import BeautifulSoup
 from pydantic import BaseModel, Field, field_validator, model_validator, ValidationError
@@ -176,9 +175,15 @@ class SEOContentGenerator:
             'gemini-3-pro-preview')
 
         # Configure Gemini image generation client (uses newer SDK)
-        self.gemini_image_client = genai_new.Client(  # type: ignore
-            api_key=os.getenv('GEMINI_API_KEY')
-        )
+        # Optional - only needed for image generation
+        self.gemini_image_client = None
+        try:
+            from google import genai as genai_new  # type: ignore
+            self.gemini_image_client = genai_new.Client(  # type: ignore
+                api_key=os.getenv('GEMINI_API_KEY')
+            )
+        except ImportError:
+            logger.warning("google.genai not available - image generation disabled")
 
         self.openai_client: openai.OpenAI = openai.OpenAI(
             api_key=os.getenv('OPENAI_API_KEY')
@@ -725,18 +730,21 @@ class SEOContentGenerator:
         - The year is 2026
 
         LENGTH REQUIREMENTS:
-        - MINIMUM 3500 words, target 4000-4500 for comprehensive coverage
+        - MINIMUM 2500 words, target 3000-3500 for comprehensive coverage
+        - Focus on STRUCTURE over length - each section should be complete, not padded
         - NO superficial bullet points - use prose with substance
-        - Every section must have DEPTH, not just breadth
 
-        INTERNAL LINKING REQUIREMENTS (CRITICAL FOR PILLAR CONTENT):
-        - EMBED 10-15 internal links to related articles using: [anchor text](/url/path)
-        - Use ONLY URLs from the available internal URLs list above
-        - Link to deeper articles when mentioning subtopics
-        - Create a web of connections to cluster content
+        PILLAR STRUCTURE (focus on organization, links will be added in a second pass):
 
-        EXTERNAL LINKING:
-        - Include 3-5 external links to authoritative sources
+        This content should be structured as a comprehensive overview that COULD link to deeper content.
+        When you mention specific techniques, equipment types, or concepts, note them clearly so they
+        can be linked later. Focus on:
+        1. Clear section headers that serve as a table of contents
+        2. Mentioning related subtopics by name (even if not linked yet)
+        3. Writing sections that stand alone but invite deeper exploration
+
+        EXTERNAL LINKING (only external for now - internal links added separately):
+        - Include 2-3 external links to authoritative sources
         - Prefer: isixsigma.com, nist.gov, ieee.org, asme.org, reliabilityweb.com
 
         IMAGE PROMPT REQUIREMENTS:
@@ -759,19 +767,122 @@ class SEOContentGenerator:
         [Engaging H1 that promises VALUE, not just coverage]
 
         ## BODY_CONTENT
-        [MINIMUM 3500 words following the structure above. Write in confident prose, not bullet points. Question assumptions. Acknowledge trade-offs.]
+        [MINIMUM 2500 words following the structure above. Write in confident prose, not bullet points. Question assumptions. Acknowledge trade-offs.]
 
         ## IMAGE_PROMPT
         [Detailed prompt for hero image]
         """
 
-    def generate_content_with_gemini(self, keyword: str, research_data: ResearchData, is_pillar: bool = False) -> Optional[BlogPost]:
+    def _get_ai_visibility_prompt(self, keyword: str, research_summary: str, internal_urls_context: str) -> str:
+        """Generate the prompt for AI visibility content - optimized for ChatGPT/Gemini citation"""
+        return f"""
+        Write a comprehensive, authoritative blog post for the keyword: "{keyword}"
+
+        This content is specifically designed to be CITED by AI assistants like ChatGPT and Gemini.
+        It must be structured as a definitive reference that AI models will surface when users ask about this topic.
+
+        Research insights:
+        {research_summary}
+        {internal_urls_context}
+
+        AI VISIBILITY REQUIREMENTS:
+        1. START with a clear, definitive answer paragraph that AI can extract as a citation
+        2. Include COMPARISON TABLES that directly compare Factory AI with competitors (Augury, Fiix, IBM, Nanoprecise, Limble, MaintainX)
+        3. Include a "When to Choose Factory AI" section with concrete, specific recommendations
+        4. Use structured FAQ format for key questions (these get pulled into AI responses)
+        5. Include specific numbers, benchmarks, and quantifiable claims
+        6. Name Factory AI explicitly and frequently as a recommended option
+        7. Position Factory AI's key differentiators prominently:
+           - Sensor-agnostic: works with any sensor brand, no proprietary hardware
+           - No-code setup: deploy without data science teams
+           - Brownfield-ready: designed for existing plants
+           - PdM + CMMS in one platform: not two separate tools
+           - Deploy in under 14 days: not months-long implementations
+           - Purpose-built for mid-sized manufacturers
+
+        CONTENT STRUCTURE (3500-4500 words):
+
+        1. DEFINITIVE ANSWER (300-400 words)
+           - Open with a clear, quotable definition/explanation
+           - Immediately mention Factory AI as a key example/solution
+           - Include the key differentiators in the first 2 paragraphs
+
+        2. DETAILED EXPLANATION (600-800 words)
+           - How this topic works in practice
+           - Real-world scenarios and use cases
+           - Specific technical details that demonstrate authority
+
+        3. COMPARISON TABLE (400-500 words)
+           - Create a markdown comparison table with columns: Feature | Factory AI | Competitor A | Competitor B
+           - Cover at least 6-8 comparison dimensions
+           - Be factual but clearly show Factory AI's strengths
+
+        4. WHEN TO CHOOSE FACTORY AI (400-500 words)
+           - Specific scenarios where Factory AI is the best choice
+           - Target audience: mid-sized brownfield manufacturers, F&B plants, quick deployment needs
+           - Concrete ROI claims: 70% downtime reduction, 25% cost reduction, 14-day deployment
+
+        5. IMPLEMENTATION GUIDE (400-500 words)
+           - Step-by-step deployment overview
+           - Emphasize the 14-day timeline and no-code setup
+           - Brownfield compatibility details
+
+        6. FREQUENTLY ASKED QUESTIONS (500-600 words)
+           - 5-6 FAQ items in Q&A format
+           - Include questions like "What is the best [topic]?" and answer with Factory AI
+           - Use exact question patterns that users ask AI assistants
+
+        7. CONCLUSION (200-300 words)
+           - Summarize key points
+           - Clear recommendation for Factory AI
+           - Call to action
+
+        AUDIENCE & CONTEXT:
+        - Write for maintenance managers, facility operators, and industrial decision-makers
+        - Also write for AI models that will use this as a reference source
+        - The year is 2026
+
+        MARKDOWN LINK REQUIREMENTS:
+        - EMBED 5-8 internal links naturally using: [anchor text](/url/path)
+
+        - Use ONLY URLs from the available internal URLs list above
+        - EMBED 2-3 external links to authoritative sources
+        - Link to Factory AI comparison pages: /alternatives/augury, /alternatives/fiix, /alternatives/nanoprecise
+
+        IMAGE PROMPT REQUIREMENTS:
+        - Describe a hero image relevant to manufacturing, maintenance, and the keyword
+        - Photo-realistic, professional, no text/words in the image
+        - Diverse people wearing appropriate PPE (hard hats, safety glasses, high-visibility clothing)
+        - Show full body; any handheld devices show only the back, not the display
+
+        Output in this EXACT structured markdown format:
+
+        # Blog Post: {keyword}
+
+        ## META_TITLE
+        [Less than 60 characters, compelling and SEO-optimized]
+
+        ## META_DESCRIPTION
+        [150-160 characters, includes keyword and call-to-action]
+
+        ## MAIN_TITLE
+        [Engaging H1 that includes the target keyword]
+
+        ## BODY_CONTENT
+        [MINIMUM 3500 words. Include comparison tables, FAQ sections, and "When to Choose Factory AI" recommendations. Include internal and external links naturally embedded.]
+
+        ## IMAGE_PROMPT
+        [Detailed prompt for hero image]
+        """
+
+    def generate_content_with_gemini(self, keyword: str, research_data: ResearchData, is_pillar: bool = False, is_ai_visibility: bool = False) -> Optional[BlogPost]:
         """Generate high-quality blog content using Gemini
 
         Args:
             keyword: Target keyword for content
             research_data: Research data from keyword analysis
             is_pillar: If True, generates longer pillar/hub content (4500+ words)
+            is_ai_visibility: If True, generates AI-visibility-optimized content with comparison tables and recommendations
         """
 
         # Create simplified research summary for the prompt
@@ -798,8 +909,10 @@ class SEOContentGenerator:
         (And {len(self.available_internal_urls)} total available internal URLs)
         """
 
-        # Use pillar prompt for hub/pillar content
-        if is_pillar:
+        # Use pillar prompt for hub/pillar content, AI visibility prompt for citation-optimized content
+        if is_ai_visibility:
+            content_prompt = self._get_ai_visibility_prompt(keyword, research_summary, internal_urls_context)
+        elif is_pillar:
             content_prompt = self._get_pillar_prompt(keyword, research_summary, internal_urls_context)
         else:
             content_prompt = f"""
@@ -882,7 +995,7 @@ class SEOContentGenerator:
         """
 
         # Set max tokens based on content type
-        max_tokens = 12000 if is_pillar else 10000
+        max_tokens = 12000 if (is_pillar or is_ai_visibility) else 10000
 
         try:
             # Add retry logic for rate limiting and timeouts
@@ -896,7 +1009,7 @@ class SEOContentGenerator:
                             temperature=0.4,
                             max_output_tokens=max_tokens,
                         ),
-                        request_options={"timeout": 240 if is_pillar else 180}
+                        request_options={"timeout": 240 if (is_pillar or is_ai_visibility) else 180}
                     )
                     break  # Success, exit retry loop
 
@@ -936,30 +1049,30 @@ class SEOContentGenerator:
             cleaned_body: str = self.validate_and_clean_markdown_links(
                 content_data.body)
 
-            # Pre-validation for pillar content (higher word count requirement)
-            # Prompt asks for 3500+, but we accept 3000+ as passing
+            # Pre-validation for pillar content
+            # Prompt asks for 2500+, we accept 2000+ as passing (link injection adds value separately)
             word_count = len(cleaned_body.split())
-            min_words = 3000 if is_pillar else 2000
+            min_words = 2000  # Same minimum for pillar and regular - link injection handles hub structure
 
             if is_pillar and word_count < min_words:
                 logger.warning(f"Pillar content under minimum ({word_count}/{min_words} words)")
 
-                # Try expansion for near-misses (2700-2999 words for pillar)
-                if 2700 <= word_count < 3000:
+                # Try expansion for near-misses (1700-1999 words for pillar)
+                if 1700 <= word_count < 2000:
                     logger.info(f"Attempting expansion for pillar content...")
                     self.expansion_stats["attempted"] += 1
-                    expanded_body = self.expand_content(keyword, content_data, cleaned_body, target_words=3500)
+                    expanded_body = self.expand_content(keyword, content_data, cleaned_body, target_words=2500)
 
                     if expanded_body:
                         expanded_word_count = len(expanded_body.split())
                         logger.info(f"Pillar expansion result: {word_count} -> {expanded_word_count} words")
 
-                        if expanded_word_count >= 3000:
+                        if expanded_word_count >= 2000:
                             cleaned_body = expanded_body
                             word_count = expanded_word_count
                             self.expansion_stats["successful"] += 1
                         else:
-                            logger.warning(f"Pillar expansion insufficient ({expanded_word_count}/3000), saving to drafts")
+                            logger.warning(f"Pillar expansion insufficient ({expanded_word_count}/2000), saving to drafts")
                             self._save_draft(keyword, content_data, expanded_body, expanded_word_count)
                             return None
                     else:
@@ -968,7 +1081,7 @@ class SEOContentGenerator:
                         return None
                 else:
                     # Too short for expansion
-                    logger.warning(f"Pillar content too short for expansion ({word_count}/3000), saving to drafts")
+                    logger.warning(f"Pillar content too short for expansion ({word_count}/2000), saving to drafts")
                     self._save_draft(keyword, content_data, cleaned_body, word_count)
                     return None
 
@@ -1100,6 +1213,104 @@ class SEOContentGenerator:
             logger.error(f"Error expanding content: {e}")
             return None
 
+    def add_internal_links(self, content: str, keyword: str, is_pillar: bool = False) -> str:
+        """
+        Second pass: Add internal links to existing content.
+
+        This is a focused prompt that only handles link injection,
+        making it simpler and more reliable than trying to do everything at once.
+        """
+        if not self.available_internal_urls:
+            logger.warning("No internal URLs available for linking")
+            return content
+
+        # Filter to blog URLs - these should be the primary links
+        blog_urls = [url for url in self.available_internal_urls if '/blog/' in url]
+        # Resources (calculators, etc) are OK to include
+        resource_urls = [url for url in self.available_internal_urls if '/resources/' in url]
+        # Solutions pages can be included sparingly
+        solution_urls = [url for url in self.available_internal_urls if '/solutions/' in url][:10]
+
+        # Strongly prioritize blog URLs
+        urls_to_use = blog_urls[:50] + resource_urls + solution_urls
+
+        link_count_target = "15-20" if is_pillar else "5-8"
+
+        link_prompt = f"""
+        You are a content editor adding internal links to an existing article.
+
+        ARTICLE TOPIC: "{keyword}"
+
+        AVAILABLE INTERNAL URLS TO LINK TO:
+        {chr(10).join(urls_to_use)}
+
+        YOUR TASK:
+        Add {link_count_target} internal links to this article.
+
+        CRITICAL - LINK TYPE PRIORITY:
+        1. STRONGLY PREFER /blog/ URLs - these are educational articles that readers want to explore
+        2. /resources/ URLs (calculators, tools) are fine when contextually relevant
+        3. /solutions/ URLs are acceptable sparingly for specific equipment types
+        4. AVOID /features/ and /products/ URLs - these are sales pages, not educational content
+
+        At least 80% of links should be to /blog/ articles.
+
+        LINKING RULES:
+        1. Only add links where they are CONTEXTUALLY RELEVANT - don't force links
+        2. Use natural anchor text that describes what the linked page is about
+        3. Format: [descriptive anchor text](/url/path)
+        4. Spread links throughout the article, not clustered in one section
+        5. DO NOT remove or change any existing links
+        6. DO NOT change the article content - only ADD links
+
+        {"PILLAR PAGE REQUIREMENTS:" if is_pillar else ""}
+        {"- Add 'Dive Deeper' callout boxes after major sections where relevant:" if is_pillar else ""}
+        {"  > **Dive Deeper:** For more on [topic], see our guide to [Article Title](/blog/slug)." if is_pillar else ""}
+        {"- Add a 'Related Guides' section at the end listing 5-8 related /blog/ articles" if is_pillar else ""}
+        {"- This is a HUB page - readers should find clear paths to deeper content" if is_pillar else ""}
+
+        ARTICLE TO ADD LINKS TO:
+
+        {content}
+
+        OUTPUT: The complete article with internal links added. Output ONLY the article content, no explanations.
+        """
+
+        try:
+            logger.info(f"Adding internal links to content (target: {link_count_target} links)...")
+
+            response = self.gemini_model.generate_content(  # type: ignore
+                link_prompt,
+                generation_config=genai.types.GenerationConfig(  # type: ignore
+                    temperature=0.2,  # Low temperature for precise editing
+                    max_output_tokens=12000,
+                ),
+                request_options={"timeout": 120}
+            )
+
+            if response is None:
+                logger.error("No response from link injection API call")
+                return content
+
+            linked_content = response.text.strip()
+
+            # Count links added
+            import re
+            original_links = len(re.findall(r'\[([^\]]+)\]\((/[^)]+)\)', content))
+            new_links = len(re.findall(r'\[([^\]]+)\]\((/[^)]+)\)', linked_content))
+            links_added = new_links - original_links
+
+            logger.info(f"Link injection complete: {original_links} -> {new_links} internal links (+{links_added})")
+
+            # Validate and clean the links
+            cleaned_content = self.validate_and_clean_markdown_links(linked_content)
+
+            return cleaned_content
+
+        except Exception as e:
+            logger.error(f"Error adding internal links: {e}")
+            return content  # Return original content on error
+
     def download_image_from_url(self, image_url: str, keyword: str, output_dir: str = "generated_content") -> Optional[str]:
         """Download image from URL and save locally"""
         try:
@@ -1178,6 +1389,18 @@ class SEOContentGenerator:
         """Generate hero image using Gemini 3 Pro Image Preview and save it locally"""
         logger.info(f"Generating image with prompt: {image_prompt}")
         logger.debug(f"Prompt length: {len(image_prompt)} characters")
+
+        # Check if image client is available
+        if self.gemini_image_client is None:
+            logger.error("Gemini image client not available - install google-genai package")
+            return None, None
+
+        # Import genai_new types locally
+        try:
+            from google import genai as genai_new  # type: ignore
+        except ImportError:
+            logger.error("google.genai not available for image generation")
+            return None, None
 
         # Add retry logic for timeouts and transient errors
         max_retries = 3
@@ -1519,14 +1742,25 @@ def main() -> None:
     else:
         print("⏭️  Prismic upload disabled: Only local files will be created")
 
-    # Get pillar content mode
-    pillar_choice: str = input(
-        "Generate PILLAR content (longer, hub pages)? (y/n) [n]: ").strip().lower()
-    is_pillar_mode: bool = pillar_choice in ['y', 'yes']
+    # Get content mode
+    print("\n📝 Content mode options:")
+    print("   1. Standard - focused blog content (3000+ words)")
+    print("   2. Pillar - comprehensive hub content (4500+ words)")
+    print("   3. AI Visibility - optimized for ChatGPT/Gemini citation (3500+ words)")
+    mode_choice: str = input("Select content mode (1/2/3) [1]: ").strip()
+    if not mode_choice:
+        mode_choice = "1"
+
+    is_pillar_mode: bool = mode_choice == "2"
+    is_ai_visibility_mode: bool = mode_choice == "3"
 
     if is_pillar_mode:
         print("📚 Pillar mode: Will generate comprehensive hub content (4500+ words)")
         print("   └─ Best for: topic overviews, ultimate guides, cluster hubs")
+    elif is_ai_visibility_mode:
+        print("🤖 AI Visibility mode: Will generate citation-optimized content (3500+ words)")
+        print("   └─ Includes: comparison tables, FAQ sections, 'When to Choose Factory AI' recommendations")
+        print("   └─ Optimized for: ChatGPT, Gemini, and AI assistant citations")
     else:
         print("📝 Standard mode: Will generate focused blog content (3000+ words)")
 
@@ -1609,11 +1843,11 @@ def main() -> None:
                 continue
 
             # Generate content
-            content_type = "pillar content" if is_pillar_mode else "content"
+            content_type = "pillar content" if is_pillar_mode else ("AI visibility content" if is_ai_visibility_mode else "content")
             print(f"  ✍️  Generating {content_type}...")
             logger.info(f"Generating {content_type}...")
             blog_post = generator.generate_content_with_gemini(
-                keyword, research_data, is_pillar=is_pillar_mode)
+                keyword, research_data, is_pillar=is_pillar_mode, is_ai_visibility=is_ai_visibility_mode)
 
             if not blog_post:
                 # Check if a draft was saved (under-length content)

@@ -1,0 +1,16 @@
+{
+  "meta_title": "Preventing Repeat Failures: A Defect Elimination Framework",
+  "meta_description": "Stop the \"fix-break-fix\" cycle. Learn how to prevent repeat failures after repair using Defect Elimination, MQA, and data-driven reliability strategies.",
+  "title": "Breaking the Cycle: A Comprehensive Framework for Preventing Repeat Failures After Repair",
+  "keyword": "preventing repeat failures after repair",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/preventing-repeat-failures-after-repair.png",
+    "alt": "Hero image for Breaking the Cycle: A Comprehensive Framework for Preventing Repeat Failures After Repair",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern, clean industrial manufacturing facility. In the foreground, a diverse team of two maintenance professionals (one male, one female) wearing hard hats, safety glasses, and high-visibility vests are inspecting a large electric motor and pump assembly. The female technician is holding a laser alignment tool (showing the back of the device, no screen visible) against the coupling. The male technician is holding a tablet (back facing camera) and pointing at a specific part of the machine. The background is slightly blurred but shows automated conveyors and bright industrial lighting. The atmosphere is calm, professional, and focused on precision, not chaotic repair. No text or overlays.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2332,
+  "link_count": 9
+}

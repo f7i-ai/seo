@@ -1,0 +1,16 @@
+{
+  "meta_title": "Signal Analysis for Condition Monitoring: The Engineer’s Guide",
+  "meta_description": "Move beyond basic trendlines. A deep dive into signal analysis techniques—FFT, time waveform, and MCSA—that translate raw data into reliability decisions.",
+  "title": "Signal Analysis for Condition Monitoring: Decoding Asset Health Beyond the Noise",
+  "keyword": "signal analysis for condition monitoring",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/signal-analysis-for-condition-monitoring.png",
+    "alt": "Hero image for Signal Analysis for Condition Monitoring: Decoding Asset Health Beyond the Noise",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A close-up, photorealistic shot inside a modern industrial facility. Focus on a reliability engineer's hand holding a high-end vibration analyzer stylus against the bearing housing of a large, blue electric motor. In the background, slightly out of focus, is a complex array of piping and industrial machinery. The lighting is dramatic, highlighting the texture of the metal and the digital waveform display on the analyzer screen (which shows a spectral graph, not text). The engineer is wearing a safety glove and a high-visibility sleeve. The image conveys precision, technology, and industrial grit. No text overlays.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 3642,
+  "link_count": 7
+}

@@ -1,0 +1,34 @@
+{
+  "meta_title": "What is Predictive Maintenance? Complete Guide (2026)",
+  "meta_description": "Predictive maintenance uses sensors and AI to predict equipment failures before they happen. Learn how PdM works, its benefits, and how to get started.",
+  "title": "What is Predictive Maintenance? The Complete Guide for 2026",
+  "keyword": "what is predictive maintenance",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/what-is-predictive-maintenance.png",
+    "alt": "Hero image for What is Predictive Maintenance",
+    "source": "pending"
+  },
+  "image_prompt": "A photo-realistic industrial manufacturing facility showing a maintenance technician (diverse, wearing safety glasses and high-visibility vest) examining a large industrial motor with a tablet device (showing only the back). Vibration sensors and temperature monitors are visible on the equipment. Modern factory setting with clean machinery and good lighting. No text or logos visible. Professional, educational tone.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 3412,
+  "link_count": 16,
+  "content_type": "pillar",
+  "target_audience": "Maintenance managers, operations leaders, facility managers seeking to understand predictive maintenance fundamentals",
+  "aeo_optimized": true,
+  "featured_snippet_target": "Predictive maintenance (PdM) is a proactive maintenance strategy that uses real-time sensor data and machine learning algorithms to predict when equipment will fail, allowing repairs to be scheduled before breakdown occurs.",
+  "faq_section": true,
+  "internal_links": [
+    "/blog/the-predictive-maintenance-value-explained-using-the-pf-curve",
+    "/blog/how-to-get-started-with-predictive-maintenance-a-12-step-roadmap-for-reliability-leaders",
+    "/blog/the-definitive-guide-to-implementing-predictive-maintenance-software",
+    "/blog/the-predictive-maintenance-tools-playbook-for-2025-building-your-complete-tech-stack",
+    "/blog/the-failure-history-method-for-predictive-maintenance-roi-calculation",
+    "/blog/predictive-maintenance-for-food-processing-complete-guide",
+    "/blog/predictive-vs-preventive-maintenance-cost-benefit-analysis-the-2025-cfo-ready-guide",
+    "/blog/predictive-maintenance-australia-guide",
+    "/blog/condition-monitoring-technologies-explained",
+    "/resources/roi-calculator",
+    "/features/ai-predictive-maintenance"
+  ]
+}
