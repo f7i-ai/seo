@@ -1,0 +1,84 @@
+2026-02-10 12:34:13,295 - INFO - ============================================================
+2026-02-10 12:34:13,295 - INFO - AI Manufacturing Content Generator started
+2026-02-10 12:34:13,295 - INFO - ============================================================
+2026-02-10 12:34:14,061 - WARNING - google.genai not available - image generation disabled
+2026-02-10 12:34:14,061 - ERROR - Image client not available
+2026-02-10 12:34:17,062 - ERROR - Image client not available
+2026-02-10 12:34:20,072 - ERROR - Image client not available
+2026-02-10 12:34:23,080 - ERROR - Image client not available
+2026-02-10 12:34:26,085 - ERROR - Image client not available
+2026-02-10 12:34:29,093 - ERROR - Image client not available
+2026-02-10 12:34:32,096 - ERROR - Image client not available
+2026-02-10 12:34:35,106 - ERROR - Image client not available
+2026-02-10 12:34:53,552 - INFO - ============================================================
+2026-02-10 12:34:53,552 - INFO - AI Manufacturing Content Generator started
+2026-02-10 12:34:53,552 - INFO - ============================================================
+2026-02-10 12:34:54,590 - INFO - Generating image: physical-layer.png (attempt 1)
+2026-02-10 12:35:16,437 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-10 12:35:17,181 - INFO - Image saved: /Users/tim/code/f7i-public/public/images/ai-manufacturing/physical-layer.png
+2026-02-10 12:35:20,191 - INFO - Generating image: robotics-layer.png (attempt 1)
+2026-02-10 12:35:37,529 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-10 12:35:38,352 - INFO - Image saved: /Users/tim/code/f7i-public/public/images/ai-manufacturing/robotics-layer.png
+2026-02-10 12:35:41,363 - INFO - Generating image: integration-layer.png (attempt 1)
+2026-02-10 12:35:57,870 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-10 12:35:58,687 - INFO - Image saved: /Users/tim/code/f7i-public/public/images/ai-manufacturing/integration-layer.png
+2026-02-10 12:36:01,693 - INFO - Generating image: agents-layer.png (attempt 1)
+2026-02-10 12:36:17,437 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-10 12:36:18,300 - INFO - Image saved: /Users/tim/code/f7i-public/public/images/ai-manufacturing/agents-layer.png
+2026-02-10 12:36:21,310 - INFO - Generating image: supply-chain.png (attempt 1)
+2026-02-10 12:36:37,133 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-10 12:36:37,863 - INFO - Image saved: /Users/tim/code/f7i-public/public/images/ai-manufacturing/supply-chain.png
+2026-02-10 12:36:40,870 - INFO - Generating image: quality-control.png (attempt 1)
+2026-02-10 12:36:57,645 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-10 12:36:58,390 - INFO - Image saved: /Users/tim/code/f7i-public/public/images/ai-manufacturing/quality-control.png
+2026-02-10 12:37:01,396 - INFO - Generating image: predictive-maintenance.png (attempt 1)
+2026-02-10 12:37:19,113 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-10 12:37:19,882 - INFO - Image saved: /Users/tim/code/f7i-public/public/images/ai-manufacturing/predictive-maintenance.png
+2026-02-10 12:37:22,891 - INFO - Generating image: print-manufacturing.png (attempt 1)
+2026-02-10 12:37:40,205 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-10 12:37:41,016 - INFO - Image saved: /Users/tim/code/f7i-public/public/images/ai-manufacturing/print-manufacturing.png
+2026-02-10 13:38:38,756 - INFO - ============================================================
+2026-02-10 13:38:38,756 - INFO - AI Manufacturing Content Generator started
+2026-02-10 13:38:38,756 - INFO - ============================================================
+2026-02-10 13:38:39,900 - INFO - Generating image: physical-layer.jpg (attempt 1)
+2026-02-10 13:38:58,584 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-10 13:38:59,388 - INFO - Image saved: /Users/tim/code/f7i-public/public/images/ai-manufacturing/physical-layer.jpg
+2026-02-10 13:39:02,389 - INFO - Generating image: robotics-layer.jpg (attempt 1)
+2026-02-10 13:39:19,692 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-10 13:39:20,506 - INFO - Image saved: /Users/tim/code/f7i-public/public/images/ai-manufacturing/robotics-layer.jpg
+2026-02-10 13:39:23,510 - INFO - Generating image: integration-layer.jpg (attempt 1)
+2026-02-10 13:39:39,555 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-10 13:39:40,371 - INFO - Image saved: /Users/tim/code/f7i-public/public/images/ai-manufacturing/integration-layer.jpg
+2026-02-10 13:39:43,376 - INFO - Generating image: agents-layer.jpg (attempt 1)
+2026-02-10 13:40:01,587 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-10 13:40:02,360 - INFO - Image saved: /Users/tim/code/f7i-public/public/images/ai-manufacturing/agents-layer.jpg
+2026-02-10 14:02:01,792 - INFO - ============================================================
+2026-02-10 14:02:01,792 - INFO - ============================================================
+2026-02-10 14:02:01,792 - INFO - AI Manufacturing Content Generator started
+2026-02-10 14:02:01,792 - INFO - AI Manufacturing Content Generator started
+2026-02-10 14:02:01,792 - INFO - ============================================================
+2026-02-10 14:02:01,792 - INFO - ============================================================
+2026-02-10 14:02:03,037 - INFO - Generating image: people-maintenance-tech.jpg (attempt 1)
+2026-02-10 14:02:03,037 - INFO - Generating image: people-plant-manager.jpg (attempt 1)
+2026-02-10 14:02:18,216 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-10 14:02:19,010 - INFO - Image saved: /Users/tim/code/f7i-public/public/images/ai-manufacturing/people-plant-manager.jpg
+2026-02-10 14:02:22,746 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-10 14:02:23,555 - INFO - Image saved: /Users/tim/code/f7i-public/public/images/ai-manufacturing/people-maintenance-tech.jpg
+2026-02-10 14:02:33,563 - INFO - ============================================================
+2026-02-10 14:02:33,563 - INFO - ============================================================
+2026-02-10 14:02:33,563 - INFO - ============================================================
+2026-02-10 14:02:33,563 - INFO - AI Manufacturing Content Generator started
+2026-02-10 14:02:33,563 - INFO - AI Manufacturing Content Generator started
+2026-02-10 14:02:33,563 - INFO - AI Manufacturing Content Generator started
+2026-02-10 14:02:33,563 - INFO - ============================================================
+2026-02-10 14:02:33,563 - INFO - ============================================================
+2026-02-10 14:02:33,563 - INFO - ============================================================
+2026-02-10 14:02:34,863 - INFO - Generating image: people-quality-engineer.jpg (attempt 1)
+2026-02-10 14:02:34,863 - INFO - Generating image: people-supply-chain.jpg (attempt 1)
+2026-02-10 14:02:34,863 - INFO - Generating image: people-machine-operator.jpg (attempt 1)
+2026-02-10 14:02:50,261 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-10 14:02:51,044 - INFO - Image saved: /Users/tim/code/f7i-public/public/images/ai-manufacturing/people-supply-chain.jpg
+2026-02-10 14:02:51,328 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-10 14:02:52,098 - INFO - Image saved: /Users/tim/code/f7i-public/public/images/ai-manufacturing/people-machine-operator.jpg
+2026-02-10 14:02:52,384 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-10 14:02:53,190 - INFO - Image saved: /Users/tim/code/f7i-public/public/images/ai-manufacturing/people-quality-engineer.jpg
