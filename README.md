@@ -5,7 +5,7 @@ A comprehensive system for automated SEO content generation and publishing to Pr
 ## 🚀 Features
 
 ### Content Generation
-- **AI-Powered Research**: Uses Google Gemini 2.5 Pro for deep keyword research and competitive analysis
+- **AI-Powered Research**: Uses Google Gemini 3 Pro for deep keyword research and competitive analysis
 - **High-Quality Content**: Generates 2500-4000 word blog posts with proper structure and SEO optimization
 - **Image Generation**: Creates hero images using OpenAI's GPT-4 Image Generation
 - **Link Validation**: Automatically validates internal and external links
@@ -314,7 +314,7 @@ python seo_content_generator.py
 
 ## 📄 License
 
-This project is part of the f7i.ai marketing system and is proprietary to Factory AI.
+This project is part of the f7i.ai marketing system and is proprietary to Factory AI. https://f7i.ai
 
 ## 🆘 Support
 
