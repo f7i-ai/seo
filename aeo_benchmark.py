@@ -1,9 +1,13 @@
 """
 AEO Benchmark Runner — measures Factory AI visibility across AI answer engines.
 
-Queries ChatGPT, Gemini, Claude, and Perplexity with a set of buyer-journey
-prompts, scores each response for Factory AI inclusion, and produces aggregate
-scorecards.
+Uses flagship models and optional web search so mention rates reflect the
+normal user experience. Queries ChatGPT, Gemini, Claude, and Perplexity with
+buyer-journey prompts, scores each response for Factory AI inclusion, and
+produces aggregate scorecards.
+
+Web search: Set SERPER_API_KEY to let ChatGPT, Gemini, and Claude use a
+search tool (Perplexity has built-in search). Use --no-search to disable.
 
 Usage:
     python aeo_benchmark.py                          # Full run, all engines
@@ -11,6 +15,7 @@ Usage:
     python aeo_benchmark.py --limit 10               # First N prompts (testing)
     python aeo_benchmark.py --stage purchase_intent   # Single stage only
     python aeo_benchmark.py --resume                  # Skip already-completed prompts
+    python aeo_benchmark.py --no-search               # Disable web search
 """
 
 import argparse
@@ -65,6 +70,7 @@ STAGES = (
 API_DELAY_SECONDS = 2.0
 MAX_RETRIES = 3
 
+# Flagship models so mention rates reflect normal user experience (with optional search)
 CHATGPT_MODEL = "gpt-4o"
 GEMINI_MODEL = "gemini-2.5-flash"
 CLAUDE_MODEL = "claude-sonnet-4-20250514"
@@ -80,6 +86,9 @@ AI_SOURCE_MAP: dict[str, str] = {
     "claude.ai": "claude",
     "perplexity.ai": "perplexity",
 }
+
+SERPER_API_URL = "https://google.serper.dev/search"
+MAX_SEARCH_TOOL_ROUNDS = 3
 
 # ---------------------------------------------------------------------------
 # Pydantic model for scored responses
@@ -140,6 +149,63 @@ def load_prompts(
 
 
 # ---------------------------------------------------------------------------
+# Web search (Serper) for tool-augmented answers
+# ---------------------------------------------------------------------------
+
+
+def run_web_search(query: str) -> str:
+    """Call Serper API and return a short text summary of organic results. Empty if no key or error."""
+    key = os.getenv("SERPER_API_KEY")
+    if not key or not query.strip():
+        return ""
+    try:
+        resp = http_requests.post(
+            SERPER_API_URL,
+            headers={"X-API-KEY": key, "Content-Type": "application/json"},
+            json={"q": query.strip()},
+            timeout=15,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        parts: list[str] = []
+        for item in data.get("organic", [])[:8]:
+            title = item.get("title", "")
+            link = item.get("link", "")
+            snippet = item.get("snippet", "")
+            if title or snippet:
+                parts.append(f"- {title}\n  {link}\n  {snippet}")
+        return "\n\n".join(parts) if parts else ""
+    except Exception as e:
+        log.warning("Serper search failed: %s", e)
+        return ""
+
+
+# Tool definitions for OpenAI and Anthropic (model can call search_web when it wants live info)
+SEARCH_TOOL_OPENAI = {
+    "type": "function",
+    "function": {
+        "name": "search_web",
+        "description": "Search the web for current information. Use when the user asks about companies, products, comparisons, or anything that may need up-to-date results.",
+        "parameters": {
+            "type": "object",
+            "properties": {"query": {"type": "string", "description": "Search query"}},
+            "required": ["query"],
+        },
+    },
+}
+
+SEARCH_TOOL_ANTHROPIC = {
+    "name": "search_web",
+    "description": "Search the web for current information. Use when the user asks about companies, products, comparisons, or anything that may need up-to-date results.",
+    "input_schema": {
+        "type": "object",
+        "properties": {"query": {"type": "string", "description": "Search query"}},
+        "required": ["query"],
+    },
+}
+
+
+# ---------------------------------------------------------------------------
 # Engine clients
 # ---------------------------------------------------------------------------
 
@@ -160,35 +226,127 @@ def _retry(fn, label: str):
             time.sleep(wait)
 
 
-def query_chatgpt(prompt: str, client: openai.OpenAI) -> str:
+def query_chatgpt(prompt: str, client: openai.OpenAI, use_search: bool = False) -> str:
     def _call():
-        resp = client.chat.completions.create(
-            model=CHATGPT_MODEL,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        return resp.choices[0].message.content or ""
+        if not use_search:
+            resp = client.chat.completions.create(
+                model=CHATGPT_MODEL,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            return resp.choices[0].message.content or ""
+
+        messages: list = [{"role": "user", "content": prompt}]
+        for _ in range(MAX_SEARCH_TOOL_ROUNDS):
+            resp = client.chat.completions.create(
+                model=CHATGPT_MODEL,
+                messages=messages,
+                tools=[SEARCH_TOOL_OPENAI],
+            )
+            msg = resp.choices[0].message
+            if not getattr(msg, "tool_calls", None):
+                return msg.content or ""
+            messages.append({
+                "role": "assistant",
+                "content": msg.content or None,
+                "tool_calls": [
+                    {"id": tc.id, "type": "function", "function": {"name": tc.function.name, "arguments": tc.function.arguments or "{}"}}
+                    for tc in msg.tool_calls
+                ],
+            })
+            for tc in msg.tool_calls:
+                name = tc.function.name
+                args = json.loads(tc.function.arguments or "{}")
+                if name == "search_web":
+                    result = run_web_search(args.get("query", prompt))
+                else:
+                    result = ""
+                messages.append({
+                    "role": "tool",
+                    "tool_call_id": tc.id,
+                    "content": result or "(No results)",
+                })
+        return (resp.choices[0].message.content or "") if messages else ""
+
     return _retry(_call, "ChatGPT")
 
 
-def query_gemini(prompt: str, model) -> str:
+def query_gemini(prompt: str, model, use_search: bool = False) -> str:
     def _call():
-        resp = model.generate_content(prompt)
+        if use_search:
+            search_results = run_web_search(prompt)
+            if search_results:
+                prompt_with_search = (
+                    "Here are current web search results you may use to inform your answer:\n\n"
+                    f"{search_results}\n\n"
+                    "User question: " + prompt
+                )
+            else:
+                prompt_with_search = prompt
+        else:
+            prompt_with_search = prompt
+        resp = model.generate_content(prompt_with_search)
         return resp.text
     return _retry(_call, "Gemini")
 
 
-def query_claude(prompt: str, client: anthropic.Anthropic) -> str:
+def _claude_content_to_dict(block) -> dict:
+    """Convert SDK content block to API-style dict."""
+    if hasattr(block, "type"):
+        if block.type == "text":
+            return {"type": "text", "text": getattr(block, "text", "")}
+        if block.type == "tool_use":
+            return {
+                "type": "tool_use",
+                "id": getattr(block, "id", ""),
+                "name": getattr(block, "name", ""),
+                "input": getattr(block, "input", {}) or {},
+            }
+    return {"type": "text", "text": str(block)}
+
+
+def query_claude(prompt: str, client: anthropic.Anthropic, use_search: bool = False) -> str:
     def _call():
-        resp = client.messages.create(
-            model=CLAUDE_MODEL,
-            max_tokens=4096,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        return resp.content[0].text
+        if not use_search:
+            resp = client.messages.create(
+                model=CLAUDE_MODEL,
+                max_tokens=4096,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            return resp.content[0].text
+
+        messages: list = [{"role": "user", "content": prompt}]
+        for _ in range(MAX_SEARCH_TOOL_ROUNDS):
+            resp = client.messages.create(
+                model=CLAUDE_MODEL,
+                max_tokens=4096,
+                messages=messages,
+                tools=[SEARCH_TOOL_ANTHROPIC],
+            )
+            if resp.stop_reason == "end_turn":
+                return (resp.content[0].text if resp.content and hasattr(resp.content[0], "text") else "") or ""
+            tool_use_parts = [p for p in resp.content if getattr(p, "type", None) == "tool_use"]
+            if not tool_use_parts:
+                return (resp.content[0].text if resp.content and hasattr(resp.content[0], "text") else "") or ""
+            assistant_content = [_claude_content_to_dict(p) for p in resp.content]
+            tool_results: list = []
+            for p in resp.content:
+                if getattr(p, "type", None) == "tool_use":
+                    q = getattr(p, "input", {}) or {}
+                    result = run_web_search(q.get("query", prompt))
+                    tool_results.append({
+                        "type": "tool_result",
+                        "tool_use_id": getattr(p, "id", ""),
+                        "content": result or "(No results)",
+                    })
+            messages.append({"role": "assistant", "content": assistant_content})
+            messages.append({"role": "user", "content": tool_results})
+        return (resp.content[0].text if resp.content and hasattr(resp.content[0], "text") else "") or ""
+
     return _retry(_call, "Claude")
 
 
 def query_perplexity(prompt: str, client: openai.OpenAI) -> str:
+    """Perplexity Sonar has built-in search; no extra tool needed."""
     def _call():
         resp = client.chat.completions.create(
             model=PERPLEXITY_MODEL,
@@ -247,11 +405,12 @@ def score_response(response_text: str, scorer_model) -> ResponseScore:
 
 
 def fetch_clarity_traffic(token: str, num_days: int = 3) -> list[dict]:
-    """Pull traffic data from Clarity broken down by Source and URL."""
+    """Pull traffic data from Clarity: Source, URL (landing page clicked), Country/Region."""
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
     }
+    # URL = landing page on our site (the page that was mentioned/clicked from the AI engine)
     params = {
         "numOfDays": str(num_days),
         "dimension1": "Source",
@@ -264,9 +423,34 @@ def fetch_clarity_traffic(token: str, num_days: int = 3) -> list[dict]:
     return resp.json()
 
 
+def _page_url_from_row(row: dict) -> str:
+    """Get landing page URL from a Clarity row; API may use different keys for URL dimension."""
+    for key in ("URL", "Url", "url", "Page URL", "Landing Page", "Page", "pageUrl"):
+        val = row.get(key)
+        if val and str(val).strip():
+            return str(val).strip()
+    for key, val in row.items():
+        if val and isinstance(val, str) and ("url" in key.lower() or key.lower() == "page"):
+            return val.strip()
+    return ""
+
+
+def _region_from_row(row: dict) -> str:
+    """Get region from a Clarity row; API may use different keys for Country/Region."""
+    for key in ("Country/Region", "Country/region", "Country", "Region", "country_region", "countryRegion"):
+        val = row.get(key)
+        if val and str(val).strip():
+            return str(val).strip()
+    for key, val in row.items():
+        if val and isinstance(val, str) and ("country" in key.lower() or "region" in key.lower()):
+            return val.strip()
+    return ""
+
+
 def extract_ai_referral_traffic(clarity_data: list[dict]) -> list[dict]:
     """Filter Clarity response to only AI-engine referral sessions."""
     ai_traffic: list[dict] = []
+    _logged_keys = False
 
     for metric_block in clarity_data:
         metric_name = metric_block.get("metricName", "")
@@ -281,11 +465,16 @@ def extract_ai_referral_traffic(clarity_data: list[dict]) -> list[dict]:
                     break
             if not engine:
                 continue
+            url = _page_url_from_row(row)
+            region = _region_from_row(row)
+            if not _logged_keys and row and (not url or not region):
+                log.info("Clarity row keys (for url/region debug): %s", list(row.keys()))
+                _logged_keys = True
             ai_traffic.append({
                 "engine": engine,
                 "source": source,
-                "url": row.get("URL", ""),
-                "region": row.get("Country/Region", ""),
+                "url": url,
+                "region": region,
                 "sessions": int(row.get("totalSessionCount", 0)),
                 "bot_sessions": int(row.get("totalBotSessionCount", 0)),
                 "users": int(row.get("distantUserCount", 0)),
@@ -299,14 +488,14 @@ def summarise_clarity_by_engine(ai_traffic: list[dict]) -> list[dict]:
     """Aggregate AI referral traffic per engine."""
     from collections import defaultdict
     agg: dict[str, dict[str, float]] = defaultdict(
-        lambda: {"sessions": 0, "users": 0, "pages_per_session_sum": 0.0, "url_count": 0}
+        lambda: {"sessions": 0, "users": 0, "pages_per_session_sum": 0.0, "landing_count": 0}
     )
     for row in ai_traffic:
         eng = row["engine"]
         agg[eng]["sessions"] += row["sessions"]
         agg[eng]["users"] += row["users"]
         agg[eng]["pages_per_session_sum"] += row["pages_per_session"] * row["sessions"]
-        agg[eng]["url_count"] += 1
+        agg[eng]["landing_count"] += 1
 
     summary = []
     for eng in sorted(agg):
@@ -317,7 +506,7 @@ def summarise_clarity_by_engine(ai_traffic: list[dict]) -> list[dict]:
             "sessions": int(s["sessions"]),
             "users": int(s["users"]),
             "pages_per_session": round(avg_pps, 2),
-            "landing_pages": int(s["url_count"]),
+            "landing_pages": int(s["landing_count"]),
         })
     return summary
 
@@ -492,11 +681,11 @@ def write_summary_md(
             )
 
     if clarity_top_pages:
-        lines.append("\n\n## Top AI-Referred Landing Pages\n")
-        lines.append("| Engine | URL | Sessions |")
-        lines.append("|--------|-----|----------|\n")
+        lines.append("\n\n## Top landing pages (page clicked from AI engine)\n")
+        lines.append("| Engine | Page (URL) | Region | Sessions |")
+        lines.append("|--------|------------|--------|----------|\n")
         for r in clarity_top_pages[:20]:
-            lines.append(f"| {r['engine']} | {r['url']} | {r['sessions']} |")
+            lines.append(f"| {r['engine']} | {r['url']} | {r['region']} | {r['sessions']} |")
 
     lines.append("")
     with open(path, "w", encoding="utf-8") as f:
@@ -528,13 +717,13 @@ def print_summary(
     if clarity_summary:
         log.info("")
         log.info("AI REFERRAL TRAFFIC (Clarity, last 72h)")
-        chdr = f"{'Engine':<14} {'Sessions':>10} {'Users':>10} {'Pages/Sess':>12} {'Pages':>8}"
+        chdr = f"{'Engine':<14} {'Sessions':>10} {'Users':>10} {'Pages/Sess':>12} {'Landings':>10}"
         log.info(chdr)
         log.info("-" * len(chdr))
         for r in clarity_summary:
             log.info(
                 f"{r['engine']:<14} {r['sessions']:>10} {r['users']:>10} "
-                f"{r['pages_per_session']:>12} {r['landing_pages']:>8}"
+                f"{r['pages_per_session']:>12} {r['landing_pages']:>10}"
             )
 
 
@@ -609,6 +798,7 @@ def run_benchmark(
     limit: Optional[int],
     resume: bool,
     skip_clarity: bool = False,
+    use_search: bool = False,
 ) -> None:
     prompts = load_prompts(stage_filter=stage_filter, limit=limit)
     if not prompts:
@@ -616,6 +806,8 @@ def run_benchmark(
         sys.exit(1)
 
     log.info("Loaded %d prompts across stages: %s", len(prompts), ", ".join(sorted({p.stage for p in prompts})))
+    if use_search:
+        log.info("Web search enabled (ChatGPT/Gemini/Claude can use Serper); Perplexity has built-in search")
 
     clients = build_clients(engines)
     scorer = build_scorer()
@@ -638,14 +830,14 @@ def run_benchmark(
             progress = f"[{done_count}/{total_tasks}]"
             log.info("%s  %-12s  stage=%-17s  %s", progress, eng, bp.stage, bp.prompt[:60])
 
-            # Query engine
+            # Query engine (use_search: ChatGPT/Gemini/Claude get web search; Perplexity always has search)
             try:
                 if eng == "chatgpt":
-                    response_text = query_chatgpt(bp.prompt, clients["chatgpt"])
+                    response_text = query_chatgpt(bp.prompt, clients["chatgpt"], use_search=use_search)
                 elif eng == "gemini":
-                    response_text = query_gemini(bp.prompt, clients["gemini"])
+                    response_text = query_gemini(bp.prompt, clients["gemini"], use_search=use_search)
                 elif eng == "claude":
-                    response_text = query_claude(bp.prompt, clients["claude"])
+                    response_text = query_claude(bp.prompt, clients["claude"], use_search=use_search)
                 elif eng == "perplexity":
                     response_text = query_perplexity(bp.prompt, clients["perplexity"])
                 else:
@@ -725,6 +917,7 @@ def main() -> None:
     parser.add_argument("--stage", default=None, choices=STAGES, help="Run a single stage only")
     parser.add_argument("--resume", action="store_true", help="Skip already-completed prompt/engine combos in today's run")
     parser.add_argument("--no-clarity", action="store_true", help="Skip Clarity traffic data fetch")
+    parser.add_argument("--no-search", action="store_true", help="Disable web search for ChatGPT/Gemini/Claude (set SERPER_API_KEY to enable search)")
     args = parser.parse_args()
 
     selected_engines = [e.strip().lower() for e in args.engines.split(",")]
@@ -732,12 +925,15 @@ def main() -> None:
         if e not in ENGINES:
             parser.error(f"Unknown engine: {e}. Choose from {ENGINES}")
 
+    use_search = bool(os.getenv("SERPER_API_KEY")) and not args.no_search
+
     run_benchmark(
         engines=selected_engines,
         stage_filter=args.stage,
         limit=args.limit,
         resume=args.resume,
         skip_clarity=args.no_clarity,
+        use_search=use_search,
     )
 
 
