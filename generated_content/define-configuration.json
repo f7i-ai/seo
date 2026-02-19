@@ -1,0 +1,16 @@
+{
+  "meta_title": "Define Configuration: The Industrial DNA of Asset Reliability (2026)",
+  "meta_description": "Configuration drift causes 70% of OT failures. Master asset configuration management with the 2026 framework for predictive reliability using Factory AI.",
+  "title": "Define Configuration: The Authoritative Guide to Industrial Asset Configuration Management",
+  "keyword": "define configuration",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/define-configuration.png",
+    "alt": "Hero image for Define Configuration: The Authoritative Guide to Industrial Asset Configuration Management",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern manufacturing facility. In the foreground, a diverse group of reliability engineers and maintenance technicians (wearing hard hats, safety glasses, and high-visibility vests) are gathered around a large industrial pump system. One engineer is holding a tablet (back of device visible only) pointing toward the machine, implying digital scanning or augmented reality interaction. The background shows a busy, clean factory floor with blurred motion of conveyors and robotic arms. The lighting is professional and cool-toned, highlighting the metallic textures of the machinery. No text or words should be visible in the image. The atmosphere conveys precision, technology, and teamwork.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2234,
+  "link_count": 17
+}

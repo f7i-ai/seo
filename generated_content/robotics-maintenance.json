@@ -1,0 +1,16 @@
+{
+  "meta_title": "Robotics Maintenance: The Hybrid Strategy for Zero Downtime",
+  "meta_description": "Stop relying on generic OEM manuals. Master robotics maintenance with a hybrid model combining preventive checklists and predictive data to eliminate downtime.",
+  "title": "Robotics Maintenance in 2026: Moving Beyond the Manual to a Hybrid Reliability Model",
+  "keyword": "robotics maintenance",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/robotics-maintenance.png",
+    "alt": "Hero image for Robotics Maintenance in 2026: Moving Beyond the Manual to a Hybrid Reliability Model",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, high-resolution image inside a modern, clean manufacturing facility. In the foreground, a diverse team of two maintenance technicians (one male, one female) wearing hard hats, safety glasses, and high-visibility vests are inspecting a large, orange industrial robotic arm. The female technician is holding a tablet (back of device visible) displaying data charts, while pointing at the robot's \"elbow\" joint. The male technician is holding a specialized grease gun, looking at the joint. The background shows a blurred production line with other robots in motion, conveying a high-tech, active environment. Lighting is bright and industrial cool-white. No text or words in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2511,
+  "link_count": 9
+}

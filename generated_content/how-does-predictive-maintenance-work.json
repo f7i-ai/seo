@@ -1,0 +1,16 @@
+{
+  "meta_title": "How Does Predictive Maintenance Work? The 2026 Technical Guide",
+  "meta_description": "Move beyond theory. We trace the anatomy of a prediction—from sensor data to algorithm to work order—explaining exactly how predictive maintenance works to",
+  "title": "How Does Predictive Maintenance Work? The Anatomy of a Prediction",
+  "keyword": "how does predictive maintenance work",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/how-does-predictive-maintenance-work.png",
+    "alt": "Hero image for How Does Predictive Maintenance Work? The Anatomy of a Prediction",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern, clean manufacturing facility. In the foreground, a reliability engineer (wearing a hard hat, safety glasses, and a high-visibility vest) is inspecting a large industrial electric motor. The engineer is holding a ruggedized tablet in one hand (showing the back of the device, no screen visible) and is placing a wireless vibration sensor on the motor housing with the other hand. In the background, slightly out of focus, other diverse workers in PPE are monitoring an automated conveyor line. The lighting is professional, with cool blue and industrial steel tones, highlighting the blend of heavy machinery and modern technology. No text or overlays in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2468,
+  "link_count": 11
+}

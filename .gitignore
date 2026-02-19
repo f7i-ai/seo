@@ -5,3 +5,4 @@ __pycache__/*
 node_modules/
 generated_content/drafts/*
 generated_content/*.png
+aeo_results/*

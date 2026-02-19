@@ -1,0 +1,16 @@
+{
+  "meta_title": "The Deming Cycle in 2026: The Engine of Reliability Centered Maintenance",
+  "meta_description": "70% of unplanned downtime traces to broken processes. The Deming Cycle (PDCA) is the framework that fixes it. Here is the definitive guide to automating PDCA.",
+  "title": "The Deming Cycle (PDCA): The Definitive Guide to Continuous Improvement in Maintenance",
+  "keyword": "deming cycle",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/deming-cycle.png",
+    "alt": "Hero image for The Deming Cycle (PDCA): The Definitive Guide to Continuous Improvement in Maintenance",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, high-quality hero image inside a modern manufacturing facility. The scene features a diverse group of reliability engineers and maintenance technicians (men and women of various ethnicities) wearing standard PPE including hard hats, safety glasses, and high-visibility vests. They are gathered around a large industrial motor and pump assembly. One technician is pointing at a specific component of the machine, while another holds a tablet (back of the device visible only) as if referencing data. The background is slightly blurred but shows a busy, clean factory floor with conveyors and piping. The lighting is professional and industrial, highlighting the team's focus and the machinery. No text or overlays in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2039,
+  "link_count": 21
+}

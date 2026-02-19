@@ -1,0 +1,16 @@
+{
+  "meta_title": "AI Mechanical Failures: From Detection to Automated Resolution",
+  "meta_description": "Stop reacting to downtime. Learn how AI predicts mechanical failures, calculates Remaining Useful Life (RUL), and automates CMMS workflows for reliability.",
+  "title": "AI Mechanical Failures: How to Predict, Diagnose, and Automate Repairs Before Breakdown",
+  "keyword": "ai mechanical failures",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/ai-mechanical-failures.png",
+    "alt": "Hero image for AI Mechanical Failures: How to Predict, Diagnose, and Automate Repairs Before Breakdown",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern industrial manufacturing facility. In the foreground, a reliability engineer (wearing a white hard hat, safety glasses, and a high-visibility vest) is looking at a tablet held in their left hand (back of tablet visible, no screen content). They are standing next to a large, complex industrial electric motor and pump assembly. The machinery has small, glowing wireless sensors attached to the bearing housings. In the background, slightly out of focus, other technicians in blue uniforms are working on a conveyor line. The lighting is a mix of cool industrial LED and warm ambient light, highlighting the metallic textures of the machinery. The atmosphere conveys precision, technology, and safety. 16:9 aspect ratio.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2148,
+  "link_count": 12
+}

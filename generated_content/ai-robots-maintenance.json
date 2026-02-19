@@ -1,0 +1,16 @@
+{
+  "meta_title": "AI Robots Maintenance: Implementation Guide for 2026 Leaders",
+  "meta_description": "A technical guide on deploying AI robots for predictive maintenance and maintaining the robotic assets themselves. ROI, CMMS integration, and PM schedules.",
+  "title": "AI Robots in Maintenance: A Technical Implementation Guide for 2026",
+  "keyword": "ai robots maintenance",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/ai-robots-maintenance.png",
+    "alt": "Hero image for AI Robots in Maintenance: A Technical Implementation Guide for 2026",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, wide-angle shot inside a modern, clean manufacturing facility with high ceilings and industrial lighting. In the foreground, a yellow quadruped robot (similar to Boston Dynamics Spot) is standing next to a large industrial pump, with a mounted thermal camera payload focused on the pump motor. Slightly behind the robot, a diverse group of two maintenance technicians (one male, one female) wearing hard hats, safety glasses, and high-visibility vests are observing the robot. The female technician is holding a ruggedized tablet, looking at a data visualization on the screen (screen content not legible, just glowing graphics). The background shows blurred conveyor belts and automated machinery. The atmosphere is professional, high-tech, and industrial. 8k resolution, cinematic lighting.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2431,
+  "link_count": 7
+}

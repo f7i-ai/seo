@@ -1,0 +1,16 @@
+{
+  "meta_title": "Robotics Predictive Maintenance: The Unified Strategy (2026 Guide)",
+  "meta_description": "Stop robot downtime before it starts. Learn how to implement robotics predictive maintenance, integrate controller data, and optimize ISO 9283 performance.",
+  "title": "Robotics Predictive Maintenance: How to Break Data Silos and Prevent Joint Failure",
+  "keyword": "robotics predictive maintenance",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/robotics-predictive-maintenance.png",
+    "alt": "Hero image for Robotics Predictive Maintenance: How to Break Data Silos and Prevent Joint Failure",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern automotive manufacturing plant. In the foreground, a reliability engineer (wearing a white hard hat, safety glasses, and a high-vis vest) is inspecting a large orange industrial robotic arm. The engineer is holding a tablet (back of tablet visible) that displays data graphs, while looking at a specific joint on the robot. The background is slightly blurred but shows a line of similar robots and sparks from a welding operation further down the line. The lighting is dramatic, mixing the cool blue of LED factory lights with the warm glow of industrial machinery. 2026 futuristic industrial aesthetic but grounded in reality. No text overlays.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2130,
+  "link_count": 9
+}

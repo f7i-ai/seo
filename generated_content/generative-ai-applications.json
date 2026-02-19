@@ -1,0 +1,16 @@
+{
+  "meta_title": "Industrial Generative AI Applications: Beyond the Hype (2026 Guide)",
+  "meta_description": "Discover high-value generative AI applications in manufacturing. From RAG-based maintenance co-pilots to synthetic data generation, see how GenAI cuts MTTR.",
+  "title": "Generative AI Applications in Industry: Moving From Content Creation to Asset Reliability",
+  "keyword": "generative ai applications",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/generative-ai-applications.png",
+    "alt": "Hero image for Generative AI Applications in Industry: Moving From Content Creation to Asset Reliability",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern manufacturing facility. In the foreground, a reliability technician wearing a hard hat, safety glasses, and high-visibility vest is looking at a ruggedized tablet held in their left hand (screen not visible to camera). They are standing next to a large industrial electric motor and pump assembly. In the background, slightly out of focus, another worker is inspecting a control panel. The lighting is industrial but warm, highlighting the texture of the machinery and the PPE. No text or holographic overlays. The atmosphere conveys professionalism and advanced technology integration in a heavy industry setting.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2127,
+  "link_count": 13
+}

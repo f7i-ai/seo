@@ -1,0 +1,16 @@
+{
+  "meta_title": "Redundancy Definition: Engineering Reliability & Hidden Risks",
+  "meta_description": "What is redundancy in engineering? Beyond a simple definition, discover how N+1 architectures, active vs. passive standby, and hidden failures impact",
+  "title": "Redundancy Definition: Why Your \"Backup\" System Might Be Your Biggest Risk",
+  "keyword": "redundancy definition",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/redundancy-definition.png",
+    "alt": "Hero image for Redundancy Definition: Why Your \"Backup\" System Might Be Your Biggest Risk",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photorealistic, cinematic wide shot inside a modern industrial plant or water treatment facility. In the foreground, two large, identical industrial centrifugal pumps are installed in parallel (representing redundancy), painted in industrial blue or safety orange. One pump has a digital status light glowing green (active), the other has a status light glowing amber (standby). A reliability engineer in a white hard hat, safety glasses, and high-visibility vest is inspecting the standby pump, holding a tablet (back of tablet visible only). The background shows complex piping, pressure gauges, and soft-focus industrial lighting. The atmosphere is professional, clean, and high-tech. No text in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2518,
+  "link_count": 7
+}

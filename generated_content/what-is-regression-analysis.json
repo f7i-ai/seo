@@ -1,0 +1,16 @@
+{
+  "meta_title": "What is Regression Analysis? The Engine of Predictive Maintenance",
+  "meta_description": "Reactive maintenance kills margins. Regression analysis is the statistical engine behind predictive reliability. See how Factory AI applies it to stop downtime.",
+  "title": "What Is Regression Analysis? The Statistical Bridge from Reactive to Predictive Maintenance",
+  "keyword": "what is regression analysis",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/what-is-regression-analysis.png",
+    "alt": "Hero image for What Is Regression Analysis? The Statistical Bridge from Reactive to Predictive Maintenance",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern manufacturing facility. In the foreground, a diverse group of reliability engineers (men and women) wearing hard hats, safety glasses, and high-visibility vests are gathered around a large industrial pump. One engineer is pointing to a specific component on the machine, while another holds a tablet (back of tablet visible only) as if checking data. In the background, blurred but visible, are automated conveyor lines and robotic arms. The lighting is professional and industrial—cool blues and bright safety yellows. No text or holographic overlays in the air. The image conveys collaboration, technology, and industrial precision.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2347,
+  "link_count": 16
+}

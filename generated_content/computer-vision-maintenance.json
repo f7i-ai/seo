@@ -1,0 +1,16 @@
+{
+  "meta_title": "Computer Vision Maintenance: The Always-On Industrial Inspector",
+  "meta_description": "Transform reliability with computer vision maintenance. Learn to automate visual inspections, digitize analog gauges, and integrate AI with your CMMS for 24/7",
+  "title": "Computer Vision Maintenance: Moving Beyond \"Smart Cameras\" to the Always-On Super-Technician",
+  "keyword": "computer vision maintenance",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/computer-vision-maintenance.png",
+    "alt": "Hero image for Computer Vision Maintenance: Moving Beyond \"Smart Cameras\" to the Always-On Super-Technician",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photorealistic, cinematic shot inside a modern manufacturing facility. In the foreground, a diverse group of reliability engineers (wearing hard hats, safety glasses, and high-visibility vests) are inspecting a large industrial conveyor system. One engineer is pointing at a specific component. In the background, slightly out of focus, a ruggedized orange industrial smart camera is mounted on a beam, with a green LED status light glowing, clearly monitoring the same machinery. The lighting is a mix of cool industrial LED and warm accent lighting. No text or screens visible. 8k resolution, highly detailed textures.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2087,
+  "link_count": 9
+}

@@ -1,0 +1,16 @@
+{
+  "meta_title": "Robots Predictive Maintenance: The 2026 Guide to Zero Downtime",
+  "meta_description": "Stop relying on calendar-based checks. Learn how to implement robots predictive maintenance using vibration analysis, AI, and IIoT to eliminate unplanned",
+  "title": "Robots Predictive Maintenance: How to Stop Failures Before They Stop Production",
+  "keyword": "robots predictive maintenance",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/robots-predictive-maintenance.png",
+    "alt": "Hero image for Robots Predictive Maintenance: How to Stop Failures Before They Stop Production",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern, high-tech automotive manufacturing plant. In the foreground, a diverse team of two reliability engineers (one male, one female) wearing hard hats, safety glasses, and high-visibility vests are inspecting a large, orange industrial robotic arm. The female engineer is holding a tablet (back of device visible only) and pointing at a specific joint on the robot. The background is filled with a line of similar robotic arms in soft focus, with sleek, cool-toned LED lighting illuminating the clean facility. No text or overlays in the image. The atmosphere conveys precision, technology, and industrial safety.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2106,
+  "link_count": 8
+}

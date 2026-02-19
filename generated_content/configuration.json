@@ -1,0 +1,16 @@
+{
+  "meta_title": "Industrial System Configuration: Setup vs. Customization Guide",
+  "meta_description": "Stop confusing configuration with customization. Learn how to configure CMMS, asset hierarchies, and IIoT workflows for scalable maintenance operations in 2026.",
+  "title": "Configuration in Industrial Maintenance: How to Align Systems with Reality Without Breaking the Code",
+  "keyword": "configuration",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/configuration.png",
+    "alt": "Hero image for Configuration in Industrial Maintenance: How to Align Systems with Reality Without Breaking the Code",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, high-resolution image set inside a modern, clean manufacturing facility. In the foreground, a reliability engineer (wearing a hard hat, safety glasses, and a high-visibility vest) is viewed from behind or over-the-shoulder, holding a ruggedized industrial tablet. The tablet screen (blurred or showing abstract graphs) implies system configuration or data analysis. In the background, out of focus, diverse technicians are working on a complex automated assembly line with robotic arms and conveyor belts. The lighting is bright and industrial, with a cool blue and metallic color palette. No text or specific logos should be visible. The atmosphere conveys precision, technology, and industrial scale.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2046,
+  "link_count": 10
+}

@@ -1,0 +1,16 @@
+{
+  "meta_title": "Industrial Robotics Maintenance: The 2026 Zero-Breakdown Guide",
+  "meta_description": "Move beyond reactive repairs. A comprehensive guide for Maintenance Managers on industrial robotics maintenance, predictive algorithms, and zero-breakdown",
+  "title": "Industrial Robotics Maintenance: How to Build a Zero-Breakdown Ecosystem",
+  "keyword": "industrial robotics maintenance",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/industrial-robotics-maintenance.png",
+    "alt": "Hero image for Industrial Robotics Maintenance: How to Build a Zero-Breakdown Ecosystem",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, high-resolution image inside a modern, clean automotive manufacturing facility. In the foreground, a diverse team of maintenance engineers (one female, one male) wearing hard hats, safety glasses, and high-visibility vests are inspecting a large, orange 6-axis industrial robot arm. The male engineer is holding a tablet (back facing camera) displaying data graphs, while the female engineer is pointing at the robot's \"elbow\" joint. The background is slightly blurred but shows a line of similar robots and bright LED factory lighting. The atmosphere is professional, high-tech, and safety-focused. No text in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2248,
+  "link_count": 5
+}

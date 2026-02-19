@@ -1,0 +1,16 @@
+{
+  "meta_title": "Failure Modes and Causes: Building a Reliability Taxonomy",
+  "meta_description": "Stop guessing why assets fail. Learn how to structure failure modes and causes into a robust taxonomy (ISO 14224) to drive predictive maintenance and RCA.",
+  "title": "Failure Modes and Causes: How to Build a Data Taxonomy for Enterprise Reliability",
+  "keyword": "failure modes and causes",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/failure-modes-and-causes.png",
+    "alt": "Hero image for Failure Modes and Causes: How to Build a Data Taxonomy for Enterprise Reliability",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern, high-tech manufacturing facility. In the foreground, a reliability engineer (wearing a white hard hat, safety glasses, and a high-vis vest) is inspecting a large industrial centrifugal pump. They are holding a ruggedized tablet, viewing a 3D digital twin model of the pump on the screen (screen content visible but not text-heavy). In the background, out of focus, other technicians in blue uniforms are working on a conveyor line. The lighting is a mix of cool industrial LED and warm amber warning lights, creating a professional, serious atmosphere. No text overlays. 8k resolution.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2080,
+  "link_count": 8
+}

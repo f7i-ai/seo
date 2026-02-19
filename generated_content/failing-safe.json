@@ -1,0 +1,16 @@
+{
+  "meta_title": "Failing Safe in 2026: The Systems Engineering Guide for Modern Manufacturing",
+  "meta_description": "70% of unplanned downtime traces to inadequate safety protocols. Here is the definitive framework for failing safe, from mechanical interlocks to predictive AI.",
+  "title": "Failing Safe: The Definitive Guide to Industrial Safety Engineering and Predictive Reliability",
+  "keyword": "failing safe",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/failing-safe.png",
+    "alt": "Hero image for Failing Safe: The Definitive Guide to Industrial Safety Engineering and Predictive Reliability",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, high-resolution image inside a modern manufacturing facility. The scene features a diverse group of reliability engineers and maintenance technicians (men and women) wearing standard PPE including hard hats, safety glasses, and high-visibility vests. They are standing near a large, complex industrial conveyor system with visible motors and sensors. One technician is holding a tablet device, showing the back of the device (no screen visible), pointing toward a sensor on the machinery. The lighting is professional and industrial, highlighting the clean, organized nature of the plant. The mood conveys safety, precision, and advanced technology. No text or words should be visible in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2153,
+  "link_count": 16
+}

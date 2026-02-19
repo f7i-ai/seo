@@ -1,0 +1,16 @@
+{
+  "meta_title": "Computer Vision in Manufacturing: Building the Self-Healing Factory",
+  "meta_description": "Move beyond passive monitoring. Learn how computer vision in manufacturing triggers automated workflows, reduces downtime, and creates a self-healing facility.",
+  "title": "Computer Vision in Manufacturing: From Passive Monitoring to the \"Self-Healing\" Factory Workflow",
+  "keyword": "computer vision manufacturing",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/computer-vision-manufacturing.png",
+    "alt": "Hero image for Computer Vision in Manufacturing: From Passive Monitoring to the \"Self-Healing\" Factory Workflow",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern, clean manufacturing facility. In the foreground, a diverse group of maintenance technicians (wearing hard hats, safety glasses, and high-visibility vests) are looking at a tablet held by one of them (only the back of the tablet is visible). They are standing near a large, complex industrial machine (like a conveyor system or robotic arm). Mounted on the machine is a distinct, high-tech industrial camera with a green LED status light, indicating it is scanning. The background is slightly blurred but shows a busy, active factory floor with sparks or motion, emphasizing productivity. The lighting is dramatic but professional, highlighting the integration of technology and human expertise. No text or overlays.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2359,
+  "link_count": 8
+}

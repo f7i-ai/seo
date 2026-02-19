@@ -1,0 +1,16 @@
+{
+  "meta_title": "The Industrial Maintenance Maturity Model: Assess Your Facility",
+  "meta_description": "Is your facility stuck in reactive \"maintainance\" mode? Discover the 4 stages of the Maintenance Maturity Model and how to move from firefighting to prediction.",
+  "title": "The Industrial Maintenance Maturity Model: Where Does Your Facility Stand?",
+  "keyword": "maintainance",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/maintainance.png",
+    "alt": "Hero image for The Industrial Maintenance Maturity Model: Where Does Your Facility Stand?",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot of a modern, clean industrial manufacturing facility. In the foreground, a diverse group of maintenance professionals (men and women) are wearing modern PPE including hard hats, safety glasses, and high-visibility vests. One technician is holding a tablet (back facing the camera) while pointing at a large, complex industrial motor. Another technician is using a handheld thermal imaging camera on a nearby pump. The background shows automated conveyor belts and robotic arms in motion, with soft, cool blue lighting indicating a high-tech environment. No text or words should be visible in the image. The atmosphere should convey professionalism, technology, and proactive control.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2120,
+  "link_count": 8
+}

@@ -1,0 +1,16 @@
+{
+  "meta_title": "Computer Vision Predictive Maintenance: The Visual Sensor Guide (2026)",
+  "meta_description": "Move beyond vibration sensors. Learn how computer vision predictive maintenance acts as a \"super-sensor\" to automate visual inspections, read analog gauges,",
+  "title": "Computer Vision Predictive Maintenance: Turning Cameras into Intelligent Industrial Sensors",
+  "keyword": "computer vision predictive maintenance",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/computer-vision-predictive-maintenance.png",
+    "alt": "Hero image for Computer Vision Predictive Maintenance: Turning Cameras into Intelligent Industrial Sensors",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern manufacturing facility. In the foreground, a reliability engineer (wearing a hard hat, safety glasses, and a high-vis vest) is inspecting a large industrial pump. The engineer is holding a tablet (back of tablet visible) that displays data. In the background, slightly out of focus, a mounted industrial smart camera with a ring light is pointed at a pressure gauge on the machinery, symbolizing automated visual inspection. The lighting is a mix of cool industrial LED and warm accent lighting on the machinery. No text in the image. High resolution, 8k.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2285,
+  "link_count": 11
+}

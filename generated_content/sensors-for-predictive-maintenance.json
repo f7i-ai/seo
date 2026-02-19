@@ -1,0 +1,16 @@
+{
+  "meta_title": "Sensors for Predictive Maintenance: The 2026 Hardware-Agnostic Guide",
+  "meta_description": "70% of unplanned downtime traces to hardware failure. Here is the definitive guide to sensors for predictive maintenance and how Factory AI unifies them in 14",
+  "title": "Sensors for Predictive Maintenance: The Definitive Guide to Industrial IoT in 2026",
+  "keyword": "sensors for predictive maintenance",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/sensors-for-predictive-maintenance.png",
+    "alt": "Hero image for Sensors for Predictive Maintenance: The Definitive Guide to Industrial IoT in 2026",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A hyper-realistic, cinematic wide shot inside a modern manufacturing facility. In the foreground, a diverse group of reliability engineers (men and women) wearing hard hats, safety glasses, and high-visibility vests are inspecting a large industrial motor. One engineer is pointing to a small, wireless orange sensor magnetically attached to the motor housing. Another engineer holds a tablet (back facing camera) showing a data dashboard. The background features blurred automated assembly lines and soft industrial lighting. The atmosphere is clean, high-tech, and professional. No text or overlays in the image. 8k resolution, architectural photography style.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2106,
+  "link_count": 0
+}

@@ -1,0 +1,16 @@
+{
+  "meta_title": "Augury in Maintenance: From Ancient Omens to AI Machine Health",
+  "meta_description": "Discover how \"Augury\" has evolved from Roman divination to AI-driven Machine Health. Learn how to integrate vibration analysis and IoT into your maintenance",
+  "title": "Augury: Decoding Machine Health Through AI and Vibration Analysis",
+  "keyword": "augury",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/augury.png",
+    "alt": "Hero image for Augury: Decoding Machine Health Through AI and Vibration Analysis",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern, clean manufacturing facility. In the foreground, a reliability engineer (wearing a hard hat, safety glasses, and a high-visibility vest) is looking at a tablet held in their left hand (screen not visible to camera). Their right hand is gently resting near—but not touching—a large, industrial blue electric motor that has a small, futuristic-looking wireless sensor attached to the cooling fin. The background is slightly blurred, showing depth of the factory floor with yellow safety walkways and other machinery. The lighting is dramatic, highlighting the connection between the human, the machine, and the sensor. No text overlays. 16:9 aspect ratio.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2090,
+  "link_count": 12
+}

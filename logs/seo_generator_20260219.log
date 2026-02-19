@@ -1,0 +1,611 @@
+2026-02-19 12:26:35,931 - INFO - ==================================================
+2026-02-19 12:26:35,931 - INFO - SEO Content Generator session started
+2026-02-19 12:26:35,931 - INFO - ==================================================
+2026-02-19 12:26:35,935 - INFO - Gemini models: research=gemini-3-pro-preview, research_fast=gemini-3-flash-preview, content=gemini-3-flash-preview
+2026-02-19 12:26:36,226 - INFO - Deep Research Pro Preview enabled for research (Interactions API)
+2026-02-19 12:26:48,776 - INFO - Detected CSV format: semrush
+2026-02-19 12:26:48,784 - INFO - Successfully loaded 740 unique keywords with SERP data using utf-8 encoding
+2026-02-19 12:26:48,784 - INFO - Loading existing content from sitemap: https://f7i.ai/sitemap.xml
+2026-02-19 12:26:48,784 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-02-19 12:26:51,523 - INFO - ==================================================
+2026-02-19 12:26:51,523 - INFO - SEO Content Generator session started
+2026-02-19 12:26:51,523 - INFO - ==================================================
+2026-02-19 12:26:51,526 - INFO - Gemini models: research=gemini-3-pro-preview, research_fast=gemini-3-flash-preview, content=gemini-3-flash-preview
+2026-02-19 12:26:51,780 - INFO - Deep Research Pro Preview enabled for research (Interactions API)
+2026-02-19 12:27:06,329 - INFO - Detected CSV format: semrush
+2026-02-19 12:27:06,337 - INFO - Successfully loaded 740 unique keywords with SERP data using utf-8 encoding
+2026-02-19 12:27:06,337 - INFO - Loading existing content from sitemap: https://f7i.ai/sitemap.xml
+2026-02-19 12:27:06,337 - INFO - Fetching sitemap from https://f7i.ai/sitemap.xml
+2026-02-19 12:27:11,171 - INFO - Found 800 existing blog posts from sitemap
+2026-02-19 12:27:11,172 - INFO - Cached 852 internal URLs for verification
+2026-02-19 12:27:11,172 - INFO - Skipping 'ai industry trends' - content already generated
+2026-02-19 12:27:11,172 - INFO - Skipping 'ai statistics' - content already generated
+2026-02-19 12:27:11,172 - INFO - Skipping 'trends of artificial intelligence' - content already generated
+2026-02-19 12:27:11,172 - INFO - Skipping 'artificial intelligence statistics' - content already generated
+2026-02-19 12:27:11,172 - INFO - Skipping 'artificial intelligence industry' - content already generated
+2026-02-19 12:27:11,172 - INFO - Skipping 'ai growth' - content already generated
+2026-02-19 12:27:11,172 - INFO - Skipping 'ai technologies' - content already generated
+2026-02-19 12:27:11,172 - INFO - Skipping 'artificial intelligence technology' - content already generated
+2026-02-19 12:27:11,172 - INFO - Skipping 'ai of ai' - content already generated
+2026-02-19 12:27:11,172 - INFO - Skipping 'ai use cases' - content already generated
+2026-02-19 12:27:11,172 - INFO - Skipping 'artificial intelligence use cases' - content already generated
+2026-02-19 12:27:11,172 - INFO - Skipping 'generative ai applications' - content already generated
+2026-02-19 12:27:11,172 - INFO - Skipping 'artificial intelligence adoption' - content already generated
+2026-02-19 12:27:11,172 - INFO - Skipping 'ai adoption' - content already generated
+2026-02-19 12:27:11,172 - INFO - Skipping 'new artificial intelligence' - content already generated
+2026-02-19 12:27:11,172 - INFO - Skipping 'recent artificial intelligence' - content already generated
+2026-02-19 12:27:11,172 - INFO - Skipping 'new ai technology' - content already generated
+2026-02-19 12:27:11,172 - INFO - Skipping 'pdm maintenance' - content already generated
+2026-02-19 12:27:11,172 - WARNING - Skipping 'predictive maintenance' - overlaps with existing blog content
+2026-02-19 12:27:11,172 - INFO - Skipping 'future of predictive maintenance' - content already generated
+2026-02-19 12:27:11,172 - INFO - Skipping 'vibration monitoring software' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'best industrial condition monitoring systems' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'condition monitoring vibration' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'predictive maintenance oil and gas' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'bearing vibration monitoring' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'importance of predictive maintenance' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'predictive maintenance cost savings' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'predictive maintenance oil analysis' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'what is vibration monitoring' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'benefit of predictive maintenance' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'condition based monitoring companies' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'predictive maintenance device' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'predictive maintenance hardware' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'predictive maintenance in oil and gas industry' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'predictive maintenance optimization' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'sensor predictive maintenance' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'vibration analysis sensor' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'why predictive maintenance is important' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'condition monitoring ai' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'how does predictive maintenance work' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'oil and gas predictive maintenance' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'online vibration analysis' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'predictive maintenance oil gas' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'predictive maintenance sensor' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'what are the benefits of predictive maintenance' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'why is condition monitoring important' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'why is predictive maintenance important' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping '[vibration analysis basics]' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'sensors for predictive maintenance' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'vibration analysis program' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'ai maintenance' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'computer vision manufacturing' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'robotics maintenance' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'computer vision predictive maintenance' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'iiot ai' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'computer vision maintenance' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'industrial robots maintenance' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'ai electrical failures' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'ai factory security' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'ai industrial security' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'ai manufacturing security' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'ai mechanical failures' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'ai robots maintenance' - content already generated
+2026-02-19 12:27:11,173 - INFO - Skipping 'common failure modes and causes' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'electrical failures maintenance' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'electrical failures manufacturing' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'electrical failures predictive maintenance' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'failure modes and causes' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'industrial robotics maintenance' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'mechanical failures maintenance' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'mechanical failures manufacturing' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'mechanical failures predictive maintenance' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'robotics predictive maintenance' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'robots maintenance' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'robots predictive maintenance' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'maintenance' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'sop' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'asset' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'contingency' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'quality assurance' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'assets' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'qc' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'sop meaning' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'bom' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'capex' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'depreciation' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'lca' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'quality assurance quality' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'assets definition' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'capital definition' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'compliance definition' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'ffi' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'meaning for compliance' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'root cause analysis' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'calibrate' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'compliance meaning' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'configuration' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'contingency definition' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'fmea' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'maintance' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'sku meaning' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'sops' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'augury' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'contingency meaning' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'data mining' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'quality control' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'what does oem mean' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'what does oem stand for' - content already generated
+2026-02-19 12:27:11,174 - INFO - Skipping 'asset meaning' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'overhaul meaning' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'program interface definition' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'what is an sop' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'what is capital' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'what is gis' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'what is sop' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'defect meaning' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'define contingency' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'depreciation definition' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'eam' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'ftf' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'maintainance' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'pattern recognition' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'redundancy meaning' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'six sigma principles' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'uid' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'what is an asset' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'what is sku' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'apprentice definition' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'apprentice meaning' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'calibrate meaning' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'call call out' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'capital meaning' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'contingencies definition' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'first watch careers' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'lead time meaning' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'lubrication' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'maintenence' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'oem definition' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'oem stands for' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'otd meaning' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'overhaul definition' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'pert definition' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'pert meaning' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'preventive vs preventative' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'redundancy definition' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'standard operating procedure' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'what does sop stand for' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'what is data mining' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'action plan' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'bill of materials' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'define capital' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'define pert' - content already generated
+2026-02-19 12:27:11,175 - INFO - Skipping 'depreciation meaning' - content already generated
+2026-02-19 12:27:11,176 - INFO - Skipping 'mean compliance' - content already generated
+2026-02-19 12:27:11,176 - INFO - Skipping 'requisition definition' - content already generated
+2026-02-19 12:27:11,176 - INFO - Skipping 'sop's' - content already generated
+2026-02-19 12:27:11,176 - INFO - Skipping 'what is a gantt chart' - content already generated
+2026-02-19 12:27:11,176 - WARNING - Skipping 'anomaly detection' - overlaps with existing blog content
+2026-02-19 12:27:11,176 - INFO - Skipping 'artechnical' - content already generated
+2026-02-19 12:27:11,176 - INFO - Skipping 'assests' - content already generated
+2026-02-19 12:27:11,176 - INFO - Skipping 'assetcare' - content already generated
+2026-02-19 12:27:11,176 - INFO - Skipping 'backlog meaning' - content already generated
+2026-02-19 12:27:11,176 - INFO - Skipping 'calibrated' - content already generated
+2026-02-19 12:27:11,176 - INFO - Skipping 'calibration meaning' - content already generated
+2026-02-19 12:27:11,176 - INFO - Skipping 'contigency' - content already generated
+2026-02-19 12:27:11,176 - INFO - Skipping 'contingency plan meaning' - content already generated
+2026-02-19 12:27:11,176 - INFO - Skipping 'defect definition' - content already generated
+2026-02-19 12:27:11,176 - INFO - Skipping 'defects' - content already generated
+2026-02-19 12:27:11,176 - INFO - Skipping 'define overhaul' - content already generated
+2026-02-19 12:27:11,176 - INFO - Skipping 'first watch jobs' - content already generated
+2026-02-19 12:27:11,176 - INFO - Skipping 'gantt charts' - content already generated
+2026-02-19 12:27:11,177 - WARNING - Skipping 'iiot' - overlaps with existing blog content
+2026-02-19 12:27:11,177 - INFO - Skipping 'pert chart' - content already generated
+2026-02-19 12:27:11,177 - INFO - Skipping 'pre emptive maintenance' - content already generated
+2026-02-19 12:27:11,177 - WARNING - Skipping 'preventative vs preventive' - overlaps with existing blog content
+2026-02-19 12:27:11,177 - INFO - Skipping 'cmms meaning' - content already generated
+2026-02-19 12:27:11,177 - WARNING - Skipping 'dfmea' - overlaps with existing blog content
+2026-02-19 12:27:11,177 - INFO - Skipping 'induction motor' - content already generated
+2026-02-19 12:27:11,177 - WARNING - Skipping 'industrial maintenance' - overlaps with existing blog content
+2026-02-19 12:27:11,177 - INFO - Skipping 'mtbf' - content already generated
+2026-02-19 12:27:11,178 - WARNING - Skipping 'order at work' - overlaps with existing blog content
+2026-02-19 12:27:11,178 - INFO - Skipping 'quality management' - content already generated
+2026-02-19 12:27:11,178 - INFO - Skipping 'rca meaning' - content already generated
+2026-02-19 12:27:11,178 - WARNING - Skipping 'roi and' - overlaps with existing blog content
+2026-02-19 12:27:11,178 - INFO - Skipping 'service level agreement' - content already generated
+2026-02-19 12:27:11,178 - INFO - Skipping 'sop acronym' - content already generated
+2026-02-19 12:27:11,178 - WARNING - Skipping 'sop what' - overlaps with existing blog content
+2026-02-19 12:27:11,178 - INFO - Skipping 'sops meaning' - content already generated
+2026-02-19 12:27:11,178 - WARNING - Skipping 'total productive maintenance' - overlaps with existing blog content
+2026-02-19 12:27:11,179 - WARNING - Skipping 'uid uid' - overlaps with existing blog content
+2026-02-19 12:27:11,179 - WARNING - Skipping 'waste meaning' - overlaps with existing blog content
+2026-02-19 12:27:11,180 - WARNING - Skipping 'assets meaning' - overlaps with existing blog content
+2026-02-19 12:27:11,180 - INFO - Skipping 'capex definition' - content already generated
+2026-02-19 12:27:11,180 - WARNING - Skipping 'capex expenditure' - overlaps with existing blog content
+2026-02-19 12:27:11,180 - INFO - Skipping 'credit memo' - content already generated
+2026-02-19 12:27:11,180 - INFO - Skipping 'csx gateway' - content already generated
+2026-02-19 12:27:11,180 - INFO - Skipping 'define administration' - content already generated
+2026-02-19 12:27:11,180 - WARNING - Skipping 'define asset' - overlaps with existing blog content
+2026-02-19 12:27:11,180 - INFO - Skipping 'define defect' - content already generated
+2026-02-19 12:27:11,180 - WARNING - Skipping 'definition of asset' - overlaps with existing blog content
+2026-02-19 12:27:11,180 - INFO - Skipping 'definition of salvaging' - content already generated
+2026-02-19 12:27:11,180 - INFO - Skipping 'failing safe' - content already generated
+2026-02-19 12:27:11,180 - WARNING - Skipping 'failure mode and effects analysis' - overlaps with existing blog content
+2026-02-19 12:27:11,180 - INFO - Skipping 'fmea analysis' - content already generated
+2026-02-19 12:27:11,180 - INFO - Skipping 'fmea meaning' - content already generated
+2026-02-19 12:27:11,180 - INFO - Skipping 'gis systems definition' - content already generated
+2026-02-19 12:27:11,180 - INFO - Skipping 'inventory stock turnover' - content already generated
+2026-02-19 12:27:11,180 - INFO - Skipping 'inventory turns' - content already generated
+2026-02-19 12:27:11,181 - INFO - Skipping 'lead time definition' - content already generated
+2026-02-19 12:27:11,181 - INFO - Skipping 'maintenance management system' - content already generated
+2026-02-19 12:27:11,181 - INFO - Skipping 'maitenance' - content already generated
+2026-02-19 12:27:11,181 - INFO - Skipping 'maquiladora' - content already generated
+2026-02-19 12:27:11,181 - INFO - Skipping 'meaning refurbishment' - content already generated
+2026-02-19 12:27:11,181 - INFO - Skipping 'obm' - content already generated
+2026-02-19 12:27:11,181 - INFO - Skipping 'pareto analysis' - content already generated
+2026-02-19 12:27:11,181 - WARNING - Skipping 'purchase and order' - overlaps with existing blog content
+2026-02-19 12:27:11,181 - INFO - Skipping 'register meaning' - content already generated
+2026-02-19 12:27:11,181 - INFO - Skipping 'regulated asset value' - content already generated
+2026-02-19 12:27:11,181 - WARNING - Skipping 'sop standard operating procedure' - overlaps with existing blog content
+2026-02-19 12:27:11,181 - INFO - Skipping 'statistical process control' - content already generated
+2026-02-19 12:27:11,181 - INFO - Skipping 'turnaround time' - content already generated
+2026-02-19 12:27:11,181 - INFO - Skipping 'what are sops' - content already generated
+2026-02-19 12:27:11,181 - WARNING - Skipping 'what does esg stand for' - overlaps with existing blog content
+2026-02-19 12:27:11,181 - WARNING - Skipping 'what does sop mean' - overlaps with existing blog content
+2026-02-19 12:27:11,182 - WARNING - Skipping 'what is a sku' - overlaps with existing blog content
+2026-02-19 12:27:11,182 - WARNING - Skipping 'what is a sop' - overlaps with existing blog content
+2026-02-19 12:27:11,182 - INFO - Skipping 'what is regression analysis' - content already generated
+2026-02-19 12:27:11,182 - INFO - Skipping 'a s s e t' - content already generated
+2026-02-19 12:27:11,182 - INFO - Skipping 'application programming interface' - content already generated
+2026-02-19 12:27:11,182 - INFO - Skipping 'asset care' - content already generated
+2026-02-19 12:27:11,182 - INFO - Skipping 'automation dictionary' - content already generated
+2026-02-19 12:27:11,182 - INFO - Skipping 'calibrate definition' - content already generated
+2026-02-19 12:27:11,182 - INFO - Skipping 'data mining definition' - content already generated
+2026-02-19 12:27:11,182 - INFO - Skipping 'define compliance' - content already generated
+2026-02-19 12:27:11,182 - INFO - Skipping 'define configuration' - content already generated
+2026-02-19 12:27:11,182 - INFO - Skipping 'define inspect' - content already generated
+2026-02-19 12:27:11,182 - INFO - Skipping 'definition for geographic information system' - content already generated
+2026-02-19 12:27:11,182 - INFO - Skipping 'deming cycle' - content already generated
+2026-02-19 12:27:11,182 - INFO - Skipping 'depreciated meaning' - content already generated
+2026-02-19 12:27:11,182 - INFO - Skipping 'depreciation def' - content already generated
+2026-02-19 12:27:11,182 - WARNING - Skipping 'enterprise asset management' - overlaps with existing blog content
+2026-02-19 12:27:11,182 - INFO - Skipping 'facilities management software' - content already generated
+2026-02-19 12:27:11,182 - WARNING - Skipping 'gis definition' - overlaps with existing blog content
+2026-02-19 12:27:11,182 - INFO - Skipping 'induction motor invention' - content already generated
+2026-02-19 12:27:11,182 - INFO - Skipping 'kitting' - content already generated
+2026-02-19 12:27:11,183 - WARNING - Skipping 'lean management' - overlaps with existing blog content
+2026-02-19 12:27:11,183 - WARNING - Skipping 'maintenance preventive maintenance' - overlaps with existing blog content
+2026-02-19 12:27:11,183 - INFO - Skipping 'matinence' - content already generated
+2026-02-19 12:27:11,183 - WARNING - Skipping 'meaning backlog' - overlaps with existing blog content
+2026-02-19 12:27:11,183 - INFO - Skipping 'meaning configuration' - content already generated
+2026-02-19 12:27:11,183 - INFO - Skipping 'oee meaning' - content already generated
+2026-02-19 12:27:11,183 - INFO - Skipping 'qa meaning' - content already generated
+2026-02-19 12:27:11,183 - INFO - Skipping 'refurbish meaning' - content already generated
+2026-02-19 12:27:11,183 - INFO - Skipping 'remote terminal unit' - content already generated
+2026-02-19 12:27:11,183 - INFO - Skipping 'service level agreement means' - content already generated
+2026-02-19 12:27:11,183 - INFO - Skipping 'skus meaning' - content already generated
+2026-02-19 12:27:11,183 - INFO - Skipping 'sop definition' - content already generated
+2026-02-19 12:27:11,183 - WARNING - Skipping 'sop meaning in business' - overlaps with existing blog content
+2026-02-19 12:27:11,183 - INFO - Skipping 'standard operating procedures' - content already generated
+2026-02-19 12:27:11,183 - INFO - Skipping 'turned around time' - content already generated
+2026-02-19 12:27:11,183 - INFO - Skipping 'waste definition' - content already generated
+2026-02-19 12:27:11,183 - WARNING - Skipping 'what does compliance mean' - overlaps with existing blog content
+2026-02-19 12:27:11,183 - WARNING - Skipping 'what is an oem' - overlaps with existing blog content
+2026-02-19 12:27:11,183 - INFO - Skipping 'what is compliance' - content already generated
+2026-02-19 12:27:11,183 - INFO - Skipping 'what is contingency' - content already generated
+2026-02-19 12:27:11,183 - INFO - Skipping 'what is lead time' - content already generated
+2026-02-19 12:27:11,184 - WARNING - Skipping 'what is quality assurance' - overlaps with existing blog content
+2026-02-19 12:27:11,184 - INFO - Skipping 'augmentation meaning' - content already generated
+2026-02-19 12:27:11,184 - WARNING - Skipping 'computerized maintenance management systems' - overlaps with existing blog content
+2026-02-19 12:27:11,184 - WARNING - Skipping 'condition monitoring' - overlaps with existing blog content
+2026-02-19 12:27:11,184 - WARNING - Skipping 'configuration meaning' - overlaps with existing blog content
+2026-02-19 12:27:11,184 - INFO - Skipping 'data mining meaning' - content already generated
+2026-02-19 12:27:11,184 - INFO - Skipping 'define 5s methodology' - content already generated
+2026-02-19 12:27:11,184 - INFO - Skipping 'define calibrate' - content already generated
+2026-02-19 12:27:11,184 - INFO - Skipping 'define kaizen' - content already generated
+2026-02-19 12:27:11,184 - INFO - Skipping 'definition for pert' - content already generated
+2026-02-19 12:27:11,184 - INFO - Skipping 'definition for refurbish' - content already generated
+2026-02-19 12:27:11,184 - INFO - Skipping 'definition of capital' - content already generated
+2026-02-19 12:27:11,184 - INFO - Skipping 'definition rca' - content already generated
+2026-02-19 12:27:11,184 - INFO - Skipping 'downtime meaning' - content already generated
+2026-02-19 12:27:11,184 - INFO - Skipping 'esg score' - content already generated
+2026-02-19 12:27:11,184 - INFO - Skipping 'fabrication scrap' - content already generated
+2026-02-19 12:27:11,184 - WARNING - Skipping 'failure effects analysis' - overlaps with existing blog content
+2026-02-19 12:27:11,184 - WARNING - Skipping 'failure mode analysis' - overlaps with existing blog content
+2026-02-19 12:27:11,184 - INFO - Skipping 'failure safety' - content already generated
+2026-02-19 12:27:11,184 - INFO - Skipping 'fault tolerance' - content already generated
+2026-02-19 12:27:11,184 - INFO - Skipping 'fault tree analysis' - content already generated
+2026-02-19 12:27:11,184 - INFO - Skipping 'jobs engineering sales' - content already generated
+2026-02-19 12:27:11,184 - INFO - Skipping 'lean seis sigma' - content already generated
+2026-02-19 12:27:11,184 - WARNING - Skipping 'predictive maintenance in industry' - overlaps with existing blog content
+2026-02-19 12:27:11,184 - INFO - Skipping 'quality assurance meaning' - content already generated
+2026-02-19 12:27:11,184 - INFO - Skipping 'repairing and servicing' - content already generated
+2026-02-19 12:27:11,185 - INFO - Skipping 'to prevent cross-contamination you should' - content already generated
+2026-02-19 12:27:11,185 - INFO - Skipping 'tractian' - content already generated
+2026-02-19 12:27:11,185 - INFO - Skipping 'vibration analysis' - content already generated
+2026-02-19 12:27:11,185 - INFO - Skipping 'what are fixed assets' - content already generated
+2026-02-19 12:27:11,185 - INFO - Skipping 'what is a capital expense' - content already generated
+2026-02-19 12:27:11,185 - INFO - Skipping 'what is a contingency plan' - content already generated
+2026-02-19 12:27:11,185 - INFO - Skipping 'what is cmms' - content already generated
+2026-02-19 12:27:11,185 - WARNING - Skipping 'what is data in data mining' - overlaps with existing blog content
+2026-02-19 12:27:11,185 - WARNING - Skipping 'what is ffi' - overlaps with existing blog content
+2026-02-19 12:27:11,185 - WARNING - Skipping 'what is jit management' - overlaps with existing blog content
+2026-02-19 12:27:11,185 - WARNING - Skipping 'what is kaizen' - overlaps with existing blog content
+2026-02-19 12:27:11,185 - WARNING - Skipping 'abbreviation for standard operating procedures' - overlaps with existing blog content
+2026-02-19 12:27:11,186 - WARNING - Skipping 'asset performance management' - overlaps with existing blog content
+2026-02-19 12:27:11,186 - INFO - Skipping 'availability definition' - content already generated
+2026-02-19 12:27:11,186 - INFO - Skipping 'bom meaning' - content already generated
+2026-02-19 12:27:11,187 - INFO - Skipping 'boms' - content already generated
+2026-02-19 12:27:11,187 - INFO - Skipping 'capital def' - content already generated
+2026-02-19 12:27:11,187 - INFO - Skipping 'cmms system' - content already generated
+2026-02-19 12:27:11,188 - INFO - Skipping 'configuration definition' - content already generated
+2026-02-19 12:27:11,188 - WARNING - Skipping 'contingency plan definition' - overlaps with existing blog content
+2026-02-19 12:27:11,188 - INFO - Skipping 'cp kelco' - content already generated
+2026-02-19 12:27:11,188 - INFO - Skipping 'cycle count' - content already generated
+2026-02-19 12:27:11,188 - INFO - Skipping 'define assets' - content already generated
+2026-02-19 12:27:11,188 - INFO - Skipping 'define capex' - content already generated
+2026-02-19 12:27:11,189 - INFO - Skipping 'define lead time' - content already generated
+2026-02-19 12:27:11,189 - WARNING - Skipping 'define maintenance' - overlaps with existing blog content
+2026-02-19 12:27:11,189 - INFO - Skipping 'defined waste' - content already generated
+2026-02-19 12:27:11,191 - WARNING - Skipping 'enterprise asset management software' - overlaps with existing blog content
+2026-02-19 12:27:11,194 - WARNING - Skipping 'failure mode' - overlaps with existing blog content
+2026-02-19 12:27:11,194 - WARNING - Skipping 'failure mode effect analysis' - overlaps with existing blog content
+2026-02-19 12:27:11,195 - WARNING - Skipping 'idle time' - overlaps with existing blog content
+2026-02-19 12:27:11,195 - WARNING - Skipping 'industrial manufacturing' - overlaps with existing blog content
+2026-02-19 12:27:11,196 - WARNING - Skipping 'lead time what is' - overlaps with existing blog content
+2026-02-19 12:27:11,196 - INFO - Skipping 'maintenance management' - content already generated
+2026-02-19 12:27:11,196 - WARNING - Skipping 'maintenance software' - overlaps with existing blog content
+2026-02-19 12:27:11,198 - WARNING - Skipping 'process control in statistics' - overlaps with existing blog content
+2026-02-19 12:27:11,198 - WARNING - Skipping 'qa quality assurance' - overlaps with existing blog content
+2026-02-19 12:27:11,199 - WARNING - Skipping 'rca definition' - overlaps with existing blog content
+2026-02-19 12:27:11,200 - WARNING - Skipping 'service level agreement definition' - overlaps with existing blog content
+2026-02-19 12:27:11,202 - WARNING - Skipping 'sop procedure' - overlaps with existing blog content
+2026-02-19 12:27:11,204 - WARNING - Skipping 'stock turnover' - overlaps with existing blog content
+2026-02-19 12:27:11,204 - WARNING - Skipping 'total asset turnover' - overlaps with existing blog content
+2026-02-19 12:27:11,207 - WARNING - Skipping 'what is a servicing' - overlaps with existing blog content
+2026-02-19 12:27:11,207 - WARNING - Skipping 'what is capital expenditure' - overlaps with existing blog content
+2026-02-19 12:27:11,207 - WARNING - Skipping 'what is inventory management' - overlaps with existing blog content
+2026-02-19 12:27:11,210 - WARNING - Skipping 'application programming interface meaning' - overlaps with existing blog content
+2026-02-19 12:27:11,211 - WARNING - Skipping 'asset turnover' - overlaps with existing blog content
+2026-02-19 12:27:11,211 - WARNING - Skipping 'calibration definition' - overlaps with existing blog content
+2026-02-19 12:27:11,216 - WARNING - Skipping 'cost savings' - overlaps with existing blog content
+2026-02-19 12:27:11,222 - INFO - Skipping 'equipment maintenance software' - content already generated
+2026-02-19 12:27:11,224 - WARNING - Skipping 'failure analysis' - overlaps with existing blog content
+2026-02-19 12:27:11,232 - WARNING - Skipping 'materials management' - overlaps with existing blog content
+2026-02-19 12:27:11,233 - WARNING - Skipping 'oee manufacturing' - overlaps with existing blog content
+2026-02-19 12:27:11,234 - WARNING - Skipping 'on time delivery' - overlaps with existing blog content
+2026-02-19 12:27:11,238 - WARNING - Skipping 'rca root cause analysis' - overlaps with existing blog content
+2026-02-19 12:27:11,240 - WARNING - Skipping 'time turnaround' - overlaps with existing blog content
+2026-02-19 12:27:11,242 - WARNING - Skipping 'vibration monitoring' - overlaps with existing blog content
+2026-02-19 12:27:11,242 - WARNING - Skipping 'what does mro stand for' - overlaps with existing blog content
+2026-02-19 12:27:11,242 - WARNING - Skipping 'what is a gant chart' - overlaps with existing blog content
+2026-02-19 12:27:11,242 - WARNING - Skipping 'what is a requisition' - overlaps with existing blog content
+2026-02-19 12:27:11,242 - WARNING - Skipping 'what is an apprentice' - overlaps with existing blog content
+2026-02-19 12:27:11,243 - WARNING - Skipping 'work order management software' - overlaps with existing blog content
+2026-02-19 12:27:11,245 - WARNING - Skipping 'asset asset' - overlaps with existing blog content
+2026-02-19 12:27:11,246 - WARNING - Skipping 'asset health' - overlaps with existing blog content
+2026-02-19 12:27:11,254 - WARNING - Skipping 'capital meaning in business' - overlaps with existing blog content
+2026-02-19 12:27:11,254 - WARNING - Skipping 'cmms maintenance' - overlaps with existing blog content
+2026-02-19 12:27:11,254 - WARNING - Skipping 'cmms program' - overlaps with existing blog content
+2026-02-19 12:27:11,257 - WARNING - Skipping 'defect define' - overlaps with existing blog content
+2026-02-19 12:27:11,268 - WARNING - Skipping 'failure mode and effects analysis fmea' - overlaps with existing blog content
+2026-02-19 12:27:11,271 - WARNING - Skipping 'geographic information system definition' - overlaps with existing blog content
+2026-02-19 12:27:11,272 - WARNING - Skipping 'industrial ai' - overlaps with existing blog content
+2026-02-19 12:27:11,272 - WARNING - Skipping 'industrial sensors' - overlaps with existing blog content
+2026-02-19 12:27:11,277 - WARNING - Skipping 'maintenance repair and overhaul' - overlaps with existing blog content
+2026-02-19 12:27:11,280 - WARNING - Skipping 'mean time between failures' - overlaps with existing blog content
+2026-02-19 12:27:11,281 - WARNING - Skipping 'overall equipment effectiveness' - overlaps with existing blog content
+2026-02-19 12:27:11,281 - WARNING - Skipping 'qa quality' - overlaps with existing blog content
+2026-02-19 12:27:11,281 - WARNING - Skipping 'qa what is' - overlaps with existing blog content
+2026-02-19 12:27:11,282 - WARNING - Skipping 'quality quality assurance' - overlaps with existing blog content
+2026-02-19 12:27:11,282 - WARNING - Skipping 'refurbish definition' - overlaps with existing blog content
+2026-02-19 12:27:11,282 - WARNING - Skipping 'reliability centered maintenance' - overlaps with existing blog content
+2026-02-19 12:27:11,287 - WARNING - Skipping 'total asset turnover formula' - overlaps with existing blog content
+2026-02-19 12:27:11,291 - WARNING - Skipping 'what cmms' - overlaps with existing blog content
+2026-02-19 12:27:11,291 - WARNING - Skipping 'what does defect mean' - overlaps with existing blog content
+2026-02-19 12:27:11,291 - WARNING - Skipping 'what does qa stand for' - overlaps with existing blog content
+2026-02-19 12:27:11,291 - WARNING - Skipping 'what is a capital' - overlaps with existing blog content
+2026-02-19 12:27:11,294 - WARNING - Skipping 'what is maintenance' - overlaps with existing blog content
+2026-02-19 12:27:11,295 - WARNING - Skipping 'what is the lubrication' - overlaps with existing blog content
+2026-02-19 12:27:11,298 - WARNING - Skipping 'acronym sop' - overlaps with existing blog content
+2026-02-19 12:27:11,299 - WARNING - Skipping 'ai manufacturing' - overlaps with existing blog content
+2026-02-19 12:27:11,304 - WARNING - Skipping 'compliance in' - overlaps with existing blog content
+2026-02-19 12:27:11,304 - INFO - Skipping 'condition based maintenance' - content already generated
+2026-02-19 12:27:11,311 - WARNING - Skipping 'enterprise asset management eam software' - overlaps with existing blog content
+2026-02-19 12:27:11,311 - WARNING - Skipping 'failure mode and effect analysis' - overlaps with existing blog content
+2026-02-19 12:27:11,312 - WARNING - Skipping 'geographic info system definition' - overlaps with existing blog content
+2026-02-19 12:27:11,313 - WARNING - Skipping 'jit inventory' - overlaps with existing blog content
+2026-02-19 12:27:11,316 - WARNING - Skipping 'maintenance management system software' - overlaps with existing blog content
+2026-02-19 12:27:11,317 - WARNING - Skipping 'maintenance plan' - overlaps with existing blog content
+2026-02-19 12:27:11,318 - WARNING - Skipping 'meaning of facility management' - overlaps with existing blog content
+2026-02-19 12:27:11,320 - WARNING - Skipping 'qa assurance' - overlaps with existing blog content
+2026-02-19 12:27:11,323 - WARNING - Skipping 'root cause analysis definition' - overlaps with existing blog content
+2026-02-19 12:27:11,323 - WARNING - Skipping 'root cause definition' - overlaps with existing blog content
+2026-02-19 12:27:11,323 - WARNING - Skipping 'root cause meaning' - overlaps with existing blog content
+2026-02-19 12:27:11,325 - WARNING - Skipping 'software maintenance' - overlaps with existing blog content
+2026-02-19 12:27:11,329 - INFO - Skipping 'u.i.d.' - content already generated
+2026-02-19 12:27:11,330 - WARNING - Skipping 'vibration sensors' - overlaps with existing blog content
+2026-02-19 12:27:11,331 - WARNING - Skipping 'what does apprentice mean' - overlaps with existing blog content
+2026-02-19 12:27:11,331 - WARNING - Skipping 'what does kaizen mean' - overlaps with existing blog content
+2026-02-19 12:27:11,332 - WARNING - Skipping 'what does troubleshoot mean' - overlaps with existing blog content
+2026-02-19 12:27:11,332 - WARNING - Skipping 'what is a lubrication' - overlaps with existing blog content
+2026-02-19 12:27:11,332 - WARNING - Skipping 'what is a regression analysis' - overlaps with existing blog content
+2026-02-19 12:27:11,332 - WARNING - Skipping 'what is a work order' - overlaps with existing blog content
+2026-02-19 12:27:11,334 - WARNING - Skipping 'what is an rca' - overlaps with existing blog content
+2026-02-19 12:27:11,334 - WARNING - Skipping 'what is asset' - overlaps with existing blog content
+2026-02-19 12:27:11,334 - WARNING - Skipping 'what is fleet management' - overlaps with existing blog content
+2026-02-19 12:27:11,336 - WARNING - Skipping 'what is remote terminal' - overlaps with existing blog content
+2026-02-19 12:27:11,339 - WARNING - Skipping 'work order management system' - overlaps with existing blog content
+2026-02-19 12:27:11,341 - WARNING - Skipping 'asset performance management software' - overlaps with existing blog content
+2026-02-19 12:27:11,346 - WARNING - Skipping 'cmms systems' - overlaps with existing blog content
+2026-02-19 12:27:11,355 - WARNING - Skipping 'failure in time definition' - overlaps with existing blog content
+2026-02-19 12:27:11,356 - WARNING - Skipping 'fmea failure mode and effects analysis' - overlaps with existing blog content
+2026-02-19 12:27:11,356 - INFO - Skipping 'idle time meaning' - content already generated
+2026-02-19 12:27:11,360 - WARNING - Skipping 'maintenance work order software' - overlaps with existing blog content
+2026-02-19 12:27:11,362 - INFO - Skipping 'o.t.d meaning' - content already generated
+2026-02-19 12:27:11,364 - WARNING - Skipping 'oem stand for' - overlaps with existing blog content
+2026-02-19 12:27:11,365 - WARNING - Skipping 'preventive maintenance program' - overlaps with existing blog content
+2026-02-19 12:27:11,370 - WARNING - Skipping 'sop standard' - overlaps with existing blog content
+2026-02-19 12:27:11,370 - WARNING - Skipping 'spc control' - overlaps with existing blog content
+2026-02-19 12:27:11,371 - WARNING - Skipping 'total asset turnover ratio' - overlaps with existing blog content
+2026-02-19 12:27:11,376 - WARNING - Skipping 'what does assets mean' - overlaps with existing blog content
+2026-02-19 12:27:11,376 - WARNING - Skipping 'what does automation mean' - overlaps with existing blog content
+2026-02-19 12:27:11,376 - WARNING - Skipping 'what does otd mean' - overlaps with existing blog content
+2026-02-19 12:27:11,376 - WARNING - Skipping 'what does troubleshooting mean' - overlaps with existing blog content
+2026-02-19 12:27:11,376 - WARNING - Skipping 'what is 5s methodology' - overlaps with existing blog content
+2026-02-19 12:27:11,376 - WARNING - Skipping 'what is a backlog' - overlaps with existing blog content
+2026-02-19 12:27:11,376 - WARNING - Skipping 'what is a cmms' - overlaps with existing blog content
+2026-02-19 12:27:11,377 - WARNING - Skipping 'what is a gantt diagram' - overlaps with existing blog content
+2026-02-19 12:27:11,383 - WARNING - Skipping 'an asset' - overlaps with existing blog content
+2026-02-19 12:27:11,384 - WARNING - Skipping 'asset def' - overlaps with existing blog content
+2026-02-19 12:27:11,384 - WARNING - Skipping 'asset maintenance' - overlaps with existing blog content
+2026-02-19 12:27:11,393 - WARNING - Skipping 'computer maintenance management system' - overlaps with existing blog content
+2026-02-19 12:27:11,394 - WARNING - Skipping 'condition based monitoring' - overlaps with existing blog content
+2026-02-19 12:27:11,394 - WARNING - Skipping 'contingency define' - overlaps with existing blog content
+2026-02-19 12:27:11,397 - INFO - Processing keyword 1/306: asset turnover formula
+2026-02-19 12:27:11,397 - INFO - Researching keyword with SERP analysis...
+2026-02-19 12:27:11,397 - INFO - Starting research for keyword: 'asset turnover formula'
+2026-02-19 12:27:11,397 - INFO - Analyzing 1 SERP results...
+2026-02-19 12:27:11,397 - INFO - Starting Deep Research agent for keyword: 'asset turnover formula'
+2026-02-19 12:27:13,697 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/interactions "HTTP/1.1 200 OK"
+2026-02-19 12:27:13,733 - INFO - Deep Research interaction started: v1_Chc3MmFXYWZMcU5LVzFnOFVQdjV1NThBYxIXNzJhV2FmTHFOS1cxZzhVUHY1dTU4QWM
+2026-02-19 12:32:22,810 - INFO - Deep Research finished in 311.4s, 16738 chars
+2026-02-19 12:32:22,813 - INFO - Generating content...
+2026-02-19 12:32:57,317 - INFO - Parsing markdown content response...
+2026-02-19 12:32:57,320 - INFO - Validating and cleaning markdown links...
+2026-02-19 12:32:57,440 - WARNING - Invalid external link removed: https://reliabilityweb.com
+2026-02-19 12:32:57,564 - WARNING - Invalid external link removed: https://www.iso.org/standard/75119.html
+2026-02-19 12:32:57,564 - INFO - Link validation: 11 verified, 2 removed
+2026-02-19 12:32:57,566 - INFO - Generating hero image...
+2026-02-19 12:32:57,566 - INFO - Generating image with prompt: A wide-angle, photo-realistic shot of a modern 2026 smart factory floor. In the foreground, a diverse team of three professionals—a woman in a white hard hat and high-visibility vest, and two men in blue industrial workwear and safety glasses—are standing near a large, clean, high-tech robotic assembly line. They are engaged in a professional discussion. One person is holding a rugged industrial tablet, but only the back of the device is visible. The factory is brightly lit with natural light from high windows, showing a clean, organized environment with subtle digital sensor nodes attached to the machinery. The atmosphere is one of high-efficiency and advanced technology. No text or logos are visible. Full-body shots of the workers in appropriate PPE.
+2026-02-19 12:32:57,566 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-19 12:33:14,024 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-19 12:33:14,879 - INFO - Image generated successfully!
+2026-02-19 12:33:14,881 - INFO - Image saved to: generated_content/asset-turnover-formula.png
+2026-02-19 12:33:14,882 - INFO - Formatting for Prismic...
+2026-02-19 12:33:14,883 - INFO - Content saved to:
+2026-02-19 12:33:14,884 - INFO -   JSON: generated_content/asset-turnover-formula.json
+2026-02-19 12:33:14,884 - INFO -   Markdown: generated_content/asset-turnover-formula.md
+2026-02-19 12:33:14,884 - INFO -   Stats: 2391 words, 11 links
+2026-02-19 12:33:14,884 - INFO -   Image: generated_content/asset-turnover-formula.png
+2026-02-19 12:33:14,884 - INFO - Content generated successfully for: asset turnover formula
+2026-02-19 12:33:14,884 - INFO - Uploading to Prismic...
+2026-02-19 12:33:25,286 - INFO - Successfully uploaded to Prismic
+2026-02-19 12:33:25,287 - INFO - Content published to Prismic CMS for: asset turnover formula
+2026-02-19 12:33:27,292 - INFO - Processing keyword 2/306: calibrating
+2026-02-19 12:33:27,292 - INFO - Researching keyword with SERP analysis...
+2026-02-19 12:33:27,292 - INFO - Starting research for keyword: 'calibrating'
+2026-02-19 12:33:27,292 - INFO - Analyzing 1 SERP results...
+2026-02-19 12:33:27,292 - INFO - Starting Deep Research agent for keyword: 'calibrating'
+2026-02-19 12:33:29,431 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/interactions "HTTP/1.1 200 OK"
+2026-02-19 12:33:29,432 - INFO - Deep Research interaction started: v1_ChdaMmlXYWFHUExNS0tqdU1QXzh2Vi1BSRIXWjJpV2FhR1BMTUtLanVNUF84dlYtQUk
+2026-02-19 12:37:21,618 - INFO - Deep Research finished in 234.3s, 20802 chars
+2026-02-19 12:37:21,621 - INFO - Generating content...
+2026-02-19 12:37:52,652 - INFO - Parsing markdown content response...
+2026-02-19 12:37:52,654 - INFO - Validating and cleaning markdown links...
+2026-02-19 12:37:54,141 - INFO - Link validation: 21 verified, 0 removed
+2026-02-19 12:37:54,143 - WARNING - Near-miss word count (1911/2000), attempting expansion...
+2026-02-19 12:37:54,143 - INFO - Expanding content: 1911 words -> target 2200 (need +289 words)
+2026-02-19 12:37:54,143 - INFO - Calling Gemini API for content expansion...
+2026-02-19 12:38:19,837 - INFO - Expansion complete: 1911 -> 2211 words (+300)
+2026-02-19 12:38:19,837 - INFO - Validating and cleaning markdown links...
+2026-02-19 12:38:21,284 - INFO - Link validation: 21 verified, 0 removed
+2026-02-19 12:38:21,284 - INFO - Expansion result: 1911 -> 2211 words
+2026-02-19 12:38:21,285 - INFO - Generating hero image...
+2026-02-19 12:38:21,285 - INFO - Generating image with prompt: A high-end, professional photo-realistic scene in a modern 2026 industrial laboratory. A diverse team of two maintenance professionals—one man and one woman—are working together. They are wearing clean, branded navy blue technician uniforms, hard hats, clear safety glasses, and high-visibility vests. The woman is standing, holding a professional-grade calibration standard device (showing only the back of the device), while the man is kneeling slightly to inspect a complex industrial pressure transmitter mounted on a stainless steel pipe manifold. The background is a clean, well-lit facility with blurred-out high-tech machinery and organized tool stations. The lighting is bright and clinical, emphasizing a high-tech, precision-oriented environment. Full body shots, focused on the collaborative work and the sophisticated industrial setting. No text or screens are visible.
+2026-02-19 12:38:21,285 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-19 12:38:38,148 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-19 12:38:39,012 - INFO - Image generated successfully!
+2026-02-19 12:38:39,013 - INFO - Image saved to: generated_content/calibrating.png
+2026-02-19 12:38:39,014 - INFO - Formatting for Prismic...
+2026-02-19 12:38:39,015 - INFO - Content saved to:
+2026-02-19 12:38:39,015 - INFO -   JSON: generated_content/calibrating.json
+2026-02-19 12:38:39,016 - INFO -   Markdown: generated_content/calibrating.md
+2026-02-19 12:38:39,016 - INFO -   Stats: 2211 words, 21 links
+2026-02-19 12:38:39,016 - INFO -   Image: generated_content/calibrating.png
+2026-02-19 12:38:39,016 - INFO - Content generated successfully for: calibrating
+2026-02-19 12:38:39,016 - INFO - Uploading to Prismic...
+2026-02-19 12:38:49,319 - INFO - Successfully uploaded to Prismic
+2026-02-19 12:38:49,320 - INFO - Content published to Prismic CMS for: calibrating
+2026-02-19 12:38:51,326 - INFO - Processing keyword 3/306: common area maintenance
+2026-02-19 12:38:51,326 - INFO - Researching keyword with SERP analysis...
+2026-02-19 12:38:51,326 - INFO - Starting research for keyword: 'common area maintenance'
+2026-02-19 12:38:51,326 - INFO - Analyzing 1 SERP results...
+2026-02-19 12:38:51,326 - INFO - Starting Deep Research agent for keyword: 'common area maintenance'
+2026-02-19 12:38:53,817 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/interactions "HTTP/1.1 200 OK"
+2026-02-19 12:38:53,818 - INFO - Deep Research interaction started: v1_ChdyR21XYWIzUkRxX1JqdU1QemNLU3FRaxIXckdtV2FiM1JEcV9SanVNUHpjS1NxUWs
+2026-02-19 12:43:47,953 - INFO - Deep Research finished in 296.6s, 20051 chars
+2026-02-19 12:43:47,956 - INFO - Generating content...
+2026-02-19 12:44:21,122 - INFO - Parsing markdown content response...
+2026-02-19 12:44:21,125 - INFO - Validating and cleaning markdown links...
+2026-02-19 12:44:21,711 - WARNING - Invalid external link removed: https://www.boma.org
+2026-02-19 12:44:22,047 - INFO - Link validation: 11 verified, 1 removed
+2026-02-19 12:44:22,048 - WARNING - Near-miss word count (1972/2000), attempting expansion...
+2026-02-19 12:44:22,049 - INFO - Expanding content: 1972 words -> target 2200 (need +228 words)
+2026-02-19 12:44:22,049 - INFO - Calling Gemini API for content expansion...
+2026-02-19 12:44:52,062 - INFO - Expansion complete: 1972 -> 2495 words (+523)
+2026-02-19 12:44:52,063 - INFO - Validating and cleaning markdown links...
+2026-02-19 12:44:52,373 - INFO - Link validation: 11 verified, 0 removed
+2026-02-19 12:44:52,373 - INFO - Expansion result: 1972 -> 2495 words
+2026-02-19 12:44:52,374 - INFO - Generating hero image...
+2026-02-19 12:44:52,374 - INFO - Generating image with prompt: A high-resolution, photorealistic wide shot of a modern industrial logistics park at dusk. The scene features a clean, well-maintained asphalt loading area with clear striping. In the foreground, a diverse team of three maintenance professionals (two men, one woman) are conducting an inspection. They are wearing professional PPE, including white hard hats, safety glasses, and high-visibility yellow vests over work uniforms. One professional is pointing toward a large, roof-mounted industrial HVAC unit, while another holds a ruggedized tablet (back of the device facing the camera). The third person is checking a digital gate sensor. The lighting is crisp, highlighting the textures of the concrete and metal. No text or logos are visible. The atmosphere is professional, organized, and technologically advanced.
+2026-02-19 12:44:52,374 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-19 12:45:12,105 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-19 12:45:12,908 - INFO - Image generated successfully!
+2026-02-19 12:45:12,909 - INFO - Image saved to: generated_content/common-area-maintenance.png
+2026-02-19 12:45:12,910 - INFO - Formatting for Prismic...
+2026-02-19 12:45:12,911 - INFO - Content saved to:
+2026-02-19 12:45:12,911 - INFO -   JSON: generated_content/common-area-maintenance.json
+2026-02-19 12:45:12,911 - INFO -   Markdown: generated_content/common-area-maintenance.md
+2026-02-19 12:45:12,911 - INFO -   Stats: 2495 words, 11 links
+2026-02-19 12:45:12,911 - INFO -   Image: generated_content/common-area-maintenance.png
+2026-02-19 12:45:12,911 - INFO - Content generated successfully for: common area maintenance
+2026-02-19 12:45:12,911 - INFO - Uploading to Prismic...
+2026-02-19 12:45:21,954 - INFO - Successfully uploaded to Prismic
+2026-02-19 12:45:21,954 - INFO - Content published to Prismic CMS for: common area maintenance
+2026-02-19 12:45:23,959 - INFO - Processing keyword 4/306: define inspection
+2026-02-19 12:45:23,960 - INFO - Researching keyword with SERP analysis...
+2026-02-19 12:45:23,960 - INFO - Starting fast research for keyword: 'define inspection'
+2026-02-19 12:45:23,960 - INFO - Analyzing 1 SERP results...
+2026-02-19 12:45:23,960 - INFO - Calling Gemini API (fast research)...
+2026-02-19 12:45:40,964 - INFO - Gemini API call took 17.00 seconds
+2026-02-19 12:45:40,965 - INFO - Received response (6741 characters)
+2026-02-19 12:45:40,965 - INFO - Parsing markdown response...
+2026-02-19 12:45:40,966 - INFO - Successfully parsed markdown with 11 sections
+2026-02-19 12:45:40,967 - INFO - Research completed in 17.01 seconds total
+2026-02-19 12:45:40,967 - INFO - Generating glossary/definition page...
+2026-02-19 12:45:53,855 - INFO - Parsing markdown content response...
+2026-02-19 12:45:53,857 - INFO - Validating and cleaning markdown links...
+2026-02-19 12:45:54,442 - INFO - Link validation: 5 verified, 0 removed
+2026-02-19 12:45:54,442 - WARNING - Glossary content too short (369/400), saving to drafts
+2026-02-19 12:45:54,445 - INFO - Draft saved to: generated_content/drafts/
+2026-02-19 12:45:54,445 - INFO -   JSON: generated_content/drafts/define-inspection.json
+2026-02-19 12:45:54,445 - INFO -   Markdown: generated_content/drafts/define-inspection.md
+2026-02-19 12:45:54,445 - INFO - Draft saved for under-length content: define inspection
+2026-02-19 12:45:54,445 - INFO - Processing keyword 5/306: down time
+2026-02-19 12:45:54,445 - INFO - Researching keyword with SERP analysis...
+2026-02-19 12:45:54,445 - INFO - Starting research for keyword: 'down time'
+2026-02-19 12:45:54,445 - INFO - Analyzing 1 SERP results...
+2026-02-19 12:45:54,446 - INFO - Starting Deep Research agent for keyword: 'down time'
+2026-02-19 12:45:58,397 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/interactions "HTTP/1.1 200 OK"
+2026-02-19 12:45:58,400 - INFO - Deep Research interaction started: v1_ChdVbXVXYWZHN09jT3lqdU1QdnVDNnVRRRIXVW11V2FmRzdPY095anVNUHZ1QzZ1UUU
+2026-02-19 12:51:53,569 - INFO - Deep Research finished in 359.1s, 21644 chars
+2026-02-19 12:51:53,571 - INFO - Generating content...
+2026-02-19 12:52:29,603 - INFO - Parsing markdown content response...
+2026-02-19 12:52:29,605 - INFO - Validating and cleaning markdown links...
+2026-02-19 12:52:30,645 - WARNING - Invalid external link removed: https://www.ieee.org
+2026-02-19 12:52:30,645 - INFO - Link validation: 21 verified, 1 removed
+2026-02-19 12:52:30,646 - WARNING - Meta description truncated from 162 to 154 characters
+2026-02-19 12:52:30,646 - INFO - Generating hero image...
+2026-02-19 12:52:30,646 - INFO - Generating image with prompt: A wide-angle, photo-realistic shot of a modern, clean industrial manufacturing floor in 2026. In the foreground, a diverse team of three maintenance professionals (two men, one woman) are standing near a large, complex robotic assembly arm. They are all wearing full professional PPE: white hard hats, clear safety glasses, and high-visibility orange vests over navy blue work uniforms. One technician is holding a ruggedized industrial tablet, but only the back of the device is visible to the camera. They are pointing toward a specific section of the machinery, engaged in a collaborative discussion. The lighting is bright and professional, highlighting the polished concrete floor and the intricate wiring and sensors attached to the machinery. No text or logos are visible. The focus is on the professional interaction and the high-tech environment.
+2026-02-19 12:52:30,646 - INFO - Calling Gemini Image Generation API (attempt 1/3)...
+2026-02-19 12:52:49,524 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-19 12:52:50,322 - INFO - Image generated successfully!
+2026-02-19 12:52:50,324 - INFO - Image saved to: generated_content/down-time.png
+2026-02-19 12:52:50,324 - INFO - Formatting for Prismic...
+2026-02-19 12:52:50,325 - INFO - Content saved to:
+2026-02-19 12:52:50,325 - INFO -   JSON: generated_content/down-time.json
+2026-02-19 12:52:50,325 - INFO -   Markdown: generated_content/down-time.md
+2026-02-19 12:52:50,325 - INFO -   Stats: 2174 words, 21 links
+2026-02-19 12:52:50,325 - INFO -   Image: generated_content/down-time.png
+2026-02-19 12:52:50,325 - INFO - Content generated successfully for: down time
+2026-02-19 12:52:50,325 - INFO - Uploading to Prismic...
+2026-02-19 12:53:09,342 - INFO - Successfully uploaded to Prismic
+2026-02-19 12:53:09,342 - INFO - Content published to Prismic CMS for: down time
+2026-02-19 12:53:11,344 - INFO - Processing keyword 6/306: eam software
+2026-02-19 12:53:11,345 - INFO - Researching keyword with SERP analysis...
+2026-02-19 12:53:11,348 - INFO - Starting research for keyword: 'eam software'
+2026-02-19 12:53:11,348 - INFO - Analyzing 1 SERP results...
+2026-02-19 12:53:11,348 - INFO - Starting Deep Research agent for keyword: 'eam software'
+2026-02-19 12:53:13,570 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/interactions "HTTP/1.1 200 OK"
+2026-02-19 12:53:13,571 - INFO - Deep Research interaction started: v1_ChdCMjJXYWJ5X004Q0RnOFVQMnItanlRZxIXQjIyV2FieV9NOENEZzhVUDJyLWp5UWc

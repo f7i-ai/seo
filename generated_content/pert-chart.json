@@ -1,0 +1,16 @@
+{
+  "meta_title": "PERT Chart Explained: The 2026 Framework for STO & Maintenance Planning",
+  "meta_description": "70% of project overruns stem from optimism bias. Master the PERT chart formula to manage uncertainty and see how Factory AI integrates planning with execution.",
+  "title": "PERT Chart: The Definitive Guide to Managing Uncertainty in Maintenance Projects (2026 Edition)",
+  "keyword": "pert chart",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/pert-chart.png",
+    "alt": "Hero image for PERT Chart: The Definitive Guide to Managing Uncertainty in Maintenance Projects (2026 Edition)",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photorealistic, cinematic shot inside a modern manufacturing facility. In the foreground, a diverse group of maintenance engineers (wearing hard hats, safety glasses, and high-visibility vests) are gathered around a large, industrial-grade table. They are looking at a large, translucent digital holographic overlay projecting a complex network diagram (PERT chart) above a physical blueprint. The background shows blurred industrial machinery, perhaps a conveyor system or large pumps, emphasizing a brownfield environment. The lighting is professional, with cool blue tones from the hologram contrasting with the warm industrial lighting of the factory. One engineer is pointing at a \"Critical Path\" node on the hologram. No text or words should be visible on the displays. The atmosphere conveys collaboration, high-tech integration, and precision planning.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2233,
+  "link_count": 15
+}

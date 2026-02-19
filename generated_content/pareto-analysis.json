@@ -1,0 +1,16 @@
+{
+  "meta_title": "Pareto Analysis in Maintenance: The 80/20 Rule for Reliability",
+  "meta_description": "Most maintenance teams waste budget on low-impact repairs. Use Pareto Analysis to identify the 20% of assets causing 80% of your downtime and costs.",
+  "title": "Pareto Analysis in Maintenance: The Definitive Guide to the 80/20 Rule for Industrial Reliability",
+  "keyword": "pareto analysis",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/pareto-analysis.png",
+    "alt": "Hero image for Pareto Analysis in Maintenance: The Definitive Guide to the 80/20 Rule for Industrial Reliability",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern manufacturing facility. In the foreground, a diverse group of maintenance engineers (wearing hard hats, safety glasses, and high-visibility vests) are gathered around a large industrial machine. One engineer is pointing at a specific component of the machine, while holding a tablet (back of tablet visible only). In the background, blurred production lines with conveyors and robotic arms are visible. The lighting is industrial but warm, highlighting the professionalism and focus of the team. No text or overlays in the image. The atmosphere conveys precision, technology, and collaboration.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2184,
+  "link_count": 12
+}

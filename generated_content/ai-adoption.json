@@ -1,0 +1,16 @@
+{
+  "meta_title": "AI Adoption in Maintenance: A Pragmatic Guide for 2026",
+  "meta_description": "Move beyond the hype. A comprehensive guide to AI adoption in industrial maintenance, covering predictive algorithms, data maturity, and ROI calculation.",
+  "title": "AI Adoption in Maintenance: Moving From \"Pilot Purgatory\" to Prescriptive Reliability",
+  "keyword": "ai adoption",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/ai-adoption.png",
+    "alt": "Hero image for AI Adoption in Maintenance: Moving From \"Pilot Purgatory\" to Prescriptive Reliability",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern industrial manufacturing facility. In the foreground, a diverse reliability engineer (female) wearing a hard hat, safety glasses, and high-visibility vest is looking at a tablet (back of tablet visible, no screen content). In the background, out of focus, is a complex assembly line with yellow robotic arms and conveyor belts. The lighting is a mix of cool industrial LED and warm ambient light, suggesting a high-tech, clean, and efficient environment. No text or overlays. 8k resolution.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2003,
+  "link_count": 11
+}

@@ -1,0 +1,16 @@
+{
+  "meta_title": "Predictive Maintenance Hardware: The 2026 System Architecture Guide",
+  "meta_description": "Don't just buy sensors; build an ecosystem. A comprehensive guide to predictive maintenance hardware architecture, from MEMS and edge gateways to connectivity.",
+  "title": "Predictive Maintenance Hardware: Building a Scalable Architecture for 2026 and Beyond",
+  "keyword": "predictive maintenance hardware",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/predictive-maintenance-hardware.png",
+    "alt": "Hero image for Predictive Maintenance Hardware: Building a Scalable Architecture for 2026 and Beyond",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern, clean manufacturing facility. In the foreground, a reliability engineer wearing a white hard hat, safety glasses, and a high-visibility vest is inspecting a large industrial electric motor. The engineer is looking at the motor, where a small, wireless industrial sensor (orange or yellow casing) is mounted. In the blurred background, other automated machinery and conveyors are visible, with soft blue and cool industrial lighting. The image conveys technology, precision, and industrial safety. No text or screens visible.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2441,
+  "link_count": 10
+}

@@ -1,0 +1,16 @@
+{
+  "meta_title": "Induction Motor Reliability: The 2026 Asset Management Guide",
+  "meta_description": "70% of industrial energy goes to induction motors. Learn to optimize uptime, manage IE5 efficiency, and automate reliability with Factory AI’s sensor-agnostic",
+  "title": "The Induction Motor in 2026: From Electromagnetism to AI-Driven Reliability",
+  "keyword": "induction motor",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/induction-motor.png",
+    "alt": "Hero image for The Induction Motor in 2026: From Electromagnetism to AI-Driven Reliability",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern manufacturing facility. In the foreground, a diverse group of reliability engineers (men and women) wearing hard hats, safety glasses, and high-visibility vests are inspecting a large, industrial blue induction motor connected to a pump system. One engineer is holding a tablet (back facing the camera) while pointing at the motor cooling fins. In the background, blurred automated conveyor lines and soft industrial lighting create a clean, high-tech atmosphere. No text or overlays in the image. 8k resolution, professional industrial photography style.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2230,
+  "link_count": 17
+}

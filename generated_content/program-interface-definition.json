@@ -1,0 +1,16 @@
+{
+  "meta_title": "Program Interface Definition: The Nervous System of Industrial IIoT",
+  "meta_description": "What is a program interface in manufacturing? Discover how APIs act as the nervous system connecting your PLCs, CMMS, and ERP for autonomous maintenance.",
+  "title": "Program Interface Definition: The Nervous System of Modern Manufacturing",
+  "keyword": "program interface definition",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/program-interface-definition.png",
+    "alt": "Hero image for Program Interface Definition: The Nervous System of Modern Manufacturing",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a futuristic, high-tech manufacturing facility. In the foreground, a diverse group of three industrial professionals (one female engineer in a white hard hat and safety glasses, two male technicians in high-vis vests) are standing around a large, holographic digital interface projecting from a console. The hologram displays a complex network of connecting nodes and lines, resembling a digital nervous system or constellation, connecting various 3D models of industrial machinery (pumps, conveyors, robotic arms). The background shows a clean, blurred production line with automated machinery. The lighting is cool blue and industrial amber. The professionals are looking at the data visualization with focus, not holding devices, but interacting with the workflow. No text in the image. 8k resolution, highly detailed.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2465,
+  "link_count": 9
+}
