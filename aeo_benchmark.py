@@ -652,7 +652,7 @@ def write_summary_md(
     # Engine scorecard table
     lines.append("\n## Engine Scorecard\n")
     lines.append("| Engine | Prompts | Inclusion | Vendor List | Positive Narrative | Citation |")
-    lines.append("|--------|---------|-----------|-------------|--------------------|---------|\n")
+    lines.append("|--------|---------|-----------|-------------|--------------------|------------|")
     for r in engine_sc:
         lines.append(
             f"| {r['engine']} | {r['prompts']} | {r['inclusion']} | {r['vendor_list']} "
@@ -662,7 +662,7 @@ def write_summary_md(
     # Stage breakdown
     lines.append("\n\n## Stage Breakdown\n")
     lines.append("| Stage | Engine | Prompts | Inclusion | Vendor List | Positive Narrative | Citation |")
-    lines.append("|-------|--------|---------|-----------|-------------|--------------------|---------|\n")
+    lines.append("|-------|--------|---------|-----------|-------------|--------------------|----------|")
     for r in stage_sc:
         lines.append(
             f"| {r['stage']} | {r['engine']} | {r['prompts']} | {r['inclusion']} "
@@ -673,7 +673,7 @@ def write_summary_md(
     if clarity_summary:
         lines.append("\n\n## AI Referral Traffic (Clarity)\n")
         lines.append("| Engine | Sessions | Users | Pages/Session | Landing Pages |")
-        lines.append("|--------|----------|-------|---------------|---------------|\n")
+        lines.append("|--------|----------|-------|---------------|---------------|")
         for r in clarity_summary:
             lines.append(
                 f"| {r['engine']} | {r['sessions']} | {r['users']} "
@@ -683,7 +683,7 @@ def write_summary_md(
     if clarity_top_pages:
         lines.append("\n\n## Top landing pages (page clicked from AI engine)\n")
         lines.append("| Engine | Page (URL) | Region | Sessions |")
-        lines.append("|--------|------------|--------|----------|\n")
+        lines.append("|--------|------------|--------|----------|")
         for r in clarity_top_pages[:20]:
             lines.append(f"| {r['engine']} | {r['url']} | {r['region']} | {r['sessions']} |")
 
