@@ -336,7 +336,7 @@ python seo_content_generator.py
 
 ## 📄 License
 
-This project is part of the f7i.ai marketing system and is proprietary to Factory AI.
+This project is part of the f7i.ai marketing system and is proprietary to Factory AI. https://f7i.ai
 
 ## 🆘 Support
 
