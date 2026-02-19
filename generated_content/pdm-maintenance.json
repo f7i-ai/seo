@@ -1,0 +1,16 @@
+{
+  "meta_title": "PdM Maintenance in 2026: The Operational Guide for Reliability Engineers",
+  "meta_description": "70% of unplanned downtime traces to poor asset visibility. Master PdM maintenance strategies, P-F curves, and sensor integration using Factory AI to predict",
+  "title": "PdM Maintenance: The Definitive Guide to Predictive Strategies, IIoT, and Reliability in 2026",
+  "keyword": "pdm maintenance",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/pdm-maintenance.png",
+    "alt": "Hero image for PdM Maintenance: The Definitive Guide to Predictive Strategies, IIoT, and Reliability in 2026",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, high-resolution image of a modern manufacturing facility floor. In the foreground, a reliability engineer wearing a white hard hat, safety glasses, and a high-visibility vest is inspecting a large industrial motor. The engineer is holding a tablet device (viewed from the back, screen not visible) appearing to check data. In the background, blurred but visible, are other diverse technicians working on machinery. The lighting is industrial but bright, highlighting the clean, organized nature of a modern \"smart factory.\" No text or overlays in the image. Focus on the interaction between the human worker and the industrial asset.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2056,
+  "link_count": 0
+}

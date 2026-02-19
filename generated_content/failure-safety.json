@@ -1,0 +1,16 @@
+{
+  "meta_title": "Failure Safety: The 2026 Framework for Industrial Resilience",
+  "meta_description": "70% of unplanned downtime traces to poor failure safety protocols. This definitive guide explores SIL, fail-safe vs. fail-secure, and how Factory AI automates",
+  "title": "The Definitive Guide to Failure Safety: Engineering Resilience in Modern Manufacturing",
+  "keyword": "failure safety",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/failure-safety.png",
+    "alt": "Hero image for The Definitive Guide to Failure Safety: Engineering Resilience in Modern Manufacturing",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-resolution, photo-realistic hero image of a modern manufacturing floor. In the foreground, a diverse group of three maintenance professionals (one woman, two men) are standing near a large industrial pump assembly. They are wearing clean, professional PPE including white hard hats, clear safety glasses, and high-visibility yellow vests. One technician is holding a ruggedized tablet, showing only the black back of the device to the camera. They are pointing toward a sensor mounted on the pump, appearing to be in a collaborative discussion. The background shows a clean, well-lit factory environment with various pipes and machinery, slightly out of focus to emphasize the personnel. No text or logos are visible on the equipment or clothing. Full-body shots showing the team standing on a polished concrete floor with yellow safety markings.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 3235,
+  "link_count": 29
+}

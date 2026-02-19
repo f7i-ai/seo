@@ -1,0 +1,16 @@
+{
+  "meta_title": "Electrical Failures in Manufacturing: Root Causes & Prevention (2026 Guide)",
+  "meta_description": "Stop reactive troubleshooting. Discover the root causes of electrical failures in manufacturing, from NFPA 70B compliance to power quality analysis and AI",
+  "title": "Why Are Electrical Failures Still Shutting Down Your Lines? (And How to Stop Them)",
+  "keyword": "electrical failures manufacturing",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/electrical-failures-manufacturing.png",
+    "alt": "Hero image for Why Are Electrical Failures Still Shutting Down Your Lines? (And How to Stop Them)",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern, high-tech manufacturing facility. In the foreground, a diverse maintenance team (a man and a woman) wearing full arc-flash PPE (hard hats with face shields lifted, safety glasses, FR clothing) are inspecting a large, open industrial electrical control panel. The woman is holding a professional thermal imaging camera (back of device visible), pointing it at the busbars. The man is holding a tablet displaying a digital schematic. The background shows blurred automated production lines with robotic arms and soft blue/orange industrial lighting. The atmosphere is professional, focused, and highlights advanced technology in maintenance. No text in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2265,
+  "link_count": 6
+}

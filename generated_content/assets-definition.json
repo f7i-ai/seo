@@ -1,0 +1,16 @@
+{
+  "meta_title": "Assets Definition: The Engineer’s Guide to Asset Management",
+  "meta_description": "Stop confusing accounting ledgers with maintenance realities. Here is the operational assets definition for facility managers and reliability engineers in 2026.",
+  "title": "Assets Definition: Why Your Accountant and Your Maintenance Manager Disagree (And How to Fix It)",
+  "keyword": "assets definition",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/assets-definition.png",
+    "alt": "Hero image for Assets Definition: Why Your Accountant and Your Maintenance Manager Disagree (And How to Fix It)",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, high-resolution image set in a modern, clean industrial manufacturing facility. In the foreground, a reliability engineer (wearing a white hard hat, safety glasses, and a high-visibility vest) is inspecting a large industrial electric motor. They are holding a tablet (back of the device visible) as if scanning a QR code on the machine. In the background, out of focus, a diverse group of technicians is working on a conveyor line. The lighting is bright and industrial, highlighting the metallic textures of the machinery. The image conveys precision, technology, and safety. No text overlays.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2178,
+  "link_count": 10
+}

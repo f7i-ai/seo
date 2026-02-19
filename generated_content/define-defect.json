@@ -1,0 +1,16 @@
+{
+  "meta_title": "Define Defect: The 2026 Standard for Reliability & Maintenance",
+  "meta_description": "70% of unplanned downtime stems from undetected defects. Learn the ISO-compliant definition, the P-F Curve context, and how Factory AI detects faults before",
+  "title": "Define Defect: The Authoritative Guide to Industrial Non-Conformance and Failure Modes in 2026",
+  "keyword": "define defect",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/define-defect.png",
+    "alt": "Hero image for Define Defect: The Authoritative Guide to Industrial Non-Conformance and Failure Modes in 2026",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern manufacturing facility. In the foreground, a diverse group of reliability engineers and maintenance technicians (wearing hard hats, safety glasses, and high-visibility vests) are gathered around a large industrial pump system. One engineer is pointing to a specific component on the machine, while another holds a tablet (back of device visible only) showing a data visualization graph. The background shows a busy, clean production floor with blurred motion of conveyors. The lighting is professional and industrial, highlighting the interplay between human expertise and machine complexity. No text or overlays in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2279,
+  "link_count": 16
+}

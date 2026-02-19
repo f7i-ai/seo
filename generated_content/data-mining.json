@@ -1,0 +1,16 @@
+{
+  "meta_title": "Data Mining in Maintenance: Unlocking Hidden Asset Value",
+  "meta_description": "Discover how industrial data mining transforms raw CMMS and sensor data into actionable reliability insights. Learn techniques for predictive maintenance and",
+  "title": "Data Mining for Maintenance: How to Turn Your \"Data Swamp\" into Reliability Gold",
+  "keyword": "data mining",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/data-mining.png",
+    "alt": "Hero image for Data Mining for Maintenance: How to Turn Your \"Data Swamp\" into Reliability Gold",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern, clean manufacturing facility. In the foreground, a diverse group of reliability engineers (male and female) wearing hard hats, safety glasses, and high-visibility vests are gathered around a large industrial machine (like a compressor or turbine). One engineer is pointing at a tablet held by another (showing only the back of the device), while they look at the machine, discussing. In the background, slightly blurred, are automated production lines and digital displays showing data graphs. The lighting is professional, combining cool industrial blue tones with warm accent lighting on the machinery. No text or words visible in the image. High resolution, 8k.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2020,
+  "link_count": 10
+}

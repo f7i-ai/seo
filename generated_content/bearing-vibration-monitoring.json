@@ -1,0 +1,16 @@
+{
+  "meta_title": "Bearing Vibration Monitoring: The 2026 Technical Guide",
+  "meta_description": "Move beyond basic RMS. Master bearing vibration monitoring, from FFT analysis and sensor selection to ISO 10816 standards and AI-driven prescriptive",
+  "title": "Bearing Vibration Monitoring: Decoding the Language of Machine Failure",
+  "keyword": "bearing vibration monitoring",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/bearing-vibration-monitoring.png",
+    "alt": "Hero image for Bearing Vibration Monitoring: Decoding the Language of Machine Failure",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern manufacturing facility. In the foreground, a reliability engineer (wearing a hard hat, safety glasses, and high-vis vest) is inspecting a large industrial electric motor. The engineer is looking at a tablet (back of tablet visible) which displays data graphs. Attached to the motor housing is a small, modern wireless vibration sensor with a blinking LED status light. The background is slightly blurred but shows depth with other machinery and piping, illuminated by cool industrial lighting. The atmosphere conveys precision, technology, and industrial safety. No text or words in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2222,
+  "link_count": 10
+}

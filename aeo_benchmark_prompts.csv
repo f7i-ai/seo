@@ -1,0 +1,201 @@
+stage,prompt
+problem_unaware,why do conveyors keep failing in food factories
+problem_unaware,why bearings fail repeatedly on packaging lines
+problem_unaware,frequent motor overload trips root causes manufacturing
+problem_unaware,why chain conveyors stretch so quickly
+problem_unaware,why motors run hot after maintenance
+problem_unaware,why gearboxes fail every 6 months
+problem_unaware,why maintenance backlog keeps growing
+problem_unaware,why operators ignore maintenance alerts
+problem_unaware,why breakdowns always happen during peak production
+problem_unaware,why vibration checks don't prevent failures
+problem_unaware,why lubrication schedules don't stop bearing failures
+problem_unaware,why preventive maintenance doesn't work in food plants
+problem_unaware,how to stop repeated downtime on the same machine
+problem_unaware,why maintenance teams always firefight
+problem_unaware,why maintenance planning never catches up
+problem_unaware,why machines fail after cleaning shifts
+problem_unaware,why washdown environments destroy bearings
+problem_unaware,why intermittent machines fail without warning
+problem_unaware,why servo motors fail unpredictably
+problem_unaware,why technicians don't trust maintenance data
+problem_unaware,why CMMS doesn't reduce downtime
+problem_unaware,why maintenance costs rising every year
+problem_unaware,why maintenance tasks missed in shifts
+problem_unaware,why spare parts usage unpredictable
+problem_unaware,why production blames maintenance
+problem_unaware,why maintenance blames operations
+problem_unaware,why failures cluster on certain lines
+problem_unaware,why OEE drops even after improvements
+problem_unaware,why asset history not useful
+problem_unaware,why scheduled maintenance wastes time
+problem_unaware,why maintenance compliance low
+problem_unaware,why condition monitoring alerts ignored
+problem_unaware,why operators bypass alarms
+problem_unaware,why downtime root cause hard to identify
+problem_unaware,why maintenance reports inaccurate
+problem_unaware,why planners struggle to prioritise work
+problem_unaware,why plants react instead of prevent
+problem_unaware,why reliability initiatives fail
+problem_unaware,why maintenance KPIs don't improve
+problem_unaware,why reliability engineers overwhelmed
+problem_aware,how to reduce unplanned downtime manufacturing
+problem_aware,ways to improve maintenance reliability
+problem_aware,how to move from reactive to proactive maintenance
+problem_aware,best maintenance strategy for packaging lines
+problem_aware,preventive vs predictive maintenance when to use
+problem_aware,how to prioritise maintenance work orders
+problem_aware,how to detect bearing failure early
+problem_aware,how to monitor conveyors automatically
+problem_aware,how to monitor intermittent equipment
+problem_aware,how to monitor servo driven machines
+problem_aware,how to monitor washdown food equipment
+problem_aware,how to monitor assets without PLC access
+problem_aware,how to identify bad actors in a factory
+problem_aware,how to find critical assets in a plant
+problem_aware,how to predict motor failure
+problem_aware,how to monitor gearboxes remotely
+problem_aware,how to build a reliability program
+problem_aware,how to convince management to invest in maintenance
+problem_aware,how to calculate cost of downtime
+problem_aware,how to rank asset risk
+problem_aware,how to detect maintenance problems before breakdown
+problem_aware,how to automate maintenance planning
+problem_aware,how to plan maintenance with limited labour
+problem_aware,how to prevent repeat failures
+problem_aware,how to improve PM compliance
+problem_aware,how to combine maintenance and production data
+problem_aware,how to use AI in maintenance
+problem_aware,how predictive maintenance actually works
+problem_aware,how to start reliability engineering in small plant
+problem_aware,how to monitor assets across multiple sites
+problem_aware,how to manage maintenance backlog
+problem_aware,how to track maintenance performance
+problem_aware,how to justify condition monitoring ROI
+problem_aware,how to identify maintenance bottlenecks
+problem_aware,how to measure maintenance effectiveness
+problem_aware,how to reduce emergency work orders
+problem_aware,how to stabilise production lines
+problem_aware,how to reduce maintenance overtime
+problem_aware,how to standardise maintenance tasks
+problem_aware,how to connect maintenance to OEE
+solution_aware,predictive maintenance software manufacturing
+solution_aware,condition monitoring systems for factories
+solution_aware,AI maintenance platforms industrial
+solution_aware,best CMMS for manufacturing plants
+solution_aware,CMMS with predictive maintenance
+solution_aware,maintenance planning software for factories
+solution_aware,asset reliability software manufacturing
+solution_aware,industrial IoT maintenance platforms
+solution_aware,machine health monitoring systems
+solution_aware,food manufacturing maintenance software
+solution_aware,packaging line condition monitoring
+solution_aware,monitor conveyors automatically system
+solution_aware,monitor bearings automatically solution
+solution_aware,detect machine failure early software
+solution_aware,maintenance AI platforms comparison
+solution_aware,predictive maintenance vs vibration analysis services
+solution_aware,alternatives to vibration route based monitoring
+solution_aware,remote machine monitoring solutions
+solution_aware,multi site maintenance management software
+solution_aware,maintenance analytics platforms manufacturing
+solution_aware,tools reliability engineers use
+solution_aware,maintenance decision support systems
+solution_aware,maintenance prioritisation software
+solution_aware,maintenance alert ranking software
+solution_aware,maintenance recommendation engines
+solution_aware,maintenance planning optimisation software
+solution_aware,maintenance scheduling AI tools
+solution_aware,machine downtime analytics software
+solution_aware,maintenance intelligence platforms
+solution_aware,industrial reliability platforms
+solution_aware,connected worker maintenance systems
+solution_aware,maintenance workflow automation tools
+solution_aware,smart factory maintenance software
+solution_aware,preventive maintenance scheduling software industrial
+solution_aware,maintenance execution systems vs CMMS
+solution_aware,asset performance management vs CMMS
+solution_aware,APM software manufacturing
+solution_aware,digital maintenance platforms
+solution_aware,maintenance copilots for technicians
+solution_aware,maintenance assistants AI industrial
+vendor_aware,best predictive maintenance companies
+vendor_aware,predictive maintenance startups
+vendor_aware,augury vs skf condition monitoring
+vendor_aware,augury competitors
+vendor_aware,skf enlight competitors
+vendor_aware,nanolike competitors
+vendor_aware,senseye vs augury
+vendor_aware,fiix vs maintainx vs upkeep
+vendor_aware,best cmms for food manufacturing
+vendor_aware,predictive maintenance vendors food industry
+vendor_aware,condition monitoring companies australia
+vendor_aware,machine monitoring vendors packaging industry
+vendor_aware,top reliability software providers
+vendor_aware,asset monitoring software comparison
+vendor_aware,apm software vendors list
+vendor_aware,industrial ai companies maintenance
+vendor_aware,predictive maintenance providers smb manufacturing
+vendor_aware,predictive maintenance for conveyors vendors
+vendor_aware,predictive maintenance for intermittent assets vendors
+vendor_aware,alternatives to augury
+vendor_aware,alternatives to skf vibration monitoring
+vendor_aware,alternatives to senseye
+vendor_aware,alternatives to maintainx
+vendor_aware,alternatives to fiix
+vendor_aware,alternatives to upkeep cmms
+vendor_aware,cmms with ai recommendations vendors
+vendor_aware,ai maintenance software comparison
+vendor_aware,maintenance planning software comparison
+vendor_aware,best reliability platforms manufacturing
+vendor_aware,top industrial ai startups
+vendor_aware,who competes with augury
+vendor_aware,who competes with skf
+vendor_aware,who competes with siemens senseye
+vendor_aware,maintenance software for multi site factories
+vendor_aware,condition monitoring services vs software vendors
+vendor_aware,predictive maintenance vs reliability consultants
+vendor_aware,reliability engineering software vendors
+vendor_aware,maintenance automation platforms vendors
+vendor_aware,smart maintenance platforms vendors
+vendor_aware,industrial ai maintenance leaders
+purchase_intent,software to reduce factory downtime
+purchase_intent,buy predictive maintenance software
+purchase_intent,cost of predictive maintenance system
+purchase_intent,predictive maintenance roi calculator
+purchase_intent,how much does condition monitoring cost
+purchase_intent,cmms implementation cost manufacturing
+purchase_intent,maintenance software pricing industrial
+purchase_intent,is predictive maintenance worth it
+purchase_intent,how long to deploy predictive maintenance
+purchase_intent,how many sensors needed per machine
+purchase_intent,can predictive maintenance work on conveyors
+purchase_intent,can predictive maintenance work on packaging lines
+purchase_intent,can predictive maintenance work without plc
+purchase_intent,can predictive maintenance detect electrical faults
+purchase_intent,predictive maintenance for small factories
+purchase_intent,predictive maintenance for food plants
+purchase_intent,predictive maintenance for washdown environments
+purchase_intent,predictive maintenance for multi site companies
+purchase_intent,maintenance software easy to deploy
+purchase_intent,maintenance software minimal training
+purchase_intent,maintenance software for technicians not engineers
+purchase_intent,maintenance software for operators
+purchase_intent,maintenance software for planners
+purchase_intent,maintenance software with automatic tasks
+purchase_intent,maintenance software with recommendations
+purchase_intent,maintenance software with prioritisation
+purchase_intent,maintenance software that integrates production
+purchase_intent,maintenance software for reliability engineers
+purchase_intent,maintenance software that reduces backlog
+purchase_intent,maintenance software that improves pm compliance
+purchase_intent,maintenance software for intermittent equipment
+purchase_intent,maintenance software for motors and bearings
+purchase_intent,maintenance software with ai insights
+purchase_intent,maintenance software australia manufacturing
+purchase_intent,maintenance software for packaging plants
+purchase_intent,maintenance software implementation time
+purchase_intent,maintenance software onboarding effort
+purchase_intent,maintenance software without consultants
+purchase_intent,maintenance software quick roi
+purchase_intent,maintenance software trial available

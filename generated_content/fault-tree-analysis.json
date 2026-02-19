@@ -1,0 +1,16 @@
+{
+  "meta_title": "Fault Tree Analysis: Turning Failure Logic into Reliability",
+  "meta_description": "70% of unplanned downtime traces back to complex system interactions. Fault Tree Analysis (FTA) provides the deductive framework to prevent these failures.",
+  "title": "Why Fault Tree Analysis is Your Plant’s Most Critical Diagnostic Operating System",
+  "keyword": "fault tree analysis",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/fault-tree-analysis.png",
+    "alt": "Hero image for Why Fault Tree Analysis is Your Plant’s Most Critical Diagnostic Operating System",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A professional, photo-realistic scene in a modern industrial control room. A diverse group of three maintenance managers and engineers—two men and one woman of different ethnicities—are gathered around a large, sleek industrial workstation. They are wearing clean, professional work uniforms with high-visibility vests, hard hats, and safety glasses. One engineer is pointing toward a large, wall-mounted digital display that shows a complex, glowing logic tree diagram (no legible text). Another engineer is holding a rugged industrial tablet, showing only the back of the device. The environment is brightly lit with a mix of natural light and cool industrial LEDs, showing glimpses of a clean, high-tech manufacturing floor through a large glass window in the background. The focus is on their collaborative problem-solving and the professional atmosphere of a high-stakes reliability center.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2217,
+  "link_count": 12
+}

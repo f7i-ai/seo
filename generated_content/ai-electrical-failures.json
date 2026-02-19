@@ -1,0 +1,16 @@
+{
+  "meta_title": "AI Electrical Failures: Detecting Invisible Faults via ESA & CMMS",
+  "meta_description": "Stop relying on thermal scans alone. Learn how AI electrical failure detection uses ESA and connected CMMS workflows to catch harmonics and transients before",
+  "title": "AI Electrical Failures: Why Detection Is Useless Without a Connected Workflow",
+  "keyword": "ai electrical failures",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/ai-electrical-failures.png",
+    "alt": "Hero image for AI Electrical Failures: Why Detection Is Useless Without a Connected Workflow",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern industrial manufacturing facility. In the foreground, a reliability engineer wearing a hard hat, safety glasses, and arc-flash rated clothing is inspecting a large electrical panel. They are holding a tablet (back of device visible) that displays a complex data visualization. In the background, out of focus, are automated conveyor lines and machinery. The lighting is industrial but dramatic, highlighting the clean, high-tech nature of modern maintenance. No text or overlays in the image. The atmosphere conveys precision and safety.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2317,
+  "link_count": 6
+}

@@ -1,0 +1,16 @@
+{
+  "meta_title": "Robots Maintenance: From Checklists to Zero-Downtime APM",
+  "meta_description": "Move beyond basic checklists. Master industrial robots maintenance with our 2026 guide on preventive strategies, backlash testing, and AI-driven APM.",
+  "title": "Robots Maintenance: How Do You Transition from \"Fixing Breakdowns\" to Asset Performance Management?",
+  "keyword": "robots maintenance",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/robots-maintenance.png",
+    "alt": "Hero image for Robots Maintenance: How Do You Transition from \"Fixing Breakdowns\" to Asset Performance Management?",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, high-resolution image inside a modern, clean automotive manufacturing facility. In the foreground, a diverse team of two maintenance technicians (one male, one female) wearing full PPE (hard hats, safety glasses, high-visibility vests) are inspecting a large, orange 6-axis industrial robot arm. The female technician is holding a tablet (back of tablet visible) likely checking data, while the male technician is pointing a thermal imaging camera (back of device visible) at one of the robot's joints. The background shows a depth of field with other robots in operation, welding sparks, and digital dashboard screens displaying green status bars, emphasizing a high-tech, Industry 4.0 environment. Lighting is professional, cool industrial tones with warm highlights from the welding. No text overlays.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2259,
+  "link_count": 8
+}

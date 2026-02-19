@@ -1,0 +1,16 @@
+{
+  "meta_title": "BOM Management in 2026: The Blueprint for Predictive Maintenance",
+  "meta_description": "70% of unplanned downtime traces to poor asset data. Here is how dynamic Asset BOMs drive reliability and why Factory AI is the 2026 standard for brownfield",
+  "title": "The Bill of Materials (BOM): The DNA of Modern Industrial Maintenance",
+  "keyword": "bom",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/bom.png",
+    "alt": "Hero image for The Bill of Materials (BOM): The DNA of Modern Industrial Maintenance",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photorealistic, cinematic wide shot inside a modern manufacturing facility. In the foreground, a diverse group of maintenance engineers (men and women of different ethnicities) are wearing standard PPE including hard hats, safety glasses, and high-visibility vests. They are standing near a large industrial conveyor system. One engineer is holding a tablet, but only the back of the device is visible. In the background, the factory floor is busy but clean, with blurred motion of machinery. Overlaying the machinery in the air (subtly) are holographic wireframe schematics highlighting specific components like motors and gears, representing a digital Bill of Materials. Lighting is cool industrial blue with warm accents on the people. No text or words in the image. High resolution, 8k.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2200,
+  "link_count": 0
+}

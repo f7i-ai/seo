@@ -1,0 +1,16 @@
+{
+  "meta_title": "AI Industrial Security: Unifying Cyber Defense & Reliability",
+  "meta_description": "Discover how AI industrial security merges OT protection with predictive maintenance. Learn to detect cyber-physical threats and boost uptime in 2026.",
+  "title": "AI Industrial Security: Bridging the Gap Between Cyber Defense and Operational Uptime",
+  "keyword": "ai industrial security",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/ai-industrial-security.png",
+    "alt": "Hero image for AI Industrial Security: Bridging the Gap Between Cyber Defense and Operational Uptime",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern, high-tech manufacturing facility. In the foreground, a diverse group of three industrial professionals (a female engineer in a white hard hat, a male plant manager in a blue vest, and a safety officer in high-vis gear) are standing and looking away from the camera toward a large, complex assembly line. They are viewing a transparent holographic interface or tablet (back of device visible only) that displays stylized data streams merging—blue streams representing cyber data and orange streams representing mechanical vibration data. The background shows blurred robotic arms and clean industrial machinery. The lighting is a mix of cool industrial blue and warm safety amber. No text in the image. 8k resolution.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2329,
+  "link_count": 8
+}

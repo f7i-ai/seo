@@ -165,25 +165,72 @@ class PrismicData(BaseModel):
     link_count: int = Field(ge=0)
 
 
+def is_definition_type_keyword(keyword: str) -> bool:
+    """Return True if the keyword is definition/glossary intent (what is X, X definition, meaning, define)."""
+    if not keyword or not keyword.strip():
+        return False
+    k = keyword.strip().lower()
+    if re.search(r'\b(what\s+is|what\s+are|what\s+does|what\s+do)\b', k):
+        return True
+    if re.search(r'\bdefinition\b|\bdefine\b|\bmeaning\b|\bdefined\b', k):
+        return True
+    if re.search(r'\b(def|meaning\s+of)\b', k):
+        return True
+    return False
+
+
+# Model roles: research benefits from depth (Gemini 3 Pro, 250 RPD); content generation
+# can use higher-limit models (e.g. Gemini 2.5 Flash 10K RPD, Gemini 2 Flash unlimited).
+# Override via env: GEMINI_RESEARCH_MODEL, GEMINI_CONTENT_MODEL.
+#
+# Deep Research Pro Preview: This is an *agent* (Interactions API), not generateContent.
+# It has a 0/1 concurrency limit in the dashboard, so it's not suitable for bulk keyword
+# research. Use it for single deep-dive research via Google's Interactions API if needed.
+# See: https://ai.google.dev/gemini-api/docs (Deep Research / Agents).
+GEMINI_RESEARCH_MODEL_DEFAULT = "gemini-3-pro-preview"
+# Gemini 3 Flash is stronger than 2.5 Flash; use 2.5 if your 3 Flash RPD limit is tight.
+GEMINI_CONTENT_MODEL_DEFAULT = "gemini-3-flash-preview"
+
+# Deep Research agent (Interactions API). Enable with USE_DEEP_RESEARCH=1 (1 RPM is fine for ~1 article/min).
+DEEP_RESEARCH_AGENT = "deep-research-pro-preview-12-2025"
+
+# Fast research model for glossary/definition keywords (no need for 6-min Deep Research). Same as content model.
+GEMINI_RESEARCH_MODEL_FAST_DEFAULT = "gemini-3-flash-preview"
+
+
 class SEOContentGenerator:
     """Main class for generating SEO-optimized content with proper typing"""
 
     def __init__(self) -> None:
-        # Configure Gemini 3 Pro
+        # Configure Gemini: separate models for research (depth, low RPD) vs content (volume, high RPD)
         genai.configure(api_key=os.getenv('GEMINI_API_KEY'))  # type: ignore
-        self.gemini_model = genai.GenerativeModel(  # type: ignore
-            'gemini-3-pro-preview')
+        research_model = os.getenv("GEMINI_RESEARCH_MODEL", GEMINI_RESEARCH_MODEL_DEFAULT)
+        research_model_fast = os.getenv("GEMINI_RESEARCH_MODEL_FAST", GEMINI_RESEARCH_MODEL_FAST_DEFAULT)
+        content_model = os.getenv("GEMINI_CONTENT_MODEL", GEMINI_CONTENT_MODEL_DEFAULT)
+        self.gemini_research_model = genai.GenerativeModel(research_model)  # type: ignore
+        self.gemini_research_model_fast = genai.GenerativeModel(research_model_fast)  # type: ignore
+        self.gemini_content_model = genai.GenerativeModel(content_model)  # type: ignore
+        # Backward compatibility: single-model mode if only research model set for content
+        self.gemini_model = self.gemini_content_model
+        logger.info(f"Gemini models: research={research_model}, research_fast={research_model_fast}, content={content_model}")
 
         # Configure Gemini image generation client (uses newer SDK)
-        # Optional - only needed for image generation
+        # Optional - only needed for image generation and/or Deep Research
         self.gemini_image_client = None
+        self._use_deep_research = os.getenv("USE_DEEP_RESEARCH", "").strip().lower() in ("1", "true", "yes")
         try:
             from google import genai as genai_new  # type: ignore
             self.gemini_image_client = genai_new.Client(  # type: ignore
                 api_key=os.getenv('GEMINI_API_KEY')
             )
+            if self._use_deep_research:
+                logger.info("Deep Research Pro Preview enabled for research (Interactions API)")
         except ImportError:
-            logger.warning("google.genai not available - image generation disabled")
+            if self._use_deep_research:
+                logger.warning("USE_DEEP_RESEARCH=1 but google-genai not installed - pip install google-genai; using standard research")
+                self._use_deep_research = False
+            else:
+                logger.warning("google.genai not available - image generation disabled")
 
         self.openai_client: openai.OpenAI = openai.OpenAI(
             api_key=os.getenv('OPENAI_API_KEY')
@@ -198,11 +245,50 @@ class SEOContentGenerator:
         ]
         self.available_internal_urls: List[str] = []  # Cache for sitemap URLs
 
+    def _parse_semrush_references(self, ref_text: str) -> List[Dict[str, str]]:
+        """Parse SEMrush Content references or Competitors field into SERP-like entries.
+        Format: "domain":"url" per line."""
+        entries: List[Dict[str, str]] = []
+        if not ref_text or not ref_text.strip():
+            return entries
+        # Match "domain":"url" pattern (SEMrush format)
+        pattern = re.compile(r'"([^"]+)"\s*:\s*"(https?://[^"]+)"')
+        for line in ref_text.split('\n'):
+            line = line.strip()
+            if not line:
+                continue
+            match = pattern.search(line)
+            if match:
+                domain, url = match.group(1).strip(), match.group(2).strip()
+                if domain and url:
+                    entries.append({
+                        'title': domain,
+                        'url': url,
+                        'position': str(len(entries) + 1) if entries else '1',
+                        'traffic': '',
+                        'difficulty': '',
+                        'volume': '',
+                        'cpc': '',
+                        'type': '',
+                        'intents': ''
+                    })
+        return entries[:10]  # Limit to top 10 for SERP context
+
+    def _detect_csv_format(self, fieldnames: Optional[List[str]]) -> str:
+        """Detect if CSV is from Ahrefs or SEMrush based on column names."""
+        if not fieldnames:
+            return 'ahrefs'
+        names_lower = [f.lower() for f in fieldnames]
+        # SEMrush has "Keyword Difficulty", "Database", "Seed keyword" - Ahrefs doesn't
+        if any('keyword difficulty' in n for n in names_lower) or 'database' in names_lower:
+            return 'semrush'
+        return 'ahrefs'
+
     def load_keywords_from_csv(self, csv_file_path: str) -> Dict[str, List[Dict[str, Any]]]:
-        """Load keywords from Ahrefs CSV export with SERP data"""
+        """Load keywords from Ahrefs or SEMrush CSV export with SERP data"""
         keyword_data: Dict[str, List[Dict[str, Any]]] = {}
 
-        # Try different encodings commonly used by Ahrefs
+        # Try different encodings commonly used by Ahrefs/SEMrush
         encodings = ['utf-8', 'utf-16', 'iso-8859-1', 'cp1252']
 
         for encoding in encodings:
@@ -219,6 +305,9 @@ class SEOContentGenerator:
                             f"Available columns with {delimiter} delimiter: {fieldnames}")
 
                         if fieldnames and len(fieldnames) > 1:  # Valid CSV structure
+                            csv_format = self._detect_csv_format(fieldnames)
+                            logger.info(f"Detected CSV format: {csv_format}")
+
                             for row in reader:
                                 # Try different possible column names for keywords
                                 keyword = None
@@ -232,19 +321,43 @@ class SEOContentGenerator:
                                     if keyword not in keyword_data:
                                         keyword_data[keyword] = []
 
-                                    # Collect SERP data for this keyword
-                                    serp_entry = {
-                                        'title': row.get('Title', ''),
-                                        'url': row.get('URL', ''),
-                                        'position': row.get('Position', ''),
-                                        'traffic': row.get('Traffic', ''),
-                                        'difficulty': row.get('Difficulty', ''),
-                                        'volume': row.get('Volume', ''),
-                                        'cpc': row.get('CPC', ''),
-                                        'type': row.get('Type', ''),
-                                        'intents': row.get('Intents', '')
-                                    }
-                                    keyword_data[keyword].append(serp_entry)
+                                    if csv_format == 'semrush':
+                                        # SEMrush column mappings (metadata + SERP Features)
+                                        serp_entry = {
+                                            'title': 'Keyword metrics',
+                                            'url': '',
+                                            'position': '',
+                                            'traffic': '',
+                                            'difficulty': row.get('Keyword Difficulty', ''),
+                                            'volume': row.get('Volume', ''),
+                                            'cpc': row.get('CPC (USD)', '') or row.get('CPC', ''),
+                                            'type': row.get('Page type', ''),
+                                            'intents': row.get('Intent', '') or row.get('Intents', ''),
+                                            'serp_features': row.get('SERP Features', '') or row.get('SERP features', '')
+                                        }
+                                        # Parse Content references and Competitors for SERP-like data
+                                        content_refs = row.get('Content references', '') or row.get('Content References', '')
+                                        competitors = row.get('Competitors', '')
+                                        ref_entries = self._parse_semrush_references(content_refs)
+                                        if not ref_entries:
+                                            ref_entries = self._parse_semrush_references(competitors)
+                                        # Put metadata first so it's included in serp_data[:10], then refs
+                                        keyword_data[keyword] = [serp_entry] + ref_entries
+                                    else:
+                                        # Ahrefs column mappings
+                                        serp_entry = {
+                                            'title': row.get('Title', ''),
+                                            'url': row.get('URL', ''),
+                                            'position': row.get('Position', ''),
+                                            'traffic': row.get('Traffic', ''),
+                                            'difficulty': row.get('Difficulty', ''),
+                                            'volume': row.get('Volume', ''),
+                                            'cpc': row.get('CPC', ''),
+                                            'type': row.get('Type', ''),
+                                            'intents': row.get('Intents', ''),
+                                            'serp_features': ''
+                                        }
+                                        keyword_data[keyword].append(serp_entry)
 
                             if keyword_data:  # If we found keywords, break
                                 break
@@ -401,10 +514,14 @@ class SEOContentGenerator:
             f"Link validation: {validated_count} verified, {removed_count} removed")
         return cleaned_content
 
-    def research_keyword_with_gemini(self, keyword: str, serp_data: Optional[List[Dict[str, Any]]] = None) -> ResearchData:
-        """Use Gemini to analyze keyword and competition"""
+    def research_keyword_with_gemini(self, keyword: str, serp_data: Optional[List[Dict[str, Any]]] = None, use_fast_research: bool = False) -> ResearchData:
+        """Use Gemini to analyze keyword and competition.
 
-        logger.info(f"Starting deep research for keyword: '{keyword}'")
+        When use_fast_research is True (e.g. for glossary/definition keywords), skips Deep Research
+        and uses the fast research model (gemini-3.0-fast) instead of the deep-research agent.
+        """
+
+        logger.info(f"Starting {'fast ' if use_fast_research else ''}research for keyword: '{keyword}'")
         start_time: float = time.time()
 
         # Build SERP analysis section
@@ -422,8 +539,12 @@ class SEOContentGenerator:
            URL: {result.get('url', 'N/A')}
            Position: {result.get('position', 'N/A')}
            Traffic: {result.get('traffic', 'N/A')}
+           Volume: {result.get('volume', 'N/A')}
+           Difficulty: {result.get('difficulty', 'N/A')}
+           CPC: {result.get('cpc', 'N/A')}
            Type: {result.get('type', 'N/A')}
            Intents: {result.get('intents', 'N/A')}
+           SERP Features: {result.get('serp_features', 'N/A')}
         """
         else:
             logger.warning(f"No SERP data available for '{keyword}'")
@@ -477,8 +598,13 @@ class SEOContentGenerator:
         logger.debug(
             f"Sending research prompt to Gemini (length: {len(research_prompt)} chars)")
 
+        # Glossary/definition keywords use fast model only; skip Deep Research (no 6-min agent).
+        if self._use_deep_research and self.gemini_image_client and not use_fast_research:
+            return self._research_keyword_deep_research(keyword, research_prompt)
+
+        research_model = self.gemini_research_model_fast if use_fast_research else self.gemini_research_model
         try:
-            logger.info(f"Calling Gemini API...")
+            logger.info(f"Calling Gemini API ({'fast' if use_fast_research else 'standard'} research)...")
             api_start = time.time()
 
             # Add retry logic for rate limiting and timeouts
@@ -486,7 +612,7 @@ class SEOContentGenerator:
             response = None
             for attempt in range(max_retries):
                 try:
-                    response = self.gemini_model.generate_content(  # type: ignore
+                    response = research_model.generate_content(  # type: ignore
                         research_prompt,
                         generation_config=genai.types.GenerationConfig(  # type: ignore
                             temperature=0.3,
@@ -608,6 +734,75 @@ class SEOContentGenerator:
         except Exception as e:
             logger.error(f"Error parsing markdown: {e}")
             return {"error": f"Markdown parsing failed: {e}", "raw_response": markdown_text[:500]}
+
+    def _research_keyword_deep_research(self, keyword: str, research_prompt: str) -> ResearchData:
+        """Use Deep Research Pro Preview agent (Interactions API). 1 RPM is fine for ~1 article/min."""
+        start_time: float = time.time()
+        logger.info(f"Starting Deep Research agent for keyword: '{keyword}'")
+        if not self.gemini_image_client:
+            return ResearchData(keyword=keyword, error="Deep Research requires google-genai client")
+        text_parts: List[str] = []
+        interaction_id: Optional[str] = None
+        last_event_id: Optional[str] = None
+        is_complete = False
+        max_wait_seconds = 900  # 15 min total wait
+        poll_interval = 8
+        timeout_per_request = 600  # 10 min per request/stream
+
+        def process_stream(event_stream: Any) -> None:
+            nonlocal interaction_id, last_event_id, is_complete
+            for event in event_stream:
+                if getattr(event, "event_type", None) == "interaction.start" and getattr(event, "interaction", None):
+                    interaction_id = getattr(event.interaction, "id", None)
+                    if interaction_id:
+                        logger.info(f"Deep Research interaction started: {interaction_id}")
+                if getattr(event, "event_id", None):
+                    last_event_id = event.event_id
+                if getattr(event, "event_type", None) == "content.delta" and getattr(event, "delta", None):
+                    delta = event.delta
+                    if getattr(delta, "type", None) == "text" and getattr(delta, "text", None):
+                        text_parts.append(delta.text)
+                if getattr(event, "event_type", None) in ("interaction.complete", "error"):
+                    is_complete = True
+
+        try:
+            initial_stream = self.gemini_image_client.interactions.create(  # type: ignore
+                input=research_prompt,
+                agent=DEEP_RESEARCH_AGENT,
+                background=True,
+                stream=True,
+                timeout=timeout_per_request,
+                agent_config={"type": "deep-research", "thinking_summaries": "auto"},
+            )
+            process_stream(initial_stream)
+        except Exception as e:
+            logger.warning(f"Deep Research stream initial/connection: {e}")
+
+        deadline = time.time() + max_wait_seconds
+        while not is_complete and interaction_id and time.time() < deadline:
+            if last_event_id:
+                logger.info(f"Resuming Deep Research from event {last_event_id}...")
+            time.sleep(poll_interval)
+            try:
+                resume_stream = self.gemini_image_client.interactions.get(  # type: ignore
+                    id=interaction_id,
+                    stream=True,
+                    timeout=timeout_per_request,
+                    last_event_id=last_event_id,
+                )
+                process_stream(resume_stream)
+            except Exception as e:
+                logger.warning(f"Deep Research resume: {e}")
+
+        response_text = "".join(text_parts).strip() if text_parts else ""
+        elapsed = time.time() - start_time
+        logger.info(f"Deep Research finished in {elapsed:.1f}s, {len(response_text)} chars")
+        if not response_text:
+            return ResearchData(keyword=keyword, error="Deep Research returned no text (timeout or stream error)")
+        research_dict = self._parse_research_markdown(response_text, keyword)
+        if research_dict and not research_dict.get("error"):
+            return ResearchData(**research_dict)
+        return ResearchData(keyword=keyword, error=research_dict.get("error", "Failed to parse Deep Research output"))
 
     def _parse_content_markdown(self, markdown_text: str) -> Optional[ContentData]:
         """Parse structured markdown content into ContentData model"""
@@ -753,15 +948,26 @@ class SEOContentGenerator:
         - Diverse people in appropriate PPE
         - No text in the image
 
+        META_TITLE & META_DESCRIPTION (preview text) - CRITICAL VARIETY RULES:
+        - Do NOT start the meta description with overused phrases. Our corpus repeats these—avoid them entirely:
+          FORBIDDEN openings: "Move beyond...", "Beyond the dictionary...", "Discover how...", "What is the true [X] meaning...", "Learn how..."
+        - Vary the opening every time. Use ONE of these (or similar) and rotate:
+          • A direct question: "What is [topic] in practice?" or "Why does [topic] matter in 2026?"
+          • A concrete claim: "In 2026, [topic] separates reactive plants from predictive ones."
+          • A problem hook: "Most teams get [topic] wrong. Here's the framework that works."
+          • A number or outcome: "70% of unplanned downtime traces to [topic]. Here's how to fix it."
+          • A definition that leads to value: "[Topic] isn't just X—it's the layer that connects Y to Z."
+        - Meta title: avoid generic "The 2026 Guide to..." unless the angle is clearly different. Prefer question or benefit-led titles.
+
         Output in this EXACT structured markdown format:
 
         # Pillar Guide: {keyword}
 
         ## META_TITLE
-        [Less than 60 characters - compelling, not generic]
+        [Less than 60 characters - compelling, not generic; avoid "The 2026 Guide" unless angle is distinct]
 
         ## META_DESCRIPTION
-        [150-160 characters, emphasizes insight over comprehensiveness]
+        [150-160 characters. Do NOT start with "Move beyond", "Beyond the dictionary", "Discover how", or "What is the true X meaning". Use a varied opening from the list above.]
 
         ## MAIN_TITLE
         [Engaging H1 that promises VALUE, not just coverage]
@@ -855,15 +1061,26 @@ class SEOContentGenerator:
         - Diverse people wearing appropriate PPE (hard hats, safety glasses, high-visibility clothing)
         - Show full body; any handheld devices show only the back, not the display
 
+        META_TITLE & META_DESCRIPTION (preview text) - CRITICAL VARIETY RULES:
+        - Do NOT start the meta description with overused phrases. Our corpus repeats these—avoid them entirely:
+          FORBIDDEN openings: "Move beyond...", "Beyond the dictionary...", "Discover how...", "What is the true [X] meaning...", "Learn how..."
+        - Vary the opening every time. Use ONE of these (or similar) and rotate:
+          • A direct question: "What is [topic] in practice?" or "Why does [topic] matter in 2026?"
+          • A concrete claim: "In 2026, [topic] separates reactive plants from predictive ones."
+          • A problem hook: "Most teams get [topic] wrong. Here's the framework that works."
+          • A number or outcome: "70% of unplanned downtime traces to [topic]. Here's how to fix it."
+          • A definition that leads to value: "[Topic] isn't just X—it's the layer that connects Y to Z."
+        - Meta title: avoid generic "The 2026 Guide to..." unless the angle is clearly different. Prefer question or benefit-led titles.
+
         Output in this EXACT structured markdown format:
 
         # Blog Post: {keyword}
 
         ## META_TITLE
-        [Less than 60 characters, compelling and SEO-optimized]
+        [Less than 60 characters, compelling and SEO-optimized; avoid repetitive "The 2026 Guide" pattern]
 
         ## META_DESCRIPTION
-        [150-160 characters, includes keyword and call-to-action]
+        [150-160 characters, includes keyword and call-to-action. Do NOT start with "Move beyond", "Beyond the dictionary", "Discover how", or "What is the true X meaning". Use a varied opening.]
 
         ## MAIN_TITLE
         [Engaging H1 that includes the target keyword]
@@ -875,7 +1092,57 @@ class SEOContentGenerator:
         [Detailed prompt for hero image]
         """
 
-    def generate_content_with_gemini(self, keyword: str, research_data: ResearchData, is_pillar: bool = False, is_ai_visibility: bool = False) -> Optional[BlogPost]:
+    def _get_glossary_prompt(self, keyword: str, research_summary: str, internal_urls_context: str) -> str:
+        """Generate the prompt for short glossary/definition pages (400-800 words) that link to deeper content."""
+        return f"""
+        Write a SHORT glossary/definition page for the keyword: "{keyword}"
+
+        Research insights:
+        {research_summary}
+        {internal_urls_context}
+
+        GOAL: Satisfy the searcher who wants a quick, clear definition—not a long article. Match SERP intent (Knowledge Panel, Instant Answer, Featured Snippet).
+
+        STRUCTURE (TOTAL 400-800 words):
+        1. OPENING (2-3 sentences): Give a clear, quotable definition in the first 1-2 sentences. No fluff—answer "What is [topic]?" or "[Topic] definition" directly.
+        2. BRIEF CONTEXT (1 short paragraph): One paragraph on why it matters in maintenance/manufacturing or how it's used in practice.
+        3. "LEARN MORE" SECTION (required): A short section with 2-4 internal links to deeper content on the same topic. Use ONLY URLs from the available internal URLs list above. Format as a bullet list or short paragraph with embedded links: [anchor text](/url/path). Choose URLs that are pillar guides, how-to articles, or in-depth guides on this topic—not other glossary pages.
+
+        AUDIENCE: Maintenance managers, facility operators, industrial decision-makers. Year is 2026.
+
+        REQUIREMENTS:
+        - MINIMUM 400 words, MAXIMUM 800 words. Do not pad; every sentence must add value.
+        - EMBED 2-4 internal links in the "Learn more" section using ONLY URLs from the list above.
+        - Optionally 1 external link to an authoritative source (e.g. isixsigma.com, nist.gov) if it helps the definition.
+        - Use H2 (##) for "Learn more" or "Related reading"; H3 (###) only if you add 1-2 related terms.
+
+        IMAGE PROMPT: One hero image—professional, industrial, relevant to the term. Photo-realistic, no text. Diverse people in PPE if applicable.
+
+        META_TITLE & META_DESCRIPTION:
+        - Meta title: include the keyword; keep under 60 chars (e.g. "What Is [Topic]? Definition & Why It Matters").
+        - Meta description: 150-160 chars; direct and useful; no forbidden openings ("Move beyond", "Discover how", "Learn how").
+
+        Output in this EXACT structured markdown format:
+
+        # Glossary: {keyword}
+
+        ## META_TITLE
+        [Under 60 characters]
+
+        ## META_DESCRIPTION
+        [150-160 characters]
+
+        ## MAIN_TITLE
+        [Clear H1, e.g. "What Is [Topic]?" or "[Topic] Definition"]
+
+        ## BODY_CONTENT
+        [400-800 words: definition first, brief context, then "Learn more" section with 2-4 internal links from the list above.]
+
+        ## IMAGE_PROMPT
+        [Hero image description]
+        """
+
+    def generate_content_with_gemini(self, keyword: str, research_data: ResearchData, is_pillar: bool = False, is_ai_visibility: bool = False, is_glossary: bool = False) -> Optional[BlogPost]:
         """Generate high-quality blog content using Gemini
 
         Args:
@@ -883,6 +1150,7 @@ class SEOContentGenerator:
             research_data: Research data from keyword analysis
             is_pillar: If True, generates longer pillar/hub content (4500+ words)
             is_ai_visibility: If True, generates AI-visibility-optimized content with comparison tables and recommendations
+            is_glossary: If True, generates short definition/glossary page (400-800 words) with links to deeper content
         """
 
         # Create simplified research summary for the prompt
@@ -909,8 +1177,10 @@ class SEOContentGenerator:
         (And {len(self.available_internal_urls)} total available internal URLs)
         """
 
-        # Use pillar prompt for hub/pillar content, AI visibility prompt for citation-optimized content
-        if is_ai_visibility:
+        # Use pillar prompt for hub/pillar content, AI visibility prompt for citation-optimized content, glossary for definition-type
+        if is_glossary:
+            content_prompt = self._get_glossary_prompt(keyword, research_summary, internal_urls_context)
+        elif is_ai_visibility:
             content_prompt = self._get_ai_visibility_prompt(keyword, research_summary, internal_urls_context)
         elif is_pillar:
             content_prompt = self._get_pillar_prompt(keyword, research_summary, internal_urls_context)
@@ -974,15 +1244,26 @@ class SEOContentGenerator:
         - Diverse people wearing appropriate PPE (hard hats, safety glasses, high-visibility clothing)
         - Show full body; any handheld devices show only the back, not the display
 
+        META_TITLE & META_DESCRIPTION (preview text) - CRITICAL VARIETY RULES:
+        - Do NOT start the meta description with overused phrases. Our corpus repeats these—avoid them entirely:
+          FORBIDDEN openings: "Move beyond...", "Beyond the dictionary...", "Discover how...", "What is the true [X] meaning...", "Learn how..."
+        - Vary the opening every time. Use ONE of these (or similar) and rotate:
+          • A direct question: "What is [topic] in practice?" or "Why does [topic] matter in 2026?"
+          • A concrete claim: "In 2026, [topic] separates reactive plants from predictive ones."
+          • A problem hook: "Most teams get [topic] wrong. Here's the framework that works."
+          • A number or outcome: "70% of unplanned downtime traces to [topic]. Here's how to fix it."
+          • A definition that leads to value: "[Topic] isn't just X—it's the layer that connects Y to Z."
+        - Meta title: avoid generic "The 2026 Guide to..." unless the angle is clearly different. Prefer question or benefit-led titles.
+
         Output in this EXACT structured markdown format:
 
         # Blog Post: {keyword}
 
         ## META_TITLE
-        [Less than 60 characters, compelling and SEO-optimized]
+        [Less than 60 characters, compelling and SEO-optimized; avoid repetitive "The 2026 Guide" pattern]
 
         ## META_DESCRIPTION
-        [150-160 characters, includes keyword and call-to-action]
+        [150-160 characters, includes keyword and call-to-action. Do NOT start with "Move beyond", "Beyond the dictionary", "Discover how", or "What is the true X meaning". Use a varied opening.]
 
         ## MAIN_TITLE
         [Engaging H1 that includes the target keyword - frame it as addressing the core question]
@@ -994,8 +1275,8 @@ class SEOContentGenerator:
         [Detailed prompt for generating the hero image]
         """
 
-        # Set max tokens based on content type
-        max_tokens = 12000 if (is_pillar or is_ai_visibility) else 10000
+        # Set max tokens based on content type (glossary is short)
+        max_tokens = 4000 if is_glossary else (12000 if (is_pillar or is_ai_visibility) else 10000)
 
         try:
             # Add retry logic for rate limiting and timeouts
@@ -1003,7 +1284,7 @@ class SEOContentGenerator:
             response = None
             for attempt in range(max_retries):
                 try:
-                    response = self.gemini_model.generate_content(  # type: ignore
+                    response = self.gemini_content_model.generate_content(  # type: ignore
                         content_prompt,
                         generation_config=genai.types.GenerationConfig(  # type: ignore
                             temperature=0.4,
@@ -1049,9 +1330,42 @@ class SEOContentGenerator:
             cleaned_body: str = self.validate_and_clean_markdown_links(
                 content_data.body)
 
+            word_count = len(cleaned_body.split())
+
+            # Glossary content: accept 400-1200 words, return without 2000-word validation (use model_construct)
+            if is_glossary:
+                if 400 <= word_count <= 1200:
+                    logger.info(f"Glossary content accepted: {word_count} words")
+                    return BlogPost.model_construct(
+                        keyword=keyword,
+                        meta_title=content_data.meta_title,
+                        meta_description=content_data.meta_description,
+                        title=content_data.title,
+                        body=cleaned_body,
+                        image_prompt=content_data.image_prompt,
+                        internal_links=[],
+                        external_links=[]
+                    )
+                if word_count < 400:
+                    logger.warning(f"Glossary content too short ({word_count}/400), saving to drafts")
+                    self._save_draft(keyword, content_data, cleaned_body, word_count)
+                    return None
+                # 1200-2000: accept as glossary (slightly over target)
+                if word_count <= 2000:
+                    logger.info(f"Glossary content accepted (slightly long): {word_count} words")
+                    return BlogPost.model_construct(
+                        keyword=keyword,
+                        meta_title=content_data.meta_title,
+                        meta_description=content_data.meta_description,
+                        title=content_data.title,
+                        body=cleaned_body,
+                        image_prompt=content_data.image_prompt,
+                        internal_links=[],
+                        external_links=[]
+                    )
+
             # Pre-validation for pillar content
             # Prompt asks for 2500+, we accept 2000+ as passing (link injection adds value separately)
-            word_count = len(cleaned_body.split())
             min_words = 2000  # Same minimum for pillar and regular - link injection handles hub structure
 
             if is_pillar and word_count < min_words:
@@ -1186,7 +1500,7 @@ class SEOContentGenerator:
 
         try:
             logger.info("Calling Gemini API for content expansion...")
-            response = self.gemini_model.generate_content(  # type: ignore
+            response = self.gemini_content_model.generate_content(  # type: ignore
                 expand_prompt,
                 generation_config=genai.types.GenerationConfig(  # type: ignore
                     temperature=0.3,  # Lower temperature for more consistent expansion
@@ -1279,7 +1593,7 @@ class SEOContentGenerator:
         try:
             logger.info(f"Adding internal links to content (target: {link_count_target} links)...")
 
-            response = self.gemini_model.generate_content(  # type: ignore
+            response = self.gemini_content_model.generate_content(  # type: ignore
                 link_prompt,
                 generation_config=genai.types.GenerationConfig(  # type: ignore
                     temperature=0.2,  # Low temperature for precise editing
@@ -1686,7 +2000,7 @@ def main() -> None:
 
     # Get CSV file path
     csv_path: str = input(
-        "Enter path to your Ahrefs keyword CSV file: ").strip()
+        "Enter path to your Ahrefs or SEMrush keyword CSV file: ").strip()
     if not os.path.exists(csv_path):
         print("❌ CSV file not found!")
         return
@@ -1754,6 +2068,14 @@ def main() -> None:
     is_pillar_mode: bool = mode_choice == "2"
     is_ai_visibility_mode: bool = mode_choice == "3"
 
+    # Glossary for definition-type keywords: short pages (400-800 words) with links to deeper content
+    use_glossary_for_definitions: bool = False
+    if not (is_pillar_mode or is_ai_visibility_mode):
+        glossary_choice: str = input(
+            "Use glossary format for definition-type keywords (what is X, X definition, meaning)? [y/N]: "
+        ).strip().lower()
+        use_glossary_for_definitions = glossary_choice in ('y', 'yes')
+
     if is_pillar_mode:
         print("📚 Pillar mode: Will generate comprehensive hub content (4500+ words)")
         print("   └─ Best for: topic overviews, ultimate guides, cluster hubs")
@@ -1763,6 +2085,8 @@ def main() -> None:
         print("   └─ Optimized for: ChatGPT, Gemini, and AI assistant citations")
     else:
         print("📝 Standard mode: Will generate focused blog content (3000+ words)")
+        if use_glossary_for_definitions:
+            print("   └─ Definition-type keywords → short glossary pages (400-800 words) with links to deeper content")
 
     # Load keywords with SERP data
     keyword_data: Dict[str, List[Dict[str, Any]]
@@ -1827,12 +2151,15 @@ def main() -> None:
             f"Processing keyword {i}/{len(filtered_keywords)}: {keyword}")
 
         try:
+            # Glossary/definition keywords use fast research (gemini-3.0-fast), not Deep Research
+            is_glossary_keyword = use_glossary_for_definitions and is_definition_type_keyword(keyword)
+
             # Research keyword with SERP data
-            print("  🔬 Researching keyword with SERP analysis...")
+            print("  🔬 Researching keyword with SERP analysis" + (" (fast model)" if is_glossary_keyword else "") + "...")
             logger.info("Researching keyword with SERP analysis...")
             serp_data = keyword_data.get(keyword, [])
             research_data = generator.research_keyword_with_gemini(
-                keyword, serp_data)
+                keyword, serp_data, use_fast_research=is_glossary_keyword)
 
             # Check if research failed before attempting content generation
             if research_data.error:
@@ -1842,12 +2169,14 @@ def main() -> None:
                 generation_stats["failed"] += 1
                 continue
 
-            # Generate content
-            content_type = "pillar content" if is_pillar_mode else ("AI visibility content" if is_ai_visibility_mode else "content")
+            # Generate content (glossary = short definition pages for "what is X", "X definition", etc.)
+            content_type = "glossary/definition page" if is_glossary_keyword else (
+                "pillar content" if is_pillar_mode else ("AI visibility content" if is_ai_visibility_mode else "content")
+            )
             print(f"  ✍️  Generating {content_type}...")
             logger.info(f"Generating {content_type}...")
             blog_post = generator.generate_content_with_gemini(
-                keyword, research_data, is_pillar=is_pillar_mode, is_ai_visibility=is_ai_visibility_mode)
+                keyword, research_data, is_pillar=is_pillar_mode, is_ai_visibility=is_ai_visibility_mode, is_glossary=is_glossary_keyword)
 
             if not blog_post:
                 # Check if a draft was saved (under-length content)

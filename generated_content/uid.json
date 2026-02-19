@@ -1,0 +1,16 @@
+{
+  "meta_title": "UID in Maintenance: The Data Backbone of Industrial AI & EAM",
+  "meta_description": "What is a UID in industrial asset management? Discover why Unique Item Identification is the \"primary key\" for predictive maintenance, AI, and reliability.",
+  "title": "UID: The \"Data Backbone\" That Unlocks Industrial AI and Predictive Maintenance",
+  "keyword": "uid",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/uid.png",
+    "alt": "Hero image for UID: The \"Data Backbone\" That Unlocks Industrial AI and Predictive Maintenance",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern industrial manufacturing facility. In the foreground, a reliability engineer wearing a white hard hat, safety glasses, and a high-visibility vest is holding a rugged industrial tablet. The focus is on the engineer's hand scanning a durable, laser-etched stainless steel QR/Data Matrix tag attached to the side of a large, complex electric motor painted industrial blue. The background is slightly blurred but shows a clean, high-tech production line with yellow safety railings and other workers in the distance. The lighting is dramatic but professional, highlighting the connection between the physical tag and the digital tablet. No text or words should be visible on the tablet screen or the tag.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2095,
+  "link_count": 11
+}

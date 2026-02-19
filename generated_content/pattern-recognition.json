@@ -1,0 +1,16 @@
+{
+  "meta_title": "Pattern Recognition in Maintenance: The Brain Behind Prediction",
+  "meta_description": "Pattern recognition transforms raw sensor data into actionable maintenance insights. Learn how algorithms detect failure signatures before downtime occurs.",
+  "title": "Pattern Recognition: The \"Brain\" Behind Your Predictive Maintenance Strategy",
+  "keyword": "pattern recognition",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/pattern-recognition.png",
+    "alt": "Hero image for Pattern Recognition: The \"Brain\" Behind Your Predictive Maintenance Strategy",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photorealistic, cinematic shot inside a modern, high-tech manufacturing facility. In the foreground, a reliability engineer (wearing a white hard hat, safety glasses, and a high-visibility vest) is standing next to a large industrial electric motor. The engineer is holding a ruggedized tablet, but the screen is facing away from the camera. The focus is on the engineer looking intently at the machinery, analyzing it. In the background, slightly blurred, are automated conveyor belts and robotic arms in motion. The lighting is a mix of cool industrial blue LED strips and warm amber safety lights, creating a professional, futuristic atmosphere. No text or overlays in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2226,
+  "link_count": 8
+}

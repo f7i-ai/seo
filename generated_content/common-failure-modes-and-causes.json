@@ -1,0 +1,16 @@
+{
+  "meta_title": "Common Failure Modes vs. Causes: A Guide to Maintenance Taxonomy",
+  "meta_description": "Stop guessing. Learn the critical difference between failure modes and causes, and how to build a standardized failure taxonomy that drives asset reliability.",
+  "title": "Common Failure Modes and Causes: The Blueprint for Standardized Maintenance Reporting",
+  "keyword": "common failure modes and causes",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/common-failure-modes-and-causes.png",
+    "alt": "Hero image for Common Failure Modes and Causes: The Blueprint for Standardized Maintenance Reporting",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern, clean industrial manufacturing facility. In the foreground, a diverse group of reliability engineers and maintenance technicians (wearing hard hats, safety glasses, and high-vis vests) are gathered around a large industrial pump and motor assembly. One technician is pointing at a specific component on the motor, while another holds a tablet (back of tablet visible only) referencing data. In the background, blurred automated machinery and digital dashboards suggest a high-tech, Industry 4.0 environment. Lighting is dramatic but professional, highlighting the equipment and the team's focus. No text in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2267,
+  "link_count": 6
+}

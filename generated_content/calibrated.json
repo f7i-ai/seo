@@ -1,0 +1,16 @@
+{
+  "meta_title": "Calibrated: The 2026 Standard for Industrial Precision & AI Reliability",
+  "meta_description": "70% of unplanned downtime traces to data errors. Here is the definitive guide to industrial calibration, ISO compliance, and why Factory AI is the 2026",
+  "title": "Calibrated: The Definitive Guide to Industrial Precision, Compliance, and AI Reliability",
+  "keyword": "calibrated",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/calibrated.png",
+    "alt": "Hero image for Calibrated: The Definitive Guide to Industrial Precision, Compliance, and AI Reliability",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot of a modern manufacturing facility interior. In the foreground, a diverse team of reliability engineers (men and women) wearing hard hats, safety glasses, and high-visibility vests are inspecting a large industrial motor. One engineer is holding a tablet (back facing camera) while pointing at a sensor on the machine. The background shows a clean, high-tech production line with conveyors and automated machinery. The lighting is professional and cool-toned, emphasizing a futuristic, \"Industry 4.0\" atmosphere. No text or overlays in the image. Focus on the interaction between the human workers and the machinery.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2299,
+  "link_count": 18
+}

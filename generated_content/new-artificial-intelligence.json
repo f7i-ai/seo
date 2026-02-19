@@ -1,0 +1,16 @@
+{
+  "meta_title": "New AI in Maintenance: Beyond Prediction to Industrial Copilots",
+  "meta_description": "Discover how new artificial intelligence (GenAI & LLMs) is transforming maintenance from simple prediction to prescriptive \"copilots\" that draft work orders",
+  "title": "New Artificial Intelligence in Maintenance: From Predictive Alerts to Prescriptive Copilots",
+  "keyword": "new artificial intelligence",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/new-artificial-intelligence.png",
+    "alt": "Hero image for New Artificial Intelligence in Maintenance: From Predictive Alerts to Prescriptive Copilots",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern, clean manufacturing facility. In the foreground, a diverse maintenance technician (wearing a hard hat, safety glasses, and high-visibility vest) is looking at a ruggedized tablet held in their left hand. The tablet screen is not visible to the camera (we see the back of the device). The technician is gesturing with their right hand toward a complex industrial motor and pump assembly, as if verifying information. In the background, slightly out of focus, another technician is inspecting a conveyor line. The lighting is a mix of cool industrial LED and warm accent lighting on the machinery, highlighting the \"smart factory\" atmosphere. No text or overlays in the image. High resolution, 8k.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2101,
+  "link_count": 15
+}

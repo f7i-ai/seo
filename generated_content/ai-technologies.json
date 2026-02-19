@@ -1,0 +1,16 @@
+{
+  "meta_title": "Industrial AI Technologies: The 2026 Stack for Manufacturing",
+  "meta_description": "Move beyond buzzwords. Explore the specific AI technologies driving industrial reliability, from edge computing and NLP to prescriptive maintenance algorithms.",
+  "title": "Beyond the Hype: Which AI Technologies Actually Drive Industrial Reliability?",
+  "keyword": "ai technologies",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/ai-technologies.png",
+    "alt": "Hero image for Beyond the Hype: Which AI Technologies Actually Drive Industrial Reliability?",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern, high-tech manufacturing facility. In the foreground, a diverse group of reliability engineers (men and women) wearing hard hats, safety glasses, and high-visibility vests are gathered around a large industrial tablet. The back of the tablet is visible, but they are looking at a holographic overlay (subtle, not sci-fi cartoonish) projecting a digital twin of a large electric motor nearby. The background shows a clean, automated production line with yellow robotic arms and conveyor belts in motion. Lighting is cool industrial blue with warm accents on the machinery. 8k resolution, highly detailed textures on the metal surfaces and PPE. No text or words in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2278,
+  "link_count": 8
+}

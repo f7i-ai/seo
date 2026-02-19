@@ -1,0 +1,16 @@
+{
+  "meta_title": "Mechanical Failures in Manufacturing: Root Cause to Reliability",
+  "meta_description": "Stop treating mechanical failures as inevitable. Learn to diagnose root causes, calculate true downtime costs, and implement AI-driven predictive strategies.",
+  "title": "Mechanical Failures in Manufacturing: Bridging the Gap Between Engineering and Operations",
+  "keyword": "mechanical failures manufacturing",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/mechanical-failures-manufacturing.png",
+    "alt": "Hero image for Mechanical Failures in Manufacturing: Bridging the Gap Between Engineering and Operations",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot inside a modern, high-tech manufacturing facility. In the foreground, a diverse group of reliability engineers and maintenance technicians (wearing hard hats, safety glasses, and high-visibility vests) are gathered around a large industrial motor and conveyor system. One engineer is using a handheld vibration analysis tool on the motor housing (back of device visible), while another holds a tablet (screen not visible) pointing toward a specific component. In the background, the production line is active but clean and well-lit with cool blue and white industrial lighting. The atmosphere is professional and focused on precision. No text or overlays in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2210,
+  "link_count": 11
+}

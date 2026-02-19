@@ -1,0 +1,16 @@
+{
+  "meta_title": "FFI in Maintenance: Calculating Failure Finding Intervals",
+  "meta_description": "What is FFI? In maintenance, the Failure Finding Interval is critical for managing hidden failures in protective devices. Learn to calculate and optimize it.",
+  "title": "What is FFI (Failure Finding Interval) and Why Is It the Most Critical Metric for Hidden Failures?",
+  "keyword": "ffi",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/ffi.png",
+    "alt": "Hero image for What is FFI (Failure Finding Interval) and Why Is It the Most Critical Metric for Hidden Failures?",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern industrial processing plant. In the foreground, a reliability engineer wearing a white hard hat, safety glasses, and high-visibility vest is inspecting a complex pressure relief valve assembly. The engineer is holding a tablet (back of tablet visible) to check a checklist. In the background, blurred but visible, are large piping systems and another technician walking in the distance. The lighting is professional and industrial, highlighting the metallic textures of the valve and the seriousness of the safety inspection. No text or overlays.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2403,
+  "link_count": 8
+}

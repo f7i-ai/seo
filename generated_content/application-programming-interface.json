@@ -1,0 +1,16 @@
+{
+  "meta_title": "The Industrial Nervous System: APIs in Modern Maintenance (2026)",
+  "meta_description": "Siloed data causes 70% of unplanned downtime. See how an Application Programming Interface connects your factory floor to predictive insights and automates",
+  "title": "The Industrial Nervous System: A Definitive Guide to the Application Programming Interface (API)",
+  "keyword": "application programming interface",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/application-programming-interface.png",
+    "alt": "Hero image for The Industrial Nervous System: A Definitive Guide to the Application Programming Interface (API)",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photorealistic, cinematic wide shot inside a modern manufacturing facility. The scene features a diverse group of reliability engineers and maintenance technicians (men and women) wearing standard PPE including hard hats, safety glasses, and high-visibility vests. They are standing near a large industrial conveyor system. One technician is holding a ruggedized tablet, but the back of the tablet is facing the camera (screen not visible). In the background, subtle, glowing digital lines (representing data flow) connect the machinery to the ceiling, symbolizing the \"nervous system\" of the factory, but the effect should be subtle and blended with the realistic lighting. The lighting is professional, industrial cool tones with warm highlights on the people. No text or words in the image. High resolution, 8k.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2162,
+  "link_count": 15
+}

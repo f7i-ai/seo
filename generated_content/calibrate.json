@@ -1,0 +1,16 @@
+{
+  "meta_title": "Calibrate for Compliance: The Industrial Guide to Metrology & Reliability",
+  "meta_description": "Don't just adjust; calibrate. Learn the industrial standards for calibration (ISO 17025, NIST), optimize intervals, and secure data integrity for 2026.",
+  "title": "Calibrate or Fail: The Operational Guide to Measurement Reliability and Compliance",
+  "keyword": "calibrate",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/calibrate.png",
+    "alt": "Hero image for Calibrate or Fail: The Operational Guide to Measurement Reliability and Compliance",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photorealistic, cinematic shot inside a modern, clean industrial facility. In the foreground, a reliability technician wearing safety glasses, a hard hat, and high-visibility vest is focused on a digital pressure transmitter connected to a complex piping system. The technician is holding a yellow, ruggedized multifunction process calibrator (back of device visible, no screen text). The background shows blurred automated machinery and blue-toned industrial lighting, conveying a high-tech, 2026 manufacturing environment. The image should convey precision, focus, and industrial safety. No text or words in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2521,
+  "link_count": 5
+}

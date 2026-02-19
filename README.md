@@ -5,7 +5,7 @@ A comprehensive system for automated SEO content generation and publishing to Pr
 ## 🚀 Features
 
 ### Content Generation
-- **AI-Powered Research**: Uses Google Gemini 3 Pro for deep keyword research and competitive analysis
+- **AI-Powered Research**: Uses Gemini 3 Pro (or configurable model) for deep keyword research and competitive analysis; content generation uses a separate high-limit model (e.g. Gemini 2.5 Flash) to avoid RPD limits
 - **High-Quality Content**: Generates 2500-4000 word blog posts with proper structure and SEO optimization
 - **Image Generation**: Creates hero images using OpenAI's GPT-4 Image Generation
 - **Link Validation**: Automatically validates internal and external links
@@ -27,7 +27,7 @@ A comprehensive system for automated SEO content generation and publishing to Pr
 
 ### Required API Keys
 - **Google Gemini API Key**: For content generation and research
-- **OpenAI API Key**: For image generation
+- **OpenAI API Key**: For image generation (optional; hero images can use Gemini)
 - **Prismic Write Token**: For uploading content to Prismic CMS
 
 ### System Requirements
@@ -62,9 +62,31 @@ GEMINI_API_KEY=your_gemini_api_key_here
 OPENAI_API_KEY=your_openai_api_key_here
 PRISMIC_API_KEY=your_prismic_write_token_here
 
+# Optional: Gemini model split (saves Gemini 3 Pro RPD; see "Rate limits" below)
+# GEMINI_RESEARCH_MODEL=gemini-3-pro-preview
+# GEMINI_CONTENT_MODEL=gemini-3-flash-preview
+# Optional: Use Deep Research Pro Preview for research (1 RPM; set to 1 to enable)
+# USE_DEEP_RESEARCH=1
+
 # Optional: Enable debug mode
 DEBUG=true
 ```
+
+### Rate limits & model choice
+
+Gemini 3 Pro has a **250 requests/day (RPD)** limit. The generator uses **two models** by default so you can run many more keywords per day without sacrificing research quality:
+
+| Role | Default model | Typical limit | Used for |
+|------|----------------|---------------|----------|
+| **Research** | `gemini-3-pro-preview` | 250 RPD | Keyword + SERP analysis (1 call per keyword) |
+| **Content** | `gemini-3-flash-preview` | Check dashboard | Article generation, expansion, internal links (2–4 calls per keyword) |
+
+So you get **up to ~250 research runs/day** (Gemini 3 Pro) and content on **Gemini 3 Flash** (better quality than 2.5 Flash). Override via env:
+
+- `GEMINI_RESEARCH_MODEL` – e.g. `gemini-3-pro-preview`
+- `GEMINI_CONTENT_MODEL` – e.g. `gemini-3-flash-preview` (default, best quality), or `gemini-2.5-flash` (10K RPD) / `gemini-2.0-flash` (unlimited RPD) if your 3 Flash RPD is tight
+
+**Deep Research Pro Preview** is an *agent* (Interactions API). You can try it for research by setting `USE_DEEP_RESEARCH=1` in your environment. The agent has a 1 RPM–style limit, which is fine if you generate about one piece of content per minute. Requires `google-genai` (see requirements). The script will use the same structured markdown format and stream with reconnection for long-running runs.
 
 ### 4. Prepare Keyword Data
 
@@ -276,7 +298,7 @@ node prismic_uploader.js generated_content/test.json --debug
 ### Processing Flow
 1. Load keywords from CSV file
 2. Check for existing content (avoid duplicates)
-3. Research keyword using Gemini 2.5 Pro with SERP analysis
+3. Research keyword using the configured research model (default: Gemini 3 Pro) with SERP analysis
 4. Generate comprehensive blog post content
 5. Create hero image using OpenAI
 6. Validate and clean all links
@@ -326,4 +348,4 @@ For issues or questions:
 
 ---
 
-**Note**: This system is optimized for industrial maintenance and CMMS-related content generation. The AI models are specifically prompted for B2B industrial audiences and technical content. 
+**Note**: This system is optimized for industrial maintenance and CMMS-related content generation. The AI models are specifically prompted for B2B industrial audiences and technical content.

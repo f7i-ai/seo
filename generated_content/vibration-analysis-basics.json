@@ -1,0 +1,16 @@
+{
+  "meta_title": "Vibration Analysis Basics: The 2026 Operational Guide",
+  "meta_description": "Master vibration analysis basics without the academic fluff. Learn to detect bearing faults, unbalance, and misalignment to stop downtime before it starts.",
+  "title": "Vibration Analysis Basics: How to Read Your Machine’s \"Heartbeat\" Without a PhD",
+  "keyword": "[vibration analysis basics]",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/[vibration-analysis-basics].png",
+    "alt": "Hero image for Vibration Analysis Basics: How to Read Your Machine’s \"Heartbeat\" Without a PhD",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern, clean manufacturing facility. In the foreground, a reliability engineer (wearing a hard hat, safety glasses, and a high-visibility vest) is inspecting a large industrial electric motor. They are holding a tablet (back of the device visible, no screen content shown) in one hand and pointing a wireless vibration sensor mounted on the motor housing with the other. In the background, out of focus, other diverse technicians are working on a conveyor line. The lighting is cool industrial blue with warm highlights on the machinery, emphasizing technology and precision. No text or overlays in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2396,
+  "link_count": 8
+}

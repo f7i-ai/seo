@@ -1,0 +1,16 @@
+{
+  "meta_title": "Gantt Charts in Maintenance: The 2026 Visual Command Center",
+  "meta_description": "Static spreadsheets kill efficiency. See how dynamic Gantt charts in Factory AI streamline maintenance scheduling, handle dependencies, and reduce downtime by",
+  "title": "Gantt Charts: The Visual Operating System for Modern Maintenance Scheduling",
+  "keyword": "gantt charts",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/gantt-charts.png",
+    "alt": "Hero image for Gantt Charts: The Visual Operating System for Modern Maintenance Scheduling",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic wide shot of a modern manufacturing facility control room. In the foreground, a diverse group of maintenance planners and engineers (wearing hard hats, safety glasses, and high-visibility vests) are gathered around a large, wall-mounted digital display. The display shows a sophisticated, glowing Gantt chart interface with dark mode styling, featuring blue and green timeline bars and red critical path indicators. One engineer is pointing at a specific section of the timeline. In the background, through a glass window, the blurred industrial plant floor is visible with machinery and pipes. The lighting is professional and cool-toned, emphasizing technology and precision. No text or words should be visible on the screens or walls.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2140,
+  "link_count": 13
+}

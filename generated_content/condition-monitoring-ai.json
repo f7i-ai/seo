@@ -1,0 +1,16 @@
+{
+  "meta_title": "Condition Monitoring AI: From Prediction to Prescription (2026 Guide)",
+  "meta_description": "Move beyond basic alerts. Discover how condition monitoring AI transforms raw data into prescriptive maintenance actions, reducing downtime and boosting OEE.",
+  "title": "Condition Monitoring AI: How to Move From \"It Might Break\" to \"Here is How to Fix It\"",
+  "keyword": "condition monitoring ai",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/condition-monitoring-ai.png",
+    "alt": "Hero image for Condition Monitoring AI: How to Move From \"It Might Break\" to \"Here is How to Fix It\"",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic, cinematic shot inside a modern manufacturing facility. In the foreground, a reliability engineer (wearing a hard hat, safety glasses, and a high-visibility vest) is inspecting a large industrial electric motor. The engineer is holding a tablet, but we only see the back of the device, implying they are looking at data. In the background, slightly out of focus, is a clean, automated production line with conveyors and robotic arms. The lighting is professional, with a mix of cool industrial blue tones and warm accent lighting on the machinery. The image conveys a sense of high-tech precision and industrial scale. No text or overlays.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2237,
+  "link_count": 11
+}
