@@ -1,12 +1,13 @@
 """
 AEO Benchmark Runner — measures Factory AI visibility across AI answer engines.
 
-Queries ChatGPT, Gemini, and Perplexity with a set of buyer-journey prompts,
-scores each response for Factory AI inclusion, and produces aggregate scorecards.
+Queries ChatGPT, Gemini, Claude, and Perplexity with a set of buyer-journey
+prompts, scores each response for Factory AI inclusion, and produces aggregate
+scorecards.
 
 Usage:
     python aeo_benchmark.py                          # Full run, all engines
-    python aeo_benchmark.py --engines chatgpt,gemini # Select engines
+    python aeo_benchmark.py --engines chatgpt,claude # Select engines
     python aeo_benchmark.py --limit 10               # First N prompts (testing)
     python aeo_benchmark.py --stage purchase_intent   # Single stage only
     python aeo_benchmark.py --resume                  # Skip already-completed prompts
@@ -25,8 +26,10 @@ from enum import Enum
 from pathlib import Path
 from typing import Optional
 
+import anthropic
 import google.generativeai as genai  # type: ignore
 import openai
+import requests as http_requests
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 
@@ -50,7 +53,7 @@ log = logging.getLogger("aeo_benchmark")
 PROMPTS_CSV = Path(__file__).parent / "aeo_benchmark_prompts.csv"
 RESULTS_DIR = Path(__file__).parent / "aeo_results"
 
-ENGINES = ("chatgpt", "gemini", "perplexity")
+ENGINES = ("chatgpt", "gemini", "claude", "perplexity")
 STAGES = (
     "problem_unaware",
     "problem_aware",
@@ -64,8 +67,19 @@ MAX_RETRIES = 3
 
 CHATGPT_MODEL = "gpt-4o"
 GEMINI_MODEL = "gemini-2.5-flash"
+CLAUDE_MODEL = "claude-sonnet-4-20250514"
 PERPLEXITY_MODEL = "sonar"
 SCORER_MODEL = "gemini-2.0-flash"
+
+CLARITY_API_URL = "https://www.clarity.ms/export-data/api/v1/project-live-insights"
+
+AI_SOURCE_MAP: dict[str, str] = {
+    "chatgpt.com": "chatgpt",
+    "chat.openai.com": "chatgpt",
+    "gemini.google.com": "gemini",
+    "claude.ai": "claude",
+    "perplexity.ai": "perplexity",
+}
 
 # ---------------------------------------------------------------------------
 # Pydantic model for scored responses
@@ -163,6 +177,17 @@ def query_gemini(prompt: str, model) -> str:
     return _retry(_call, "Gemini")
 
 
+def query_claude(prompt: str, client: anthropic.Anthropic) -> str:
+    def _call():
+        resp = client.messages.create(
+            model=CLAUDE_MODEL,
+            max_tokens=4096,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        return resp.content[0].text
+    return _retry(_call, "Claude")
+
+
 def query_perplexity(prompt: str, client: openai.OpenAI) -> str:
     def _call():
         resp = client.chat.completions.create(
@@ -214,6 +239,87 @@ def score_response(response_text: str, scorer_model) -> ResponseScore:
         return ResponseScore.model_validate_json(raw)
 
     return _retry(_call, "Scorer")
+
+
+# ---------------------------------------------------------------------------
+# Clarity Data Export API
+# ---------------------------------------------------------------------------
+
+
+def fetch_clarity_traffic(token: str, num_days: int = 3) -> list[dict]:
+    """Pull traffic data from Clarity broken down by Source and URL."""
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+    }
+    params = {
+        "numOfDays": str(num_days),
+        "dimension1": "Source",
+        "dimension2": "URL",
+        "dimension3": "Country/Region",
+    }
+
+    resp = http_requests.get(CLARITY_API_URL, headers=headers, params=params, timeout=30)
+    resp.raise_for_status()
+    return resp.json()
+
+
+def extract_ai_referral_traffic(clarity_data: list[dict]) -> list[dict]:
+    """Filter Clarity response to only AI-engine referral sessions."""
+    ai_traffic: list[dict] = []
+
+    for metric_block in clarity_data:
+        metric_name = metric_block.get("metricName", "")
+        if metric_name != "Traffic":
+            continue
+        for row in metric_block.get("information", []):
+            source = (row.get("Source") or "").lower().strip()
+            engine = None
+            for pattern, eng in AI_SOURCE_MAP.items():
+                if pattern in source:
+                    engine = eng
+                    break
+            if not engine:
+                continue
+            ai_traffic.append({
+                "engine": engine,
+                "source": source,
+                "url": row.get("URL", ""),
+                "region": row.get("Country/Region", ""),
+                "sessions": int(row.get("totalSessionCount", 0)),
+                "bot_sessions": int(row.get("totalBotSessionCount", 0)),
+                "users": int(row.get("distantUserCount", 0)),
+                "pages_per_session": float(row.get("PagesPerSessionPercentage", 0)),
+            })
+
+    return ai_traffic
+
+
+def summarise_clarity_by_engine(ai_traffic: list[dict]) -> list[dict]:
+    """Aggregate AI referral traffic per engine."""
+    from collections import defaultdict
+    agg: dict[str, dict[str, float]] = defaultdict(
+        lambda: {"sessions": 0, "users": 0, "pages_per_session_sum": 0.0, "url_count": 0}
+    )
+    for row in ai_traffic:
+        eng = row["engine"]
+        agg[eng]["sessions"] += row["sessions"]
+        agg[eng]["users"] += row["users"]
+        agg[eng]["pages_per_session_sum"] += row["pages_per_session"] * row["sessions"]
+        agg[eng]["url_count"] += 1
+
+    summary = []
+    for eng in sorted(agg):
+        s = agg[eng]
+        avg_pps = s["pages_per_session_sum"] / s["sessions"] if s["sessions"] else 0
+        summary.append({
+            "engine": eng,
+            "sessions": int(s["sessions"]),
+            "users": int(s["users"]),
+            "pages_per_session": round(avg_pps, 2),
+            "landing_pages": int(s["url_count"]),
+        })
+    return summary
 
 
 # ---------------------------------------------------------------------------
@@ -331,7 +437,14 @@ def write_scorecard_csv(path: Path, rows: list[dict]) -> None:
         w.writerows(rows)
 
 
-def write_summary_md(path: Path, engine_sc: list[dict], stage_sc: list[dict], rows: list[dict]) -> None:
+def write_summary_md(
+    path: Path,
+    engine_sc: list[dict],
+    stage_sc: list[dict],
+    rows: list[dict],
+    clarity_summary: Optional[list[dict]] = None,
+    clarity_top_pages: Optional[list[dict]] = None,
+) -> None:
     lines: list[str] = []
     lines.append("# AEO Benchmark Summary\n")
     lines.append(f"**Date:** {datetime.date.today().isoformat()}\n")
@@ -367,12 +480,34 @@ def write_summary_md(path: Path, engine_sc: list[dict], stage_sc: list[dict], ro
             f"| {r['vendor_list']} | {r['positive_narrative']} | {r['citation']} |"
         )
 
+    # Clarity AI referral traffic
+    if clarity_summary:
+        lines.append("\n\n## AI Referral Traffic (Clarity)\n")
+        lines.append("| Engine | Sessions | Users | Pages/Session | Landing Pages |")
+        lines.append("|--------|----------|-------|---------------|---------------|\n")
+        for r in clarity_summary:
+            lines.append(
+                f"| {r['engine']} | {r['sessions']} | {r['users']} "
+                f"| {r['pages_per_session']} | {r['landing_pages']} |"
+            )
+
+    if clarity_top_pages:
+        lines.append("\n\n## Top AI-Referred Landing Pages\n")
+        lines.append("| Engine | URL | Sessions |")
+        lines.append("|--------|-----|----------|\n")
+        for r in clarity_top_pages[:20]:
+            lines.append(f"| {r['engine']} | {r['url']} | {r['sessions']} |")
+
     lines.append("")
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
 
 
-def print_summary(engine_sc: list[dict], rows: list[dict]) -> None:
+def print_summary(
+    engine_sc: list[dict],
+    rows: list[dict],
+    clarity_summary: Optional[list[dict]] = None,
+) -> None:
     pi_rows = [r for r in rows if r["stage"] == "purchase_intent"]
     if pi_rows:
         pi_mentioned = sum(1 for r in pi_rows if r["scores"]["mention"])
@@ -389,6 +524,18 @@ def print_summary(engine_sc: list[dict], rows: list[dict]) -> None:
             f"{r['engine']:<14} {r['inclusion']:>10} {r['vendor_list']:>12} "
             f"{r['positive_narrative']:>10} {r['citation']:>10}"
         )
+
+    if clarity_summary:
+        log.info("")
+        log.info("AI REFERRAL TRAFFIC (Clarity, last 72h)")
+        chdr = f"{'Engine':<14} {'Sessions':>10} {'Users':>10} {'Pages/Sess':>12} {'Pages':>8}"
+        log.info(chdr)
+        log.info("-" * len(chdr))
+        for r in clarity_summary:
+            log.info(
+                f"{r['engine']:<14} {r['sessions']:>10} {r['users']:>10} "
+                f"{r['pages_per_session']:>12} {r['landing_pages']:>8}"
+            )
 
 
 # ---------------------------------------------------------------------------
@@ -417,6 +564,14 @@ def build_clients(engines: list[str]) -> dict:
         else:
             genai.configure(api_key=api_key)  # type: ignore
             clients["gemini"] = genai.GenerativeModel(GEMINI_MODEL)  # type: ignore
+
+    if "claude" in engines:
+        api_key = os.getenv("ANTHROPIC_API_KEY")
+        if not api_key:
+            log.warning("ANTHROPIC_API_KEY not set — skipping Claude")
+            skipped.append("claude")
+        else:
+            clients["claude"] = anthropic.Anthropic(api_key=api_key)
 
     if "perplexity" in engines:
         api_key = os.getenv("PERPLEXITY_API_KEY")
@@ -453,6 +608,7 @@ def run_benchmark(
     stage_filter: Optional[str],
     limit: Optional[int],
     resume: bool,
+    skip_clarity: bool = False,
 ) -> None:
     prompts = load_prompts(stage_filter=stage_filter, limit=limit)
     if not prompts:
@@ -488,6 +644,8 @@ def run_benchmark(
                     response_text = query_chatgpt(bp.prompt, clients["chatgpt"])
                 elif eng == "gemini":
                     response_text = query_gemini(bp.prompt, clients["gemini"])
+                elif eng == "claude":
+                    response_text = query_claude(bp.prompt, clients["claude"])
                 elif eng == "perplexity":
                     response_text = query_perplexity(bp.prompt, clients["perplexity"])
                 else:
@@ -515,6 +673,31 @@ def run_benchmark(
 
             time.sleep(API_DELAY_SECONDS)
 
+    # Fetch Clarity traffic data
+    clarity_summary: Optional[list[dict]] = None
+    clarity_top_pages: Optional[list[dict]] = None
+    clarity_token = os.getenv("CLARITY_API_TOKEN")
+
+    if skip_clarity:
+        log.info("Clarity traffic fetch skipped (--no-clarity)")
+    elif not clarity_token:
+        log.info("CLARITY_API_TOKEN not set — skipping traffic data")
+    else:
+        try:
+            log.info("Fetching AI referral traffic from Clarity...")
+            raw_clarity = fetch_clarity_traffic(clarity_token)
+            ai_traffic = extract_ai_referral_traffic(raw_clarity)
+            if ai_traffic:
+                clarity_summary = summarise_clarity_by_engine(ai_traffic)
+                clarity_top_pages = sorted(ai_traffic, key=lambda r: r["sessions"], reverse=True)
+                write_scorecard_csv(d / "clarity_traffic.csv", ai_traffic)
+                log.info("Clarity: %d AI-referred sessions across %d engines",
+                         sum(r["sessions"] for r in clarity_summary), len(clarity_summary))
+            else:
+                log.info("Clarity: no AI-referral sessions found in last 72h")
+        except Exception:
+            log.exception("Failed to fetch Clarity data — continuing without it")
+
     # Build scorecards
     if not jsonl_path(d).exists():
         log.warning("No results to summarise")
@@ -525,10 +708,10 @@ def run_benchmark(
 
     write_scorecard_csv(d / "scorecard.csv", engine_sc)
     write_scorecard_csv(d / "scorecard_by_stage.csv", stage_sc)
-    write_summary_md(d / "summary.md", engine_sc, stage_sc, rows)
+    write_summary_md(d / "summary.md", engine_sc, stage_sc, rows, clarity_summary, clarity_top_pages)
 
     log.info("Results written to %s", d)
-    print_summary(engine_sc, rows)
+    print_summary(engine_sc, rows, clarity_summary)
 
 
 def main() -> None:
@@ -541,6 +724,7 @@ def main() -> None:
     parser.add_argument("--limit", type=int, default=None, help="Run only the first N prompts")
     parser.add_argument("--stage", default=None, choices=STAGES, help="Run a single stage only")
     parser.add_argument("--resume", action="store_true", help="Skip already-completed prompt/engine combos in today's run")
+    parser.add_argument("--no-clarity", action="store_true", help="Skip Clarity traffic data fetch")
     args = parser.parse_args()
 
     selected_engines = [e.strip().lower() for e in args.engines.split(",")]
@@ -553,6 +737,7 @@ def main() -> None:
         stage_filter=args.stage,
         limit=args.limit,
         resume=args.resume,
+        skip_clarity=args.no_clarity,
     )
 
 
