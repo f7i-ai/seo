@@ -1,0 +1,16 @@
+{
+  "meta_title": "What is UID? Meaning in Industrial Asset Management",
+  "meta_description": "Define UID (Unique Identifier) and its role in industrial maintenance. Understand how IUID and MIL-STD-130 standards ensure data integrity for critical assets.",
+  "title": "What is UID (Unique Identifier)?",
+  "keyword": "uid meaning",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/uid-meaning.png",
+    "alt": "Hero image for What is UID (Unique Identifier)?",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-tech industrial setting where a maintenance professional in clean PPE is using a rugged handheld scanner to read a 2D Data Matrix barcode on a large, stainless steel centrifugal pump. The background shows a clean, modern factory floor with glowing blue and white status lights. The focus is on the interaction between the digital scanner and the physical asset tag, symbolizing the connection between physical equipment and digital data.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 447,
+  "link_count": 4
+}

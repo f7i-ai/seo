@@ -1,0 +1,16 @@
+{
+  "meta_title": "What is SPC? Statistical Process Control Meaning & Benefits",
+  "meta_description": "Statistical Process Control (SPC) uses data to monitor machine health and process stability. Understand how SPC prevents downtime and improves industrial quality.",
+  "title": "What is SPC (Statistical Process Control)?",
+  "keyword": "spc meaning",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/spc-meaning.png",
+    "alt": "Hero image for What is SPC (Statistical Process Control)?",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-tech industrial control room overlooking a modern factory floor. In the foreground, a large digital monitor displays a professional Statistical Process Control chart with green and red data points and clear Upper/Lower Control Limit lines. A diverse group of three engineers in clean PPE and hardhats are discussing the data on a tablet. The background shows blurred robotic assembly arms and IIoT-enabled machinery. Photo-realistic, 8k resolution, cinematic lighting, professional industrial atmosphere.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 434,
+  "link_count": 9
+}

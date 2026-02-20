@@ -1,0 +1,16 @@
+{
+  "meta_title": "EOQ for MRO: Balancing Stockout Risks and Carrying Costs",
+  "meta_description": "Most maintenance teams miscalculate EOQ by ignoring the true cost of stockouts. Here is the 2026 framework for optimizing MRO inventory and reducing SLOB.",
+  "title": "Why EOQ is the Critical Metric for 2026 MRO Inventory Optimization",
+  "keyword": "eoq",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/eoq.png",
+    "alt": "Hero image for Why EOQ is the Critical Metric for 2026 MRO Inventory Optimization",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A wide-angle, photo-realistic shot of a modern, highly organized industrial MRO warehouse in 2026. In the foreground, a diverse team of three maintenance professionals (two men, one woman) are standing near a high-tech shelving unit. They are wearing full PPE: clean high-visibility vests, white hard hats, and safety glasses. One person is holding a ruggedized handheld tablet (only the back of the device is visible). The warehouse features high ceilings, bright LED lighting, and neatly labeled bins with QR codes. In the background, a technician is operating a reach truck in a distant aisle. The atmosphere is professional, clean, and efficient, conveying a sense of advanced inventory control. No text or screens are visible.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2080,
+  "link_count": 13
+}
