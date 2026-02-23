@@ -1,0 +1,16 @@
+{
+  "meta_title": "How to Monitor Assets Without PLC Access: Non-Invasive IIoT",
+  "meta_description": "Monitor industrial assets without PLC access using non-invasive IIoT sensors like CT clamps and vibration probes to bypass legacy or locked control systems.",
+  "title": "How to Monitor Industrial Assets Without PLC Access",
+  "keyword": "how to monitor assets without PLC access",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/how-to-monitor-assets-without-PLC-access.png",
+    "alt": "Hero image for How to Monitor Industrial Assets Without PLC Access",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-detail industrial photograph of a technician's hand snapping a blue CT clamp (current transducer) around a thick insulated power cable inside a clean electrical cabinet. In the background, a small, sleek wireless edge gateway is mounted to the side of the cabinet with a glowing status LED. The lighting is sharp and professional, highlighting the non-invasive \"bolt-on\" nature of the technology. No text, 8k resolution, realistic manufacturing environment.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 988,
+  "link_count": 4
+}

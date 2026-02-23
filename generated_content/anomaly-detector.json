@@ -1,0 +1,16 @@
+{
+  "meta_title": "Industrial Anomaly Detector: Beyond Static Thresholds in 2026",
+  "meta_description": "Unplanned downtime costs $50k/hour. An industrial anomaly detector identifies failures before they happen. Learn the dynamic framework for 2026 reliability.",
+  "title": "What is an Anomaly Detector, and Why is it the Backbone of 2026 Industrial Reliability?",
+  "keyword": "anomaly detector",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/anomaly-detector.png",
+    "alt": "Hero image for What is an Anomaly Detector, and Why is it the Backbone of 2026 Industrial Reliability?",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A professional, photo-realistic wide shot of a modern industrial manufacturing floor in 2026. In the foreground, two reliability engineers—a man and a woman of diverse backgrounds—are standing near a large, complex industrial compressor. They are wearing clean, professional PPE including white hard hats, safety glasses, and high-visibility vests. One engineer is pointing toward a specific section of the compressor while the other holds a ruggedized industrial tablet, showing only the back of the device. The lighting is bright and clean, highlighting the metallic textures of the machinery. There is no text or digital overlays in the image. The focus is on the collaborative inspection of the asset.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2373,
+  "link_count": 6
+}

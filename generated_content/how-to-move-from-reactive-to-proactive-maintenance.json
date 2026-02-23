@@ -1,0 +1,16 @@
+{
+  "meta_title": "How to Move from Reactive to Proactive Maintenance",
+  "meta_description": "Transition from reactive to proactive maintenance by ranking asset criticality, optimizing PM schedules, and utilizing the P-F interval to detect failures early.",
+  "title": "How to Move from Reactive to Proactive Maintenance: A Phased Framework",
+  "keyword": "how to move from reactive to proactive maintenance",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/how-to-move-from-reactive-to-proactive-maintenance.png",
+    "alt": "Hero image for How to Move from Reactive to Proactive Maintenance: A Phased Framework",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-tech industrial maintenance dashboard in the foreground showing a green \"Asset Health\" gauge at 92%, with a blurred background of a clean, organized manufacturing floor. A maintenance manager in a hard hat and safety vest is holding a tablet that displays a vibration analysis graph, standing next to a large centrifugal pump that has small, unobtrusive wireless sensors attached to its bearing housings. The lighting is bright and professional, conveying a sense of control and modern efficiency.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 929,
+  "link_count": 5
+}

@@ -1,0 +1,16 @@
+{
+  "meta_title": "How to Monitor Intermittent Equipment: Event-Driven Guide",
+  "meta_description": "Monitor intermittent equipment using event-triggered data acquisition. Synchronize sensor readings with machine states to prevent startup and standby failures.",
+  "title": "How to Build an Event-Driven Monitoring Strategy for Intermittent Assets",
+  "keyword": "how to monitor intermittent equipment",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/how-to-monitor-intermittent-equipment.png",
+    "alt": "Hero image for How to Build an Event-Driven Monitoring Strategy for Intermittent Assets",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-tech industrial maintenance scene showing a wireless vibration sensor and a current clamp attached to a large, stationary electric motor in a clean factory. A technician is nearby holding a tablet that displays a \"Startup Transient Graph\" with sharp peaks and a green \"Healthy\" checkmark. The lighting is professional and focused on the hardware integration.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1015,
+  "link_count": 4
+}

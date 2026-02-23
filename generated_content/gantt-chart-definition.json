@@ -1,0 +1,16 @@
+{
+  "meta_title": "Gantt Chart Definition: Industrial Maintenance Scheduling",
+  "meta_description": "A Gantt chart is a visual scheduling tool mapping maintenance tasks against time. Understand how it optimizes asset downtime and coordinates complex work orders.",
+  "title": "What Is a Gantt Chart?",
+  "keyword": "gantt chart definition",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/gantt-chart-definition.png",
+    "alt": "Hero image for What Is a Gantt Chart?",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-resolution, photo-realistic image of a maintenance planner in a modern industrial facility wearing a white hard hat and a reflective safety vest. The planner is interacting with a large, wall-mounted digital touchscreen that displays a complex, multi-colored Gantt chart with clear task bars and dependency lines. In the background, blurred industrial machinery and a diverse team of technicians in PPE are visible, suggesting a busy, high-tech manufacturing environment. No text on the screen.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 449,
+  "link_count": 8
+}

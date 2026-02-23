@@ -1,0 +1,16 @@
+{
+  "meta_title": "Industrial APIs: The Nervous System of Modern Maintenance",
+  "meta_description": "APIs aren't just for software developers—they are the layer that connects your shop floor to your bottom line. Learn how to leverage them for total",
+  "title": "What Are Application Programming Interfaces (APIs) and Why Are They the \"Nervous System\" of Your 2026 Factory?",
+  "keyword": "application programming interfaces",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/application-programming-interfaces.png",
+    "alt": "Hero image for What Are Application Programming Interfaces (APIs) and Why Are They the \"Nervous System\" of Your 2026 Factory?",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A professional, photo-realistic wide shot of a modern industrial manufacturing floor. In the foreground, a diverse group of three professionals—a female maintenance manager in a white hard hat and high-visibility vest, and two male IT/OT specialists in blue uniforms and safety glasses—are standing near a large, complex robotic assembly arm. One specialist is holding a ruggedized industrial tablet (shown from the back, no screen visible), while the manager points toward a series of integrated sensors on the machine. The lighting is bright and clean, highlighting the polished concrete floors and the organized, high-tech environment. All individuals are wearing full PPE, including hard hats, safety glasses, and steel-toed boots. The focus is on the collaboration between the people and the advanced machinery, representing the integration of software and hardware. No text or overlays.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2123,
+  "link_count": 16
+}

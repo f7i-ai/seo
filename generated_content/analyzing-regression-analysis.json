@@ -1,0 +1,16 @@
+{
+  "meta_title": "Analyzing Regression Analysis: A Reliability Engineer's Guide",
+  "meta_description": "Most maintenance teams misinterpret statistical outputs. This guide explains how analyzing regression analysis turns raw sensor data into accurate RUL",
+  "title": "Analyzing Regression Analysis: How to Turn Statistical Outputs into Maintenance Actions",
+  "keyword": "analyzing regression analysis",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/analyzing-regression-analysis.png",
+    "alt": "Hero image for Analyzing Regression Analysis: How to Turn Statistical Outputs into Maintenance Actions",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A professional photo-realistic scene in a modern 2026 industrial control room. A diverse group of three professionals—a female reliability engineer in a high-visibility vest and hard hat, a male maintenance manager in a navy work shirt, and a technician—are standing around a large, sleek industrial workstation. They are pointing at a complex data visualization on a large wall-mounted screen (the screen shows blurred charts and nodes, no legible text). The engineer is holding a rugged industrial tablet, but we only see the back of the device. Everyone is wearing appropriate PPE including safety glasses. The lighting is bright and clean, reflecting a high-tech manufacturing environment. The focus is on their collaborative interaction and professional demeanor. No text or logos visible. Full body or upper body shot.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2000,
+  "link_count": 13
+}

@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why Maintenance Planning Never Catches Up: The Root Causes",
+  "meta_description": "Maintenance planning fails when reactive work exceeds 20%, creating a \"death spiral\" where planners become parts-chasers. Learn how to break the cycle.",
+  "title": "Why Maintenance Planning Never Catches Up: Diagnosing the Reactive Death Spiral",
+  "keyword": "why maintenance planning never catches up",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-maintenance-planning-never-catches-up.png",
+    "alt": "Hero image for Why Maintenance Planning Never Catches Up: Diagnosing the Reactive Death Spiral",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-angle, photo-realistic shot of a maintenance planner's desk in a modern industrial plant. The desk is covered in blueprints and a tablet showing a digital twin of a production line. In the background, through a glass window, a technician in a clean high-visibility vest is calmly performing a scheduled repair on a large robotic assembly arm. The lighting is bright and professional, conveying a sense of organized, proactive control rather than chaotic firefighting.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1026,
+  "link_count": 5
+}

@@ -1,0 +1,16 @@
+{
+  "meta_title": "What is Calibration? Industrial Definition & Importance",
+  "meta_description": "Calibration verifies instrument accuracy against a reference standard. Maintain compliance, reduce measurement uncertainty, and manage instrument drift effectively.",
+  "title": "Calibration Definition",
+  "keyword": "define calibration",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/define-calibration.png",
+    "alt": "Hero image for Calibration Definition",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-tech industrial laboratory setting where a technician in professional PPE and a lab coat is using a high-precision reference calibrator to test a digital pressure gauge. The environment is clean and modern, featuring stainless steel surfaces, specialized metrology equipment, and subtle glowing digital displays. The focus is on the connection between the device under test and the reference standard. Photo-realistic, 8k resolution, cinematic lighting, no text.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 463,
+  "link_count": 5
+}

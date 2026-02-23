@@ -1,0 +1,16 @@
+{
+  "meta_title": "How to Find Critical Assets: Asset Criticality Ranking Guide",
+  "meta_description": "Identify critical plant assets using Asset Criticality Ranking (ACR). Score assets by failure consequence and probability to optimize maintenance resources.",
+  "title": "How to Identify and Rank Critical Assets in a Manufacturing Plant",
+  "keyword": "how to find critical assets in a plant",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/how-to-find-critical-assets-in-a-plant.png",
+    "alt": "Hero image for How to Identify and Rank Critical Assets in a Manufacturing Plant",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A professional reliability engineer and a maintenance manager standing in a high-tech industrial plant, looking at a digital tablet displaying a 5x5 risk criticality matrix. In the background, a large, complex automated production line is visible. The lighting is bright and modern, and the personnel are wearing clean PPE, including hard hats and high-visibility vests. The scene conveys a sense of data-driven decision-making and engineering precision.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1019,
+  "link_count": 5
+}

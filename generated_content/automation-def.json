@@ -1,0 +1,16 @@
+{
+  "meta_title": "Industrial Automation Definition: Why It Matters in 2026",
+  "meta_description": "Industrial automation uses control systems and IIoT to perform tasks with minimal human input. It is the foundation of modern predictive maintenance strategies.",
+  "title": "What is Industrial Automation?",
+  "keyword": "automation def",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/automation-def.png",
+    "alt": "Hero image for What is Industrial Automation?",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-tech industrial facility in 2026. A diverse team of maintenance engineers in clean PPE and safety vests are using tablets to monitor a robotic assembly line. The environment is brightly lit, featuring sleek machinery, glowing blue sensor indicators, and a transparent digital overlay suggesting a digital twin interface. Photo-realistic, cinematic lighting, 8k resolution.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 544,
+  "link_count": 5
+}

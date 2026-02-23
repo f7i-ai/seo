@@ -1,0 +1,16 @@
+{
+  "meta_title": "How to Automate Maintenance Planning: A Reliability Framework",
+  "meta_description": "Automate maintenance planning by integrating CMMS with IIoT data to trigger condition-based work orders, reducing manual scheduling and emergency repairs.",
+  "title": "How to Automate Maintenance Planning: The Enterprise Reliability Framework",
+  "keyword": "how to automate maintenance planning",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/how-to-automate-maintenance-planning.png",
+    "alt": "Hero image for How to Automate Maintenance Planning: The Enterprise Reliability Framework",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-tech industrial maintenance control room in 2026. A diverse team of reliability engineers in clean PPE are looking at large, transparent holographic displays showing 3D digital twins of a manufacturing line. The screens show real-time heat maps and predictive maintenance triggers. In the background, a clean, well-lit factory floor is visible through a glass partition, with robotic arms and conveyors operating smoothly. The atmosphere is calm and data-driven, not chaotic.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 886,
+  "link_count": 8
+}

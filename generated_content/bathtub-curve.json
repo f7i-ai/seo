@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why the Bathtub Curve Dictates 2026 Asset Reliability",
+  "meta_description": "70% of unplanned downtime traces back to mismanaging the bathtub curve. Master the three phases of failure rates to optimize your 2026 maintenance strategy.",
+  "title": "The Bathtub Curve: How to Master the Three Phases of Asset Failure",
+  "keyword": "bathtub curve",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/bathtub-curve.png",
+    "alt": "Hero image for The Bathtub Curve: How to Master the Three Phases of Asset Failure",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-resolution, photo-realistic wide shot of a modern, clean industrial manufacturing facility in 2026. In the foreground, a diverse group of three maintenance professionals (two men, one woman) are standing near a large, complex industrial pump system. They are wearing full professional PPE: white hard hats, clear safety glasses, and high-visibility orange vests over navy blue work uniforms. One technician is holding a ruggedized industrial tablet (showing only the back of the device), while another is pointing toward a sensor mounted on the pump. The lighting is bright and professional, highlighting the stainless steel surfaces of the machinery. No text or digital overlays are visible. The focus is on the collaborative, high-tech nature of modern reliability engineering. Full body shots, professional posture.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2455,
+  "link_count": 12
+}

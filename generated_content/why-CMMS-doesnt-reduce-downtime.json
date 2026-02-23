@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why CMMS Fails to Reduce Downtime: The Strategic Root Causes",
+  "meta_description": "A CMMS is a system of record, not a diagnostic tool. It fails to reduce downtime due to poor data integrity, reactive backlogs, and ineffective PM schedules.",
+  "title": "The CMMS Paradox: Why Your Software is a Record of Failure, Not a Tool for Success",
+  "keyword": "why CMMS doesn't reduce downtime",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-CMMS-doesn't-reduce-downtime.png",
+    "alt": "Hero image for The CMMS Paradox: Why Your Software is a Record of Failure, Not a Tool for Success",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-resolution photo of a maintenance manager in a modern factory setting, looking frustrated while staring at a tablet showing a complex CMMS dashboard with many red \"Overdue\" alerts. In the background, a large industrial production line is stopped, and technicians in PPE are working on a machine. The lighting is realistic, emphasizing the contrast between the digital data on the screen and the physical reality of the machine breakdown.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1025,
+  "link_count": 5
+}

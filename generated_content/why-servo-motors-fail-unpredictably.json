@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why Servo Motors Fail Unpredictably: Root Causes & Solutions",
+  "meta_description": "Servo motors fail unpredictably due to high-frequency electrical transients, feedback signal attenuation, and PWM-induced bearing fluting that bypass standard checks.",
+  "title": "Root Cause Analysis: Why Servo Motors Fail Unpredictably",
+  "keyword": "why servo motors fail unpredictably",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-servo-motors-fail-unpredictably.png",
+    "alt": "Hero image for Root Cause Analysis: Why Servo Motors Fail Unpredictably",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-tech industrial maintenance scene. A reliability engineer in a clean uniform and PPE is using a handheld diagnostic tablet to inspect a high-performance servo motor mounted on a precision robotic arm. The background shows a clean, modern automated assembly line. The lighting highlights the motor's cabling and the encoder housing, illustrating a focus on the \"ghost in the machine\" electrical components. Photo-realistic, 8k resolution, professional industrial photography style.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1034,
+  "link_count": 4
+}

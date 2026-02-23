@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why Reliability Engineers Are Overwhelmed: Root Causes",
+  "meta_description": "Reliability engineers are overwhelmed by the \"Reactive Death Spiral\" and the Reliability Paradox, where success leads to resource cuts and invisible workloads.",
+  "title": "Why Reliability Engineers Are Overwhelmed: Diagnosing the Reactive Death Spiral and the Reliability Paradox",
+  "keyword": "why reliability engineers overwhelmed",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-reliability-engineers-overwhelmed.png",
+    "alt": "Hero image for Why Reliability Engineers Are Overwhelmed: Diagnosing the Reactive Death Spiral and the Reliability Paradox",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-tech industrial control room in 2026. A reliability engineer in a clean uniform and PPE is looking at a large, holographic-style dashboard showing green health metrics for a factory line. In the background, through a glass partition, the factory floor is visible, clean and orderly. The engineer looks calm and focused, not stressed. The lighting is bright and modern, emphasizing a shift from \"grease and wrenches\" to \"data and strategy.\"",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1100,
+  "link_count": 8
+}

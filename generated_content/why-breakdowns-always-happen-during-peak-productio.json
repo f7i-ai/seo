@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why Equipment Fails During Peak Production: Root Causes",
+  "meta_description": "Breakdowns occur during peak production because thermal stress, duty cycle limits, and latent mechanical defects converge when machines exceed steady-state limits.",
+  "title": "The Engineering Physics of Peak Production Failures: Why Machines Break When You Need Them Most",
+  "keyword": "why breakdowns always happen during peak production",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-breakdowns-always-happen-during-peak-production.png",
+    "alt": "Hero image for The Engineering Physics of Peak Production Failures: Why Machines Break When You Need Them Most",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-angle, photo-realistic shot of a high-speed bottling line in a clean industrial facility. One section of the conveyor is stopped, and two maintenance technicians in high-visibility vests and hard hats are using a handheld thermal imaging camera and a tablet to inspect a glowing red motor housing. The background shows the rest of the factory blurred, suggesting high-speed activity, while the foreground focuses on the technical diagnostic process. No text, 2026-era modern industrial aesthetic.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 915,
+  "link_count": 5
+}

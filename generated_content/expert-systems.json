@@ -1,0 +1,16 @@
+{
+  "meta_title": "Expert Systems: The Definitive 2026 Reference for Industry",
+  "meta_description": "70% of unplanned downtime traces to poor knowledge management. Expert systems bridge the gap between legacy rules and modern prescriptive maintenance in 2026.",
+  "title": "Expert Systems in 2026: The Architecture of Modern Prescriptive Maintenance and Industrial Intelligence",
+  "keyword": "expert systems",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/expert-systems.png",
+    "alt": "Hero image for Expert Systems in 2026: The Architecture of Modern Prescriptive Maintenance and Industrial Intelligence",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-resolution, photo-realistic wide shot of a modern, clean industrial manufacturing floor. In the foreground, a diverse team of two maintenance professionals (one man, one woman) are standing near a large, complex centrifugal pump system. They are wearing full PPE, including white hard hats, clear safety glasses, and high-visibility neon vests. One professional is holding an industrial tablet, showing only the rugged black back of the device to the camera. They are pointing toward a specific component of the pump, engaged in a collaborative technical discussion. The background shows a well-lit facility with various pipes, stainless steel machinery, and a distant overhead conveyor system, all in sharp focus. No text or digital overlays are visible.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2389,
+  "link_count": 25
+}

@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why Technicians Don't Trust Maintenance Data: Root Causes",
+  "meta_description": "Technicians distrust maintenance data because it is often inaccurate, used for surveillance, and fails to help them fix machines. Learn to fix the trust gap.",
+  "title": "Why Technicians Don't Trust Maintenance Data: Diagnosing the Systemic Trust Failure",
+  "keyword": "why technicians don't trust maintenance data",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-technicians-don't-trust-maintenance-data.png",
+    "alt": "Hero image for Why Technicians Don't Trust Maintenance Data: Diagnosing the Systemic Trust Failure",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic scene in a modern but busy manufacturing plant. A maintenance technician in high-visibility PPE and a hard hat is looking skeptically at a rugged tablet showing a complex data dashboard. In the background, a large industrial motor is being serviced. The lighting is natural industrial overhead, and the focus is on the technician's expression of doubt as they compare the screen's data to the physical machine in front of them. No text on the screen, diverse workforce, high detail on the mechanical components.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1154,
+  "link_count": 6
+}

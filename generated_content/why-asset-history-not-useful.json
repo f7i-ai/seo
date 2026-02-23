@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why Asset History is Useless for Predicting Downtime",
+  "meta_description": "Asset history is often useless because it records lagging indicators without the environmental context or failure modes required to predict future breakdowns.",
+  "title": "Why Asset History is Not Useful: Diagnosing the \"Data Trap\" in Maintenance Management",
+  "keyword": "why asset history not useful",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-asset-history-not-useful.png",
+    "alt": "Hero image for Why Asset History is Not Useful: Diagnosing the \"Data Trap\" in Maintenance Management",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-tech industrial maintenance office where a frustrated reliability engineer is looking at a computer screen filled with messy, red-highlighted spreadsheets and \"Error\" messages. In the background, through a glass window, a large industrial motor is being dismantled by technicians. The lighting is a mix of cool blue screen light and warm industrial overheads. The scene conveys the disconnect between poor digital data and the physical reality of machine failure. Photo-realistic, 8k, cinematic.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1045,
+  "link_count": 5
+}

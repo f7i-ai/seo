@@ -1,0 +1,16 @@
+{
+  "meta_title": "How to Monitor Servo Driven Machines: A Reliability Guide",
+  "meta_description": "Monitor servo machines by tracking following error, torque ripple, and DC bus voltage. Use internal drive data and external sensors to prevent sudden failures.",
+  "title": "How to Monitor Servo Driven Machines for Peak Reliability",
+  "keyword": "how to monitor servo driven machines",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/how-to-monitor-servo-driven-machines.png",
+    "alt": "Hero image for How to Monitor Servo Driven Machines for Peak Reliability",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-tech industrial maintenance scene showing a technician using a tablet to analyze a real-time waveform graph of a servo motor's torque and following error. In the background, a multi-axis robotic arm or high-speed packaging servo-drive system is visible. The lighting is clean and modern, highlighting the integration of digital data with physical machinery. Professional PPE is worn.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1095,
+  "link_count": 6
+}

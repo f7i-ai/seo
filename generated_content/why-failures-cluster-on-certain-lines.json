@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why Failures Cluster on Certain Lines: Root Cause Analysis",
+  "meta_description": "Failures cluster on specific lines due to \"Bad Actor\" assets, technical debt, and systemic operational stressors. Learn how to identify and break the cycle.",
+  "title": "Why Equipment Failures Cluster on Specific Production Lines",
+  "keyword": "why failures cluster on certain lines",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-failures-cluster-on-certain-lines.png",
+    "alt": "Hero image for Why Equipment Failures Cluster on Specific Production Lines",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-detail, photo-realistic wide shot of a complex industrial bottling or packaging line. The lighting is focused on a specific section of the conveyor where a technician in high-visibility PPE and a hard hat is using a handheld thermal imaging camera to inspect a gearbox. In the background, other parts of the line are blurred, emphasizing the \"cluster\" area. The environment is clean but shows signs of heavy industrial use. No text or logos.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1077,
+  "link_count": 5
+}

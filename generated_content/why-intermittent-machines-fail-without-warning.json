@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why Intermittent Machines Fail Without Warning: Root Causes",
+  "meta_description": "Intermittent machines fail without warning due to startup stress, lubricant starvation, and thermal cycling that bypass traditional P-F interval monitoring.",
+  "title": "Why Intermittent Machines Fail Without Warning: The Physics of Startup Stress and Standby Degradation",
+  "keyword": "why intermittent machines fail without warning",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-intermittent-machines-fail-without-warning.png",
+    "alt": "Hero image for Why Intermittent Machines Fail Without Warning: The Physics of Startup Stress and Standby Degradation",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-detail industrial photograph of a large electric motor and gearbox assembly in a manufacturing plant. The scene shows a maintenance technician in high-visibility gear and a hard hat placing a wireless IIoT vibration sensor on the bearing housing. The lighting is dramatic, highlighting the metallic textures and the contrast between the heavy, stationary machinery and the modern, small sensor technology. No text or logos.\n\n***\n\n**References:**\n*   *ISO 13374: Condition monitoring and diagnostics of machines.*\n*   *Mobley, R. K. (2002). An Introduction to Predictive Maintenance.*",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1080,
+  "link_count": 4
+}

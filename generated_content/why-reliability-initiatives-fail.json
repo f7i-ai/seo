@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why Reliability Initiatives Fail: Root Causes & Solutions",
+  "meta_description": "Reliability initiatives fail when they prioritize technology over culture, lack asset criticality, or ignore the reactive death spiral of maintenance teams.",
+  "title": "Why Reliability Initiatives Fail: Diagnosing the Gap Between Strategy and Execution",
+  "keyword": "why reliability initiatives fail",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-reliability-initiatives-fail.png",
+    "alt": "Hero image for Why Reliability Initiatives Fail: Diagnosing the Gap Between Strategy and Execution",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-resolution, photo-realistic industrial scene in a modern manufacturing plant. A diverse group of maintenance professionals—a woman in a hard hat and a man in a high-visibility vest—are standing in front of a complex conveyor system. They are looking at a ruggedized tablet showing a predictive maintenance dashboard with green and yellow health indicators. In the background, the plant is clean and well-lit, symbolizing a shift from reactive \"grease-monkey\" maintenance to proactive, data-driven reliability engineering. No text in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 930,
+  "link_count": 10
+}

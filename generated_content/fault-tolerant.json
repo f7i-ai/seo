@@ -1,0 +1,16 @@
+{
+  "meta_title": "Fault Tolerant Systems: Achieving Zero Downtime in 2026",
+  "meta_description": "70% of unplanned downtime traces to single points of failure. Learn why fault tolerant architecture is the only way to ensure 100% uptime in Industry 4.0.",
+  "title": "Fault Tolerant Infrastructure: Why 99.9% Uptime is the New Failure Standard for Industry 4.0",
+  "keyword": "fault tolerant",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/fault-tolerant.png",
+    "alt": "Hero image for Fault Tolerant Infrastructure: Why 99.9% Uptime is the New Failure Standard for Industry 4.0",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-tech, modern industrial control room in a clean manufacturing facility. A diverse team of three professionals—a woman in a white hard hat and safety glasses, and two men in high-visibility vests—are standing in front of a large, wall-mounted array of sleek, professional monitoring screens. One technician is holding a rugged industrial tablet, showing only the back of the device to the camera. The environment is brightly lit with cool LED lighting. In the background, through a large glass observation window, a highly automated production line with robotic arms is visible. The atmosphere is one of calm, focused expertise. The image is photo-realistic, professional, and contains no text or words. Full-body shots of the professionals are shown.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2140,
+  "link_count": 13
+}

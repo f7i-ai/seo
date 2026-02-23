@@ -1,0 +1,16 @@
+{
+  "meta_title": "FTA Analysis: A Deductive Framework for System Reliability",
+  "meta_description": "Fault Tree Analysis separates high-performing plants from reactive ones. Use this deductive framework to identify failure paths and optimize PM schedules in",
+  "title": "How Does FTA Analysis Transform Industrial Reliability from Reactive to Proactive?",
+  "keyword": "fta analysis",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/fta-analysis.png",
+    "alt": "Hero image for How Does FTA Analysis Transform Industrial Reliability from Reactive to Proactive?",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A professional, photo-realistic scene in a modern 2026 industrial control room. A diverse group of maintenance managers and reliability engineers, wearing clean high-visibility vests, hard hats, and safety glasses, are gathered around a large, sleek digital collaboration table. They are looking at a complex, glowing digital diagram of a Fault Tree Analysis (FTA) with Boolean logic gates. One engineer is pointing toward a specific node on the digital display. In the background, through a large glass window, a clean and well-maintained manufacturing floor with robotic arms and conveyors is visible. The lighting is bright and professional. No text or words are visible on the screens or clothing. All people are shown full-body or waist-up; any handheld tablets show only the back of the device.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2449,
+  "link_count": 15
+}

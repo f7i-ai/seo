@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why Operators Ignore Maintenance Alerts: Root Causes & Fixes",
+  "meta_description": "Operators ignore maintenance alerts due to alarm fatigue and poor signal-to-noise ratios. Learn how to restore trust using ISA-18.2 and AI-driven monitoring.",
+  "title": "Why Operators Ignore Maintenance Alerts: Diagnosing Alarm Fatigue and Systemic Trust Failure",
+  "keyword": "why operators ignore maintenance alerts",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-operators-ignore-maintenance-alerts.png",
+    "alt": "Hero image for Why Operators Ignore Maintenance Alerts: Diagnosing Alarm Fatigue and Systemic Trust Failure",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A photo-realistic wide shot of a modern industrial control room. A single operator in a clean high-visibility vest and hard hat is looking at a large wall of monitors. Most of the monitors show green or blue data visualizations, but one specific panel is highlighted in a clear, non-aggressive amber with a detailed text box explaining a specific machine fault. The lighting is professional and focused, emphasizing a calm, controlled environment rather than a chaotic one with flashing red lights.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1075,
+  "link_count": 3
+}

@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why Scheduled Maintenance Wastes Time: The 82% Failure Rule",
+  "meta_description": "Scheduled maintenance wastes time because 82% to 89% of equipment failures are random and not age-related. Calendar-based PMs often cause infant mortality.",
+  "title": "Why Scheduled Maintenance Wastes Time: Diagnosing the Inefficiency of Calendar-Based PMs",
+  "keyword": "why scheduled maintenance wastes time",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-scheduled-maintenance-wastes-time.png",
+    "alt": "Hero image for Why Scheduled Maintenance Wastes Time: Diagnosing the Inefficiency of Calendar-Based PMs",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A professional maintenance engineer in a modern factory setting, looking frustrated while reviewing a thick stack of paper maintenance schedules next to a perfectly functioning, high-tech robotic assembly line. In the background, a digital dashboard shows real-time green health status for the machines. Photo-realistic, cinematic lighting, industrial safety gear.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 953,
+  "link_count": 4
+}

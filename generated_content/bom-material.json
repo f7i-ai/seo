@@ -1,0 +1,16 @@
+{
+  "meta_title": "BOM Material Strategy: Solving the Maintenance Data Gap",
+  "meta_description": "70% of unplanned downtime traces to inaccurate BOM data. See how \"bom material\" management separates reactive plants from predictive leaders in 2026.",
+  "title": "What Is BOM Material and Why Is It the Silent Killer of Maintenance Productivity?",
+  "keyword": "bom material",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/bom-material.png",
+    "alt": "Hero image for What Is BOM Material and Why Is It the Silent Killer of Maintenance Productivity?",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-angle, professional photo of a diverse maintenance team (one man, one woman) in a modern, clean industrial facility. They are wearing full PPE, including white hard hats, safety glasses, and high-visibility vests. They are standing next to a large, complex piece of industrial machinery (a modular pump or compressor system). One person is holding a ruggedized industrial tablet, showing only the back of the device, while pointing toward a specific section of the machine. The other person is looking at the machine, holding a torque wrench. The background shows a well-organized facility with clear safety markings on the floor. The lighting is bright and professional, conveying a sense of high-tech precision and safety. No text or screens are visible. Full-body shot.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2055,
+  "link_count": 14
+}

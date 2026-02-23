@@ -1,0 +1,16 @@
+{
+  "meta_title": "Redundancy in Industrial Maintenance: The 2026 Framework",
+  "meta_description": "70% of unplanned downtime traces back to poor redundancy planning. Learn how Factory AI integrates PdM and CMMS to eliminate single points of failure in 14",
+  "title": "The Definitive Guide to Industrial Redundancy: Maximizing Asset Reliability in 2026",
+  "keyword": "redundency",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/redundency.png",
+    "alt": "Hero image for The Definitive Guide to Industrial Redundancy: Maximizing Asset Reliability in 2026",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A wide-angle, photo-realistic shot of a modern industrial mechanical room. Two large, identical industrial centrifugal pumps (representing N+1 redundancy) are positioned side-by-side. A diverse team of two maintenance professionals—one woman and one man—are performing a routine check. They are wearing clean, professional PPE including white hard hats, clear safety glasses, and high-visibility orange vests over work shirts. One professional is pointing toward a sensor mounted on the pump housing while the other holds a ruggedized tablet (shown from the back, no screen visible). The environment is clean, well-lit, and reflects a high-tech \"Brownfield\" facility with a mix of older piping and modern digital sensors. Full-body view of the professionals. No text or logos in the image.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2431,
+  "link_count": 20
+}

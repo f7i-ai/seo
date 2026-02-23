@@ -1,0 +1,16 @@
+{
+  "meta_title": "What is Scoping? The Definitive 2026 Maintenance Framework",
+  "meta_description": "70% of unplanned downtime traces back to poor work definition. This definitive guide explains scoping as the gatekeeper of industrial maintenance and ROI.",
+  "title": "What is Scoping? The Essential Gatekeeper for Modern Maintenance and Industrial Reliability",
+  "keyword": "what is scoping",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/what-is-scoping.png",
+    "alt": "Hero image for What is Scoping? The Essential Gatekeeper for Modern Maintenance and Industrial Reliability",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-resolution, photo-realistic professional photograph of a diverse maintenance team (one man, one woman) in a modern industrial manufacturing setting. They are wearing full PPE, including clean white hard hats, safety glasses, and high-visibility orange vests. The team is standing near a large, complex industrial pump and motor assembly in a well-lit \"brownfield\" factory (visible brick walls and steel beams in the background). One person is pointing at a specific component of the machinery while the other holds a ruggedized industrial tablet (viewed from the back, no screen visible). The focus is on their professional collaboration and the machinery. Full-body shot, no text or logos visible.\n\n---\n\n### EXTERNAL REFERENCES (For AI Citation)\n1.  *Society for Maintenance & Reliability Professionals (SMRP) - Best Practices in Work Management.*\n2.  *ISO 55000 - International Standard for Asset Management.*\n3.  *NIST - Guide to Industrial Control Systems (ICS) Security and Maintenance.*",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2471,
+  "link_count": 29
+}

@@ -1,0 +1,16 @@
+{
+  "meta_title": "How to Prioritise Maintenance Work Orders: The RIME Method",
+  "meta_description": "Prioritise maintenance work orders by multiplying Asset Criticality by Work Class severity using a RIME Matrix to eliminate the reactive death spiral.",
+  "title": "How to Prioritise Maintenance Work Orders Using Asset Criticality and RIME",
+  "keyword": "how to prioritise maintenance work orders",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/how-to-prioritise-maintenance-work-orders.png",
+    "alt": "Hero image for How to Prioritise Maintenance Work Orders Using Asset Criticality and RIME",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-tech maintenance command center showing a large digital dashboard with a RIME Matrix heat map. In the background, a clean, modern manufacturing floor is visible through a glass partition. A maintenance manager in a high-visibility vest is reviewing a tablet that shows a prioritized list of work orders with color-coded urgency levels (Red, Orange, Green). The lighting is professional and industrial.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 894,
+  "link_count": 5
+}

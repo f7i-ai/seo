@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why Operators Bypass Alarms: Root Causes and Solutions",
+  "meta_description": "Operators bypass alarms due to alarm fatigue, nuisance triggers, and the normalization of deviance. Learn how to fix systemic trust failure in industrial HMIs.",
+  "title": "Why Operators Bypass Alarms: Diagnosing Alarm Fatigue and Systemic Trust Failure",
+  "keyword": "why operators bypass alarms",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-operators-bypass-alarms.png",
+    "alt": "Hero image for Why Operators Bypass Alarms: Diagnosing Alarm Fatigue and Systemic Trust Failure",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-resolution, photo-realistic wide shot of a modern industrial control room. A diverse operator in clean PPE (high-visibility vest and hard hat) is looking at a large HMI screen filled with complex data visualizations. One section of the screen shows a red alarm notification, but the operator is focused on a different panel, illustrating the subtle reality of alarm fatigue. The lighting is cool and professional, emphasizing a high-tech manufacturing environment. No text on screens.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1156,
+  "link_count": 6
+}

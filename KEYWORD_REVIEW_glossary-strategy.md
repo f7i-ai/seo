@@ -84,10 +84,28 @@ Use that to route keywords to **glossary/definition** vs **standard/pillar** con
 
 ## Implemented in `seo_content_generator.py`
 
-- **Definition-type detection:** `is_definition_type_keyword(keyword)` returns True for patterns like "what is X", "X definition", "define X", "X meaning", "meaning of X".
-- **Glossary mode:** When running in Standard mode (1), you are prompted: *"Use glossary format for definition-type keywords (what is X, X definition, meaning)? [y/N]"*. If you choose **y**, any keyword that matches the definition pattern gets:
-  - **Short page (400–800 words):** definition in the first 1–2 sentences, brief context, then a **"Learn more"** section with 2–4 internal links to deeper content (from your sitemap).
-  - **No 2000-word requirement:** content is accepted at 400–1200 words and still saved as a normal post (same JSON/MD and Prismic flow).
-- **Linking:** The glossary prompt instructs the model to use only URLs from the available internal URLs list and to link to pillar guides, how-to articles, or in-depth guides on the same topic.
+### Auto-classify mode (recommended)
 
-To use: run the generator in Standard mode, answer **y** to the glossary question, and use a CSV that includes your definition-type keywords (e.g. from `unplanned-downtime_list_2026-02-13.csv`). Ensure your sitemap is loaded so internal URLs are available for the "Learn more" links.
+The generator now supports **auto-classification** of keywords into the best content format. Select mode **1 (Auto-classify)** at startup and each keyword is classified into one of:
+
+| Format | Words | Trigger patterns | Examples |
+|---|---|---|---|
+| **Glossary/definition** | 400–800 | "what is X", "X definition", "define X", "X meaning" | "what is unplanned downtime", "OEE definition" |
+| **Structured Q&A** | 800–1500 | "why X", "how to X", "can X", "is X worth it", "how much/long/many" | "why bearings fail", "how to detect bearing failure early", "can predictive maintenance work on conveyors" |
+| **Comparative** | 1500–2500 | "X vs Y", "best/top X", "alternatives to X", "X competitors", product-category searches | "augury vs skf", "best CMMS for food manufacturing", "predictive maintenance software manufacturing" |
+| **Industry data** | 1500–2500 | Industry keyword + data/cost/ROI/benchmark keyword | "predictive maintenance roi food manufacturing" |
+| **Blog** | 3000+ | Catch-all for broad topics | "how predictive maintenance actually works", "ways to improve maintenance reliability" |
+
+Shorter formats automatically use the fast research model.
+
+### Legacy modes
+
+- **Standard (mode 2):** All keywords → blog posts (3000+ words)
+- **Pillar (mode 3):** All keywords → comprehensive hub content (4500+ words)
+- **AI Visibility (mode 4):** All keywords → ChatGPT/Gemini citation-optimised (3500+ words)
+
+### Key functions
+
+- `classify_keyword(keyword)` — auto-classifies a keyword into `ContentFormat.BLOG`, `COMPARATIVE`, `STRUCTURED_KNOWLEDGE`, `GLOSSARY`, or `INDUSTRY_DATA`.
+- `is_definition_type_keyword(keyword)` — legacy helper, returns True for definition-style patterns.
+- `ContentFormat` — class with format constants and human-readable labels.

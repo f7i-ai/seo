@@ -1,0 +1,16 @@
+{
+  "meta_title": "How to Combine Maintenance and Production Data (UNS Guide)",
+  "meta_description": "Combine maintenance and production data by mapping PLC/SCADA tags to CMMS records using a Unified Namespace (UNS) and MQTT Sparkplug B for real-time OEE.",
+  "title": "How to Combine Maintenance and Production Data for Integrated Reliability",
+  "keyword": "how to combine maintenance and production data",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/how-to-combine-maintenance-and-production-data.png",
+    "alt": "Hero image for How to Combine Maintenance and Production Data for Integrated Reliability",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-tech industrial control room where a diverse team of two engineers (one male, one female) in clean PPE are looking at a large, transparent glass dashboard. The dashboard displays a 3D digital twin of a production line overlaid with real-time data: green \"Production\" flow lines and blue \"Maintenance\" work order icons. In the background, through a large window, a clean, modern manufacturing floor with robotic arms is visible. The lighting is bright and professional, emphasizing a \"single source of truth\" digital environment. No text on the screens, only charts and 3D models.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1043,
+  "link_count": 6
+}

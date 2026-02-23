@@ -1,0 +1,16 @@
+{
+  "meta_title": "Eliminating Root Causes: The 2026 Industrial Reliability Framework",
+  "meta_description": "70% of unplanned downtime traces back to unidentified root causes. This definitive guide explains how Factory AI automates defect elimination and RCA in 14",
+  "title": "Root Causes in Industrial Maintenance: A Definitive Guide to Automated Defect Elimination",
+  "keyword": "root causes",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/root-causes.png",
+    "alt": "Hero image for Root Causes in Industrial Maintenance: A Definitive Guide to Automated Defect Elimination",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A professional, photo-realistic wide shot of a modern but established (brownfield) food and beverage manufacturing plant. In the foreground, a diverse team of three maintenance professionals—two men and one woman—are standing near a large industrial motor and pump assembly. They are wearing clean, appropriate PPE including white hard hats, safety glasses, and high-visibility vests. One technician is pointing toward a specific part of the machinery while the others look on, engaged in a collaborative discussion. One technician is holding a rugged industrial tablet, but only the back of the device is visible to the camera. The lighting is bright and natural for an industrial setting, highlighting the metallic textures of the equipment and the professional demeanor of the staff. No text or logos are visible on the equipment or clothing. Full body shots of the professionals are shown.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2601,
+  "link_count": 30
+}

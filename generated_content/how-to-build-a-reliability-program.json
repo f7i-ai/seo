@@ -1,0 +1,16 @@
+{
+  "meta_title": "Building a Reliability Program: The 90-Day Pilot Framework",
+  "meta_description": "70% of unplanned downtime traces back to poor asset strategy. This framework shows how to build a reliability program that survives the reactive death spiral.",
+  "title": "How to Build a Reliability Program: A 90-Day Framework for Transitioning from Reactive to Proactive Maintenance",
+  "keyword": "how to build a reliability program",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/how-to-build-a-reliability-program.png",
+    "alt": "Hero image for How to Build a Reliability Program: A 90-Day Framework for Transitioning from Reactive to Proactive Maintenance",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A professional, photo-realistic wide shot of a modern industrial manufacturing facility. In the foreground, a diverse team of three professionals—a male maintenance manager in a white hard hat and high-visibility vest, a female reliability engineer in a blue hard hat and safety glasses, and a technician in a grey work uniform—are standing near a large, complex piece of machinery (a multi-stage conveyor system with motors and gearboxes). The maintenance manager is gesturing toward a specific section of the machine while the engineer holds a rugged industrial tablet (shown from the back, display not visible). The environment is clean, well-lit, and organized, reflecting a high-standard reliability culture. All individuals are wearing appropriate PPE, including steel-toed boots and ear protection. The background shows the blurred activity of a productive factory floor. No text or logos are visible.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2063,
+  "link_count": 13
+}

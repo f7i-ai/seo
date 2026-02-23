@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why Maintenance Backlog Keeps Growing: Root Causes & Fixes",
+  "meta_description": "Maintenance backlogs grow when reactive work exceeds labor capacity, creating a \"death spiral.\" Learn how to stabilize your backlog through PM optimization.",
+  "title": "Why Maintenance Backlog Keeps Growing: Diagnosing the Reactive Death Spiral",
+  "keyword": "why maintenance backlog keeps growing",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-maintenance-backlog-keeps-growing.png",
+    "alt": "Hero image for Why Maintenance Backlog Keeps Growing: Diagnosing the Reactive Death Spiral",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A wide-angle, photo-realistic shot of a clean but busy industrial maintenance planning office. A diverse group of maintenance managers and reliability engineers in high-visibility vests and hard hats are gathered around a large digital dashboard showing color-coded asset health trends and work order metrics. In the background, through a glass window, a well-organized factory floor is visible with technicians performing precise work on a large automated assembly line. The lighting is bright and professional, emphasizing control and data-driven decision-making.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 998,
+  "link_count": 5
+}

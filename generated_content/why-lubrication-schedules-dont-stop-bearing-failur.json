@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why Lubrication Schedules Fail to Prevent Bearing Failure",
+  "meta_description": "Lubrication schedules fail because they ignore real-time bearing conditions, leading to over-lubrication, seal rupture, and heat-induced grease degradation.",
+  "title": "Why Calendar-Based Lubrication Schedules Fail to Prevent Bearing Failures",
+  "keyword": "why lubrication schedules don't stop bearing failures",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-lubrication-schedules-don't-stop-bearing-failures.png",
+    "alt": "Hero image for Why Calendar-Based Lubrication Schedules Fail to Prevent Bearing Failures",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-detail, photo-realistic close-up of a technician in a modern manufacturing plant using an ultrasound device and a grease gun on a large industrial motor bearing. The scene should show a clean, well-lit environment. The technician is wearing proper PPE, including gloves and safety glasses. In the background, a digital tablet shows a real-time friction graph with a clear \"before and after\" lubrication curve. No text on the screen, just data visualizations.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 991,
+  "link_count": 3
+}

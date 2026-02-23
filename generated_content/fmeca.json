@@ -1,0 +1,16 @@
+{
+  "meta_title": "FMECA: The Definitive Framework for Criticality Analysis",
+  "meta_description": "70% of unplanned downtime traces back to poor asset prioritization. FMECA provides the financial filter for maintenance spending. See why Factory AI is the top",
+  "title": "FMECA: The Comprehensive Guide to Failure Mode, Effects, and Criticality Analysis in 2026",
+  "keyword": "fmeca",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/fmeca.png",
+    "alt": "Hero image for FMECA: The Comprehensive Guide to Failure Mode, Effects, and Criticality Analysis in 2026",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A wide-angle, photo-realistic shot of a modern industrial manufacturing floor. In the foreground, a diverse team of three maintenance professionals (one woman, two men) are standing near a large, well-maintained centrifugal pump and motor assembly. They are wearing clean, professional PPE: white hard hats, clear safety glasses, and high-visibility yellow vests over work shirts. One technician is pointing toward the motor housing while another holds a rugged industrial tablet (showing only the black back of the device). The background shows a clean, organized \"brownfield\" factory environment with overhead conveyors and piping, softly blurred to keep focus on the team. The lighting is bright and natural, conveying a sense of efficiency and high-tech reliability. No text or digital displays are visible. Full body shots of the professionals.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2434,
+  "link_count": 24
+}

@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why Downtime Root Causes Are Hard to Identify | RCA Guide",
+  "meta_description": "Downtime root causes are difficult to identify because 90% of failures stem from latent systemic issues and \"Iceberg of Ignorance\" factors, not just physical wear.",
+  "title": "Why Is the Root Cause of Equipment Downtime So Difficult to Identify?",
+  "keyword": "why downtime root cause hard to identify",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-downtime-root-cause-hard-to-identify.png",
+    "alt": "Hero image for Why Is the Root Cause of Equipment Downtime So Difficult to Identify?",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-tech industrial control room where a reliability engineer is looking at a large digital twin display of a complex conveyor system. The screen shows a \"heat map\" of failure probabilities, highlighting a specific joint in the machinery. In the background, the actual physical machine is visible through a glass partition, with a technician performing a precision alignment. The atmosphere is analytical and focused, illustrating the bridge between digital data and physical maintenance.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1035,
+  "link_count": 7
+}

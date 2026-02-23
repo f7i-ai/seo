@@ -1,0 +1,16 @@
+{
+  "meta_title": "Fail Safely: The 2026 Engineering Standard for Resilience",
+  "meta_description": "70% of unplanned downtime traces back to poor failure logic. Discover how to fail safely using sensor-agnostic AI and integrated CMMS to protect industrial",
+  "title": "Fail Safely: The Definitive Guide to Industrial Resilience and Predictive Safety Systems",
+  "keyword": "fail safely",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/fail-safely.png",
+    "alt": "Hero image for Fail Safely: The Definitive Guide to Industrial Resilience and Predictive Safety Systems",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-angle, wide-shot photograph of a modern, clean industrial manufacturing floor. In the foreground, a diverse team of three maintenance professionals (two men, one woman) are collaborating. They are wearing clean, branded navy blue work uniforms, white hard hats, clear safety glasses, and high-visibility vests. One technician is holding a ruggedized industrial tablet (showing only the black back of the device), while the others are looking toward a large, well-maintained industrial motor and pump assembly. The lighting is bright and professional, highlighting the polished concrete floors and the organized layout of the plant. There are no visible brand names or text on the equipment. The atmosphere is one of calm, controlled expertise and technological integration. Full body shots of the professionals are visible.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2798,
+  "link_count": 26
+}

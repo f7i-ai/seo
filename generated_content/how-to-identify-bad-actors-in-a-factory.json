@@ -1,0 +1,16 @@
+{
+  "meta_title": "How to Identify Bad Actors in a Factory: Reliability Guide",
+  "meta_description": "Identify bad actors by performing a Pareto analysis on CMMS data to find the 20% of assets causing 80% of downtime. Use MTBF and TCO to rank chronic failures.",
+  "title": "How to Identify Bad Actors in a Factory: A Reliability Engineering Framework",
+  "keyword": "how to identify bad actors in a factory",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/how-to-identify-bad-actors-in-a-factory.png",
+    "alt": "Hero image for How to Identify Bad Actors in a Factory: A Reliability Engineering Framework",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-resolution photo of a reliability engineer in a modern manufacturing plant, wearing a hard hat and reflective vest, holding a tablet displaying a Pareto chart and MTBF data. In the background, a complex automated production line is visible with soft-focus lighting. The scene conveys data-driven decision-making in an industrial environment. No text on the tablet screen, just clear graphical data representations.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1034,
+  "link_count": 8
+}

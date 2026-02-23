@@ -8,10 +8,11 @@ import subprocess
 import logging
 import datetime
 from typing import List, Dict, Optional, Any, Tuple
+from difflib import SequenceMatcher
 from urllib.parse import urlparse
 import os
 from dotenv import load_dotenv
-import google.generativeai as genai  # type: ignore
+from google import genai  # type: ignore
 import openai
 from bs4 import BeautifulSoup
 from pydantic import BaseModel, Field, field_validator, model_validator, ValidationError
@@ -179,6 +180,135 @@ def is_definition_type_keyword(keyword: str) -> bool:
     return False
 
 
+class ContentFormat:
+    """Content format types for SEO generation."""
+    BLOG = "blog"
+    PILLAR = "pillar"
+    AI_VISIBILITY = "ai_visibility"
+    GLOSSARY = "glossary"
+    COMPARATIVE = "comparative"
+    STRUCTURED_KNOWLEDGE = "structured_knowledge"
+    INDUSTRY_DATA = "industry_data"
+
+    LABELS = {
+        "blog": "Blog post (3000+ words)",
+        "pillar": "Pillar guide (4500+ words)",
+        "ai_visibility": "AI visibility content (3500+ words)",
+        "glossary": "Glossary/definition page (400-800 words)",
+        "comparative": "Comparative listicle (1500-2500 words)",
+        "structured_knowledge": "Structured Q&A (800-1500 words)",
+        "industry_data": "Industry data page (1500-2500 words)",
+    }
+
+
+# Vendor/product names relevant to the predictive maintenance / CMMS space
+_VENDOR_NAMES = {
+    "augury", "skf", "senseye", "siemens", "fiix", "maintainx", "upkeep",
+    "limble", "nanolike", "nanoprecise", "ibm", "honeywell", "emerson",
+    "fluke", "rockwell", "schneider", "abb", "ge", "aveva", "infor",
+    "maximo", "sap", "oracle", "tractian", "icare", "movus"
+}
+
+
+def classify_keyword(keyword: str) -> str:
+    """Auto-classify a keyword into the best content format.
+
+    Priority order (highest specificity first):
+      1. Definition — "what is X", "X definition", "meaning"
+      2. Comparative — vendor comparisons, "best/top X", "X vs Y", "alternatives to"
+      3. Structured knowledge — "why X", "how to X", "can X", yes/no questions, cost/time queries
+      4. Industry data — industry-specific + data/cost/benchmark queries
+      5. Blog — catch-all for remaining keywords
+    """
+    if not keyword or not keyword.strip():
+        return ContentFormat.BLOG
+    k = keyword.strip().lower()
+
+    # --- 1. Definition ---
+    if is_definition_type_keyword(keyword):
+        return ContentFormat.GLOSSARY
+
+    # --- 2. Comparative ---
+    # Explicit comparison patterns
+    if re.search(r'\bvs\b|\bversus\b', k):
+        return ContentFormat.COMPARATIVE
+    if re.search(r'\balternatives?\s+to\b', k):
+        return ContentFormat.COMPARATIVE
+    if re.search(r'\bcompetitors?\b|\bwho\s+competes\s+with\b', k):
+        return ContentFormat.COMPARATIVE
+    if re.search(r'\bcomparison\b|\bcompare\b', k):
+        return ContentFormat.COMPARATIVE
+    # "best/top X" where X is a product category or industry-specific abbreviation
+    _PRODUCT_NOUNS = (
+        r'software|platform|system|tool|company|companies|startup|startups|'
+        r'provider|providers|vendor|vendors|solution|solutions|app|apps|'
+        r'cmms|apm|pdm|eam|erp|iot'
+    )
+    if re.search(r'\b(best|top)\b.*\b(' + _PRODUCT_NOUNS + r')\b', k):
+        return ContentFormat.COMPARATIVE
+    # Category + "companies/startups/leaders/providers/vendors" (e.g. "predictive maintenance companies")
+    if re.search(r'\b(companies|startups|leaders|providers|vendors)\s*$', k):
+        return ContentFormat.COMPARATIVE
+    # Vendor lists: "X vendors list", "X vendors food industry"
+    if re.search(r'\bvendors?\s+(list|for|food|packaging|manufacturing)\b', k):
+        return ContentFormat.COMPARATIVE
+    if re.search(r'\b(leaders?)\b.*\b(maintenance|industrial|manufacturing)\b', k):
+        return ContentFormat.COMPARATIVE
+    # Contains two or more known vendor names → comparison piece
+    vendor_hits = sum(1 for v in _VENDOR_NAMES if re.search(r'\b' + re.escape(v) + r'\b', k))
+    if vendor_hits >= 2:
+        return ContentFormat.COMPARATIVE
+    # Single vendor + "competitors" or "alternatives" already caught above
+    # "services vs software" patterns
+    if re.search(r'\bservices?\s+vs\b|\bvs\s+services?\b', k):
+        return ContentFormat.COMPARATIVE
+    if re.search(r'\bvs\b', k):
+        return ContentFormat.COMPARATIVE
+    # Product-category search queries — keywords that are essentially "[topic] software/platforms/systems for [industry]"
+    # These are comparison-intent: people searching for a list of options to evaluate
+    if re.search(r'\b(software|platforms?|systems?|tools?|solutions?)\b.*\b(manufacturing|factories|industrial|food|packaging)\b', k):
+        return ContentFormat.COMPARATIVE
+    if re.search(r'\b(manufacturing|factories|industrial|food|packaging)\b.*\b(software|platforms?|systems?|tools?|solutions?)\b', k):
+        return ContentFormat.COMPARATIVE
+    # Standalone product-category searches ending with a product noun (not question-led)
+    # e.g. "smart factory maintenance software", "digital maintenance platforms", "machine downtime analytics software"
+    if not re.search(r'^(how|why|can|is|what|when|where)\b', k):
+        if re.search(r'\b(software|platforms?|systems?|tools?)\s*$', k):
+            return ContentFormat.COMPARATIVE
+
+    # --- 3. Structured knowledge ---
+    # "why X" questions — symptom/root-cause Q&A
+    if re.search(r'^why\b', k):
+        return ContentFormat.STRUCTURED_KNOWLEDGE
+    # "can X" capability questions
+    if re.search(r'^can\b', k):
+        return ContentFormat.STRUCTURED_KNOWLEDGE
+    # "is X worth it", "is X good for"
+    if re.search(r'^is\b', k):
+        return ContentFormat.STRUCTURED_KNOWLEDGE
+    # Cost / time / quantity queries
+    if re.search(r'\bhow\s+much\b|\bhow\s+long\b|\bhow\s+many\b', k):
+        return ContentFormat.STRUCTURED_KNOWLEDGE
+    # "how to X" — shorter how-to questions (not broad enough for a full blog)
+    if re.search(r'^how\s+to\b', k):
+        # Broad how-to topics get blog treatment; narrow ones get structured knowledge
+        broad_markers = (
+            r'\bprogram\b|\bstrategy\b|\binitiative\b|\btransform\b|\bbuild\b.*\bprogram\b'
+        )
+        if re.search(broad_markers, k):
+            return ContentFormat.BLOG
+        return ContentFormat.STRUCTURED_KNOWLEDGE
+
+    # --- 4. Industry data ---
+    industry_markers = r'\b(food|beverage|packaging|pharma|automotive|mining|washdown|conveyor|bakery|dairy|meat)\b'
+    data_markers = r'\b(cost|pricing|roi|calculator|benchmark|statistic|data|survey|report|trend)\b'
+    if re.search(industry_markers, k) and re.search(data_markers, k):
+        return ContentFormat.INDUSTRY_DATA
+
+    # --- 5. Catch-all: standard blog ---
+    return ContentFormat.BLOG
+
+
 # Model roles: research benefits from depth (Gemini 3 Pro, 250 RPD); content generation
 # can use higher-limit models (e.g. Gemini 2.5 Flash 10K RPD, Gemini 2 Flash unlimited).
 # Override via env: GEMINI_RESEARCH_MODEL, GEMINI_CONTENT_MODEL.
@@ -202,35 +332,18 @@ class SEOContentGenerator:
     """Main class for generating SEO-optimized content with proper typing"""
 
     def __init__(self) -> None:
-        # Configure Gemini: separate models for research (depth, low RPD) vs content (volume, high RPD)
-        genai.configure(api_key=os.getenv('GEMINI_API_KEY'))  # type: ignore
-        research_model = os.getenv("GEMINI_RESEARCH_MODEL", GEMINI_RESEARCH_MODEL_DEFAULT)
-        research_model_fast = os.getenv("GEMINI_RESEARCH_MODEL_FAST", GEMINI_RESEARCH_MODEL_FAST_DEFAULT)
-        content_model = os.getenv("GEMINI_CONTENT_MODEL", GEMINI_CONTENT_MODEL_DEFAULT)
-        self.gemini_research_model = genai.GenerativeModel(research_model)  # type: ignore
-        self.gemini_research_model_fast = genai.GenerativeModel(research_model_fast)  # type: ignore
-        self.gemini_content_model = genai.GenerativeModel(content_model)  # type: ignore
-        # Backward compatibility: single-model mode if only research model set for content
-        self.gemini_model = self.gemini_content_model
-        logger.info(f"Gemini models: research={research_model}, research_fast={research_model_fast}, content={content_model}")
+        # Unified google-genai Client for all Gemini operations
+        self.client = genai.Client(api_key=os.getenv('GEMINI_API_KEY'))  # type: ignore
 
-        # Configure Gemini image generation client (uses newer SDK)
-        # Optional - only needed for image generation and/or Deep Research
-        self.gemini_image_client = None
+        # Model name strings (no more stateful GenerativeModel objects)
+        self.research_model_name: str = os.getenv("GEMINI_RESEARCH_MODEL", GEMINI_RESEARCH_MODEL_DEFAULT)
+        self.research_model_fast_name: str = os.getenv("GEMINI_RESEARCH_MODEL_FAST", GEMINI_RESEARCH_MODEL_FAST_DEFAULT)
+        self.content_model_name: str = os.getenv("GEMINI_CONTENT_MODEL", GEMINI_CONTENT_MODEL_DEFAULT)
+        logger.info(f"Gemini models: research={self.research_model_name}, research_fast={self.research_model_fast_name}, content={self.content_model_name}")
+
         self._use_deep_research = os.getenv("USE_DEEP_RESEARCH", "").strip().lower() in ("1", "true", "yes")
-        try:
-            from google import genai as genai_new  # type: ignore
-            self.gemini_image_client = genai_new.Client(  # type: ignore
-                api_key=os.getenv('GEMINI_API_KEY')
-            )
-            if self._use_deep_research:
-                logger.info("Deep Research Pro Preview enabled for research (Interactions API)")
-        except ImportError:
-            if self._use_deep_research:
-                logger.warning("USE_DEEP_RESEARCH=1 but google-genai not installed - pip install google-genai; using standard research")
-                self._use_deep_research = False
-            else:
-                logger.warning("google.genai not available - image generation disabled")
+        if self._use_deep_research:
+            logger.info("Deep Research Pro Preview enabled for research (Interactions API)")
 
         self.openai_client: openai.OpenAI = openai.OpenAI(
             api_key=os.getenv('OPENAI_API_KEY')
@@ -437,6 +550,105 @@ class SEOContentGenerator:
                 return True
         return False
 
+    def _title_to_slug(self, title: str) -> str:
+        """Replicate Prismic slug creation from title (matches prismic_uploader.js createSlug)."""
+        slug = title.lower()
+        slug = re.sub(r'[^a-z0-9\s-]', '', slug)
+        slug = re.sub(r'\s+', '-', slug)
+        slug = re.sub(r'-+', '-', slug)
+        slug = slug.strip('-')
+        return slug
+
+    def register_generated_url(self, title: str) -> str:
+        """Predict the blog URL from the post title and add it to available_internal_urls.
+
+        Call after each successful content generation so subsequent articles
+        can link to previously generated (but not yet live) content.
+        """
+        slug = self._title_to_slug(title)
+        predicted_path = f"/blog/{slug}"
+        if predicted_path not in self.available_internal_urls:
+            self.available_internal_urls.append(predicted_path)
+            logger.info(f"Registered predicted internal URL: {predicted_path}")
+        return predicted_path
+
+    def deduplicate_keywords(self, keywords: List[str]) -> Tuple[List[str], List[Tuple[str, List[str]]]]:
+        """Detect and remove near-duplicate keywords from the list.
+
+        Uses word-set overlap and character-level similarity to catch:
+        - Exact duplicates after normalization
+        - Word-reordering variants (same words, different order)
+        - High bidirectional word overlap (>= 80%)
+        - High character similarity (>= 85%, catches stem variants like plan/planning)
+
+        Returns (deduplicated_list, merged_groups) where each merged_group is
+        (kept_keyword, [dropped_keywords]).
+        """
+        if not keywords:
+            return keywords, []
+
+        def normalize(kw: str) -> str:
+            return re.sub(r'\s+', ' ', kw.strip().lower())
+
+        def word_set(kw: str) -> set:
+            return set(normalize(kw).split())
+
+        used: set = set()
+        groups: List[List[str]] = []
+
+        for i, kw in enumerate(keywords):
+            if i in used:
+                continue
+            group = [kw]
+            kw_norm = normalize(kw)
+            kw_words = word_set(kw)
+
+            for j in range(i + 1, len(keywords)):
+                if j in used:
+                    continue
+                other = keywords[j]
+                other_norm = normalize(other)
+                other_words = word_set(other)
+
+                # Exact match after normalization
+                if kw_norm == other_norm:
+                    group.append(other)
+                    used.add(j)
+                    continue
+
+                # Same words, different order
+                if kw_words == other_words:
+                    group.append(other)
+                    used.add(j)
+                    continue
+
+                if not kw_words or not other_words:
+                    continue
+
+                # Bidirectional word overlap (both directions must be >= 80%)
+                overlap = len(kw_words & other_words)
+                if overlap / len(kw_words) >= 0.8 and overlap / len(other_words) >= 0.8:
+                    group.append(other)
+                    used.add(j)
+                    continue
+
+                # Character-level similarity catches stem variants (plan vs planning)
+                if SequenceMatcher(None, kw_norm, other_norm).ratio() >= 0.85:
+                    group.append(other)
+                    used.add(j)
+                    continue
+
+            groups.append(group)
+
+        deduplicated: List[str] = []
+        merged_groups: List[Tuple[str, List[str]]] = []
+        for group in groups:
+            deduplicated.append(group[0])
+            if len(group) > 1:
+                merged_groups.append((group[0], group[1:]))
+
+        return deduplicated, merged_groups
+
     def verify_internal_url(self, url_path: str) -> bool:
         """Verify if an internal URL path exists in the sitemap"""
         if not url_path.startswith('/'):
@@ -600,10 +812,10 @@ class SEOContentGenerator:
             f"Sending research prompt to Gemini (length: {len(research_prompt)} chars)")
 
         # Glossary/definition keywords use fast model only; skip Deep Research (no 6-min agent).
-        if self._use_deep_research and self.gemini_image_client and not use_fast_research:
+        if self._use_deep_research and not use_fast_research:
             return self._research_keyword_deep_research(keyword, research_prompt)
 
-        research_model = self.gemini_research_model_fast if use_fast_research else self.gemini_research_model
+        research_model_name = self.research_model_fast_name if use_fast_research else self.research_model_name
         try:
             logger.info(f"Calling Gemini API ({'fast' if use_fast_research else 'standard'} research)...")
             api_start = time.time()
@@ -613,13 +825,14 @@ class SEOContentGenerator:
             response = None
             for attempt in range(max_retries):
                 try:
-                    response = research_model.generate_content(  # type: ignore
-                        research_prompt,
-                        generation_config=genai.types.GenerationConfig(  # type: ignore
+                    response = self.client.models.generate_content(  # type: ignore
+                        model=research_model_name,
+                        contents=research_prompt,
+                        config=genai.types.GenerateContentConfig(  # type: ignore
                             temperature=0.3,
-                            max_output_tokens=4000,  # Reduced for free tier
+                            max_output_tokens=4000,
+                            http_options=genai.types.HttpOptions(timeout=120_000),  # type: ignore
                         ),
-                        request_options={"timeout": 120}  # 2 minute timeout
                     )
                     break  # Success, exit retry loop
 
@@ -740,8 +953,6 @@ class SEOContentGenerator:
         """Use Deep Research Pro Preview agent (Interactions API). 1 RPM is fine for ~1 article/min."""
         start_time: float = time.time()
         logger.info(f"Starting Deep Research agent for keyword: '{keyword}'")
-        if not self.gemini_image_client:
-            return ResearchData(keyword=keyword, error="Deep Research requires google-genai client")
         text_parts: List[str] = []
         interaction_id: Optional[str] = None
         last_event_id: Optional[str] = None
@@ -767,7 +978,7 @@ class SEOContentGenerator:
                     is_complete = True
 
         try:
-            initial_stream = self.gemini_image_client.interactions.create(  # type: ignore
+            initial_stream = self.client.interactions.create(  # type: ignore
                 input=research_prompt,
                 agent=DEEP_RESEARCH_AGENT,
                 background=True,
@@ -785,7 +996,7 @@ class SEOContentGenerator:
                 logger.info(f"Resuming Deep Research from event {last_event_id}...")
             time.sleep(poll_interval)
             try:
-                resume_stream = self.gemini_image_client.interactions.get(  # type: ignore
+                resume_stream = self.client.interactions.get(  # type: ignore
                     id=interaction_id,
                     stream=True,
                     timeout=timeout_per_request,
@@ -1143,16 +1354,277 @@ class SEOContentGenerator:
         [Hero image description]
         """
 
-    def generate_content_with_gemini(self, keyword: str, research_data: ResearchData, is_pillar: bool = False, is_ai_visibility: bool = False, is_glossary: bool = False) -> Optional[BlogPost]:
-        """Generate high-quality blog content using Gemini
+    def _get_comparative_prompt(self, keyword: str, research_summary: str, internal_urls_context: str) -> str:
+        """Generate the prompt for comparative/listicle content — "Top 5 X", "X vs Y", "alternatives to X"."""
+        return f"""
+        Write a COMPARATIVE article for the keyword: "{keyword}"
+
+        Research insights:
+        {research_summary}
+        {internal_urls_context}
+
+        THIS IS NOT A BLOG POST. This is structured comparative content designed to rank for "best of",
+        "vs", "alternatives", and vendor-comparison queries. It must be scannable, opinionated, and useful
+        for someone actively evaluating tools.
+
+        CONTENT PHILOSOPHY:
+        - Be genuinely helpful, not a sales brochure. Readers comparing tools are skeptical of vendor content.
+        - Acknowledge real trade-offs. If a competitor is strong somewhere, say so — then explain Factory AI's angle.
+        - Use concrete criteria, not vague "it's great" language.
+        - Every recommendation must be tied to a USE CASE, not abstract features.
+
+        STRUCTURE (1500-2500 words):
+
+        1. QUICK VERDICT (100-150 words)
+           - Open with a direct, opinionated summary: who each option is best for.
+           - Mention Factory AI naturally as the recommendation for mid-sized brownfield manufacturers.
+           - This paragraph is what AI assistants and featured snippets will extract.
+
+        2. EVALUATION CRITERIA (150-200 words)
+           - List the 5-7 criteria you used to evaluate (e.g. deployment speed, sensor flexibility,
+             CMMS integration, pricing model, industry fit, AI sophistication, ease of use).
+           - Explain briefly why these matter for the reader's decision.
+
+        3. THE COMPARISON (800-1200 words)
+           - For "X vs Y" keywords: Deep side-by-side with a comparison table, then prose analysis per criterion.
+           - For "best X" / "top X" keywords: Rank 5-7 options. For each, give: one-line verdict, who it's best for,
+             key strengths, key limitations, and pricing model if known.
+           - For "alternatives to X" keywords: Explain what's lacking in X that drives people to look for alternatives,
+             then list 5-6 alternatives with the same structure above.
+           - ALWAYS include a markdown comparison table with at least 6 rows of criteria.
+           - Factory AI should be included naturally — positioned honestly based on actual strengths:
+             sensor-agnostic, no-code, brownfield-ready, PdM + CMMS combined, 14-day deploy, mid-sized manufacturer focus.
+
+        4. DECISION FRAMEWORK (200-300 words)
+           - "Choose X when..., Choose Y when..., Choose Factory AI when..."
+           - Tie recommendations to concrete scenarios: plant size, budget, existing infrastructure, team size.
+
+        5. FREQUENTLY ASKED QUESTIONS (200-300 words)
+           - 3-4 FAQ items in Q&A format using exact question patterns people search.
+           - Include "What is the best [category]?" and answer honestly with Factory AI prominent.
+
+        AUDIENCE: Maintenance managers, reliability engineers, operations directors actively evaluating software. Year is 2026.
+
+        MARKDOWN LINK REQUIREMENTS:
+        - EMBED 3-5 internal links naturally: [anchor text](/url/path) — use ONLY URLs from the list above.
+        - EMBED 2-3 external links to authoritative, non-competitor sources.
+        - Link to Factory AI comparison pages where relevant: /alternatives/augury, /alternatives/fiix, /alternatives/nanoprecise
+
+        IMAGE PROMPT: Professional hero image showing industrial technology comparison or evaluation concept.
+        Photo-realistic, no text, diverse people in PPE if applicable.
+
+        META_TITLE & META_DESCRIPTION:
+        - Meta title: under 60 chars. Use comparison framing: "X vs Y: Which Is Better in 2026?" or "Top 5 [Category] for Manufacturing (2026)"
+        - Meta description: 150-160 chars. Lead with the verdict or a provocative claim. No forbidden openings.
+
+        Output in this EXACT structured markdown format:
+
+        # Comparison: {keyword}
+
+        ## META_TITLE
+        [Under 60 characters — comparison-focused]
+
+        ## META_DESCRIPTION
+        [150-160 characters — lead with verdict or key differentiator]
+
+        ## MAIN_TITLE
+        [H1 that frames the comparison clearly]
+
+        ## BODY_CONTENT
+        [1500-2500 words following the structure above. Include comparison table. Embed internal and external links.]
+
+        ## IMAGE_PROMPT
+        [Hero image description]
+        """
+
+    def _get_structured_knowledge_prompt(self, keyword: str, research_summary: str, internal_urls_context: str) -> str:
+        """Generate the prompt for structured knowledge — Q&A, "why X", "how to X", capability questions."""
+        return f"""
+        Write a STRUCTURED KNOWLEDGE article for the keyword: "{keyword}"
+
+        Research insights:
+        {research_summary}
+        {internal_urls_context}
+
+        THIS IS NOT A BLOG POST. This is structured, scannable content designed to directly answer a question
+        and its natural follow-ups. It should win featured snippets, People Also Ask boxes, and AI assistant
+        citations. Think of it as a knowledge base article, not a marketing piece.
+
+        CONTENT PHILOSOPHY:
+        - Answer the question in the FIRST PARAGRAPH. No preamble, no "In today's manufacturing landscape..."
+        - Structure the rest as follow-up questions a reader would naturally ask after getting the initial answer.
+        - Be specific: numbers, thresholds, timeframes, concrete examples.
+        - If the keyword starts with "why" — diagnose the root cause, don't just describe the symptom.
+        - If the keyword starts with "how to" — give actionable steps, not theory.
+        - If the keyword starts with "can" — answer yes or no directly, then explain the conditions.
+
+        STRUCTURE (800-1500 words):
+
+        1. DIRECT ANSWER (100-200 words)
+           - First 1-2 sentences: answer the question directly and completely.
+           - Next 2-3 sentences: essential context that changes how the reader interprets the answer.
+           - This block must be extractable as a featured snippet or AI citation.
+
+        2. THE DEEPER EXPLANATION (300-500 words)
+           - For "why" questions: Walk through the root causes systematically (not a list of 10 vague reasons —
+             give 3-5 real causes with enough detail that a maintenance manager could act on them).
+           - For "how to" questions: Step-by-step process with decision points ("If X, do Y; if Z, do W").
+           - For "can" questions: Explain the conditions, requirements, and limitations.
+           - For cost/time questions: Give ranges with the variables that drive them.
+
+        3. WHAT TO DO ABOUT IT (200-400 words)
+           - Practical next steps tied to the reader's situation.
+           - Where predictive maintenance or condition monitoring is relevant, explain how it addresses
+             the specific problem — mention Factory AI naturally as an option (sensor-agnostic, no-code,
+             brownfield-ready, deploys in 14 days).
+           - Don't force Factory AI into every answer. If it's not directly relevant, a brief mention
+             in this section is enough.
+
+        4. RELATED QUESTIONS (200-300 words)
+           - 3-5 related questions in Q&A format (these target People Also Ask).
+           - Each answer: 2-4 sentences, direct and complete.
+           - Include at least one question that naturally leads to Factory AI as part of the answer.
+
+        AUDIENCE: Maintenance managers, technicians, reliability engineers searching for specific answers. Year is 2026.
+
+        MARKDOWN LINK REQUIREMENTS:
+        - EMBED 2-4 internal links naturally: [anchor text](/url/path) — use ONLY URLs from the list above.
+        - EMBED 1-2 external links to authoritative sources if they support the answer.
+
+        IMAGE PROMPT: Relevant industrial scene that illustrates the problem or solution described.
+        Photo-realistic, no text, diverse people in PPE if applicable.
+
+        META_TITLE & META_DESCRIPTION:
+        - Meta title: under 60 chars. Frame as the question or a direct answer hook.
+        - Meta description: 150-160 chars. Start with the answer, not the question.
+
+        Output in this EXACT structured markdown format:
+
+        # Knowledge: {keyword}
+
+        ## META_TITLE
+        [Under 60 characters — question or answer-focused]
+
+        ## META_DESCRIPTION
+        [150-160 characters — lead with the answer, not the question]
+
+        ## MAIN_TITLE
+        [H1 that frames the question clearly or promises the answer]
+
+        ## BODY_CONTENT
+        [800-1500 words following the structure above. Start with the direct answer. Embed links naturally.]
+
+        ## IMAGE_PROMPT
+        [Hero image description]
+        """
+
+    def _get_industry_data_prompt(self, keyword: str, research_summary: str, internal_urls_context: str) -> str:
+        """Generate the prompt for industry-specific data content — benchmarks, statistics, ROI analysis."""
+        return f"""
+        Write an INDUSTRY DATA article for the keyword: "{keyword}"
+
+        Research insights:
+        {research_summary}
+        {internal_urls_context}
+
+        THIS IS NOT A BLOG POST. This is data-driven, reference-grade content designed to be cited by
+        AI assistants, linked to by industry publications, and bookmarked by decision-makers building
+        business cases. Think of it as an industry brief or data sheet, not a marketing article.
+
+        CONTENT PHILOSOPHY:
+        - Lead with data, not opinions. Every claim needs a number, range, or benchmark.
+        - Acknowledge data limitations honestly ("Industry averages vary by sector; food manufacturing
+          typically sees X while discrete manufacturing sees Y").
+        - Make the data ACTIONABLE — don't just present statistics, explain what they mean for decisions.
+        - Use tables and structured formats for scannability.
+        - Cite sources where possible; if using industry-standard figures, attribute them.
+
+        STRUCTURE (1500-2500 words):
+
+        1. KEY FINDINGS (150-200 words)
+           - 4-6 bullet points with the headline statistics/findings.
+           - Each bullet: specific number + context + implication.
+           - This section gets extracted by AI assistants and featured snippets.
+
+        2. INDUSTRY BENCHMARKS (400-600 words)
+           - Markdown table(s) with benchmarks by industry, plant size, or maturity level.
+           - Include columns like: Metric | Industry Average | Top Quartile | Your Target.
+           - Cover relevant metrics: downtime %, maintenance cost as % of RAV, MTBF, MTTR,
+             PM compliance, wrench time, etc. (choose what's relevant to the keyword).
+           - Explain what "good" looks like and how to interpret the numbers.
+
+        3. COST & ROI ANALYSIS (400-600 words)
+           - Concrete cost figures with ranges (not vague "significant savings").
+           - ROI calculation framework specific to this industry/topic.
+           - Payback period ranges based on plant size and current maturity.
+           - Where relevant, reference Factory AI's deployment model: 14-day deploy,
+             no proprietary sensors, combined PdM + CMMS — and how this affects the ROI equation.
+
+        4. IMPLEMENTATION REALITY (300-400 words)
+           - What the data says about implementation success rates and timelines.
+           - Common pitfalls backed by data (e.g. "68% of PdM implementations that fail cite
+             poor change management, not technology").
+           - Realistic expectations vs. vendor claims.
+
+        5. METHODOLOGY & SOURCES (100-200 words)
+           - Where the data comes from (industry surveys, case studies, published research).
+           - Limitations and caveats.
+           - When data is from general industry knowledge, state that clearly.
+
+        AUDIENCE: Operations directors, VPs of manufacturing, reliability managers building business cases. Year is 2026.
+
+        MARKDOWN LINK REQUIREMENTS:
+        - EMBED 3-5 internal links naturally: [anchor text](/url/path) — use ONLY URLs from the list above.
+        - EMBED 3-4 external links to authoritative data sources (industry bodies, research firms, standards organisations).
+
+        IMAGE PROMPT: Professional data visualization or industrial analytics concept. Clean, modern,
+        photo-realistic. No text in the image.
+
+        META_TITLE & META_DESCRIPTION:
+        - Meta title: under 60 chars. Lead with data or a specific finding.
+        - Meta description: 150-160 chars. Lead with the most compelling statistic.
+
+        Output in this EXACT structured markdown format:
+
+        # Industry Data: {keyword}
+
+        ## META_TITLE
+        [Under 60 characters — data-led or finding-led]
+
+        ## META_DESCRIPTION
+        [150-160 characters — lead with the most compelling statistic]
+
+        ## MAIN_TITLE
+        [H1 that promises actionable data or benchmarks]
+
+        ## BODY_CONTENT
+        [1500-2500 words following the structure above. Include data tables. Embed links naturally.]
+
+        ## IMAGE_PROMPT
+        [Hero image description]
+        """
+
+    def generate_content_with_gemini(self, keyword: str, research_data: ResearchData, is_pillar: bool = False, is_ai_visibility: bool = False, is_glossary: bool = False, content_format: Optional[str] = None) -> Optional[BlogPost]:
+        """Generate content using Gemini, dispatching to the right prompt based on content_format.
 
         Args:
             keyword: Target keyword for content
             research_data: Research data from keyword analysis
-            is_pillar: If True, generates longer pillar/hub content (4500+ words)
-            is_ai_visibility: If True, generates AI-visibility-optimized content with comparison tables and recommendations
-            is_glossary: If True, generates short definition/glossary page (400-800 words) with links to deeper content
+            is_pillar: (legacy) If True, generates pillar content. Superseded by content_format="pillar".
+            is_ai_visibility: (legacy) If True, generates AI-visibility content. Superseded by content_format="ai_visibility".
+            is_glossary: (legacy) If True, generates glossary content. Superseded by content_format="glossary".
+            content_format: Content format string from ContentFormat. When provided, takes precedence over legacy booleans.
         """
+        # Normalise: convert legacy booleans to content_format if not explicitly provided
+        if content_format is None:
+            if is_glossary:
+                content_format = ContentFormat.GLOSSARY
+            elif is_ai_visibility:
+                content_format = ContentFormat.AI_VISIBILITY
+            elif is_pillar:
+                content_format = ContentFormat.PILLAR
+            else:
+                content_format = ContentFormat.BLOG
 
         # Create simplified research summary for the prompt
         research_summary: str = ""
@@ -1168,8 +1640,7 @@ class SEOContentGenerator:
         # Build available internal URLs context - more URLs for pillar content
         internal_urls_context = ""
         if self.available_internal_urls:
-            # Show more URLs for pillar content (needs more internal links)
-            url_count = 50 if is_pillar else 20
+            url_count = 50 if content_format == ContentFormat.PILLAR else 20
             sample_urls = self.available_internal_urls[:url_count]
             internal_urls_context = f"""
 
@@ -1178,12 +1649,18 @@ class SEOContentGenerator:
         (And {len(self.available_internal_urls)} total available internal URLs)
         """
 
-        # Use pillar prompt for hub/pillar content, AI visibility prompt for citation-optimized content, glossary for definition-type
-        if is_glossary:
+        # Dispatch to the right prompt
+        if content_format == ContentFormat.GLOSSARY:
             content_prompt = self._get_glossary_prompt(keyword, research_summary, internal_urls_context)
-        elif is_ai_visibility:
+        elif content_format == ContentFormat.COMPARATIVE:
+            content_prompt = self._get_comparative_prompt(keyword, research_summary, internal_urls_context)
+        elif content_format == ContentFormat.STRUCTURED_KNOWLEDGE:
+            content_prompt = self._get_structured_knowledge_prompt(keyword, research_summary, internal_urls_context)
+        elif content_format == ContentFormat.INDUSTRY_DATA:
+            content_prompt = self._get_industry_data_prompt(keyword, research_summary, internal_urls_context)
+        elif content_format == ContentFormat.AI_VISIBILITY:
             content_prompt = self._get_ai_visibility_prompt(keyword, research_summary, internal_urls_context)
-        elif is_pillar:
+        elif content_format == ContentFormat.PILLAR:
             content_prompt = self._get_pillar_prompt(keyword, research_summary, internal_urls_context)
         else:
             content_prompt = f"""
@@ -1276,8 +1753,19 @@ class SEOContentGenerator:
         [Detailed prompt for generating the hero image]
         """
 
-        # Set max tokens based on content type (glossary is short)
-        max_tokens = 4000 if is_glossary else (12000 if (is_pillar or is_ai_visibility) else 10000)
+        # Token limits and timeouts per content format
+        _TOKEN_LIMITS = {
+            ContentFormat.GLOSSARY: 4000,
+            ContentFormat.STRUCTURED_KNOWLEDGE: 6000,
+            ContentFormat.COMPARATIVE: 8000,
+            ContentFormat.INDUSTRY_DATA: 8000,
+            ContentFormat.BLOG: 10000,
+            ContentFormat.AI_VISIBILITY: 12000,
+            ContentFormat.PILLAR: 12000,
+        }
+        _LONG_FORMATS = {ContentFormat.PILLAR, ContentFormat.AI_VISIBILITY, ContentFormat.BLOG}
+        max_tokens = _TOKEN_LIMITS.get(content_format, 10000)
+        timeout = 240_000 if content_format in _LONG_FORMATS else 180_000
 
         try:
             # Add retry logic for rate limiting and timeouts
@@ -1285,13 +1773,14 @@ class SEOContentGenerator:
             response = None
             for attempt in range(max_retries):
                 try:
-                    response = self.gemini_content_model.generate_content(  # type: ignore
-                        content_prompt,
-                        generation_config=genai.types.GenerationConfig(  # type: ignore
+                    response = self.client.models.generate_content(  # type: ignore
+                        model=self.content_model_name,
+                        contents=content_prompt,
+                        config=genai.types.GenerateContentConfig(  # type: ignore
                             temperature=0.4,
                             max_output_tokens=max_tokens,
+                            http_options=genai.types.HttpOptions(timeout=timeout),  # type: ignore
                         ),
-                        request_options={"timeout": 240 if (is_pillar or is_ai_visibility) else 180}
                     )
                     break  # Success, exit retry loop
 
@@ -1333,27 +1822,23 @@ class SEOContentGenerator:
 
             word_count = len(cleaned_body.split())
 
-            # Glossary content: accept 400-1200 words, return without 2000-word validation (use model_construct)
-            if is_glossary:
-                if 400 <= word_count <= 1200:
-                    logger.info(f"Glossary content accepted: {word_count} words")
-                    return BlogPost.model_construct(
-                        keyword=keyword,
-                        meta_title=content_data.meta_title,
-                        meta_description=content_data.meta_description,
-                        title=content_data.title,
-                        body=cleaned_body,
-                        image_prompt=content_data.image_prompt,
-                        internal_links=[],
-                        external_links=[]
-                    )
-                if word_count < 400:
-                    logger.warning(f"Glossary content too short ({word_count}/400), saving to drafts")
+            # --- Non-blog formats: flexible word count, bypass BlogPost 2000-word validator ---
+            _SHORT_FORMAT_RANGES = {
+                ContentFormat.GLOSSARY: (400, 1200, 2000),           # target 400-800, accept up to 1200, hard max 2000
+                ContentFormat.STRUCTURED_KNOWLEDGE: (600, 2000, 2500),  # target 800-1500, accept 600-2000, hard max 2500
+                ContentFormat.COMPARATIVE: (1000, 3000, 3500),       # target 1500-2500, accept 1000-3000, hard max 3500
+                ContentFormat.INDUSTRY_DATA: (1000, 3000, 3500),     # target 1500-2500, accept 1000-3000, hard max 3500
+            }
+            if content_format in _SHORT_FORMAT_RANGES:
+                min_wc, soft_max, hard_max = _SHORT_FORMAT_RANGES[content_format]
+                format_label = ContentFormat.LABELS.get(content_format, content_format)
+                if word_count < min_wc:
+                    logger.warning(f"{format_label} too short ({word_count}/{min_wc}), saving to drafts")
                     self._save_draft(keyword, content_data, cleaned_body, word_count)
                     return None
-                # 1200-2000: accept as glossary (slightly over target)
-                if word_count <= 2000:
-                    logger.info(f"Glossary content accepted (slightly long): {word_count} words")
+                if word_count <= hard_max:
+                    qualifier = "" if word_count <= soft_max else " (slightly over target)"
+                    logger.info(f"{format_label} accepted{qualifier}: {word_count} words")
                     return BlogPost.model_construct(
                         keyword=keyword,
                         meta_title=content_data.meta_title,
@@ -1364,12 +1849,24 @@ class SEOContentGenerator:
                         internal_links=[],
                         external_links=[]
                     )
+                # Over hard_max — still accept but log warning
+                logger.warning(f"{format_label} over hard max ({word_count}/{hard_max}), accepting anyway")
+                return BlogPost.model_construct(
+                    keyword=keyword,
+                    meta_title=content_data.meta_title,
+                    meta_description=content_data.meta_description,
+                    title=content_data.title,
+                    body=cleaned_body,
+                    image_prompt=content_data.image_prompt,
+                    internal_links=[],
+                    external_links=[]
+                )
 
             # Pre-validation for pillar content
             # Prompt asks for 2500+, we accept 2000+ as passing (link injection adds value separately)
             min_words = 2000  # Same minimum for pillar and regular - link injection handles hub structure
 
-            if is_pillar and word_count < min_words:
+            if content_format == ContentFormat.PILLAR and word_count < min_words:
                 logger.warning(f"Pillar content under minimum ({word_count}/{min_words} words)")
 
                 # Try expansion for near-misses (1700-1999 words for pillar)
@@ -1501,13 +1998,14 @@ class SEOContentGenerator:
 
         try:
             logger.info("Calling Gemini API for content expansion...")
-            response = self.gemini_content_model.generate_content(  # type: ignore
-                expand_prompt,
-                generation_config=genai.types.GenerationConfig(  # type: ignore
-                    temperature=0.3,  # Lower temperature for more consistent expansion
+            response = self.client.models.generate_content(  # type: ignore
+                model=self.content_model_name,
+                contents=expand_prompt,
+                config=genai.types.GenerateContentConfig(  # type: ignore
+                    temperature=0.3,
                     max_output_tokens=15000,
+                    http_options=genai.types.HttpOptions(timeout=180_000),  # type: ignore
                 ),
-                request_options={"timeout": 180}
             )
 
             if response is None:
@@ -1594,13 +2092,14 @@ class SEOContentGenerator:
         try:
             logger.info(f"Adding internal links to content (target: {link_count_target} links)...")
 
-            response = self.gemini_content_model.generate_content(  # type: ignore
-                link_prompt,
-                generation_config=genai.types.GenerationConfig(  # type: ignore
-                    temperature=0.2,  # Low temperature for precise editing
+            response = self.client.models.generate_content(  # type: ignore
+                model=self.content_model_name,
+                contents=link_prompt,
+                config=genai.types.GenerateContentConfig(  # type: ignore
+                    temperature=0.2,
                     max_output_tokens=12000,
+                    http_options=genai.types.HttpOptions(timeout=120_000),  # type: ignore
                 ),
-                request_options={"timeout": 120}
             )
 
             if response is None:
@@ -1705,18 +2204,6 @@ class SEOContentGenerator:
         logger.info(f"Generating image with prompt: {image_prompt}")
         logger.debug(f"Prompt length: {len(image_prompt)} characters")
 
-        # Check if image client is available
-        if self.gemini_image_client is None:
-            logger.error("Gemini image client not available - install google-genai package")
-            return None, None
-
-        # Import genai_new types locally
-        try:
-            from google import genai as genai_new  # type: ignore
-        except ImportError:
-            logger.error("google.genai not available for image generation")
-            return None, None
-
         # Add retry logic for timeouts and transient errors
         max_retries = 3
         response = None
@@ -1724,12 +2211,12 @@ class SEOContentGenerator:
         for attempt in range(max_retries):
             try:
                 logger.info(f"Calling Gemini Image Generation API (attempt {attempt + 1}/{max_retries})...")
-                response = self.gemini_image_client.models.generate_content(  # type: ignore
+                response = self.client.models.generate_content(  # type: ignore
                     model="gemini-3-pro-image-preview",
                     contents=image_prompt,
-                    config=genai_new.types.GenerateContentConfig(  # type: ignore
+                    config=genai.types.GenerateContentConfig(  # type: ignore
                         response_modalities=['IMAGE'],
-                        automatic_function_calling=genai_new.types.AutomaticFunctionCallingConfig(  # type: ignore
+                        automatic_function_calling=genai.types.AutomaticFunctionCallingConfig(  # type: ignore
                             disable=True
                         ),
                     ),
@@ -2059,25 +2546,52 @@ def main() -> None:
 
     # Get content mode
     print("\n📝 Content mode options:")
-    print("   1. Standard - focused blog content (3000+ words)")
-    print("   2. Pillar - comprehensive hub content (4500+ words)")
-    print("   3. AI Visibility - optimized for ChatGPT/Gemini citation (3500+ words)")
-    mode_choice: str = input("Select content mode (1/2/3) [1]: ").strip()
+    print("   1. Auto-classify — detects the best format per keyword (blog, comparative, Q&A, definition, industry data)")
+    print("   2. Standard — all keywords → blog posts (3000+ words)")
+    print("   3. Pillar — all keywords → comprehensive hub content (4500+ words)")
+    print("   4. AI Visibility — all keywords → ChatGPT/Gemini citation-optimised (3500+ words)")
+    mode_choice: str = input("Select content mode (1/2/3/4) [1]: ").strip()
     if not mode_choice:
         mode_choice = "1"
 
-    is_pillar_mode: bool = mode_choice == "2"
-    is_ai_visibility_mode: bool = mode_choice == "3"
+    use_auto_classify: bool = mode_choice == "1"
+    is_pillar_mode: bool = mode_choice == "3"
+    is_ai_visibility_mode: bool = mode_choice == "4"
 
-    # Glossary for definition-type keywords: short pages (400-800 words) with links to deeper content
-    use_glossary_for_definitions: bool = False
-    if not (is_pillar_mode or is_ai_visibility_mode):
-        glossary_choice: str = input(
-            "Use glossary format for definition-type keywords (what is X, X definition, meaning)? [y/N]: "
-        ).strip().lower()
-        use_glossary_for_definitions = glossary_choice in ('y', 'yes')
-
+    # When using a fixed mode (not auto), the forced content_format applies to all keywords
+    fixed_content_format: Optional[str] = None
     if is_pillar_mode:
+        fixed_content_format = ContentFormat.PILLAR
+    elif is_ai_visibility_mode:
+        fixed_content_format = ContentFormat.AI_VISIBILITY
+    elif not use_auto_classify:
+        fixed_content_format = ContentFormat.BLOG
+
+    # Research model selection
+    print("\n🔬 Research model options:")
+    print("   1. Gemini 3 Pro (gemini-3-pro-preview) - standard research")
+    print("   2. Deep Research (deep-research-pro-preview) - thorough agent-based research (slower)")
+    research_choice: str = input("Select research model (1/2) [1]: ").strip()
+    if not research_choice:
+        research_choice = "1"
+
+    if research_choice == "2":
+        generator._use_deep_research = True
+        print("🔬 Deep Research enabled: will use deep-research agent for keyword research")
+    else:
+        generator._use_deep_research = False
+        print("🔬 Using Gemini 3 Pro for keyword research")
+
+    # Summary of mode
+    if use_auto_classify:
+        print("\n🧠 Auto-classify mode: Each keyword will be classified into the best content format:")
+        print("   • Blog post (3000+ words) — broad how-to, guides")
+        print("   • Comparative (1500-2500 words) — 'best X', 'X vs Y', 'alternatives to X'")
+        print("   • Structured Q&A (800-1500 words) — 'why X', 'how to X', 'can X'")
+        print("   • Glossary/definition (400-800 words) — 'what is X', 'X definition'")
+        print("   • Industry data (1500-2500 words) — benchmarks, ROI, industry-specific statistics")
+        print("   Shorter formats use the fast research model automatically.")
+    elif is_pillar_mode:
         print("📚 Pillar mode: Will generate comprehensive hub content (4500+ words)")
         print("   └─ Best for: topic overviews, ultimate guides, cluster hubs")
     elif is_ai_visibility_mode:
@@ -2086,8 +2600,6 @@ def main() -> None:
         print("   └─ Optimized for: ChatGPT, Gemini, and AI assistant citations")
     else:
         print("📝 Standard mode: Will generate focused blog content (3000+ words)")
-        if use_glossary_for_definitions:
-            print("   └─ Definition-type keywords → short glossary pages (400-800 words) with links to deeper content")
 
     # Load keywords with SERP data
     keyword_data: Dict[str, List[Dict[str, Any]]
@@ -2127,12 +2639,58 @@ def main() -> None:
 
         filtered_keywords.append(keyword)
 
+    # Deduplicate near-identical keywords within the CSV
+    pre_dedup_count = len(filtered_keywords)
+    filtered_keywords, merged_groups = generator.deduplicate_keywords(filtered_keywords)
+    skipped_dedup = pre_dedup_count - len(filtered_keywords)
+
+    if merged_groups:
+        print(f"\n🔍 Near-duplicate keywords detected ({skipped_dedup} removed):")
+        for kept, dropped in merged_groups:
+            print(f"   • Keeping '{kept}' — dropped: {', '.join(repr(d) for d in dropped)}")
+        logger.info(f"Deduplicated {skipped_dedup} near-duplicate keywords")
+        for kept, dropped in merged_groups:
+            logger.info(f"  Kept '{kept}', dropped {dropped}")
+
     print(f"\n📊 Content Generation Summary:")
     print(f"   • Total keywords in CSV: {len(keyword_data)}")
     print(f"   • Already generated: {skipped_existing}")
     print(f"   • Overlaps with existing blog: {skipped_overlap}")
+    if skipped_dedup > 0:
+        print(f"   • Near-duplicate keywords removed: {skipped_dedup}")
     print(f"   • Ready for generation: {len(filtered_keywords)}")
     print(f"\n✅ {len(filtered_keywords)} keywords ready for content generation")
+
+    # Auto-classify keywords and show distribution (if using auto mode)
+    keyword_formats: Dict[str, str] = {}
+    if use_auto_classify:
+        format_counts: Dict[str, int] = {}
+        for kw in filtered_keywords:
+            fmt = classify_keyword(kw)
+            keyword_formats[kw] = fmt
+            format_counts[fmt] = format_counts.get(fmt, 0) + 1
+
+        print(f"\n🧠 Auto-classification breakdown:")
+        for fmt, count in sorted(format_counts.items(), key=lambda x: -x[1]):
+            label = ContentFormat.LABELS.get(fmt, fmt)
+            print(f"   • {label}: {count}")
+        print()
+
+        # Show a few examples per format
+        for fmt in sorted(format_counts.keys()):
+            examples = [kw for kw in filtered_keywords if keyword_formats[kw] == fmt][:3]
+            label = ContentFormat.LABELS.get(fmt, fmt)
+            print(f"   {label}:")
+            for ex in examples:
+                print(f"     - {ex}")
+            if format_counts[fmt] > 3:
+                print(f"     ... and {format_counts[fmt] - 3} more")
+        print()
+
+        proceed = input("Proceed with these classifications? (y/n) [y]: ").strip().lower()
+        if proceed == "n":
+            print("Aborting.")
+            return
 
     # Process each keyword
     generation_stats = {
@@ -2145,6 +2703,9 @@ def main() -> None:
         "prismic_tested": 0
     }
 
+    # Formats that use the fast research model (shorter content, no need for deep research)
+    _FAST_RESEARCH_FORMATS = {ContentFormat.GLOSSARY, ContentFormat.STRUCTURED_KNOWLEDGE, ContentFormat.COMPARATIVE, ContentFormat.INDUSTRY_DATA}
+
     for i, keyword in enumerate(filtered_keywords, 1):
         print(
             f"\n📝 Processing keyword {i}/{len(filtered_keywords)}: {keyword}")
@@ -2152,15 +2713,21 @@ def main() -> None:
             f"Processing keyword {i}/{len(filtered_keywords)}: {keyword}")
 
         try:
-            # Glossary/definition keywords use fast research (gemini-3.0-fast), not Deep Research
-            is_glossary_keyword = use_glossary_for_definitions and is_definition_type_keyword(keyword)
+            # Determine content format for this keyword
+            kw_format = keyword_formats.get(keyword, fixed_content_format) if use_auto_classify else fixed_content_format
+            if kw_format is None:
+                kw_format = ContentFormat.BLOG
+            use_fast = kw_format in _FAST_RESEARCH_FORMATS
+
+            format_label = ContentFormat.LABELS.get(kw_format, kw_format)
+            print(f"  📋 Format: {format_label}")
 
             # Research keyword with SERP data
-            print("  🔬 Researching keyword with SERP analysis" + (" (fast model)" if is_glossary_keyword else "") + "...")
-            logger.info("Researching keyword with SERP analysis...")
+            print("  🔬 Researching keyword with SERP analysis" + (" (fast model)" if use_fast else "") + "...")
+            logger.info(f"Researching keyword [{kw_format}] with SERP analysis...")
             serp_data = keyword_data.get(keyword, [])
             research_data = generator.research_keyword_with_gemini(
-                keyword, serp_data, use_fast_research=is_glossary_keyword)
+                keyword, serp_data, use_fast_research=use_fast)
 
             # Check if research failed before attempting content generation
             if research_data.error:
@@ -2170,14 +2737,11 @@ def main() -> None:
                 generation_stats["failed"] += 1
                 continue
 
-            # Generate content (glossary = short definition pages for "what is X", "X definition", etc.)
-            content_type = "glossary/definition page" if is_glossary_keyword else (
-                "pillar content" if is_pillar_mode else ("AI visibility content" if is_ai_visibility_mode else "content")
-            )
-            print(f"  ✍️  Generating {content_type}...")
-            logger.info(f"Generating {content_type}...")
+            # Generate content using the determined format
+            print(f"  ✍️  Generating {format_label}...")
+            logger.info(f"Generating {format_label}...")
             blog_post = generator.generate_content_with_gemini(
-                keyword, research_data, is_pillar=is_pillar_mode, is_ai_visibility=is_ai_visibility_mode, is_glossary=is_glossary_keyword)
+                keyword, research_data, content_format=kw_format)
 
             if not blog_post:
                 # Check if a draft was saved (under-length content)
@@ -2211,6 +2775,10 @@ def main() -> None:
             print(f"  ✅ Content generated successfully!")
             logger.info(f"Content generated successfully for: {keyword}")
             generation_stats["successful"] += 1
+
+            # Register predicted URL so subsequent articles can link to this one
+            predicted_url = generator.register_generated_url(blog_post.title)
+            print(f"  🔗 Registered for internal linking: {predicted_url}")
 
             # Upload to Prismic if enabled
             if upload_to_prismic:

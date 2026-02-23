@@ -1,0 +1,16 @@
+{
+  "meta_title": "How to Rank Asset Risk: A Step-by-Step Criticality Guide",
+  "meta_description": "Rank asset risk by multiplying Probability of Failure (PoF) by Consequence of Failure (CoF). Use weighted scoring for safety, production, and cost impacts.",
+  "title": "How to Rank Asset Risk: The Definitive Guide to Asset Criticality Ranking (ACR)",
+  "keyword": "how to rank asset risk",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/how-to-rank-asset-risk.png",
+    "alt": "Hero image for How to Rank Asset Risk: The Definitive Guide to Asset Criticality Ranking (ACR)",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-resolution, photo-realistic industrial setting showing a reliability engineer in a clean, modern manufacturing facility. The engineer is holding a tablet displaying a color-coded (red, yellow, green) heat map of factory floor assets. In the background, a large, complex automated packaging line is visible. The lighting is bright and professional, emphasizing a high-tech, data-driven maintenance environment. No text on the screen.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 928,
+  "link_count": 6
+}

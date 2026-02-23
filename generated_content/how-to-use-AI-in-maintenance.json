@@ -1,0 +1,16 @@
+{
+  "meta_title": "How to Use AI in Maintenance: A 5-Stage Implementation Guide",
+  "meta_description": "Use AI in maintenance by transitioning from reactive repairs to predictive analytics. Deploy IIoT sensors and ML models to eliminate unplanned downtime.",
+  "title": "How to Use AI in Maintenance: From Reactive to Prescriptive Reliability",
+  "keyword": "how to use AI in maintenance",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/how-to-use-AI-in-maintenance.png",
+    "alt": "Hero image for How to Use AI in Maintenance: From Reactive to Prescriptive Reliability",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-tech industrial maintenance scene in a modern factory. A maintenance engineer in a clean uniform and safety gear is holding a tablet that displays a 3D digital twin of a large industrial motor. The tablet shows a glowing orange \"anomaly\" area on a bearing. In the background, the actual physical motor is equipped with small, sleek wireless IIoT sensors. The lighting is bright and professional, emphasizing a shift from greasy, reactive repair to data-driven reliability. No text on the screen.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1049,
+  "link_count": 9
+}

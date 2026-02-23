@@ -1,0 +1,16 @@
+{
+  "meta_title": "What is RTU? The Definitive 2026 Maintenance & SCADA Guide",
+  "meta_description": "70% of unplanned downtime traces to misunderstood equipment like RTUs. This guide clarifies RTU meanings in HVAC and SCADA for 2026 maintenance leaders.",
+  "title": "What is RTU? The Definitive Guide to Rooftop Units and Remote Terminal Units",
+  "keyword": "what is rtu",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/what-is-rtu.png",
+    "alt": "Hero image for What is RTU? The Definitive Guide to Rooftop Units and Remote Terminal Units",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-angle, professional photo-realistic shot of a modern industrial rooftop during the day. In the foreground, a diverse team of two maintenance professionals (one male, one female) wearing clean high-visibility vests, white hard hats, and safety glasses are standing next to a large, silver industrial HVAC Rooftop Unit (RTU). One professional is pointing toward the unit's access panel while the other holds a ruggedized industrial tablet (showing only the back of the device). In the background, the blurred skyline of a manufacturing district is visible. The lighting is bright and natural. The professionals are shown full-body, demonstrating a collaborative and safe working environment. No text or logos are visible on the equipment or clothing. External sensors are neatly mounted on the side of the RTU with professional conduit.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 2425,
+  "link_count": 23
+}

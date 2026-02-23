@@ -1,0 +1,16 @@
+{
+  "meta_title": "How to Predict Motor Failure: A Reliability-First Guide",
+  "meta_description": "Predict motor failure by monitoring vibration (ISO 10816), MCSA, and thermography. Identify stator, rotor, and bearing issues before downtime occurs.",
+  "title": "How to Predict Motor Failure: A Multi-Modal Reliability Framework",
+  "keyword": "how to predict motor failure",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/how-to-predict-motor-failure.png",
+    "alt": "Hero image for How to Predict Motor Failure: A Multi-Modal Reliability Framework",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-detail industrial close-up of a large electric motor in a manufacturing plant. A technician is mounting a small, sleek IIoT vibration sensor to the motor housing near the drive-end bearing. In the background, a tablet screen shows a complex vibration spectrum graph with green and red threshold lines. The lighting is professional and clean, highlighting the contrast between the rugged industrial machinery and the modern predictive technology. No text. Photo-realistic.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 858,
+  "link_count": 6
+}

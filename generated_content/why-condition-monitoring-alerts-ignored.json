@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why Condition Monitoring Alerts Are Ignored: Root Causes",
+  "meta_description": "Condition monitoring alerts are ignored due to alert fatigue, high false-positive rates, and poorly calibrated thresholds that erode technician trust in data.",
+  "title": "Why Condition Monitoring Alerts Are Ignored: Diagnosing Systemic Trust Failure",
+  "keyword": "why condition monitoring alerts ignored",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-condition-monitoring-alerts-ignored.png",
+    "alt": "Hero image for Why Condition Monitoring Alerts Are Ignored: Diagnosing Systemic Trust Failure",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-angle photo of a frustrated maintenance manager in a modern factory setting, looking at a tablet screen filled with red \"Critical\" alert icons. In the background, a large industrial motor is running smoothly, illustrating the disconnect between the digital alerts and the physical reality. The lighting is slightly cool-toned, emphasizing the clinical but overwhelming nature of the data-heavy environment. Technicians in PPE are visible in the distance, busy with manual tasks and ignoring the flashing alarm lights on a nearby control panel.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1031,
+  "link_count": 4
+}

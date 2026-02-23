@@ -1,0 +1,16 @@
+{
+  "meta_title": "Sensorius Definition: The Industrial Digital Nervous System",
+  "meta_description": "Sensorius defines the sensory network of industrial assets. This guide explains the Latin root and its application in modern predictive maintenance and IIoT.",
+  "title": "Sensorius Definition",
+  "keyword": "sensorius definition",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/sensorius-definition.png",
+    "alt": "Hero image for Sensorius Definition",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-tech factory floor at night with glowing blue and amber data overlays tracing from a robotic arm to a central server. A female maintenance manager in a smart helmet and high-visibility vest inspects a digital tablet showing complex waveforms. Photo-realistic, 8k resolution, cinematic lighting, industrial aesthetic.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 493,
+  "link_count": 7
+}

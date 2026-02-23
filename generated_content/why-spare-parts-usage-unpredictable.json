@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why Spare Parts Usage is Unpredictable: Root Causes & Solutions",
+  "meta_description": "Spare parts usage is unpredictable due to lumpy demand patterns and stochastic failure rates. Learn how to manage intermittent demand and optimize safety stock.",
+  "title": "The Root Causes of Unpredictable Spare Parts Usage in Industrial Maintenance",
+  "keyword": "why spare parts usage unpredictable",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-spare-parts-usage-unpredictable.png",
+    "alt": "Hero image for The Root Causes of Unpredictable Spare Parts Usage in Industrial Maintenance",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-angle, photo-realistic shot of a modern industrial warehouse with organized high-density racking. In the foreground, a maintenance manager in a high-visibility vest and hardhat is looking at a digital tablet showing a complex demand graph with \"lumpy\" spikes. In the background, a technician is pulling a specific mechanical component from a bin. The lighting is bright and professional, highlighting a clean, technologically advanced MRO environment.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 997,
+  "link_count": 5
+}

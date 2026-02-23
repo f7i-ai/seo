@@ -1,0 +1,16 @@
+{
+  "meta_title": "What Is Provisioning? Definition & Industrial Importance",
+  "meta_description": "Provisioning is the process of preparing IT and OT resources for operational use. Understand how automated provisioning streamlines industrial asset management.",
+  "title": "Provisioning Definition",
+  "keyword": "provisioning definition",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/provisioning-definition.png",
+    "alt": "Hero image for Provisioning Definition",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-tech industrial control room where a diverse group of maintenance engineers in professional PPE are using tablets to sync new IIoT sensors to a large, glowing digital twin display of a manufacturing line. The setting is clean, modern, and emphasizes the convergence of digital software and physical machinery. Photo-realistic, cinematic lighting, no text.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 471,
+  "link_count": 7
+}

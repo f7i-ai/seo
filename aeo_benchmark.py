@@ -6,16 +6,28 @@ normal user experience. Queries ChatGPT, Gemini, Claude, and Perplexity with
 buyer-journey prompts, scores each response for Factory AI inclusion, and
 produces aggregate scorecards.
 
-Web search: Set SERPER_API_KEY to let ChatGPT, Gemini, and Claude use a
-search tool (Perplexity has built-in search). Use --no-search to disable.
+All engines run in parallel with configurable per-engine concurrency.
+Defaults: chatgpt=8, gemini=8, claude=4, perplexity=4 workers.
+Rate-limit errors (429/529) trigger aggressive exponential backoff with jitter.
+
+Web search: Enabled by default. Each engine uses its native search:
+ChatGPT (web_search_preview), Gemini (Google Search grounding), Claude
+(web_search tool), Perplexity (built-in). Use --no-search to disable.
+
+Trend tracking: Each run auto-compares against the prior day and ~7 days ago
+(when available), showing percentage-point deltas for engine scores and absolute
+deltas for Clarity traffic. A trends.csv is written alongside the scorecard for
+time-series analysis.
 
 Usage:
-    python aeo_benchmark.py                          # Full run, all engines
+    python aeo_benchmark.py                          # Full run, all engines (parallel)
     python aeo_benchmark.py --engines chatgpt,claude # Select engines
     python aeo_benchmark.py --limit 10               # First N prompts (testing)
     python aeo_benchmark.py --stage purchase_intent   # Single stage only
     python aeo_benchmark.py --resume                  # Skip already-completed prompts
     python aeo_benchmark.py --no-search               # Disable web search
+    python aeo_benchmark.py --workers 2               # Override workers for all engines
+    ENGINE_WORKERS_CHATGPT=10 python aeo_benchmark.py # Per-engine override via env
 """
 
 import argparse
@@ -26,13 +38,16 @@ import sys
 import time
 import datetime
 import logging
+import threading
+import random
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
 from typing import Optional
 
 import anthropic
-import google.generativeai as genai  # type: ignore
+from google import genai  # type: ignore
 import openai
 import requests as http_requests
 from dotenv import load_dotenv
@@ -67,8 +82,18 @@ STAGES = (
     "purchase_intent",
 )
 
-API_DELAY_SECONDS = 2.0
-MAX_RETRIES = 3
+API_DELAY_SECONDS = 0.5  # minimum delay between requests within a worker
+MAX_RETRIES = 6
+
+# Per-engine concurrency defaults — conservative to stay within rate limits.
+# Override via --workers (applies to all) or env ENGINE_WORKERS_CHATGPT=10 etc.
+ENGINE_WORKERS = {
+    "chatgpt": 8,     # GPT-4o: ~500 RPM on most tiers
+    "gemini": 8,      # Gemini 2.5 Flash: high RPM
+    "claude": 4,      # Claude Sonnet: ~50 RPM
+    "perplexity": 4,  # Sonar: ~50 RPM
+}
+SCORER_WORKERS = 10  # Gemini 2.0 Flash for scoring: very high RPM
 
 # Flagship models so mention rates reflect normal user experience (with optional search)
 CHATGPT_MODEL = "gpt-4o"
@@ -87,8 +112,7 @@ AI_SOURCE_MAP: dict[str, str] = {
     "perplexity.ai": "perplexity",
 }
 
-SERPER_API_URL = "https://google.serper.dev/search"
-MAX_SEARCH_TOOL_ROUNDS = 3
+SERPER_API_URL = "https://google.serper.dev/search"  # kept for run_web_search (Clarity/other uses)
 
 # ---------------------------------------------------------------------------
 # Pydantic model for scored responses
@@ -180,53 +204,51 @@ def run_web_search(query: str) -> str:
         return ""
 
 
-# Tool definitions for OpenAI and Anthropic (model can call search_web when it wants live info)
-SEARCH_TOOL_OPENAI = {
-    "type": "function",
-    "function": {
-        "name": "search_web",
-        "description": "Search the web for current information. Use when the user asks about companies, products, comparisons, or anything that may need up-to-date results.",
-        "parameters": {
-            "type": "object",
-            "properties": {"query": {"type": "string", "description": "Search query"}},
-            "required": ["query"],
-        },
-    },
-}
-
-SEARCH_TOOL_ANTHROPIC = {
-    "name": "search_web",
-    "description": "Search the web for current information. Use when the user asks about companies, products, comparisons, or anything that may need up-to-date results.",
-    "input_schema": {
-        "type": "object",
-        "properties": {"query": {"type": "string", "description": "Search query"}},
-        "required": ["query"],
-    },
-}
-
-
 # ---------------------------------------------------------------------------
 # Engine clients
 # ---------------------------------------------------------------------------
 
 
+def _is_rate_limit_error(exc: Exception) -> bool:
+    """Detect rate-limit (429) or overloaded (529) errors across providers."""
+    msg = str(exc).lower()
+    if "429" in str(exc) or "rate" in msg or "quota" in msg or "overloaded" in msg:
+        return True
+    if "529" in str(exc):
+        return True
+    status = getattr(exc, "status_code", None) or getattr(exc, "status", None)
+    if status in (429, 529):
+        return True
+    return False
+
+
 def _retry(fn, label: str):
-    """Call *fn* with exponential backoff up to MAX_RETRIES times."""
+    """Call *fn* with jittered exponential backoff up to MAX_RETRIES times.
+
+    Rate-limit errors (429/529) get much longer back-off than other transient errors.
+    """
     for attempt in range(1, MAX_RETRIES + 1):
         try:
             return fn()
         except Exception as exc:
-            wait = 2 ** attempt
-            log.warning(
-                "%s attempt %d/%d failed (%s) — retrying in %ds",
-                label, attempt, MAX_RETRIES, exc, wait,
-            )
             if attempt == MAX_RETRIES:
                 raise
+            if _is_rate_limit_error(exc):
+                base = min(8 * (2 ** attempt), 120)
+            else:
+                base = 2 ** attempt
+            jitter = random.uniform(0, base * 0.3)
+            wait = base + jitter
+            log.warning(
+                "%s attempt %d/%d failed (%s) — retrying in %.1fs",
+                label, attempt, MAX_RETRIES, exc, wait,
+            )
             time.sleep(wait)
 
 
 def query_chatgpt(prompt: str, client: openai.OpenAI, use_search: bool = False) -> str:
+    """Query ChatGPT. When use_search=True, uses the native web_search_preview tool
+    via the Responses API — no Serper dependency."""
     def _call():
         if not use_search:
             resp = client.chat.completions.create(
@@ -235,76 +257,33 @@ def query_chatgpt(prompt: str, client: openai.OpenAI, use_search: bool = False) 
             )
             return resp.choices[0].message.content or ""
 
-        messages: list = [{"role": "user", "content": prompt}]
-        for _ in range(MAX_SEARCH_TOOL_ROUNDS):
-            resp = client.chat.completions.create(
-                model=CHATGPT_MODEL,
-                messages=messages,
-                tools=[SEARCH_TOOL_OPENAI],
-            )
-            msg = resp.choices[0].message
-            if not getattr(msg, "tool_calls", None):
-                return msg.content or ""
-            messages.append({
-                "role": "assistant",
-                "content": msg.content or None,
-                "tool_calls": [
-                    {"id": tc.id, "type": "function", "function": {"name": tc.function.name, "arguments": tc.function.arguments or "{}"}}
-                    for tc in msg.tool_calls
-                ],
-            })
-            for tc in msg.tool_calls:
-                name = tc.function.name
-                args = json.loads(tc.function.arguments or "{}")
-                if name == "search_web":
-                    result = run_web_search(args.get("query", prompt))
-                else:
-                    result = ""
-                messages.append({
-                    "role": "tool",
-                    "tool_call_id": tc.id,
-                    "content": result or "(No results)",
-                })
-        return (resp.choices[0].message.content or "") if messages else ""
+        resp = client.responses.create(
+            model=CHATGPT_MODEL,
+            tools=[{"type": "web_search_preview"}],
+            input=prompt,
+        )
+        return resp.output_text or ""
 
     return _retry(_call, "ChatGPT")
 
 
-def query_gemini(prompt: str, model, use_search: bool = False) -> str:
+def query_gemini(prompt: str, client: genai.Client, model_name: str = GEMINI_MODEL, use_search: bool = False) -> str:  # type: ignore
+    """Query Gemini. When use_search=True, uses native Google Search grounding
+    — no Serper dependency."""
     def _call():
+        config = None
         if use_search:
-            search_results = run_web_search(prompt)
-            if search_results:
-                prompt_with_search = (
-                    "Here are current web search results you may use to inform your answer:\n\n"
-                    f"{search_results}\n\n"
-                    "User question: " + prompt
-                )
-            else:
-                prompt_with_search = prompt
-        else:
-            prompt_with_search = prompt
-        resp = model.generate_content(prompt_with_search)
+            config = genai.types.GenerateContentConfig(  # type: ignore
+                tools=[genai.types.Tool(google_search=genai.types.GoogleSearch())],  # type: ignore
+            )
+        resp = client.models.generate_content(model=model_name, contents=prompt, config=config)  # type: ignore
         return resp.text
     return _retry(_call, "Gemini")
 
 
-def _claude_content_to_dict(block) -> dict:
-    """Convert SDK content block to API-style dict."""
-    if hasattr(block, "type"):
-        if block.type == "text":
-            return {"type": "text", "text": getattr(block, "text", "")}
-        if block.type == "tool_use":
-            return {
-                "type": "tool_use",
-                "id": getattr(block, "id", ""),
-                "name": getattr(block, "name", ""),
-                "input": getattr(block, "input", {}) or {},
-            }
-    return {"type": "text", "text": str(block)}
-
-
 def query_claude(prompt: str, client: anthropic.Anthropic, use_search: bool = False) -> str:
+    """Query Claude. When use_search=True, uses Anthropic's built-in web search tool
+    — no Serper dependency."""
     def _call():
         if not use_search:
             resp = client.messages.create(
@@ -314,33 +293,18 @@ def query_claude(prompt: str, client: anthropic.Anthropic, use_search: bool = Fa
             )
             return resp.content[0].text
 
-        messages: list = [{"role": "user", "content": prompt}]
-        for _ in range(MAX_SEARCH_TOOL_ROUNDS):
-            resp = client.messages.create(
-                model=CLAUDE_MODEL,
-                max_tokens=4096,
-                messages=messages,
-                tools=[SEARCH_TOOL_ANTHROPIC],
-            )
-            if resp.stop_reason == "end_turn":
-                return (resp.content[0].text if resp.content and hasattr(resp.content[0], "text") else "") or ""
-            tool_use_parts = [p for p in resp.content if getattr(p, "type", None) == "tool_use"]
-            if not tool_use_parts:
-                return (resp.content[0].text if resp.content and hasattr(resp.content[0], "text") else "") or ""
-            assistant_content = [_claude_content_to_dict(p) for p in resp.content]
-            tool_results: list = []
-            for p in resp.content:
-                if getattr(p, "type", None) == "tool_use":
-                    q = getattr(p, "input", {}) or {}
-                    result = run_web_search(q.get("query", prompt))
-                    tool_results.append({
-                        "type": "tool_result",
-                        "tool_use_id": getattr(p, "id", ""),
-                        "content": result or "(No results)",
-                    })
-            messages.append({"role": "assistant", "content": assistant_content})
-            messages.append({"role": "user", "content": tool_results})
-        return (resp.content[0].text if resp.content and hasattr(resp.content[0], "text") else "") or ""
+        resp = client.messages.create(
+            model=CLAUDE_MODEL,
+            max_tokens=4096,
+            messages=[{"role": "user", "content": prompt}],
+            tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 5}],
+        )
+        text_parts = [
+            getattr(block, "text", "")
+            for block in resp.content
+            if getattr(block, "type", None) == "text"
+        ]
+        return "\n".join(text_parts).strip()
 
     return _retry(_call, "Claude")
 
@@ -385,11 +349,11 @@ RESPONSE:
 """
 
 
-def score_response(response_text: str, scorer_model) -> ResponseScore:
+def score_response(response_text: str, scorer_client: genai.Client, scorer_model_name: str = SCORER_MODEL) -> ResponseScore:  # type: ignore
     filled_prompt = SCORER_PROMPT.format(response=response_text)
 
     def _call():
-        resp = scorer_model.generate_content(filled_prompt)
+        resp = scorer_client.models.generate_content(model=scorer_model_name, contents=filled_prompt)  # type: ignore
         raw = resp.text.strip()
         if raw.startswith("```"):
             raw = raw.split("\n", 1)[1]
@@ -540,9 +504,31 @@ def load_completed(d: Path) -> set[tuple[str, str]]:
     return done
 
 
+_write_lock = threading.Lock()
+
+
 def append_result(d: Path, record: dict) -> None:
-    with open(jsonl_path(d), "a", encoding="utf-8") as f:
-        f.write(json.dumps(record, ensure_ascii=False) + "\n")
+    with _write_lock:
+        with open(jsonl_path(d), "a", encoding="utf-8") as f:
+            f.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+
+class _ProgressCounter:
+    """Thread-safe progress tracker."""
+    def __init__(self, total: int):
+        self.total = total
+        self._done = 0
+        self._lock = threading.Lock()
+
+    def increment(self) -> int:
+        with self._lock:
+            self._done += 1
+            return self._done
+
+    @property
+    def done(self) -> int:
+        with self._lock:
+            return self._done
 
 
 # ---------------------------------------------------------------------------
@@ -617,6 +603,191 @@ def compute_scorecards(rows: list[dict]) -> tuple[list[dict], list[dict]]:
     return engine_scorecard, stage_scorecard
 
 
+# ---------------------------------------------------------------------------
+# Historical trend computation
+# ---------------------------------------------------------------------------
+
+
+def _find_prior_run(base: Path, today: datetime.date, days_back_max: int = 30) -> Optional[Path]:
+    """Find the most recent run directory before *today*."""
+    for offset in range(1, days_back_max + 1):
+        candidate = base / (today - datetime.timedelta(days=offset)).isoformat()
+        if candidate.exists() and jsonl_path(candidate).exists():
+            return candidate
+    return None
+
+
+def _find_run_near(base: Path, target: datetime.date, tolerance: int = 2) -> Optional[Path]:
+    """Find a run within ±tolerance days of *target*."""
+    for offset in range(0, tolerance + 1):
+        for sign in (0, -1, 1):
+            candidate = base / (target + datetime.timedelta(days=sign * offset)).isoformat()
+            if candidate.exists() and jsonl_path(candidate).exists():
+                return candidate
+    return None
+
+
+def _pct_val(pct_str: str) -> float:
+    """Parse '6%' → 6.0, '—' → 0.0."""
+    if not pct_str or pct_str == "—":
+        return 0.0
+    return float(pct_str.replace("%", ""))
+
+
+def _delta_str(current: float, previous: float) -> str:
+    """Format a delta like '+3pp' or '−2pp' (percentage point change)."""
+    diff = current - previous
+    if diff == 0:
+        return "—"
+    sign = "+" if diff > 0 else "−"
+    return f"{sign}{abs(diff):.0f}pp"
+
+
+def _load_engine_scorecard(d: Path) -> list[dict]:
+    path = d / "scorecard.csv"
+    if not path.exists():
+        return []
+    with open(path, newline="", encoding="utf-8") as f:
+        return list(csv.DictReader(f))
+
+
+def _load_stage_scorecard(d: Path) -> list[dict]:
+    path = d / "scorecard_by_stage.csv"
+    if not path.exists():
+        return []
+    with open(path, newline="", encoding="utf-8") as f:
+        return list(csv.DictReader(f))
+
+
+def _load_clarity_summary(d: Path) -> list[dict]:
+    path = d / "clarity_traffic.csv"
+    if not path.exists():
+        return []
+    with open(path, newline="", encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+    from collections import defaultdict
+    agg: dict[str, dict[str, float]] = defaultdict(
+        lambda: {"sessions": 0, "users": 0, "landing_count": 0}
+    )
+    for r in rows:
+        eng = r.get("engine", "")
+        agg[eng]["sessions"] += int(r.get("sessions", 0))
+        agg[eng]["users"] += int(r.get("users", 0))
+        agg[eng]["landing_count"] += 1
+    return [
+        {"engine": eng, "sessions": int(s["sessions"]), "users": int(s["users"]),
+         "landing_pages": int(s["landing_count"])}
+        for eng, s in sorted(agg.items())
+    ]
+
+
+def _compute_pi_rate(d: Path) -> Optional[float]:
+    """Compute purchase-intent inclusion rate % from raw results."""
+    path = jsonl_path(d)
+    if not path.exists():
+        return None
+    pi_total = 0
+    pi_mentioned = 0
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            r = json.loads(line)
+            if r.get("stage") == "purchase_intent":
+                pi_total += 1
+                if r.get("scores", {}).get("mention"):
+                    pi_mentioned += 1
+    if pi_total == 0:
+        return None
+    return pi_mentioned / pi_total * 100
+
+
+@dataclass
+class TrendData:
+    """Holds comparison data between current and prior runs."""
+    prior_date: str
+    prior_label: str  # "1d ago", "7d ago", etc.
+
+    # Engine-level deltas: {engine: {metric: delta_str}}
+    engine_deltas: dict[str, dict[str, str]]
+
+    # Clarity deltas: {engine: {metric: delta_str}}
+    clarity_deltas: dict[str, dict[str, str]]
+
+    # Primary KPI delta
+    pi_current: Optional[float]
+    pi_prior: Optional[float]
+    pi_delta: str
+
+
+def compute_trends(
+    base: Path,
+    today: datetime.date,
+    current_engine_sc: list[dict],
+    current_clarity: Optional[list[dict]],
+    current_pi_rate: Optional[float],
+    label: str = "prev",
+    prior_dir: Optional[Path] = None,
+) -> Optional[TrendData]:
+    """Compare today's scores against a prior run. Returns None if no prior data."""
+    if prior_dir is None:
+        return None
+
+    prior_date = prior_dir.name
+
+    # Engine scorecard deltas
+    prior_engine_sc = _load_engine_scorecard(prior_dir)
+    prior_by_eng = {r["engine"]: r for r in prior_engine_sc}
+    engine_deltas: dict[str, dict[str, str]] = {}
+    metrics = ("inclusion", "vendor_list", "positive_narrative", "citation")
+    for r in current_engine_sc:
+        eng = r["engine"]
+        prev = prior_by_eng.get(eng)
+        if not prev:
+            engine_deltas[eng] = {m: "new" for m in metrics}
+            continue
+        engine_deltas[eng] = {
+            m: _delta_str(_pct_val(r[m]), _pct_val(prev[m]))
+            for m in metrics
+        }
+
+    # Clarity deltas
+    clarity_deltas: dict[str, dict[str, str]] = {}
+    if current_clarity:
+        prior_clarity = _load_clarity_summary(prior_dir)
+        prior_cl_by_eng = {r["engine"]: r for r in prior_clarity}
+        for r in current_clarity:
+            eng = r["engine"]
+            prev = prior_cl_by_eng.get(eng)
+            if not prev:
+                clarity_deltas[eng] = {"sessions": "new", "users": "new", "landing_pages": "new"}
+                continue
+            for m in ("sessions", "users", "landing_pages"):
+                cur_v = int(r.get(m, 0))
+                prev_v = int(prev.get(m, 0))
+                diff = cur_v - prev_v
+                if diff == 0:
+                    delta = "—"
+                else:
+                    sign = "+" if diff > 0 else "−"
+                    delta = f"{sign}{abs(diff)}"
+                clarity_deltas.setdefault(eng, {})[m] = delta
+
+    # Primary KPI delta
+    prior_pi = _compute_pi_rate(prior_dir)
+    pi_delta = "—"
+    if current_pi_rate is not None and prior_pi is not None:
+        pi_delta = _delta_str(current_pi_rate, prior_pi)
+
+    return TrendData(
+        prior_date=prior_date,
+        prior_label=label,
+        engine_deltas=engine_deltas,
+        clarity_deltas=clarity_deltas,
+        pi_current=current_pi_rate,
+        pi_prior=prior_pi,
+        pi_delta=pi_delta,
+    )
+
+
 def write_scorecard_csv(path: Path, rows: list[dict]) -> None:
     if not rows:
         return
@@ -626,6 +797,74 @@ def write_scorecard_csv(path: Path, rows: list[dict]) -> None:
         w.writerows(rows)
 
 
+def write_trends_csv(
+    path: Path,
+    engine_sc: list[dict],
+    clarity_summary: Optional[list[dict]],
+    trends: list[TrendData],
+) -> None:
+    """Write a CSV capturing current values and deltas for easy time-series tracking."""
+    rows_out: list[dict] = []
+    today = datetime.date.today().isoformat()
+
+    for r in engine_sc:
+        eng = r["engine"]
+        for m in ("inclusion", "vendor_list", "positive_narrative", "citation"):
+            row: dict[str, str] = {
+                "date": today,
+                "source": "engine",
+                "engine": eng,
+                "metric": m,
+                "value": r[m],
+            }
+            for t in trends:
+                d = t.engine_deltas.get(eng, {})
+                row[f"delta_{t.prior_label}"] = d.get(m, "—")
+            rows_out.append(row)
+
+    if clarity_summary:
+        for r in clarity_summary:
+            eng = r["engine"]
+            for m in ("sessions", "users", "landing_pages"):
+                row = {
+                    "date": today,
+                    "source": "clarity",
+                    "engine": eng,
+                    "metric": m,
+                    "value": str(r.get(m, 0)),
+                }
+                for t in trends:
+                    d = t.clarity_deltas.get(eng, {})
+                    row[f"delta_{t.prior_label}"] = d.get(m, "—")
+                rows_out.append(row)
+
+    if rows_out:
+        fieldnames = list(rows_out[0].keys())
+        with open(path, "w", newline="", encoding="utf-8") as f:
+            w = csv.DictWriter(f, fieldnames=fieldnames)
+            w.writeheader()
+            w.writerows(rows_out)
+
+
+def _trend_table_suffix(trends: list[TrendData], engine: str, metric: str) -> str:
+    """Build compact delta annotations like ' (+3pp vs 1d, +5pp vs 7d)'."""
+    parts = []
+    for t in trends:
+        d = t.engine_deltas.get(engine, {}).get(metric, "—")
+        if d != "—":
+            parts.append(f"{d} vs {t.prior_label}")
+    return f" ({', '.join(parts)})" if parts else ""
+
+
+def _clarity_trend_suffix(trends: list[TrendData], engine: str, metric: str) -> str:
+    parts = []
+    for t in trends:
+        d = t.clarity_deltas.get(engine, {}).get(metric, "—")
+        if d != "—":
+            parts.append(f"{d} vs {t.prior_label}")
+    return f" ({', '.join(parts)})" if parts else ""
+
+
 def write_summary_md(
     path: Path,
     engine_sc: list[dict],
@@ -633,31 +872,64 @@ def write_summary_md(
     rows: list[dict],
     clarity_summary: Optional[list[dict]] = None,
     clarity_top_pages: Optional[list[dict]] = None,
+    trends: Optional[list["TrendData"]] = None,
 ) -> None:
+    if trends is None:
+        trends = []
+
     lines: list[str] = []
     lines.append("# AEO Benchmark Summary\n")
     lines.append(f"**Date:** {datetime.date.today().isoformat()}\n")
     lines.append(f"**Total responses scored:** {len(rows)}\n")
 
+    if trends:
+        compared = ", ".join(f"{t.prior_date} ({t.prior_label})" for t in trends)
+        lines.append(f"**Compared against:** {compared}\n")
+
     # Primary KPI
     pi_rows = [r for r in rows if r["stage"] == "purchase_intent"]
     if pi_rows:
         pi_mentioned = sum(1 for r in pi_rows if r["scores"]["mention"])
+        pi_rate = pi_mentioned / len(pi_rows) * 100
+        pi_deltas = " ".join(
+            f"({t.pi_delta} vs {t.prior_label})" for t in trends if t.pi_delta != "—"
+        )
         lines.append(
             f"\n## Primary KPI\n\n"
             f"**Purchase-intent inclusion rate:** {pi_mentioned}/{len(pi_rows)} "
-            f"({pi_mentioned / len(pi_rows) * 100:.0f}%)\n"
+            f"({pi_rate:.0f}%) {pi_deltas}\n"
         )
 
-    # Engine scorecard table
-    lines.append("\n## Engine Scorecard\n")
-    lines.append("| Engine | Prompts | Inclusion | Vendor List | Positive Narrative | Citation |")
-    lines.append("|--------|---------|-----------|-------------|--------------------|------------|")
-    for r in engine_sc:
-        lines.append(
-            f"| {r['engine']} | {r['prompts']} | {r['inclusion']} | {r['vendor_list']} "
-            f"| {r['positive_narrative']} | {r['citation']} |"
-        )
+    # Engine scorecard table with trends
+    if trends:
+        lines.append("\n## Engine Scorecard\n")
+        trend_cols = " | ".join(f"Δ {t.prior_label}" for t in trends)
+        lines.append(f"| Engine | Prompts | Inclusion | Vendor List | Positive | Citation | {trend_cols} |")
+        sep_cols = " | ".join("---" for _ in trends)
+        lines.append(f"|--------|---------|-----------|-------------|----------|----------|{sep_cols}|")
+        for r in engine_sc:
+            eng = r["engine"]
+            trend_cells = []
+            for t in trends:
+                d = t.engine_deltas.get(eng, {})
+                cell = ", ".join(f"{m[:3]}:{d.get(m, '—')}" for m in
+                               ("inclusion", "vendor_list", "positive_narrative", "citation")
+                               if d.get(m, "—") != "—")
+                trend_cells.append(cell or "—")
+            trend_str = " | ".join(trend_cells)
+            lines.append(
+                f"| {eng} | {r['prompts']} | {r['inclusion']} | {r['vendor_list']} "
+                f"| {r['positive_narrative']} | {r['citation']} | {trend_str} |"
+            )
+    else:
+        lines.append("\n## Engine Scorecard\n")
+        lines.append("| Engine | Prompts | Inclusion | Vendor List | Positive Narrative | Citation |")
+        lines.append("|--------|---------|-----------|-------------|--------------------|------------|")
+        for r in engine_sc:
+            lines.append(
+                f"| {r['engine']} | {r['prompts']} | {r['inclusion']} | {r['vendor_list']} "
+                f"| {r['positive_narrative']} | {r['citation']} |"
+            )
 
     # Stage breakdown
     lines.append("\n\n## Stage Breakdown\n")
@@ -669,16 +941,38 @@ def write_summary_md(
             f"| {r['vendor_list']} | {r['positive_narrative']} | {r['citation']} |"
         )
 
-    # Clarity AI referral traffic
+    # Clarity AI referral traffic with trends
     if clarity_summary:
         lines.append("\n\n## AI Referral Traffic (Clarity)\n")
-        lines.append("| Engine | Sessions | Users | Pages/Session | Landing Pages |")
-        lines.append("|--------|----------|-------|---------------|---------------|")
-        for r in clarity_summary:
-            lines.append(
-                f"| {r['engine']} | {r['sessions']} | {r['users']} "
-                f"| {r['pages_per_session']} | {r['landing_pages']} |"
-            )
+        if trends:
+            trend_cols = " | ".join(f"Δ {t.prior_label}" for t in trends)
+            lines.append(f"| Engine | Sessions | Users | Pages/Session | Landing Pages | {trend_cols} |")
+            sep_cols = " | ".join("---" for _ in trends)
+            lines.append(f"|--------|----------|-------|---------------|---------------|{sep_cols}|")
+            for r in clarity_summary:
+                eng = r["engine"]
+                trend_cells = []
+                for t in trends:
+                    d = t.clarity_deltas.get(eng, {})
+                    parts = []
+                    for m in ("sessions", "users", "landing_pages"):
+                        v = d.get(m, "—")
+                        if v != "—":
+                            parts.append(f"{m[:4]}:{v}")
+                    trend_cells.append(", ".join(parts) or "—")
+                trend_str = " | ".join(trend_cells)
+                lines.append(
+                    f"| {eng} | {r['sessions']} | {r['users']} "
+                    f"| {r['pages_per_session']} | {r['landing_pages']} | {trend_str} |"
+                )
+        else:
+            lines.append("| Engine | Sessions | Users | Pages/Session | Landing Pages |")
+            lines.append("|--------|----------|-------|---------------|---------------|")
+            for r in clarity_summary:
+                lines.append(
+                    f"| {r['engine']} | {r['sessions']} | {r['users']} "
+                    f"| {r['pages_per_session']} | {r['landing_pages']} |"
+                )
 
     if clarity_top_pages:
         lines.append("\n\n## Top landing pages (page clicked from AI engine)\n")
@@ -686,6 +980,25 @@ def write_summary_md(
         lines.append("|--------|------------|--------|----------|")
         for r in clarity_top_pages[:20]:
             lines.append(f"| {r['engine']} | {r['url']} | {r['region']} | {r['sessions']} |")
+
+    # Historical trend summary
+    if trends:
+        lines.append("\n\n## Trend History\n")
+        lines.append("| Metric | Current | " + " | ".join(f"{t.prior_date}" for t in trends) + " |")
+        lines.append("|--------|---------|" + " | ".join("---" for _ in trends) + " |")
+        for eng in sorted(set(r["engine"] for r in engine_sc)):
+            cur_sc = next((r for r in engine_sc if r["engine"] == eng), None)
+            if not cur_sc:
+                continue
+            for m in ("inclusion", "vendor_list", "positive_narrative", "citation"):
+                prior_vals = []
+                for t in trends:
+                    prior_sc = _load_engine_scorecard(Path(RESULTS_DIR) / t.prior_date)
+                    prior_r = next((r for r in prior_sc if r["engine"] == eng), None)
+                    prior_vals.append(prior_r[m] if prior_r else "—")
+                lines.append(
+                    f"| {eng}/{m} | {cur_sc[m]} | " + " | ".join(prior_vals) + " |"
+                )
 
     lines.append("")
     with open(path, "w", encoding="utf-8") as f:
@@ -696,34 +1009,60 @@ def print_summary(
     engine_sc: list[dict],
     rows: list[dict],
     clarity_summary: Optional[list[dict]] = None,
+    trends: Optional[list["TrendData"]] = None,
 ) -> None:
+    if trends is None:
+        trends = []
+
     pi_rows = [r for r in rows if r["stage"] == "purchase_intent"]
     if pi_rows:
         pi_mentioned = sum(1 for r in pi_rows if r["scores"]["mention"])
+        pi_rate = pi_mentioned / len(pi_rows) * 100
+        delta_parts = [f"{t.pi_delta} vs {t.prior_label}" for t in trends if t.pi_delta != "—"]
+        delta_str = f"  ({', '.join(delta_parts)})" if delta_parts else ""
         log.info(
-            "PRIMARY KPI — purchase-intent inclusion: %d/%d (%d%%)",
-            pi_mentioned, len(pi_rows), pi_mentioned / len(pi_rows) * 100,
+            "PRIMARY KPI — purchase-intent inclusion: %d/%d (%d%%)%s",
+            pi_mentioned, len(pi_rows), pi_rate, delta_str,
         )
 
-    hdr = f"{'Engine':<14} {'Inclusion':>10} {'Vendor List':>12} {'Positive':>10} {'Citation':>10}"
+    trend_col = "  Δ" if trends else ""
+    hdr = f"{'Engine':<14} {'Inclusion':>10} {'Vendor List':>12} {'Positive':>10} {'Citation':>10}{trend_col}"
     log.info(hdr)
-    log.info("-" * len(hdr))
+    log.info("-" * max(len(hdr), 60))
     for r in engine_sc:
+        eng = r["engine"]
+        delta_parts = []
+        for t in trends:
+            d = t.engine_deltas.get(eng, {})
+            changes = [f"{m[:3]}:{d[m]}" for m in ("inclusion", "vendor_list", "positive_narrative", "citation")
+                       if d.get(m, "—") != "—"]
+            if changes:
+                delta_parts.append(f"{', '.join(changes)} ({t.prior_label})")
+        delta_str = f"  {'; '.join(delta_parts)}" if delta_parts else ""
         log.info(
-            f"{r['engine']:<14} {r['inclusion']:>10} {r['vendor_list']:>12} "
-            f"{r['positive_narrative']:>10} {r['citation']:>10}"
+            f"{eng:<14} {r['inclusion']:>10} {r['vendor_list']:>12} "
+            f"{r['positive_narrative']:>10} {r['citation']:>10}{delta_str}"
         )
 
     if clarity_summary:
         log.info("")
         log.info("AI REFERRAL TRAFFIC (Clarity, last 72h)")
-        chdr = f"{'Engine':<14} {'Sessions':>10} {'Users':>10} {'Pages/Sess':>12} {'Landings':>10}"
+        chdr = f"{'Engine':<14} {'Sessions':>10} {'Users':>10} {'Pages/Sess':>12} {'Landings':>10}{trend_col}"
         log.info(chdr)
-        log.info("-" * len(chdr))
+        log.info("-" * max(len(chdr), 60))
         for r in clarity_summary:
+            eng = r["engine"]
+            delta_parts = []
+            for t in trends:
+                d = t.clarity_deltas.get(eng, {})
+                changes = [f"{m}:{d[m]}" for m in ("sessions", "users", "landing_pages")
+                           if d.get(m, "—") != "—"]
+                if changes:
+                    delta_parts.append(f"{', '.join(changes)} ({t.prior_label})")
+            delta_str = f"  {'; '.join(delta_parts)}" if delta_parts else ""
             log.info(
-                f"{r['engine']:<14} {r['sessions']:>10} {r['users']:>10} "
-                f"{r['pages_per_session']:>12} {r['landing_pages']:>10}"
+                f"{eng:<14} {r['sessions']:>10} {r['users']:>10} "
+                f"{r['pages_per_session']:>12} {r['landing_pages']:>10}{delta_str}"
             )
 
 
@@ -751,8 +1090,7 @@ def build_clients(engines: list[str]) -> dict:
             log.warning("GEMINI_API_KEY not set — skipping Gemini")
             skipped.append("gemini")
         else:
-            genai.configure(api_key=api_key)  # type: ignore
-            clients["gemini"] = genai.GenerativeModel(GEMINI_MODEL)  # type: ignore
+            clients["gemini"] = genai.Client(api_key=api_key)  # type: ignore
 
     if "claude" in engines:
         api_key = os.getenv("ANTHROPIC_API_KEY")
@@ -783,13 +1121,64 @@ def build_clients(engines: list[str]) -> dict:
     return clients
 
 
-def build_scorer():
+def build_scorer() -> genai.Client:  # type: ignore
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
         log.error("GEMINI_API_KEY not set — cannot run scorer")
         sys.exit(1)
-    genai.configure(api_key=api_key)  # type: ignore
-    return genai.GenerativeModel(SCORER_MODEL)  # type: ignore
+    return genai.Client(api_key=api_key)  # type: ignore
+
+
+def _process_single_task(
+    bp: BenchmarkPrompt,
+    eng: str,
+    clients: dict,
+    scorer: "genai.Client",  # type: ignore
+    d: Path,
+    progress: _ProgressCounter,
+    use_search: bool,
+) -> None:
+    """Query one engine for one prompt, score it, and write the result. Runs inside a thread."""
+    tag = f"[{progress.done}/{progress.total}]"
+    log.info("%s  %-12s  stage=%-17s  %s", tag, eng, bp.stage, bp.prompt[:60])
+
+    try:
+        if eng == "chatgpt":
+            response_text = query_chatgpt(bp.prompt, clients["chatgpt"], use_search=use_search)
+        elif eng == "gemini":
+            response_text = query_gemini(bp.prompt, clients["gemini"], use_search=use_search)
+        elif eng == "claude":
+            response_text = query_claude(bp.prompt, clients["claude"], use_search=use_search)
+        elif eng == "perplexity":
+            response_text = query_perplexity(bp.prompt, clients["perplexity"])
+        else:
+            raise ValueError(f"Unknown engine: {eng}")
+    except Exception:
+        log.exception("Failed to query %s for prompt: %s — skipping", eng, bp.prompt[:50])
+        progress.increment()
+        return
+
+    try:
+        scores = score_response(response_text, scorer)
+    except Exception:
+        log.exception("Failed to score %s response for: %s — skipping", eng, bp.prompt[:50])
+        progress.increment()
+        return
+
+    record = {
+        "prompt": bp.prompt,
+        "stage": bp.stage,
+        "engine": eng,
+        "response": response_text,
+        "scores": scores.model_dump(),
+        "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+    }
+    append_result(d, record)
+    count = progress.increment()
+    if count % 20 == 0 or count == progress.total:
+        log.info("Progress: %d/%d tasks completed", count, progress.total)
+
+    time.sleep(API_DELAY_SECONDS)
 
 
 def run_benchmark(
@@ -799,6 +1188,7 @@ def run_benchmark(
     resume: bool,
     skip_clarity: bool = False,
     use_search: bool = False,
+    workers_override: Optional[int] = None,
 ) -> None:
     prompts = load_prompts(stage_filter=stage_filter, limit=limit)
     if not prompts:
@@ -807,7 +1197,7 @@ def run_benchmark(
 
     log.info("Loaded %d prompts across stages: %s", len(prompts), ", ".join(sorted({p.stage for p in prompts})))
     if use_search:
-        log.info("Web search enabled (ChatGPT/Gemini/Claude can use Serper); Perplexity has built-in search")
+        log.info("Web search enabled — each engine uses its native search (no Serper dependency)")
 
     clients = build_clients(engines)
     scorer = build_scorer()
@@ -817,53 +1207,67 @@ def run_benchmark(
     if completed:
         log.info("Resuming — %d prompt/engine combos already done", len(completed))
 
-    total_tasks = len(prompts) * len(engines)
-    done_count = 0
-
-    for i, bp in enumerate(prompts, 1):
+    # Build task list: (prompt, engine) pairs that need to run, grouped by engine
+    engine_tasks: dict[str, list[BenchmarkPrompt]] = {eng: [] for eng in engines}
+    for bp in prompts:
         for eng in engines:
-            done_count += 1
-            key = (bp.prompt, eng)
-            if key in completed:
-                continue
+            if (bp.prompt, eng) not in completed:
+                engine_tasks[eng].append(bp)
 
-            progress = f"[{done_count}/{total_tasks}]"
-            log.info("%s  %-12s  stage=%-17s  %s", progress, eng, bp.stage, bp.prompt[:60])
+    total_tasks = sum(len(tasks) for tasks in engine_tasks.values())
+    if total_tasks == 0:
+        log.info("All prompt/engine combos already completed — nothing to do")
+    else:
+        # Determine worker counts per engine
+        engine_worker_counts: dict[str, int] = {}
+        for eng in engines:
+            if workers_override is not None:
+                w = workers_override
+            else:
+                env_key = f"ENGINE_WORKERS_{eng.upper()}"
+                w = int(os.getenv(env_key, str(ENGINE_WORKERS.get(eng, 4))))
+            engine_worker_counts[eng] = max(1, w)
 
-            # Query engine (use_search: ChatGPT/Gemini/Claude get web search; Perplexity always has search)
-            try:
-                if eng == "chatgpt":
-                    response_text = query_chatgpt(bp.prompt, clients["chatgpt"], use_search=use_search)
-                elif eng == "gemini":
-                    response_text = query_gemini(bp.prompt, clients["gemini"], use_search=use_search)
-                elif eng == "claude":
-                    response_text = query_claude(bp.prompt, clients["claude"], use_search=use_search)
-                elif eng == "perplexity":
-                    response_text = query_perplexity(bp.prompt, clients["perplexity"])
-                else:
-                    raise ValueError(f"Unknown engine: {eng}")
-            except Exception:
-                log.exception("Failed to query %s for prompt: %s — skipping", eng, bp.prompt[:50])
-                continue
+        log.info(
+            "Parallelising %d tasks across %d engines: %s",
+            total_tasks,
+            len(engines),
+            ", ".join(f"{eng}={engine_worker_counts[eng]}w×{len(engine_tasks[eng])}t" for eng in engines),
+        )
 
-            # Score response
-            try:
-                scores = score_response(response_text, scorer)
-            except Exception:
-                log.exception("Failed to score %s response for: %s — skipping", eng, bp.prompt[:50])
-                continue
+        progress = _ProgressCounter(total_tasks)
 
-            record = {
-                "prompt": bp.prompt,
-                "stage": bp.stage,
-                "engine": eng,
-                "response": response_text,
-                "scores": scores.model_dump(),
-                "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-            }
-            append_result(d, record)
+        # One ThreadPoolExecutor per engine so each engine has its own concurrency limit.
+        # All engine pools run simultaneously.
+        engine_pools: list[ThreadPoolExecutor] = []
+        all_futures = []
 
-            time.sleep(API_DELAY_SECONDS)
+        try:
+            for eng in engines:
+                tasks = engine_tasks[eng]
+                if not tasks:
+                    continue
+                w = engine_worker_counts[eng]
+                pool = ThreadPoolExecutor(max_workers=w, thread_name_prefix=f"aeo-{eng}")
+                engine_pools.append(pool)
+
+                for bp in tasks:
+                    fut = pool.submit(
+                        _process_single_task,
+                        bp, eng, clients, scorer, d, progress, use_search,
+                    )
+                    all_futures.append(fut)
+
+            # Wait for all futures to complete and surface any unexpected exceptions
+            for fut in as_completed(all_futures):
+                exc = fut.exception()
+                if exc is not None:
+                    log.error("Unexpected error in worker: %s", exc)
+        finally:
+            for pool in engine_pools:
+                pool.shutdown(wait=True)
+
+        log.info("All %d tasks completed", progress.done)
 
     # Fetch Clarity traffic data
     clarity_summary: Optional[list[dict]] = None
@@ -900,10 +1304,40 @@ def run_benchmark(
 
     write_scorecard_csv(d / "scorecard.csv", engine_sc)
     write_scorecard_csv(d / "scorecard_by_stage.csv", stage_sc)
-    write_summary_md(d / "summary.md", engine_sc, stage_sc, rows, clarity_summary, clarity_top_pages)
+
+    # Compute trends vs prior runs
+    today = datetime.date.today()
+    base = RESULTS_DIR
+    pi_rate = None
+    pi_rows = [r for r in rows if r["stage"] == "purchase_intent"]
+    if pi_rows:
+        pi_mentioned = sum(1 for r in pi_rows if r["scores"]["mention"])
+        pi_rate = pi_mentioned / len(pi_rows) * 100
+
+    trends: list[TrendData] = []
+    prev_day = _find_prior_run(base, today)
+    if prev_day:
+        t = compute_trends(base, today, engine_sc, clarity_summary, pi_rate,
+                           label="1d", prior_dir=prev_day)
+        if t:
+            trends.append(t)
+
+    week_ago_target = today - datetime.timedelta(days=7)
+    week_dir = _find_run_near(base, week_ago_target, tolerance=2)
+    if week_dir and (not prev_day or week_dir != prev_day):
+        t = compute_trends(base, today, engine_sc, clarity_summary, pi_rate,
+                           label="7d", prior_dir=week_dir)
+        if t:
+            trends.append(t)
+
+    if trends:
+        log.info("Comparing against: %s", ", ".join(f"{t.prior_date} ({t.prior_label})" for t in trends))
+
+    write_summary_md(d / "summary.md", engine_sc, stage_sc, rows, clarity_summary, clarity_top_pages, trends)
+    write_trends_csv(d / "trends.csv", engine_sc, clarity_summary, trends)
 
     log.info("Results written to %s", d)
-    print_summary(engine_sc, rows, clarity_summary)
+    print_summary(engine_sc, rows, clarity_summary, trends)
 
 
 def main() -> None:
@@ -917,7 +1351,17 @@ def main() -> None:
     parser.add_argument("--stage", default=None, choices=STAGES, help="Run a single stage only")
     parser.add_argument("--resume", action="store_true", help="Skip already-completed prompt/engine combos in today's run")
     parser.add_argument("--no-clarity", action="store_true", help="Skip Clarity traffic data fetch")
-    parser.add_argument("--no-search", action="store_true", help="Disable web search for ChatGPT/Gemini/Claude (set SERPER_API_KEY to enable search)")
+    parser.add_argument("--no-search", action="store_true", help="Disable native web search for all engines (test training-data-only responses)")
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=None,
+        help=(
+            "Override worker count for ALL engines. "
+            f"Defaults: {', '.join(f'{e}={w}' for e, w in ENGINE_WORKERS.items())}. "
+            "Or set per-engine: ENGINE_WORKERS_CHATGPT=10 etc."
+        ),
+    )
     args = parser.parse_args()
 
     selected_engines = [e.strip().lower() for e in args.engines.split(",")]
@@ -925,7 +1369,7 @@ def main() -> None:
         if e not in ENGINES:
             parser.error(f"Unknown engine: {e}. Choose from {ENGINES}")
 
-    use_search = bool(os.getenv("SERPER_API_KEY")) and not args.no_search
+    use_search = not args.no_search
 
     run_benchmark(
         engines=selected_engines,
@@ -934,6 +1378,7 @@ def main() -> None:
         resume=args.resume,
         skip_clarity=args.no_clarity,
         use_search=use_search,
+        workers_override=args.workers,
     )
 
 

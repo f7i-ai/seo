@@ -1,0 +1,16 @@
+{
+  "meta_title": "How to Prevent Repeat Failures: The Bad Actor Framework",
+  "meta_description": "Prevent repeat failures by identifying \"Bad Actor\" assets, performing Root Cause Analysis (RCA), and transitioning from calendar-based to condition-based maintenance.",
+  "title": "How to Prevent Repeat Failures in Industrial Manufacturing",
+  "keyword": "how to prevent repeat failures",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/how-to-prevent-repeat-failures.png",
+    "alt": "Hero image for How to Prevent Repeat Failures in Industrial Manufacturing",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-definition, photo-realistic image of a reliability engineer in a modern manufacturing plant. The engineer is wearing a hard hat, safety glasses, and a high-visibility vest, holding a rugged tablet that displays a complex vibration analysis graph and a 3D model of a gearbox. In the background, a clean, well-lit production line is visible with various sensors attached to the motors. The scene conveys a sense of precision, data-driven decision-making, and advanced industrial technology. No text.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1046,
+  "link_count": 5
+}

@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why Maintenance Tasks Are Missed During Shift Changes",
+  "meta_description": "Maintenance tasks are missed due to information decay during handovers, production-maintenance silos, and reactive firefighting. Learn the root causes and fixes.",
+  "title": "Root Cause Analysis: Why Maintenance Tasks Are Missed During Shift Transitions",
+  "keyword": "why maintenance tasks missed in shifts",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-maintenance-tasks-missed-in-shifts.png",
+    "alt": "Hero image for Root Cause Analysis: Why Maintenance Tasks Are Missed During Shift Transitions",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-resolution, photo-realistic image of two maintenance technicians in high-visibility vests and hard hats standing in a modern manufacturing facility. They are conducting a shift handover, looking together at a large industrial tablet that displays a real-time machine health dashboard with red and green status indicators. In the background, a clean, well-lit production line is visible. The lighting is bright and professional, emphasizing a culture of precision and accountability. No text on the screen is legible, but the interface looks modern and data-driven.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1031,
+  "link_count": 5
+}

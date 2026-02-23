@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why Maintenance Reports Are Inaccurate: Root Causes & Fixes",
+  "meta_description": "Maintenance reports are inaccurate due to high entry friction, pencil whipping, and misaligned KPIs. Learn how to fix data integrity and improve MTBF/MTTR.",
+  "title": "Why Maintenance Reports Are Inaccurate: Diagnosing Data Integrity Failure in Reliability Engineering",
+  "keyword": "why maintenance reports inaccurate",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-maintenance-reports-inaccurate.png",
+    "alt": "Hero image for Why Maintenance Reports Are Inaccurate: Diagnosing Data Integrity Failure in Reliability Engineering",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A close-up, photo-realistic shot of a maintenance technician's grease-stained hand holding a ruggedized tablet in a dimly lit factory. The tablet screen shows a complex, cluttered CMMS interface with many red \"error\" fields. In the background, out of focus, a large industrial motor is being repaired by another technician in high-visibility PPE. The lighting is moody and industrial, emphasizing the contrast between the physical work and the digital burden.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 1028,
+  "link_count": 6
+}

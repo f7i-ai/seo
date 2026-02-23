@@ -1,0 +1,16 @@
+{
+  "meta_title": "Why Vibration Checks Don't Prevent Failures | Reliability Guide",
+  "meta_description": "Vibration checks fail because they miss the P-F interval and lack automated workflows. Learn how to bridge the gap between data collection and failure prevention.",
+  "title": "Why Vibration Checks Don't Prevent Failures: The Gap Between Data and Reliability",
+  "keyword": "why vibration checks don't prevent failures",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/why-vibration-checks-don't-prevent-failures.png",
+    "alt": "Hero image for Why Vibration Checks Don't Prevent Failures: The Gap Between Data and Reliability",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-detail industrial photograph of a maintenance engineer using a handheld vibration analyzer on a large centrifugal pump. In the background, a digital dashboard is visible on a tablet, showing a red \"Alert\" status and an automated work order being generated. The lighting is professional and clear, highlighting the contrast between the manual tool and the automated digital system. No text on the screen, diverse personnel in clean PPE.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 972,
+  "link_count": 4
+}

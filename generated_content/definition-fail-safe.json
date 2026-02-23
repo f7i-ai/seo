@@ -1,0 +1,16 @@
+{
+  "meta_title": "What is a Fail-Safe? Definition and Industrial Applications",
+  "meta_description": "A fail-safe is a design feature that ensures a system defaults to a safe state during failure. Understand its role in industrial safety and maintenance.",
+  "title": "What Is a Fail-Safe?",
+  "keyword": "definition fail safe",
+  "hero_image": {
+    "url": "",
+    "local_path": "generated_content/definition-fail-safe.png",
+    "alt": "Hero image for What Is a Fail-Safe?",
+    "source": "gemini-3-pro-image-preview"
+  },
+  "image_prompt": "A high-resolution, photo-realistic industrial scene showing a close-up of a heavy-duty emergency stop button and a mechanical pressure gauge on a complex stainless steel piping system. In the background, a diverse team of maintenance engineers in high-visibility vests and hard hats are conducting a safety audit. The lighting is bright and professional, emphasizing a clean, modern, and safe manufacturing environment. No text.",
+  "markdown_body": "[See separate markdown file]",
+  "word_count": 450,
+  "link_count": 5
+}
