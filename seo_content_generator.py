@@ -381,7 +381,8 @@ class SEOContentGenerator:
         existing_slugs: List[str] = []
         try:
             logger.info(f"Fetching sitemap from {sitemap_url}")
-            response = requests.get(sitemap_url, timeout=15)
+            # Larger sitemap generation can exceed the old 15s read timeout.
+            response = requests.get(sitemap_url, timeout=60)
             response.raise_for_status()
 
             # Parse XML sitemap
