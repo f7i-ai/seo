@@ -35,6 +35,32 @@ A comprehensive system for automated SEO content generation and publishing to Pr
 - **Node.js 16+**: For Prismic upload functionality
 - **npm**: For Node.js dependencies
 
+### AEO Benchmark Tool (`aeo_benchmark.py`)
+
+The AEO (Answer Engine Optimization) benchmark measures Factory AI visibility across AI answer engines (ChatGPT, Gemini, Claude, Perplexity). It uses the same Python environment and `requirements.txt` as the content generator.
+
+**Required API keys** (set at least one engine; Gemini is required for scoring):
+- **`GEMINI_API_KEY`**: Required — used for Gemini queries and for scoring all responses
+- **`OPENAI_API_KEY`**: For ChatGPT engine
+- **`ANTHROPIC_API_KEY`**: For Claude engine
+- **`PERPLEXITY_API_KEY`**: For Perplexity engine
+
+**Optional**:
+- **`CLARITY_API_TOKEN`**: For AI referral traffic data (Microsoft Clarity). Omit to skip traffic fetch.
+- **`SERPER_API_KEY`**: Not needed for the main benchmark — each engine uses its native web search by default.
+
+**Usage**:
+```bash
+python aeo_benchmark.py                          # Full run, all engines
+python aeo_benchmark.py --engines chatgpt,claude # Select engines
+python aeo_benchmark.py --limit 10               # First N prompts (testing)
+python aeo_benchmark.py --stage purchase_intent  # Single stage only
+python aeo_benchmark.py --resume                 # Skip already-completed prompts
+python aeo_benchmark.py --no-search              # Disable web search
+```
+
+Results are written to `aeo_results/YYYY-MM-DD/` (scorecard, summary, trends).
+
 ## 🛠️ Installation
 
 ### 1. Clone and Setup Python Environment
