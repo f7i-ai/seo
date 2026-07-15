@@ -11,7 +11,7 @@
     "@prismicio/client": "^7.18.0",
     "@prismicio/migrate": "^0.0.2",
     "dotenv": "^16.0.0",
-    "form-data": "^4.0.0",
+    "form-data": "^4.0.6",
     "fs": "^0.0.1-security",
     "node-fetch": "^3.3.2",
     "path": "^0.12.7"
