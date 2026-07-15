@@ -21,7 +21,7 @@
     "react-email": "^4.3.2"
   },
   "devDependencies": {
-    "@react-email/preview-server": "^4.3.2",
+    "@react-email/preview-server": "^5.2.11",
     "@types/node": "^24.9.2",
     "@types/react": "^19.2.2",
     "archiver": "^7.0.1",
